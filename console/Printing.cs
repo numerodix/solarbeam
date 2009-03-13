@@ -7,13 +7,13 @@ using LibSolar.Types;
 
 namespace SolarbeamCli
 {
-	class Printing
+	static class Printing
 	{
 		public static void Print(SolarPosition sp, SolarTimes sns)
 		{
 			string template = "{0,-12} : {1}\n";
 	
-			string s = "";
+			string s = String.Empty;
 			s += sp.Print(template, true);
 			s += "\n";
 			s += sns.Print(template, false);

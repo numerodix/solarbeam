@@ -6,7 +6,7 @@ using System.Collections;
 
 namespace SolarbeamCli
 {
-	class Parsing
+	static class Parsing
 	{
 		public static ArrayList SplitParse(string str, char c)
 		{

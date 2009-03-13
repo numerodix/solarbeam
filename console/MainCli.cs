@@ -12,7 +12,7 @@ using LibSolar.Types;
 
 namespace SolarbeamCli
 {
-	class MainCli
+	static class MainCli
 	{
 		private const string application_title = "SolarBeam Console";
 		private const string copy_string = 
@@ -108,32 +108,24 @@ namespace SolarbeamCli
 			ArrayList ts = Parsing.SplitParse(time, ':');
 	
 			// figure out directions
-			PositionDirection lodir = Position.LONGITUDE_POS;
-			try
-			{
-				if (String.Compare((string) los[0], "e", true) == 0)
-				{
-					lodir = Position.LONGITUDE_POS;
-				} else if (String.Compare((string) los[0], "w", true) == 0) {
-					lodir = Position.LONGITUDE_NEG;
-				} else throw new Exception();
-			} catch {
-				throw new ArgumentException(
-						string.Format("Wrong value for longitude: {0}", longitude));
-			}
-	
 			PositionDirection ladir = Position.LATITUDE_POS;
-			try
-			{
-				if (String.Compare((string) las[0], "n", true) == 0)
-				{
-					ladir = Position.LATITUDE_POS;
-				} else if (String.Compare((string) las[0], "s", true) == 0) {
-					ladir = Position.LATITUDE_NEG;
-				} else throw new Exception();
-			} catch {
+			if (String.Compare((string) las[0], "n", true) == 0) {
+				ladir = Position.LATITUDE_POS;
+			} else if (String.Compare((string) las[0], "s", true) == 0) {
+				ladir = Position.LATITUDE_NEG;
+			} else {
 				throw new ArgumentException(
 						string.Format("Wrong value for latitude: {0}", latitude));
+			}
+	
+			PositionDirection lodir = Position.LONGITUDE_POS;
+			if (String.Compare((string) los[0], "e", true) == 0) {
+				lodir = Position.LONGITUDE_POS;
+			} else if (String.Compare((string) los[0], "w", true) == 0) {
+				lodir = Position.LONGITUDE_NEG;
+			} else {
+				throw new ArgumentException(
+						string.Format("Wrong value for longitude: {0}", longitude));
 			}
 	
 			Position pos = new Position(lodir,
