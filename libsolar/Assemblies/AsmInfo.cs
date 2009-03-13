@@ -8,12 +8,10 @@ namespace LibSolar.Assemblies
 {
 	public class AsmInfo
 	{
-		private Assembly asm;
 		private object[] atts;
 
 		public AsmInfo(Assembly asm)
 		{
-			this.asm = asm;
 			atts = asm.GetCustomAttributes(false);
 		}
 		
