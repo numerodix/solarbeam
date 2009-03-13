@@ -133,11 +133,11 @@ namespace SolarbeamGui
 		{
 			Control btns = GetLaidOut(
 				new Control[] {
-					GetLabel(""), //layout buffer
+					GetLabel(String.Empty), //layout buffer
 					GetButton(Controller.Id.CLEARFORM_ACTION, "Clear"),
-					GetLabel(""),
+					GetLabel(String.Empty),
 					GetButton(Controller.Id.RENDER_ACTION, "Render"),
-					GetLabel("")},
+					GetLabel(String.Empty)},
 				new float[] {15F, 30F, 15F, 30F, 15F});
 	
 			return btns;
@@ -197,14 +197,14 @@ namespace SolarbeamGui
 			Label tz_lbl_hint = GetLabel("from UTC");
 			Control tz_in = GetLaidOut(
 				new Control[] {
-					GetLabel(""), //layout buffer
+					GetLabel(String.Empty), //layout buffer
 					GetNumericUpDown(Controller.Id.TIMEZONE_OFFSET,
 				                 UTCDate.TIMEZONE_MINVALUE,
 				                 UTCDate.TIMEZONE_MAXVALUE)},
 				new float[] {70F, 30F});
 	
 			Label date_lbl = GetLabel("Date:");
-			Control date_scr = GetLabel("");
+			Control date_scr = GetLabel(String.Empty);
 			Control date_ins = GetLaidOut(
 				new Control[] {
 					GetNumericUpDown(Controller.Id.DATE_DAY,
@@ -219,7 +219,7 @@ namespace SolarbeamGui
 				new float[] {20F, 20F, 25F});
 			
 			Label time_lbl = GetLabel("Time:");
-			Control time_scr = GetLabel("");
+			Control time_scr = GetLabel(String.Empty);
 			Control time_ins = GetLaidOut(
 				new Control[] {
 					GetNumericUpDown(Controller.Id.TIME_HOUR,

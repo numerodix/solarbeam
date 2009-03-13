@@ -96,7 +96,7 @@ namespace SolarbeamGui
 			// register in registry
 			registry.Add(id, control);
 			reg_rev.Add(control, id);
-			cache.Add(id, "");
+			cache.Add(id, String.Empty);
 			
 			// activate buttons
 			if (control is Button) {
