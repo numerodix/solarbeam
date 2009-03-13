@@ -4,9 +4,11 @@
 using System;
 using System.Collections;
 using System.Diagnostics;
+using System.Reflection;
 
 using NDesk.Options;
 
+using LibSolar.Assemblies;
 using LibSolar.SolarOrbit;
 using LibSolar.Types;
 
@@ -14,10 +16,6 @@ namespace SolarbeamCli
 {
 	static class MainCli
 	{
-		private const string application_title = "SolarBeam Console";
-		private const string copy_string = 
-			"Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>";
-		
 		public static void Main(string[] args)
 		{
 			bool verbose = false;
@@ -56,7 +54,11 @@ namespace SolarbeamCli
 			p.Parse(args);
 	
 			if ((help) || (args.Length == 0)) {
-				Console.Error.WriteLine("{0} / {1}", application_title, copy_string);
+				AsmInfo asminfo = new AsmInfo(Assembly.GetExecutingAssembly());
+				Console.Error.WriteLine("{0} / {1}",
+				                        asminfo.GetAtt("Title"),
+				                        asminfo.GetAtt("Copyright"));
+				
 				Console.Error.WriteLine("Usage:");
 				Console.Error.Write("  console.exe");
 				Console.Error.Write(" -lat N.63.25.47");

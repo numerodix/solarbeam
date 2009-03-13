@@ -6,23 +6,24 @@
 using System;
 using System.Drawing;
 using System.Diagnostics;
+using System.Reflection;
 using System.Windows.Forms;
 
+using LibSolar.Assemblies;
 using LibSolar.Graphing;
 
 namespace SolarbeamGui
 {
 	static class MainGui
-	{
-		private const string application_title = "SolarBeam";
-		
+	{		
 		[STAThread]
 		public static void Main()
 		{
 			//TimeIt();
 			
+			AsmInfo asminfo = new AsmInfo(Assembly.GetExecutingAssembly());
 			Application.EnableVisualStyles();
-			Application.Run(new GuiMainForm(application_title));
+			Application.Run(new GuiMainForm(asminfo.GetAtt("Title")));
 		}
 	
 		public static void TimeIt()

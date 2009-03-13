@@ -59,6 +59,7 @@
     <Compile Include="Graphing\Graph\Plot.cs" />
     <Compile Include="Graphing\Graph\Geometry.cs" />
     <Compile Include="Graphing\Graph\Formatter.cs" />
+    <Compile Include="Assemblies\AsmInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
