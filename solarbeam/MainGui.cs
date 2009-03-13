@@ -12,12 +12,12 @@ using LibSolar.Graphing;
 
 namespace SolarbeamGui
 {
-	sealed class MainGui
+	static class MainGui
 	{
 		private const string application_title = "SolarBeam";
 		
 		[STAThread]
-		public static void Main(string[] args)
+		public static void Main()
 		{
 			//TimeIt();
 			

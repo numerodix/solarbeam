@@ -84,7 +84,7 @@ namespace SolarbeamGui
 				        || (this.bitmape_final.Height != dim)))
 				{
 					this.bitmape_base = GenerateBaseImageBitmap();
-					this.bitmape_final = GenerateFinalizedBitmap(this.bitmape_base);
+					this.bitmape_final = GenerateFinalizedBitmap();
 					
 				// bitmap is null
 				} else if (this.bitmape_final == null)	{
@@ -92,7 +92,7 @@ namespace SolarbeamGui
 					{
 						this.bitmape_base = GenerateBaseImageBitmap();
 					}
-					this.bitmape_final = GenerateFinalizedBitmap(this.bitmape_base);
+					this.bitmape_final = GenerateFinalizedBitmap();
 				}
 				
 				// render
@@ -131,7 +131,7 @@ namespace SolarbeamGui
 			return graphbitmap.RenderBaseImage(position, date.Value);
 		}
 		
-		private Bitmap GenerateFinalizedBitmap(Bitmap basebitmap)
+		private Bitmap GenerateFinalizedBitmap()
 		{
 			int dim = GetCanvasDimensions();
 			return graphbitmap.RenderCurrentDayCloned(dim, 
