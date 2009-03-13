@@ -11,7 +11,7 @@ namespace SolarbeamGui
 	/**
 	 * Provide initialization of common gui components.
 	 */
-	class GuiCommon
+	sealed class GuiCommon
 	{
 		public static TableLayoutPanel GetTableLayoutPanel(int rows, int cols, 
 		                                                   int margin, int padding)

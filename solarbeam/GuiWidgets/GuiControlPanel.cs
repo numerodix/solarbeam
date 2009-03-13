@@ -13,7 +13,7 @@ namespace SolarbeamGui
 	/**
 	 * Creates widget panel for left side of screen.
 	 */
-	class GuiControlPanel : Panel
+	sealed class GuiControlPanel : Panel
 	{
 		private const int GROUPBOX_HEIGHT = 20;
 		private const int GROUPBOX_WIDTH = 10;

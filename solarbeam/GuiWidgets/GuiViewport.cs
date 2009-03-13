@@ -11,7 +11,7 @@ using LibSolar.Types;
 
 namespace SolarbeamGui
 {
-	class GuiViewport : Control
+	sealed class GuiViewport : Control
 	{
 		public const int IDEAL_DIM_X = 569;
 		public const int IDEAL_DIM_Y = 526;

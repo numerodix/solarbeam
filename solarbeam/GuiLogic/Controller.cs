@@ -17,7 +17,7 @@ namespace SolarbeamGui
 	/**
 	 * Administers all widgets.
 	 */
-	partial class Controller
+	sealed partial class Controller
 	{
 		// Identify all widgets
 		public enum Id {

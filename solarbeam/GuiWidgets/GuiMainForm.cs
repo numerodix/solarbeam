@@ -10,7 +10,7 @@ using LibSolar.SolarOrbit;
 
 namespace SolarbeamGui
 {
-	class GuiMainForm : Form
+	sealed class GuiMainForm : Form
 	{	
 		private const int BORDER = 0;
 		private const int VIEWPORT_DIM_X = GuiViewport.IDEAL_DIM_X;
