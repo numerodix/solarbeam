@@ -10,7 +10,7 @@ zip:
 	rm -rf dist/solarbeam
 
 apidocs:
-	rm -rf doc
+	rm -rf apidoc
 	doxygen doxygen.cfg
 
 test:
