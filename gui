@@ -1,0 +1,5 @@
+#!/bin/bash
+
+exe=$(find solarbeam -type f -iname '*.exe' | grep Release | head -n1)
+echo $exe
+mono "$exe" "$@"

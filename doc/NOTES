@@ -1,0 +1,4 @@
+- W overlaying grid [x]
+- precision on outputs: times = hh:mm, degrees = xxx.x [x]
+- png render : print legend on image
+- location db, dst, timezones

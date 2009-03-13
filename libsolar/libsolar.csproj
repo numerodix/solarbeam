@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B10031CA-8F30-4D3E-8185-AEC4636D0648}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>libsolar</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="SolarOrbit\JulianDate.cs" />
+    <Compile Include="SolarOrbit\Coordinate.cs" />
+    <Compile Include="SolarOrbit\Orbit.cs" />
+    <Compile Include="SolarOrbit\Test\CoordinateTest.cs" />
+    <Compile Include="SolarOrbit\Test\JulianDateTest.cs" />
+    <Compile Include="Graphing\GraphBitmap.cs" />
+    <Compile Include="Graphing\GraphBitmapDemo.cs" />
+    <Compile Include="Types\Position.cs" />
+    <Compile Include="Types\SolarPosition.cs" />
+    <Compile Include="Types\SolarTimes.cs" />
+    <Compile Include="Types\UTCDate.cs" />
+    <Compile Include="Types\StaticList.cs" />
+    <Compile Include="Types\Test\PositionTest.cs" />
+    <Compile Include="Graphing\Types\Grid.cs" />
+    <Compile Include="Graphing\Types\Graph.cs" />
+    <Compile Include="Graphing\Graph\Backdrop.cs" />
+    <Compile Include="Graphing\Graph\Diagram.cs" />
+    <Compile Include="Graphing\Types\Colors.cs" />
+    <Compile Include="Graphing\Graph\Primitives.cs" />
+    <Compile Include="Graphing\Graph\Plot.cs" />
+    <Compile Include="Graphing\Graph\Geometry.cs" />
+    <Compile Include="Graphing\Graph\Formatter.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

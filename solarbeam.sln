@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libsolar", "libsolar\libsolar.csproj", "{B10031CA-8F30-4D3E-8185-AEC4636D0648}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console", "console\console.csproj", "{855E14AE-32A5-476A-9966-B3B4ABCC93A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "solarbeam", "solarbeam\solarbeam.csproj", "{66BB16EF-C023-4729-8C87-44D1771CE237}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66BB16EF-C023-4729-8C87-44D1771CE237}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66BB16EF-C023-4729-8C87-44D1771CE237}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66BB16EF-C023-4729-8C87-44D1771CE237}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66BB16EF-C023-4729-8C87-44D1771CE237}.Release|Any CPU.Build.0 = Release|Any CPU
+		{855E14AE-32A5-476A-9966-B3B4ABCC93A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{855E14AE-32A5-476A-9966-B3B4ABCC93A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{855E14AE-32A5-476A-9966-B3B4ABCC93A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{855E14AE-32A5-476A-9966-B3B4ABCC93A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B10031CA-8F30-4D3E-8185-AEC4636D0648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B10031CA-8F30-4D3E-8185-AEC4636D0648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B10031CA-8F30-4D3E-8185-AEC4636D0648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B10031CA-8F30-4D3E-8185-AEC4636D0648}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		name = solarbeam
+		version = 0.1
+		StartupItem = solarbeam\solarbeam.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		$0.StandardHeader = $2
+		$2.Text = Author: Martin Matusiak <numerodix@gmail.com>
+		$2.inheritsSet = MITX11License
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 78
+		$3.TabWidth = 4
+		$3.TabsToSpaces = False
+		$3.NoTabsAfterNonTabs = False
+		$3.RemoveTrailingWhitespace = False
+		$3.EolMarker = Native
+		$0.ChangeLogPolicy = $4
+		$4.UpdateMode = None
+		$4.MessageStyle = $5
+		$5.LineAlign = 0
+		$4.inheritsSet = Mono
+	EndGlobalSection
+EndGlobal

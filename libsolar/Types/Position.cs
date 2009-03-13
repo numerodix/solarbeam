@@ -1,0 +1,294 @@
+// Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
+// Licensed under the GNU Public License, version 3.
+
+using System;
+
+namespace LibSolar.Types
+{
+	public enum PositionAxis
+	{
+		Longitude,
+		Latitude,
+	}
+
+	public enum PositionDirection
+	{
+		East,
+		West,
+		North,
+		South,
+	}
+
+	/**
+	 * Class to package position primitives, and to intercept invalid values.
+	 */
+	public class Position
+	{
+		public static PositionDirection LONGITUDE_POS = PositionDirection.East;
+		public static PositionDirection LONGITUDE_NEG = PositionDirection.West;
+		public static PositionDirection LATITUDE_POS = PositionDirection.North;
+		public static PositionDirection LATITUDE_NEG = PositionDirection.South;
+		
+		public const int LATDEGS_MINVALUE = 0;
+		public const int LATDEGS_MAXVALUE = 90;
+		public const int LATMINS_MINVALUE = 0;
+		public const int LATMINS_MAXVALUE = 59;
+		public const int LATSECS_MINVALUE = 0;
+		public const int LATSECS_MAXVALUE = 59;
+		
+		public const int LONDEGS_MINVALUE = 0;
+		public const int LONDEGS_MAXVALUE = 180;
+		public const int LONMINS_MINVALUE = 0;
+		public const int LONMINS_MAXVALUE = 59;
+		public const int LONSECS_MINVALUE = 0;
+		public const int LONSECS_MAXVALUE = 59;
+
+		private double longitude;
+		private double latitude;
+
+		private int longitude_int;
+		private int latitude_int;
+
+		public Position(PositionDirection lodir,
+		                int lodeg, int lomin, int losec,
+		                PositionDirection ladir,
+		                int ladeg, int lamin, int lasec)
+		{
+			longitude_int = CollapsePositionUnits(lodir, lodeg, lomin, losec);
+			latitude_int = CollapsePositionUnits(ladir, ladeg, lamin, lasec);
+
+			CheckIsLongitude(lodir);
+			CheckIsLatitude(ladir);
+
+			CheckLongitudeVal(longitude_int);
+			CheckLatitudeVal(latitude_int);
+
+			longitude_int = InvertLongitude(longitude_int);
+
+			longitude = longitude_int / 3600.0;
+			latitude = latitude_int / 3600.0;
+			
+			latitude = AdjustLatitude(latitude);
+		}
+
+		public static PositionDirection LonDirFromVal(int val)
+		{
+			if (val >= 0)
+			{
+				return LONGITUDE_POS;
+			} else {
+				return LONGITUDE_NEG;
+			}
+		}
+
+		public static PositionDirection LatDirFromVal(int val)
+		{
+			if (val >= 0)
+			{
+				return LATITUDE_POS;
+			} else {
+				return LATITUDE_NEG;
+			}
+		}
+
+		/**
+		 * Ensure direction corresponds to longitude direction.
+		 */
+		private void CheckIsLongitude(PositionDirection dir)
+		{
+			if ((dir != PositionDirection.East) && (dir != PositionDirection.West))
+			{
+				throw new ArgumentException(
+						string.Format("Bad direction for longitude: {0}", dir));
+			}
+		}
+
+		/**
+		 * Ensure direction corresponds to latitude direction.
+		 */
+		private void CheckIsLatitude(PositionDirection dir)
+		{
+			if ((dir != PositionDirection.North) && (dir != PositionDirection.South))
+			{
+				throw new ArgumentException(
+						string.Format("Bad direction for latitude: {0}", dir));
+			}
+		}
+
+		/**
+		 * Longitude [0,180] represents west of 0 meridian.
+		 * Longitude [0,-180] represents east of 0 meridian.
+		 */
+		private void CheckLongitudeVal(int lon)
+		{
+			if ( (lon < -180*3600) || (lon > 180*3600) )
+			{
+				throw new ArgumentException(
+						string.Format("Bad value for longitude: {0}", lon));
+			}
+		}
+
+		/**
+		 * Latitude [0,90] represents north of equator.
+		 * Latitude [0,-90] represents south of equator.
+		 */
+		private void CheckLatitudeVal(int lat)
+		{
+			if ( (lat < -90*3600) || (lat > 90*3600) )
+			{
+				throw new ArgumentException(
+						string.Format("Bad value for latitude: {0}", lat));
+			}
+		}
+
+		/**
+		 * Most common is to represent east longitude as positive. Solarbeam does
+		 * the opposite, so we accept input in the standard form and switch the
+		 * sign.
+		 */
+		private static int InvertLongitude(int lon)
+		{
+			return -lon;
+		}
+
+		/**
+		 * The original SRRB code has this adjustment, presumably to avoid bumping
+		 * up against the treacherous 90 degrees value in trigonometric functions.
+		 */
+		private static double AdjustLatitude(double lat)
+		{
+			if ( (lat >= -90*3600.0) && (lat < -89.8*3600.0) )
+			{
+				return -89.8*3600.0;
+			}
+			if ( (lat <= 90*3600.0) && (lat > 89.8*3600.0) )
+			{
+				return 89.8*3600.0;
+			}
+			return lat;
+		}
+
+		/**
+		 * Normalize integer position to decimal value.
+		 */
+		private static int CollapsePositionUnits(PositionDirection dir,
+		                                         int deg, int min, int sec)
+		{
+			int multiplier =
+				( (dir == LONGITUDE_NEG) || (dir == LATITUDE_NEG) ? -1 : 1 );
+			return 
+				( multiplier
+				 * ( Math.Abs(deg) * 3600
+					 + ( Math.Abs(min) * 60)
+					 + ( Math.Abs(sec) ) ));
+		}
+
+		/**
+		 * Extract integer representation of position.
+		 * This method is for returning results to client, therefore remember to
+		 * invert longitude.
+		 */
+		private static Degree ExpandPositionUnits(PositionAxis ax, int degs)
+		{
+			PositionDirection dir;
+
+			if (ax == PositionAxis.Longitude)
+			{
+				dir = LONGITUDE_POS;
+
+				degs = InvertLongitude(degs);
+				if (degs < 0)
+				{
+					dir = LONGITUDE_NEG;
+				}
+			} else {
+				dir = LATITUDE_POS;
+
+				if (degs < 0)
+				{
+					dir = LATITUDE_NEG;
+				}
+			}
+			degs = Math.Abs(degs);
+
+			int deg = degs / 3600;
+			degs = degs - deg * 3600;
+			int min = degs / 60;
+			degs = degs - min * 60;
+			int sec = degs;
+
+			return new Degree(dir, deg, min, sec);
+		}
+
+		public double Longitude
+		{ get { return longitude; } }
+
+		public Degree LongitudeDegree
+		{ get { return ExpandPositionUnits(PositionAxis.Longitude, longitude_int); } }
+
+		public double Latitude
+		{ get { return latitude; } }
+
+		public Degree LatitudeDegree
+		{ get { return ExpandPositionUnits(PositionAxis.Latitude, latitude_int); } }
+
+		// Helpers
+		public string PrintLongitude()
+		{
+			Degree d = LongitudeDegree;
+			return d.Print();
+		}
+
+		public string PrintLatitude()
+		{
+			Degree d = LatitudeDegree;
+			return d.Print();
+		}
+	}
+
+	/**
+	 * Struct to represent position coordinate in long form.
+	 */
+	public struct Degree
+	{
+		private PositionDirection dir;
+		private int deg;
+		private int min;
+		private int sec;
+
+		public Degree(PositionDirection dir,
+		              int deg, int min, int sec)
+		{
+			this.dir = dir;
+			this.deg = deg;
+			this.min = min;
+			this.sec = sec;
+		}
+
+		public PositionDirection Direction
+		{ get { return dir; } }
+
+		public int Deg
+		{ get { return deg; } }
+
+		public int Min
+		{ get { return min; } }
+
+		public int Sec
+		{ get { return sec; } }
+
+		// Helpers
+		public string Print()
+		{
+			string dir_s = "E";
+			switch (dir)
+			{
+				case PositionDirection.West: dir_s = "W"; break;
+				case PositionDirection.North: dir_s = "N"; break;
+				case PositionDirection.South: dir_s = "S"; break;
+			}
+			return string.Format("{1,3:G}° {2,2:G}' {3,2:G}\" {0}",
+			                     dir_s, deg, min, sec);
+		}
+	}
+}

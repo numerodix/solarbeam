@@ -1,0 +1,90 @@
+Astronomy core
+- reftester performs random sampling
+	+ computes max, avg, stand. dev. for disparities on all axes
+	+ azimuth appears to be dead on except for >89° 
+		max     169.3811   avg   0.02667119   sig     1.718771
+	+ elevation - same story
+		max     6.067281   avg 0.0002334774   sig   0.02299056
+	+ solar noon accurate (30 sec diff)
+        max           31   avg       3.4406   sig     6.579849
+	+ sunset is problematic (up to 40min diff)
+		max        10098   avg     22.06961   sig     116.7401
+	+ worst sunrise recorded is 2h
+	    max        10138   avg     25.35367   sig     192.4771
+- possible solution: rigorous analysis of floating point ops
+	+ bound to be costly
+	+ may not help, no guarantee not knowing what the problem is
+	+ may have implications for performance
+- verification against other sources?
+	+ gaisma is an option, but disallows queried access
+
+Plotting
+- Backdrop done
+- Graphing
+	+ simple point plotting works
+		- what about line thickness?
+	+ needs optimize for resolution
+		- calculate at what frequency points collide dynamically, starting medium dense
+	+ bitmap to file needs a legend
+	+ bench for redraw speed
+		- may need a progress bar while redraw
+			=> multithreaded
+	+ full graph rendering
+		- render backdrop
+		- plot interested data points for particular dates/times in colors
+		- plot labels for said points
+		- plot labels for hours of day
+		- plot day and time dynamically on input, reuse precomputed result
+		from above
+
+Location database
+- Services
+	+ stored locations
+	+ with timezone/dst data
+	+ stores particular precomputed location-times
+- Representation
+	+ regular class
+	+ serialize to xml
+
+Timezone/DST
+- Offer timezone/dst lookup for arbitrary coordinates
+
+Gui
+- Inputs
+	+ Longitude
+	+ Latitude
+	+ Timezone
+	+ DST
+		- core logic missing
+	+ Location name
+		- db missing
+	+ Toggable sun rendering for particular date and time
+- Dynamic inputs (sliders?)
+	+ Date
+	+ Time
+- Outputs
+	+ Elevation
+	+ Azimuth
+	+ Sunrise
+	+ Sunset
+	+ Solar noon
+- Additional in SunOrb
+	+ Day length?  Y 
+	+ Yearly sunhours?  N
+	+ Yearly average day length?  N
+- Menubar
+	+ Save to image function
+	+ About screen
+		- Author
+		- License
+		- Code used on license
+	+ Print function?
+	+ Help function?
+		- Instructions?
+	+ Splash screen?
+		- Logo?
+
+Save session functionality?
+- "Save current dialog"?
+	+ Handled better through editable database?
+- Autorestore previous session?

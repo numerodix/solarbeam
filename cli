@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mono $(find *console* -type f -iname '*.exe' | head -n1) "$@"

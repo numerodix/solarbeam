@@ -1,0 +1,73 @@
+// Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
+// Licensed under the GNU Public License, version 3.
+
+using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
+
+using LibSolar.SolarOrbit;
+
+namespace SolarbeamGui
+{
+	class GuiMainForm : Form
+	{	
+		private const int BORDER = 0;
+		private const int VIEWPORT_DIM_X = GuiViewport.IDEAL_DIM_X;
+		private const int VIEWPORT_DIM_Y = GuiViewport.IDEAL_DIM_Y;
+		
+		private GuiControlPanel controlpanel;
+		private GuiViewport viewport;
+		
+		public GuiMainForm()
+		{
+			//		this.SuspendLayout();
+			
+			Size sz = InitializeComponent();
+
+			// makes mono layout differently 1.9 <-> 2.0
+			// VS default: 6F 13F (win ok)
+			// mono 1.9: 6F 14F (win ok)
+			// mono 2.0: 7F 14F
+//			this.AutoScaleDimensions = new SizeF(6F, 13F);
+			
+			this.AutoScaleMode = AutoScaleMode.Font;
+			this.ClientSize = sz;
+	//		this.ResumeLayout(false);
+	//		this.PerformLayout();
+		}
+		
+		private Size InitializeComponent()
+		{
+			this.controlpanel = new GuiControlPanel();
+			Controller.InitForm(); // fill in initial form values
+			this.viewport = new GuiViewport(this);
+		
+			TableLayoutPanel layout = GuiCommon.GetTableLayoutPanel(1, 2, 0, BORDER);
+			
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute,
+			                                        GuiControlPanel.WIDTH));
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute,
+			                                        VIEWPORT_DIM_X));
+			
+			layout.Controls.Add(controlpanel, 0, 0);
+			layout.Controls.Add(viewport, 1, 0);
+			
+			this.Controls.Add(layout);
+			
+			// init rendering
+			Controller.RenderViewport(null, null);
+			
+			// report my size
+			int width = VIEWPORT_DIM_X + GuiControlPanel.WIDTH;
+			int height = Math.Max(VIEWPORT_DIM_Y, GuiControlPanel.HEIGHT);
+			return new Size(width, height);
+		}
+		
+		public Size GetViewportSize()
+		{
+			return new Size(this.ClientSize.Width - GuiControlPanel.WIDTH - BORDER*2,
+			                this.ClientSize.Height - BORDER*2);
+		}
+	}
+}

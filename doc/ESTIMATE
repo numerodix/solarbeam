@@ -1,0 +1,23 @@
+Next:
+- Layout gui components - 16h
+- Gui component logic - 10h
+	- Input validation - 4h [x]
+	- Dirty state determination - 3h [x]
+	- Formatting - 3h [x]
+- Graph plotting implementation:
+	- optimize for performance - 6h [1h]
+	- plot for particular days of year - 6h [1h]
+		- plot labels - 6h [x]
+	- plot for particular times of day - 4h [1h]
+		- plot labels - 8h [x]
+	- non-overlapping label logic? - 6h [skip]
+	- plot current sun position & logic for dynamic update - 6h [x]
+- Location database:
+	- work out datastructure - 5h
+	- build serialization to xml - 4h
+	- integration with gui - lookup in db - 8h
+	- gui for db editing - 15h
+- Menubar/gui globals:
+	- Menubar - 8h
+	- About screen - 6h
+	- Save to image - 9h
