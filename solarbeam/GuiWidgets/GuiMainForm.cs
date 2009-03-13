@@ -19,11 +19,11 @@ namespace SolarbeamGui
 		private GuiControlPanel controlpanel;
 		private GuiViewport viewport;
 		
-		public GuiMainForm()
+		public GuiMainForm(string form_title)
 		{
 			//		this.SuspendLayout();
 			
-			Size sz = InitializeComponent();
+			Size sz = InitializeComponent(form_title);
 
 			// makes mono layout differently 1.9 <-> 2.0
 			// VS default: 6F 13F (win ok)
@@ -37,8 +37,10 @@ namespace SolarbeamGui
 	//		this.PerformLayout();
 		}
 		
-		private Size InitializeComponent()
+		private Size InitializeComponent(string form_title)
 		{
+			this.Text = form_title;
+			
 			this.controlpanel = new GuiControlPanel();
 			Controller.InitForm(); // fill in initial form values
 			this.viewport = new GuiViewport(this);

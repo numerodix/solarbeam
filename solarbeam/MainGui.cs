@@ -14,12 +14,14 @@ namespace SolarbeamGui
 {
 	class MainGui
 	{
+		private const string application_title = "SolarBeam";
+		
 		public static void Main(string[] args)
 		{
 			//TimeIt();
 			
 			Application.EnableVisualStyles();
-			Application.Run(new GuiMainForm());
+			Application.Run(new GuiMainForm(application_title));
 		}
 	
 		public static void TimeIt()

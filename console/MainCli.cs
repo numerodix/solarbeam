@@ -14,6 +14,10 @@ namespace SolarbeamCli
 {
 	class MainCli
 	{
+		private const string application_title = "SolarBeam Console";
+		private const string copy_string = 
+			"Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>";
+		
 		public static void Main(string[] args)
 		{
 			bool verbose = false;
@@ -52,6 +56,7 @@ namespace SolarbeamCli
 			p.Parse(args);
 	
 			if ((help) || (args.Length == 0)) {
+				Console.Error.WriteLine("{0} / {1}", application_title, copy_string);
 				Console.Error.WriteLine("Usage:");
 				Console.Error.Write("  console.exe");
 				Console.Error.Write(" -lat N.63.25.47");
