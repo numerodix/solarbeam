@@ -97,7 +97,6 @@ namespace LibSolar.Graphing
 				foreach (KeyValuePair<UTCDate,KeyValuePair<Color,Point?>> pair 
 				         in intersects) {
 					KeyValuePair<Color,Point?> inner = pair.Value;
-					UTCDate dt = pair.Key;
 					Color color = inner.Key;
 					Point? point = inner.Value;
 					
