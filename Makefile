@@ -21,5 +21,6 @@ arch:
 	rm -rf ~/t/solarbeam/ /ex/solarbeam && cp -ar ~/code/solarbeam/ ~/t && cp -ar ~/code/solarbeam/ /ex/solarbeam
 
 lines:
+	find -iname '*.cs' | xargs cat | wc -l
 	find libsolar console solarbeam  -iname '*.cs' | xargs cat | wc -l
 	find ref -iname '*.py' | xargs cat | wc -l
