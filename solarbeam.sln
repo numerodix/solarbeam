@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console", "console\console.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "solarbeam", "solarbeam\solarbeam.csproj", "{66BB16EF-C023-4729-8C87-44D1771CE237}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libpublicdomain", "libpublicdomain\libpublicdomain.csproj", "{7285F2CC-F0EF-4744-A07E-B41DB4F307C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{66BB16EF-C023-4729-8C87-44D1771CE237}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66BB16EF-C023-4729-8C87-44D1771CE237}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66BB16EF-C023-4729-8C87-44D1771CE237}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7285F2CC-F0EF-4744-A07E-B41DB4F307C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7285F2CC-F0EF-4744-A07E-B41DB4F307C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7285F2CC-F0EF-4744-A07E-B41DB4F307C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7285F2CC-F0EF-4744-A07E-B41DB4F307C3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{855E14AE-32A5-476A-9966-B3B4ABCC93A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{855E14AE-32A5-476A-9966-B3B4ABCC93A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{855E14AE-32A5-476A-9966-B3B4ABCC93A2}.Release|Any CPU.ActiveCfg = Release|Any CPU

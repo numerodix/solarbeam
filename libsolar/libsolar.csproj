@@ -62,4 +62,10 @@
     <Compile Include="Assemblies\AsmInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\libpublicdomain\libpublicdomain.csproj">
+      <Project>{B10031CA-8F30-4D3E-8185-AEC4636D0648}</Project>
+      <Name>libpublicdomain</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

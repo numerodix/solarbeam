@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7285F2CC-F0EF-4744-A07E-B41DB4F307C3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>libpublicdomain</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArrayUtilities.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="CharUtilities.cs" />
+    <Compile Include="ConversionUtilities.cs" />
+    <Compile Include="Crc32.cs" />
+    <Compile Include="CryptographyUtilities.cs" />
+    <Compile Include="DateTimeUtlities.cs" />
+    <Compile Include="GenericUtilities.cs" />
+    <Compile Include="GlobalConstants.cs" />
+    <Compile Include="Month.cs" />
+    <Compile Include="ReadOnlyDictionary.cs" />
+    <Compile Include="ReadOnlyICollection.cs" />
+    <Compile Include="RegexUtilities.cs" />
+    <Compile Include="StringUtilities.cs" />
+    <Compile Include="TzConstants.cs" />
+    <Compile Include="TzDatabase.cs" />
+    <Compile Include="TzDateTime.cs" />
+    <Compile Include="TzTimeZone.cs" />
+    <Compile Include="Exceptions\BaseException.cs" />
+    <Compile Include="Exceptions\WrappedException.cs" />
+    <Compile Include="Geography\Country.cs" />
+    <Compile Include="Geography\CountryOptions.cs" />
+    <Compile Include="Geography\Region.cs" />
+    <Compile Include="Geography\RegionType.cs" />
+    <Compile Include="Standards\Iso3166.cs" />
+    <Compile Include="Standards\Iso6709.cs" />
+    <Compile Include="Standards\Iso8601.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
