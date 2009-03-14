@@ -196,9 +196,14 @@ namespace SolarbeamGui
 			
 			Label tz_lbl = GetLabel("Timezone:");
 //			Label tz_lbl_hint = GetLabel("from UTC");
-			ComboBox tz_in = GetComboBoxInputable(
-				Controller.Id.TIMEZONE_OFFSET,
-				new TimezoneSource().Offsets);
+			Control tz_in = GetLaidOut(
+				new Control[] {
+				GetComboBoxInputable(Controller.Id.TIMEZONE_OFFSET,
+				                     new TimezoneSource().Offsets),
+				GetComboBoxInputable(Controller.Id.TIMEZONE_NAME,
+				                     new TimezoneSource().GetTimezones("+01"))
+					},
+					new float[] {25F, 50F});
 /*			Control tz_in = GetLaidOut(
 				new Control[] {
 					GetLabel(String.Empty), //layout buffer

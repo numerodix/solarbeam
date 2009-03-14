@@ -40,7 +40,7 @@ namespace SolarbeamGui
 			}
 			zonelist.Sort();
 			
-			// build member arrays by iterating sorted list
+			// initialize datasource arrays
 			this.offsets = new string[zonelist.Count+1]; // +1 for UTC
 			this.zones = new Dictionary<string,string[]>();
 			
@@ -49,6 +49,7 @@ namespace SolarbeamGui
 			this.offsets[0] = utc_s;
 			this.zones[utc_s] = new string[] {};
 			
+			// build member arrays by iterating sorted list
 			for (int i=0; i < zonelist.Count; i++) {
 				double offset_d = zonelist[i];
 				string offset_s = FormatTimezone(offset_d);
@@ -86,5 +87,10 @@ namespace SolarbeamGui
 		
 		public string[] Offsets
 		{ get { return offsets; } }
+		
+		public string[] GetTimezones(string offset)
+		{
+			return zones[offset];
+		}
 	}
 }
