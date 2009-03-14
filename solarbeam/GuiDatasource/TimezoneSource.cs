@@ -40,14 +40,19 @@ namespace SolarbeamGui
 			}
 			zonelist.Sort();
 			
-			// build member arrays by iterating sorted array
-			this.offsets = new string[zonelist.Count];
+			// build member arrays by iterating sorted list
+			this.offsets = new string[zonelist.Count+1]; // +1 for UTC
 			this.zones = new Dictionary<string,string[]>();
+			
+			// set up UTC as index 0
+			string utc_s = "UTC";
+			this.offsets[0] = utc_s;
+			this.zones[utc_s] = new string[] {};
 			
 			for (int i=0; i < zonelist.Count; i++) {
 				double offset_d = zonelist[i];
 				string offset_s = FormatTimezone(offset_d);
-				offsets[i] = offset_s;
+				offsets[i+1] = offset_s;
 				
 				List<TzTimeZone> zlist = zonedict[offset_d];
 				string[] zarray = new string[zlist.Count];
@@ -56,14 +61,14 @@ namespace SolarbeamGui
 				}
 				this.zones.Add(offset_s, zarray);
 			}
-/*			
-			foreach (string offset in offsets) {
+			
+			foreach (string offset in this.offsets) {
 				Console.WriteLine("\n{0}", offset);
 				foreach (string zone in this.zones[offset]) {
 					Console.WriteLine("{0}", zone);
 				}
 			}
-*/
+
 		}
 		
 		private string FormatTimezone(double tz)
