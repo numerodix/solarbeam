@@ -148,8 +148,7 @@ namespace SolarbeamGui
 			TableLayoutPanel layout = GuiCommon.GetTableLayoutPanel(INPUTS_COUNT, 3, 
 			                                              FORM_MARGIN, FORM_PADDING);
 			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
 	
 			for (int i = 0; i < INPUTS_COUNT; i++) {
 				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
@@ -171,8 +170,9 @@ namespace SolarbeamGui
 				                 Position.LATMINS_MAXVALUE+1),
 					GetNumericUpDown(Controller.Id.LATITUDE_SECS,
 				                 Position.LATSECS_MINVALUE-1,
-				                 Position.LATSECS_MAXVALUE+1)},
-				new float[] {27F, 23F, 23F});
+				                 Position.LATSECS_MAXVALUE+1),
+				lat_dir},
+				new float[] {27F, 23F, 23F, 30F});
 			
 			Label lon_lbl = GetLabel("Longitude:");
 			ComboBox lon_dir = GetComboBox(
@@ -190,19 +190,23 @@ namespace SolarbeamGui
 				                 Position.LONMINS_MAXVALUE+1),
 					GetNumericUpDown(Controller.Id.LONGITUDE_SECS,
 				                 Position.LONSECS_MINVALUE-1,
-				                 Position.LONSECS_MAXVALUE+1)},
-				new float[] {27F, 23F, 23F});
+				                 Position.LONSECS_MAXVALUE+1),
+				lon_dir},
+				new float[] {27F, 23F, 23F, 30F});
 			
 			Label tz_lbl = GetLabel("Timezone:");
-			Label tz_lbl_hint = GetLabel("from UTC");
-			Control tz_in = GetLaidOut(
+//			Label tz_lbl_hint = GetLabel("from UTC");
+			ComboBox tz_in = GetComboBoxInputable(
+				Controller.Id.TIMEZONE_OFFSET,
+				new TimezoneSource().Offsets);
+/*			Control tz_in = GetLaidOut(
 				new Control[] {
 					GetLabel(String.Empty), //layout buffer
 					GetNumericUpDown(Controller.Id.TIMEZONE_OFFSET,
 				                 UTCDate.TIMEZONE_MINVALUE,
 				                 UTCDate.TIMEZONE_MAXVALUE)},
 				new float[] {70F, 30F});
-	
+*/
 			Label date_lbl = GetLabel("Date:");
 			Control date_scr = GetLabel(String.Empty);
 			Control date_ins = GetLaidOut(
@@ -215,8 +219,9 @@ namespace SolarbeamGui
 				                 UTCDate.MONTH_MAXVALUE+1),
 					GetNumericUpDown(Controller.Id.DATE_YEAR,
 				                 UTCDate.YEAR_MINVALUE,
-				                 UTCDate.YEAR_MAXVALUE)},
-				new float[] {20F, 20F, 25F});
+				                 UTCDate.YEAR_MAXVALUE),
+				date_scr},
+				new float[] {20F, 20F, 25F, 30F});
 			
 			Label time_lbl = GetLabel("Time:");
 			Control time_scr = GetLabel(String.Empty);
@@ -230,24 +235,25 @@ namespace SolarbeamGui
 				                 UTCDate.MINUTE_MAXVALUE+1),
 					GetNumericUpDown(Controller.Id.TIME_SECOND,
 				                 UTCDate.SECOND_MINVALUE-1,
-				                 UTCDate.SECOND_MAXVALUE+1)},
-				new float[] {20F, 20F, 20F});
+				                 UTCDate.SECOND_MAXVALUE+1),
+				time_scr},
+				new float[] {20F, 20F, 20F, 30F});
 	
 			layout.Controls.Add(lat_lbl, 0, 0);
 			layout.Controls.Add(lat_ins, 1, 0);
-			layout.Controls.Add(lat_dir, 2, 0);
+//			layout.Controls.Add(lat_dir, 2, 0);
 			layout.Controls.Add(lon_lbl, 0, 1);
 			layout.Controls.Add(lon_ins, 1, 1);
-			layout.Controls.Add(lon_dir, 2, 1);
+//			layout.Controls.Add(lon_dir, 2, 1);
 			layout.Controls.Add(tz_lbl, 0, 2);
 			layout.Controls.Add(tz_in, 1, 2);
-			layout.Controls.Add(tz_lbl_hint, 2, 2);
+//			layout.Controls.Add(tz_lbl_hint, 2, 2);
 			layout.Controls.Add(date_lbl, 0, 3);
 			layout.Controls.Add(date_ins, 1, 3);
-			layout.Controls.Add(date_scr, 2, 3);
+//			layout.Controls.Add(date_scr, 2, 3);
 			layout.Controls.Add(time_lbl, 0, 4);
 			layout.Controls.Add(time_ins, 1, 4);
-			layout.Controls.Add(time_scr, 2, 4);
+//			layout.Controls.Add(time_scr, 2, 4);
 		
 			return layout;
 		}
@@ -299,7 +305,7 @@ namespace SolarbeamGui
 			Controller.SetValue(textbox, s);
 			return textbox;
 		}
-		
+
 		private ComboBox GetComboBox(Controller.Id id, string[] ss)
 		{
 			ComboBox combo = new ComboBox();
@@ -308,6 +314,17 @@ namespace SolarbeamGui
 			combo.Items.AddRange(ss);
 			combo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 			Controller.SetValue(combo, ss[0]);
+			return combo;
+		}
+		
+		private ComboBox GetComboBoxInputable(Controller.Id id, string[] ss)
+		{
+			ComboBox combo = new ComboBox();
+			Controller.RegisterControl(id, combo);	// register control
+			combo.DropDownStyle = ComboBoxStyle.DropDownList;
+			combo.Items.AddRange(ss);
+			combo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+//			Controller.SetValue(combo, ss[0]);
 			return combo;
 		}
 		

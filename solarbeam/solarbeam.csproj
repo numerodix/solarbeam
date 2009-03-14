@@ -34,7 +34,6 @@
   <ItemGroup>
     <Compile Include="MainGui.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="GuiWidgetLib\GuiCommon.cs" />
     <Compile Include="GuiWidgets\GuiMainForm.cs" />
     <Compile Include="GuiWidgets\GuiControlPanel.cs" />
     <Compile Include="GuiWidgets\GuiViewport.cs" />
@@ -45,12 +44,18 @@
     <Compile Include="GuiLogic\Reader.cs" />
     <Compile Include="GuiLogic\Writer.cs" />
     <Compile Include="GuiLogic\Marker.cs" />
+    <Compile Include="GuiWidgets\Lib\GuiCommon.cs" />
+    <Compile Include="GuiDatasource\TimezoneSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\libsolar\libsolar.csproj">
       <Project>{66BB16EF-C023-4729-8C87-44D1771CE237}</Project>
       <Name>libsolar</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libpublicdomain\libpublicdomain.csproj">
+      <Project>{66BB16EF-C023-4729-8C87-44D1771CE237}</Project>
+      <Name>libpublicdomain</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

@@ -48,7 +48,7 @@ namespace SolarbeamGui
 		
 		private static UTCDate? ReadDate()
 		{
-			int tz = GetInt(GetValue(registry[Id.TIMEZONE_OFFSET]));
+			int tz = 1;//= GetInt(GetValue(registry[Id.TIMEZONE_OFFSET]));
 			
 			int year = GetInt(GetValue(registry[Id.DATE_YEAR]));
 			int month = GetInt(GetValue(registry[Id.DATE_MONTH]));

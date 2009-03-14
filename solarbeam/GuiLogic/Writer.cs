@@ -58,7 +58,7 @@ namespace SolarbeamGui
 			SetValue(registry[Id.DATE_DAY], dt.Day);
 			SetValue(registry[Id.DATE_MONTH], dt.Month);
 			SetValue(registry[Id.DATE_YEAR], dt.Year);
-			SetValue(registry[Id.TIMEZONE_OFFSET], dt.Timezone);
+			//SetValue(registry[Id.TIMEZONE_OFFSET], dt.Timezone);
 		}
 	
 		private static void SetPosition(Position pos)
