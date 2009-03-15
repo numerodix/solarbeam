@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 using LibSolar.Types;
 using PublicDomain;
@@ -70,7 +71,6 @@ namespace SolarbeamGui
 //					Console.WriteLine("{0}", zone);
 				}
 			}
-
 		}
 		
 		private string FormatTimezone(double tz)
@@ -96,7 +96,7 @@ namespace SolarbeamGui
 			TzTimeZone zone = TzTimeZone.GetTimeZone(tz_name);
 			TzDateTime tzdt = new TzDateTime(dt, zone);
 			double offset = tzdt.UtcOffset.TotalHours;
-			DateTime dt_new = tzdt.DateTimeLocal;
+			DateTime dt_new = tzdt.DateTimeUtc;
 			return new UTCDate(offset,
 			                   dt_new.Year, dt_new.Month, dt_new.Day,
 			                   dt_new.Hour, dt_new.Minute, dt_new.Second);

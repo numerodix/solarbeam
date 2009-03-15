@@ -1,11 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="solarbeam/GuiDatasource/TimezoneSource.cs" ctype="Workbench">
     <Files>
-      <File FileName="solarbeam/GuiDatasource/TimezoneSource.cs" Line="35" Column="26" />
+      <File FileName="solarbeam/GuiDatasource/TimezoneSource.cs" Line="6" Column="28" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" />
+        <State expanded="True">
+          <Node name="libpublicdomain" expanded="True" />
+          <Node name="solarbeam" expanded="True" selected="True">
+            <Node name="GuiDatasource" expanded="True" />
+            <Node name="GuiLogic" expanded="True" />
+          </Node>
+        </State>
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" />

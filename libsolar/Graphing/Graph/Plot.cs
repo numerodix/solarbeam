@@ -141,40 +141,49 @@ namespace LibSolar.Graphing
 		public void PrintAnalemmaLabel(Graphics g, Color color,
 		                               Position pos, double tz, int year, int hour)
 		{
-			UTCDate dt_max = new UTCDate(tz,
-			                             year, 6, 21,
-			                             hour, 0, 0);
-			UTCDate dt_min = new UTCDate(0,
-			                             year, 12, 21,
-			                             hour, 0, 0);
+			// northern hemisphere -> june longest, dec shortest
+			int longest = 6;
+			int shortest = 12;
+			// southern hemisphere -> dec longest, june shortest
+			if (pos.LatitudeDegree.Direction == PositionDirection.South) {
+				longest = 12;
+				shortest = 6;
+			}
+			
+			UTCDate udt_inner = new UTCDate(tz,
+			                                year, longest, 21,
+			                                hour, 0, 0);
+			UTCDate udt_outer = new UTCDate(tz,
+			                                year, shortest, 21,
+			                                hour, 0, 0);
+			
+			int hour_inner = udt_inner.ExtractLocaltime().Hour;
+			int hour_outer = udt_outer.ExtractUTC().Hour;
 			
 			float font_size = GetLabelFontSize();
-			int hour_min = hour - (int) tz;
-			hour_min = hour_min < 0 ? 24 + hour_min : hour_min;
-			                
-			string hour_min_s = hour_min == 0 ? "24" : hour_min.ToString();
-			string hour_max_s = hour == 0 ? "24" : hour.ToString();
+			string hour_inner_s = hour_inner == 0 ? "24" : hour_inner.ToString();
+			string hour_outer_s = hour_outer == 0 ? "24" : hour_outer.ToString();
 			
-			KeyValuePair<Point?,double?> pair_max = 
-				FindPointSlopeAtHour(pos, dt_max);
+			KeyValuePair<Point?,double?> pair_max =
+				FindPointSlopeAtHour(pos, udt_inner);
 			if (pair_max.Key != null) {
 				Placement place = SlopeToPlacement(pair_max.Value.Value);
 				using (SolidBrush br_txt = new SolidBrush(color))
 				using (Font font = new Font(font_face, font_size, GraphicsUnit.Pixel)) {
-					PrintBoundedString(g, font, br_txt, hour_max_s,
+					PrintBoundedString(g, font, br_txt, hour_inner_s,
 					                   pair_max.Key.Value.X, pair_max.Key.Value.Y,
 					                   place);
 				}
 			}
 			
 			KeyValuePair<Point?,double?> pair_min = 
-				FindPointSlopeAtHour(pos, dt_min);
+				FindPointSlopeAtHour(pos, udt_outer);
 			if (pair_min.Key != null) {
 				Placement place = 
 					SlopeToPlacement( (pair_min.Value.Value + 180.0) % 360.0);
 				using (SolidBrush br_txt = new SolidBrush(color))
 				using (Font font = new Font(font_face, font_size, GraphicsUnit.Pixel)) {
-					PrintBoundedString(g, font, br_txt, hour_min_s,
+					PrintBoundedString(g, font, br_txt, hour_outer_s,
 					                   pair_min.Key.Value.X, pair_min.Key.Value.Y,
 					                   place);
 				}
