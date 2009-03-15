@@ -18,7 +18,7 @@ namespace SolarbeamGui
 			};
 			dirs_longitude = new string[] {
 				PositionDirection.East.ToString(),
-				PositionDirection.North.ToString()
+				PositionDirection.West.ToString()
 			};
 		}
 		

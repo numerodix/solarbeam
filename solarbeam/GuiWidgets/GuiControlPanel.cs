@@ -191,7 +191,6 @@ namespace SolarbeamGui
 				new float[] {27F, 23F, 23F, 30F});
 			
 			Label tz_lbl = GetLabel("Timezone:");
-//			Label tz_lbl_hint = GetLabel("from UTC");
 			Control tz_in = GetLaidOut(
 				new Control[] {
 				GetComboBox(Controller.Id.TIMEZONE_OFFSET,
@@ -201,14 +200,7 @@ namespace SolarbeamGui
 						Controller.timezone_source.Offsets[0]))
 					},
 					new float[] {24F, 50F});
-/*			Control tz_in = GetLaidOut(
-				new Control[] {
-					GetLabel(String.Empty), //layout buffer
-					GetNumericUpDown(Controller.Id.TIMEZONE_OFFSET,
-				                 UTCDate.TIMEZONE_MINVALUE,
-				                 UTCDate.TIMEZONE_MAXVALUE)},
-				new float[] {70F, 30F});
-*/
+
 			Label date_lbl = GetLabel("Date:");
 			Control date_scr = GetLabel(String.Empty);
 			Control date_ins = GetLaidOut(
@@ -243,19 +235,14 @@ namespace SolarbeamGui
 	
 			layout.Controls.Add(lat_lbl, 0, 0);
 			layout.Controls.Add(lat_ins, 1, 0);
-//			layout.Controls.Add(lat_dir, 2, 0);
 			layout.Controls.Add(lon_lbl, 0, 1);
 			layout.Controls.Add(lon_ins, 1, 1);
-//			layout.Controls.Add(lon_dir, 2, 1);
 			layout.Controls.Add(tz_lbl, 0, 2);
 			layout.Controls.Add(tz_in, 1, 2);
-//			layout.Controls.Add(tz_lbl_hint, 2, 2);
 			layout.Controls.Add(date_lbl, 0, 3);
 			layout.Controls.Add(date_ins, 1, 3);
-//			layout.Controls.Add(date_scr, 2, 3);
 			layout.Controls.Add(time_lbl, 0, 4);
 			layout.Controls.Add(time_ins, 1, 4);
-//			layout.Controls.Add(time_scr, 2, 4);
 		
 			return layout;
 		}
@@ -307,18 +294,7 @@ namespace SolarbeamGui
 			Controller.SetValue(textbox, s);
 			return textbox;
 		}
-/*
-		private ComboBox GetComboBox(Controller.Id id, string[] ss)
-		{
-			ComboBox combo = new ComboBox();
-			Controller.RegisterControl(id, combo);	// register control
-			combo.DropDownStyle = ComboBoxStyle.DropDownList;
-			combo.Items.AddRange(ss);
-			combo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-			Controller.SetValue(combo, ss[0]);
-			return combo;
-		}
-*/		
+
 		private ComboBox GetComboBox(Controller.Id id, string[] ss)
 		{
 			ComboBox combo = new ComboBox();
@@ -329,7 +305,7 @@ namespace SolarbeamGui
 			if (ss.Length > 0) {
 				Controller.SetValue(combo, ss[0]);
 			} else {
-				combo.Enabled = false;
+				Controller.Disable(combo);
 			}
 			return combo;
 		}

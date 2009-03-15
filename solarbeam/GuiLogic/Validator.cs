@@ -99,8 +99,9 @@ namespace SolarbeamGui
 			control_tzname.Items.AddRange(zones);
 			if (zones.Length > 0) {
 				control_tzname.Text = zones[0];
-				control_tzname.Enabled = true;
+				Enable(control_tzname);
 			} else {
+				Disable(control_tzname);
 				control_tzname.Enabled = false;
 			}
 		}
