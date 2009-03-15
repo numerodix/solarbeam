@@ -37,6 +37,13 @@ namespace SolarbeamGui
 			                                             Position.LONGITUDE_POS,
 			                                             151, 12, 40),
 			                                "Australia/Sydney"));
+			locations_dict.Add("Buenos Aires", 
+			                   new Location("Buenos Aires",
+			                                new Position(Position.LATITUDE_NEG,
+			                                             34, 36, 36,
+			                                             Position.LONGITUDE_NEG,
+			                                             58, 22, 12),
+			                                "America/Buenos_Aires"));
 
 			locations_array = new string[locations_dict.Count];
 			int i=-1;
