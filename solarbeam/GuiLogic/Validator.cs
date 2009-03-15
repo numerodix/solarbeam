@@ -5,6 +5,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
+using LibSolar.Locations;
 using LibSolar.SolarOrbit;
 using LibSolar.Types;
 
@@ -17,6 +18,16 @@ namespace SolarbeamGui
 	{
 		private static bool validating = false;
 	
+		private static void ValidateLocation()
+		{
+			Control control_loc = registry[Id.LOCATION];
+			string loc_s = GetValue(control_loc);
+			
+			Location loc = Controller.locations_source.GetLocation(loc_s);
+			SetPosition(loc.Position);
+			SetTimezone(loc.Timezone);
+		}
+		
 		private static void ValidatePosition(PositionAxis ax)
 		{
 			Control control_deg = registry[Id.LONGITUDE_DEGS];

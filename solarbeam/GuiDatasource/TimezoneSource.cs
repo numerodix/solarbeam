@@ -65,12 +65,12 @@ namespace SolarbeamGui
 				this.zones.Add(offset_s, zarray);
 			}
 			
-			foreach (string offset in this.offsets) {
+//			foreach (string offset in this.offsets) {
 //				Console.WriteLine("\n{0}", offset);
-				foreach (string zone in this.zones[offset]) {
+//				foreach (string zone in this.zones[offset]) {
 //					Console.WriteLine("{0}", zone);
-				}
-			}
+//				}
+//			}
 		}
 		
 		private string FormatTimezone(double tz)

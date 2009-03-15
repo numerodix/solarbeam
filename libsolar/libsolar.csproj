@@ -60,6 +60,7 @@
     <Compile Include="Graphing\Graph\Geometry.cs" />
     <Compile Include="Graphing\Graph\Formatter.cs" />
     <Compile Include="Assemblies\AsmInfo.cs" />
+    <Compile Include="Locations\Location.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

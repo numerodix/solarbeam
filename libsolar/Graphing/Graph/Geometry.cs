@@ -64,8 +64,12 @@ namespace LibSolar.Graphing
 			return ang;
 		}
 
-		private Placement SlopeToPlacement(double slope)
+		private Placement SlopeToPlacement(double slope, Position pos)
 		{
+			if (pos.LatitudeDegree.Direction == PositionDirection.South) {
+				slope = (slope + 180.0) % 360.0;
+			}
+			
 			Placement place = Placement.LEFT;
 			if ((slope > 22.5) && (slope < 67.5)) {
 				place = Placement.TOP_LEFT;

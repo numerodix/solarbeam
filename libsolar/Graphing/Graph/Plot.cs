@@ -167,7 +167,7 @@ namespace LibSolar.Graphing
 			KeyValuePair<Point?,double?> pair_max =
 				FindPointSlopeAtHour(pos, udt_inner);
 			if (pair_max.Key != null) {
-				Placement place = SlopeToPlacement(pair_max.Value.Value);
+				Placement place = SlopeToPlacement(pair_max.Value.Value, pos);
 				using (SolidBrush br_txt = new SolidBrush(color))
 				using (Font font = new Font(font_face, font_size, GraphicsUnit.Pixel)) {
 					PrintBoundedString(g, font, br_txt, hour_inner_s,
@@ -180,7 +180,7 @@ namespace LibSolar.Graphing
 				FindPointSlopeAtHour(pos, udt_outer);
 			if (pair_min.Key != null) {
 				Placement place = 
-					SlopeToPlacement( (pair_min.Value.Value + 180.0) % 360.0);
+					SlopeToPlacement( (pair_min.Value.Value + 180.0) % 360.0, pos);
 				using (SolidBrush br_txt = new SolidBrush(color))
 				using (Font font = new Font(font_face, font_size, GraphicsUnit.Pixel)) {
 					PrintBoundedString(g, font, br_txt, hour_outer_s,

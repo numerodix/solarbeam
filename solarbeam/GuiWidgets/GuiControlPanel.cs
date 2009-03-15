@@ -21,7 +21,7 @@ namespace SolarbeamGui
 		private const int FORM_ROW_HEIGHT = 28;
 		private const int FORM_PADDING = 3;
 		private const int FORM_MARGIN = 0;
-		private const int INPUTS_COUNT = 5;
+		private const int INPUTS_COUNT = 6;
 		private const int OUTPUTS_COUNT = 6;
 		private const int INPUTS_HEIGHT = GROUPBOX_HEIGHT + INPUTS_COUNT * FORM_ROW_HEIGHT + 2*FORM_PADDING;
 		private const int BUTTONS_HEIGHT = 30;
@@ -153,6 +153,15 @@ namespace SolarbeamGui
 			for (int i = 0; i < INPUTS_COUNT; i++) {
 				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
 			}
+			
+			Label loc_lbl = GetLabel("Location:");
+			Control loc_ins = GetLaidOut(
+				new Control[] {
+					GetComboBox(
+						Controller.Id.LOCATION,
+						Controller.locations_source.Locations),
+					GetLabel(String.Empty)},
+				new float[] {70F, 30F});		
 	
 			Label lat_lbl = GetLabel("Latitude:");
 			ComboBox lat_dir = GetComboBox(
@@ -232,17 +241,19 @@ namespace SolarbeamGui
 				                 UTCDate.SECOND_MAXVALUE+1),
 				time_scr},
 				new float[] {20F, 20F, 20F, 30F});
-	
-			layout.Controls.Add(lat_lbl, 0, 0);
-			layout.Controls.Add(lat_ins, 1, 0);
-			layout.Controls.Add(lon_lbl, 0, 1);
-			layout.Controls.Add(lon_ins, 1, 1);
-			layout.Controls.Add(tz_lbl, 0, 2);
-			layout.Controls.Add(tz_in, 1, 2);
-			layout.Controls.Add(date_lbl, 0, 3);
-			layout.Controls.Add(date_ins, 1, 3);
-			layout.Controls.Add(time_lbl, 0, 4);
-			layout.Controls.Add(time_ins, 1, 4);
+
+			layout.Controls.Add(loc_lbl, 0, 0);
+			layout.Controls.Add(loc_ins, 1, 0);
+			layout.Controls.Add(lat_lbl, 0, 1);
+			layout.Controls.Add(lat_ins, 1, 1);
+			layout.Controls.Add(lon_lbl, 0, 2);
+			layout.Controls.Add(lon_ins, 1, 2);
+			layout.Controls.Add(tz_lbl, 0, 3);
+			layout.Controls.Add(tz_in, 1, 3);
+			layout.Controls.Add(date_lbl, 0, 4);
+			layout.Controls.Add(date_ins, 1, 4);
+			layout.Controls.Add(time_lbl, 0, 5);
+			layout.Controls.Add(time_ins, 1, 5);
 		
 			return layout;
 		}

@@ -110,7 +110,9 @@ namespace SolarbeamGui
 					Control control = (Control) sender;
 					Id id = reg_rev[control];
 	
-					if (ins_longitude.Contains(id)) {
+					if (id == Id.LOCATION) {
+						ValidateLocation();
+					} else if (ins_longitude.Contains(id)) {
 						ValidatePosition(PositionAxis.Longitude);
 					} else if (ins_latitude.Contains(id)) {
 						ValidatePosition(PositionAxis.Latitude);

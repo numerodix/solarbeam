@@ -21,6 +21,7 @@ namespace SolarbeamGui
 	{
 		// Identify all widgets
 		public enum Id {
+			LOCATION,
 			LATITUDE_DEGS,
 			LATITUDE_MINS,
 			LATITUDE_SECS,
@@ -50,6 +51,7 @@ namespace SolarbeamGui
 		
 		// inputs whose updates force a complete re-rendering
 		private static StaticList<Id> ins_render = new StaticList<Id>(new Id[] {
+			Id.LOCATION,
 			Id.LATITUDE_DEGS, Id.LATITUDE_MINS, Id.LATITUDE_SECS, Id.LATITUDE_DIRECTION,
 			Id.LONGITUDE_DEGS, Id.LONGITUDE_MINS, Id.LONGITUDE_SECS, Id.LONGITUDE_DIRECTION,
 			Id.TIMEZONE_OFFSET, Id.TIMEZONE_NAME
@@ -92,12 +94,16 @@ namespace SolarbeamGui
 			new Dictionary<Id, string>();
 			
 
+		public static LocationsSource locations_source;
 		public static PositionSource position_source;
 		public static TimezoneSource timezone_source;
 
 							
 		public static void InitSources()
 		{
+			if (locations_source == null) {
+				locations_source = new LocationsSource();
+			}
 			if (position_source == null) {
 				position_source = new PositionSource();
 			}
