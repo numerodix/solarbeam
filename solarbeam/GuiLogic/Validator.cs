@@ -87,6 +87,24 @@ namespace SolarbeamGui
 			SetValue(control_sec, sec);
 		}
 		
+		private static void ValidateTimezoneOffset()
+		{
+			Control control_tzoff = registry[Id.TIMEZONE_OFFSET];
+			ComboBox control_tzname = (ComboBox) registry[Id.TIMEZONE_NAME];
+			
+			string tzoff_val = GetValue(control_tzoff);
+			string[] zones = Controller.timezone_source.GetTimezones(tzoff_val);
+			
+			control_tzname.Items.Clear();
+			control_tzname.Items.AddRange(zones);
+			if (zones.Length > 0) {
+				control_tzname.Text = zones[0];
+				control_tzname.Enabled = true;
+			} else {
+				control_tzname.Enabled = false;
+			}
+		}
+		
 		private static void ValidateDate()
 		{
 			Control control_year = registry[Id.DATE_YEAR];

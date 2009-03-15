@@ -66,11 +66,6 @@ namespace LibSolar.Types
 			}
 		}
     
-		public static UTCDate Now(double tz)
-		{
-			return new UTCDate(tz, DateTime.Now); 
-		}
-		
 		/**
 		 * Clone current date, but set time to null.
 		 */

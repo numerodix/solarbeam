@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 
+using LibSolar.Types;
 using PublicDomain;
 
 namespace SolarbeamGui
@@ -12,6 +13,7 @@ namespace SolarbeamGui
 	{
 		private string[] offsets;
 		private Dictionary<string,string[]> zones;
+		private Dictionary<string,string> zones_rev;
 		
 		public TimezoneSource()
 		{
@@ -41,32 +43,31 @@ namespace SolarbeamGui
 			zonelist.Sort();
 			
 			// initialize datasource arrays
-			this.offsets = new string[zonelist.Count+1]; // +1 for UTC
+			this.offsets = new string[zonelist.Count];
 			this.zones = new Dictionary<string,string[]>();
-			
-			// set up UTC as index 0
-			string utc_s = "UTC";
-			this.offsets[0] = utc_s;
-			this.zones[utc_s] = new string[] {};
-			
+			this.zones_rev = new Dictionary<string,string>();
+
 			// build member arrays by iterating sorted list
 			for (int i=0; i < zonelist.Count; i++) {
 				double offset_d = zonelist[i];
 				string offset_s = FormatTimezone(offset_d);
-				offsets[i+1] = offset_s;
+				offsets[i] = offset_s;
 				
 				List<TzTimeZone> zlist = zonedict[offset_d];
 				string[] zarray = new string[zlist.Count];
 				for (int j=0; j < zlist.Count; j++) {
-					zarray[j] = zlist[j].ToString();
+					string zone_name = zlist[j].ToString();
+					zarray[j] = zone_name;
+					
+					zones_rev.Add(zone_name, offset_s);
 				}
 				this.zones.Add(offset_s, zarray);
 			}
 			
 			foreach (string offset in this.offsets) {
-				Console.WriteLine("\n{0}", offset);
+//				Console.WriteLine("\n{0}", offset);
 				foreach (string zone in this.zones[offset]) {
-					Console.WriteLine("{0}", zone);
+//					Console.WriteLine("{0}", zone);
 				}
 			}
 
@@ -83,6 +84,22 @@ namespace SolarbeamGui
 				min_s = String.Format(":{0:00}", min);	
 			}
 			return String.Format("{0}{1:00}{2}", sign, hour, min_s);
+		}
+		
+		public string GetOffsetName(string tz_name)
+		{
+			return zones_rev[tz_name];
+		}
+		
+		public UTCDate ApplyZone(string tz_name, DateTime dt)
+		{
+			TzTimeZone zone = TzTimeZone.GetTimeZone(tz_name);
+			TzDateTime tzdt = new TzDateTime(dt, zone);
+			double offset = tzdt.UtcOffset.TotalHours;
+			DateTime dt_new = tzdt.DateTimeLocal;
+			return new UTCDate(offset,
+			                   dt_new.Year, dt_new.Month, dt_new.Day,
+			                   dt_new.Hour, dt_new.Minute, dt_new.Second);
 		}
 		
 		public string[] Offsets

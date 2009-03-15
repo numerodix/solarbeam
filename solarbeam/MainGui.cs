@@ -17,15 +17,17 @@ namespace SolarbeamGui
 	static class MainGui
 	{		
 		[STAThread]
-		public static void Main()
+		public static void Main(string[] args)
 		{
-			//TimeIt();
-			
 			AsmInfo asminfo = new AsmInfo(Assembly.GetExecutingAssembly());
+			GuiMainForm mainform = new GuiMainForm(asminfo.GetAtt("Title"));
+			if ((args.Length > 0) && (args[0] == "-nogui")) {
+				Environment.Exit(0);
+			}
 			Application.EnableVisualStyles();
-			Application.Run(new GuiMainForm(asminfo.GetAtt("Title")));
+			Application.Run(mainform);
 		}
-	
+
 		public static void TimeIt()
 		{
 			Stopwatch watch = new Stopwatch();

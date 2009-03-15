@@ -48,7 +48,7 @@ namespace SolarbeamGui
 		
 		private static UTCDate? ReadDate()
 		{
-			int tz = 1;//= GetInt(GetValue(registry[Id.TIMEZONE_OFFSET]));
+			string tz_name = GetValue(registry[Id.TIMEZONE_NAME]);
 			
 			int year = GetInt(GetValue(registry[Id.DATE_YEAR]));
 			int month = GetInt(GetValue(registry[Id.DATE_MONTH]));
@@ -58,12 +58,11 @@ namespace SolarbeamGui
 			int min = GetInt(GetValue(registry[Id.TIME_MINUTE]));
 			int sec = GetInt(GetValue(registry[Id.TIME_SECOND]));
 			
-			UTCDate? date = null;
+			DateTime? date = null;
 			// try to instantiate type, otherwise mark inputs as erroneous
 			try {
-				date = new UTCDate(tz,
-				                   year, month, day,
-				                   hour, min, sec);
+				date = new DateTime(year, month, day,
+				                    hour, min, sec, DateTimeKind.Local);
 			} catch (ArgumentException) {
 				foreach (Id id in ins_update)
 				{
@@ -71,7 +70,7 @@ namespace SolarbeamGui
 				}
 			}
 			
-			return date;
+			return Controller.timezone_source.ApplyZone(tz_name, date.Value);
 		}
 		
 		private static string GetValue(Control control)

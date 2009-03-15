@@ -157,9 +157,7 @@ namespace SolarbeamGui
 			Label lat_lbl = GetLabel("Latitude:");
 			ComboBox lat_dir = GetComboBox(
 				Controller.Id.LATITUDE_DIRECTION,
-				new string[] {
-				PositionDirection.North.ToString(),
-				PositionDirection.South.ToString()});
+				Controller.position_source.LatitudeDirections);
 			Control lat_ins = GetLaidOut(
 				new Control[] {
 					GetNumericUpDown(Controller.Id.LATITUDE_DEGS,
@@ -177,9 +175,7 @@ namespace SolarbeamGui
 			Label lon_lbl = GetLabel("Longitude:");
 			ComboBox lon_dir = GetComboBox(
 				Controller.Id.LONGITUDE_DIRECTION,
-				new string[] {
-				PositionDirection.East.ToString(),
-				PositionDirection.West.ToString()});
+				Controller.position_source.LongitudeDirections);
 			Control lon_ins = GetLaidOut(
 				new Control[] {
 					GetNumericUpDown(Controller.Id.LONGITUDE_DEGS,
@@ -198,12 +194,13 @@ namespace SolarbeamGui
 //			Label tz_lbl_hint = GetLabel("from UTC");
 			Control tz_in = GetLaidOut(
 				new Control[] {
-				GetComboBoxInputable(Controller.Id.TIMEZONE_OFFSET,
-				                     new TimezoneSource().Offsets),
-				GetComboBoxInputable(Controller.Id.TIMEZONE_NAME,
-				                     new TimezoneSource().GetTimezones("+01"))
+				GetComboBox(Controller.Id.TIMEZONE_OFFSET,
+					Controller.timezone_source.Offsets),
+				GetComboBox(Controller.Id.TIMEZONE_NAME,
+					Controller.timezone_source.GetTimezones(
+						Controller.timezone_source.Offsets[0]))
 					},
-					new float[] {25F, 50F});
+					new float[] {24F, 50F});
 /*			Control tz_in = GetLaidOut(
 				new Control[] {
 					GetLabel(String.Empty), //layout buffer
@@ -310,7 +307,7 @@ namespace SolarbeamGui
 			Controller.SetValue(textbox, s);
 			return textbox;
 		}
-
+/*
 		private ComboBox GetComboBox(Controller.Id id, string[] ss)
 		{
 			ComboBox combo = new ComboBox();
@@ -321,15 +318,19 @@ namespace SolarbeamGui
 			Controller.SetValue(combo, ss[0]);
 			return combo;
 		}
-		
-		private ComboBox GetComboBoxInputable(Controller.Id id, string[] ss)
+*/		
+		private ComboBox GetComboBox(Controller.Id id, string[] ss)
 		{
 			ComboBox combo = new ComboBox();
 			Controller.RegisterControl(id, combo);	// register control
 			combo.DropDownStyle = ComboBoxStyle.DropDownList;
 			combo.Items.AddRange(ss);
 			combo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-//			Controller.SetValue(combo, ss[0]);
+			if (ss.Length > 0) {
+				Controller.SetValue(combo, ss[0]);
+			} else {
+				combo.Enabled = false;
+			}
 			return combo;
 		}
 		

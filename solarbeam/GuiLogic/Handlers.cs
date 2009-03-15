@@ -110,14 +110,16 @@ namespace SolarbeamGui
 					Control control = (Control) sender;
 					Id id = reg_rev[control];
 	
-					if (ins_date.Contains(id)) {
-						ValidateDate();
-					} else if (ins_time.Contains(id)) {
-						ValidateTime();
-					} else if (ins_longitude.Contains(id)) {
+					if (ins_longitude.Contains(id)) {
 						ValidatePosition(PositionAxis.Longitude);
 					} else if (ins_latitude.Contains(id)) {
 						ValidatePosition(PositionAxis.Latitude);
+					} else if (id == Id.TIMEZONE_OFFSET) {
+						ValidateTimezoneOffset();
+					} else if (ins_date.Contains(id)) {
+						ValidateDate();
+					} else if (ins_time.Contains(id)) {
+						ValidateTime();
 					}
 	
 					validating = false;      

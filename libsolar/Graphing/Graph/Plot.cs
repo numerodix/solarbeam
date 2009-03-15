@@ -19,20 +19,21 @@ namespace LibSolar.Graphing
 			new Dictionary<UTCDate,KeyValuePair<Color,Point?>>();
 		
 		
-		public void PlotMilestoneDay(Graphics g, Color col, Position pos, int tz,
+		public void PlotMilestoneDay(Graphics g, Color col, Position pos, 
+		                             double tz,
 		                             int year, int month, int day)
 		{
 			PlotDayInternal(true, g, col, pos, tz, year, month, day);
 		}
 		
-		public void PlotDay(Graphics g, Color col, Position pos, int tz,
+		public void PlotDay(Graphics g, Color col, Position pos, double tz,
 		                             int year, int month, int day)
 		{
 			PlotDayInternal(false, g, col, pos, tz, year, month, day);
 		}
 		
 		private void PlotDayInternal(bool track_intersect,
-		                             Graphics g, Color col, Position pos, int tz,
+		                             Graphics g, Color col, Position pos, double tz,
 		                             int year, int month, int day)
 		{
 			UTCDate dt = new UTCDate(tz,
@@ -117,7 +118,7 @@ namespace LibSolar.Graphing
 		}
 		
 		public void PlotAnalemma(Graphics g, Color col_fst, Color col_snd,
-		                         Position pos, int tz, int year, int hour)
+		                         Position pos, double tz, int year, int hour)
 		{
 			UTCDate dt = new UTCDate(tz,
 					year, 1, 1,
@@ -138,17 +139,21 @@ namespace LibSolar.Graphing
 		}
 		
 		public void PrintAnalemmaLabel(Graphics g, Color color,
-		                               Position pos, int tz, int year, int hour)
+		                               Position pos, double tz, int year, int hour)
 		{
-			float font_size = GetLabelFontSize();
-			string hour_s = hour == 0 ? "24" : hour.ToString();
-			
 			UTCDate dt_max = new UTCDate(tz,
 			                             year, 6, 21,
 			                             hour, 0, 0);
-			UTCDate dt_min = new UTCDate(tz,
+			UTCDate dt_min = new UTCDate(0,
 			                             year, 12, 21,
 			                             hour, 0, 0);
+			
+			float font_size = GetLabelFontSize();
+			int hour_min = hour - (int) tz;
+			hour_min = hour_min < 0 ? 24 + hour_min : hour_min;
+			                
+			string hour_min_s = hour_min == 0 ? "24" : hour_min.ToString();
+			string hour_max_s = hour == 0 ? "24" : hour.ToString();
 			
 			KeyValuePair<Point?,double?> pair_max = 
 				FindPointSlopeAtHour(pos, dt_max);
@@ -156,7 +161,7 @@ namespace LibSolar.Graphing
 				Placement place = SlopeToPlacement(pair_max.Value.Value);
 				using (SolidBrush br_txt = new SolidBrush(color))
 				using (Font font = new Font(font_face, font_size, GraphicsUnit.Pixel)) {
-					PrintBoundedString(g, font, br_txt, hour_s,
+					PrintBoundedString(g, font, br_txt, hour_max_s,
 					                   pair_max.Key.Value.X, pair_max.Key.Value.Y,
 					                   place);
 				}
@@ -169,7 +174,7 @@ namespace LibSolar.Graphing
 					SlopeToPlacement( (pair_min.Value.Value + 180.0) % 360.0);
 				using (SolidBrush br_txt = new SolidBrush(color))
 				using (Font font = new Font(font_face, font_size, GraphicsUnit.Pixel)) {
-					PrintBoundedString(g, font, br_txt, hour_s,
+					PrintBoundedString(g, font, br_txt, hour_min_s,
 					                   pair_min.Key.Value.X, pair_min.Key.Value.Y,
 					                   place);
 				}

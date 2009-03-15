@@ -18,6 +18,8 @@ test:
 	rm TestResult.xml "C:\NUnitPrimaryTrace.txt"
 
 arch:
+	mdtool build --configuration:Debug
+	rm -rf apidoc
 	rm -rf ~/t/solarbeam/ /ex/solarbeam && cp -ar ~/code/solarbeam/ ~/t && cp -ar ~/code/solarbeam/ /ex/solarbeam
 
 lines:

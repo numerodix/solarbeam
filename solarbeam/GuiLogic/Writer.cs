@@ -22,9 +22,9 @@ namespace SolarbeamGui
 			                            Position.LATITUDE_POS,
 			                            63, 25, 47);
 			// init current time and date
-			UTCDate dt = UTCDate.Now(1); // timezone +1
+			DateTime dt = DateTime.Now;
 	
-			SetDate(dt);
+			SetDate("Europe/Oslo", dt);
 			SetPosition(pos);
 		}
 		
@@ -50,15 +50,18 @@ namespace SolarbeamGui
 			SetValue(registry[Id.DAY_LENGTH], FormatDayLength(st, sp));
 		}
 	
-		private static void SetDate(UTCDate dt)
+		private static void SetDate(string tz_name, DateTime dt_loc)
 		{
-			SetValue(registry[Id.TIME_SECOND], dt.Second);
-			SetValue(registry[Id.TIME_MINUTE], dt.Minute);
-			SetValue(registry[Id.TIME_HOUR], dt.Hour);
-			SetValue(registry[Id.DATE_DAY], dt.Day);
-			SetValue(registry[Id.DATE_MONTH], dt.Month);
-			SetValue(registry[Id.DATE_YEAR], dt.Year);
-			//SetValue(registry[Id.TIMEZONE_OFFSET], dt.Timezone);
+			SetValue(registry[Id.TIME_SECOND], dt_loc.Second);
+			SetValue(registry[Id.TIME_MINUTE], dt_loc.Minute);
+			SetValue(registry[Id.TIME_HOUR], dt_loc.Hour);
+			SetValue(registry[Id.DATE_DAY], dt_loc.Day);
+			SetValue(registry[Id.DATE_MONTH], dt_loc.Month);
+			SetValue(registry[Id.DATE_YEAR], dt_loc.Year);
+			
+			string tz_off = Controller.timezone_source.GetOffsetName(tz_name);
+			SetValue(registry[Id.TIMEZONE_OFFSET], tz_off);
+			SetValue(registry[Id.TIMEZONE_NAME], tz_name);
 		}
 	
 		private static void SetPosition(Position pos)
