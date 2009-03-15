@@ -22,6 +22,9 @@ namespace LibSolar.Graphing
 		December
 	}
 		
+	/**
+	 * Formatting related primitives.
+	 */
 	partial class Diagram
 	{
 		private static string FormatDate(UTCDate dt)

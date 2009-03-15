@@ -10,6 +10,9 @@ using LibSolar.Types;
 
 namespace LibSolar.Graphing
 {
+	/**
+	 * Geometry related primitives to aid in plotting.
+	 */
 	partial class Diagram
 	{
 		private KeyValuePair<Point?,double?> FindPointSlopeAtHour(Position pos,

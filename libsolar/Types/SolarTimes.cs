@@ -5,6 +5,9 @@ using System;
 
 namespace LibSolar.Types
 {
+	/**
+	 * Result type for packaging calculation results (times).
+	 */
 	public struct SolarTimes
 	{
 		private Position pos;

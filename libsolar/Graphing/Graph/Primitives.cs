@@ -23,6 +23,9 @@ namespace LibSolar.Graphing
 		TOP
 	}
 	
+	/**
+	 * Primities for printing/plotting.
+	 */
 	partial class Diagram
 	{
 		private void PrintBoundedString(Graphics g, Font font, Color color,

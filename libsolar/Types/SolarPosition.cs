@@ -5,6 +5,9 @@ using System;
 
 namespace LibSolar.Types
 {
+	/**
+	 * Result type for packaging calculation results (angles).
+	 */
 	public struct SolarPosition
 	{
 		private Position pos;

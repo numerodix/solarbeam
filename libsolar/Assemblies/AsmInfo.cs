@@ -6,6 +6,9 @@ using System.Reflection;
 
 namespace LibSolar.Assemblies
 {
+	/**
+	 * Offers queries on assemblies.
+	 */
 	public class AsmInfo
 	{
 		private object[] atts;

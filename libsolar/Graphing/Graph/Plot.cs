@@ -10,6 +10,9 @@ using LibSolar.Types;
 
 namespace LibSolar.Graphing
 {	
+	/**
+	 * Plot a graph on a Graph.
+	 */
 	partial class Diagram
 	{
 		private int dayseconds = 24*3600;

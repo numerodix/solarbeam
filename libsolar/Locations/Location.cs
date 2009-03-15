@@ -5,6 +5,9 @@ using LibSolar.Types;
 
 namespace LibSolar.Locations
 {
+	/**
+	 * Describe a geographical location.
+	 */
 	public struct Location
 	{
 		private string name;

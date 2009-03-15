@@ -12,7 +12,7 @@ using LibSolar.Types;
 namespace SolarbeamGui
 {
 	/**
-	 * Handles input validation.
+	 * Handles input validation and inter-widget assignments.
 	 */
 	partial class Controller
 	{

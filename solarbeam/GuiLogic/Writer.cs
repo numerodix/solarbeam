@@ -47,7 +47,7 @@ namespace SolarbeamGui
 		{
 			string tz_off = Controller.timezone_source.GetOffsetName(tz_name);
 			SetValue(registry[Id.TIMEZONE_OFFSET], tz_off);
-			ValidateTimezoneOffset();
+			ValidateTimezoneOffset(); // update timezone name list
 			SetValue(registry[Id.TIMEZONE_NAME], tz_name);
 		}
 	

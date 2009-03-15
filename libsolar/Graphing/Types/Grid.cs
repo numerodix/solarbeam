@@ -6,6 +6,9 @@ using System.Drawing;
 
 namespace LibSolar.Graphing
 {
+	/**
+	 * Represents a grid drawn on a bitmap with set bounds within the bitmap.
+	 */
 	struct Grid
 	{
 		private int bound_a;

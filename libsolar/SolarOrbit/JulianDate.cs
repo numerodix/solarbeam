@@ -5,6 +5,9 @@ using System;
 
 namespace LibSolar.SolarOrbit
 {
+	/**
+	 * Holds calculation primitives for handling julian day/century values.
+	 */
 	class JulianDate
 	{
 		/**

@@ -11,7 +11,7 @@ using LibSolar.Types;
 namespace SolarbeamGui
 {
 	/**
-	 * Creates widget panel for left side of screen.
+	 * Represents widget panel for left side of screen.
 	 */
 	sealed class GuiControlPanel : Panel
 	{

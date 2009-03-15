@@ -10,6 +10,9 @@ using LibSolar.SolarOrbit;
 
 namespace SolarbeamGui
 {
+	/**
+	 * Represents the main gui form.
+	 */
 	sealed class GuiMainForm : Form
 	{	
 		private const int BORDER = 0;

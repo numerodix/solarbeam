@@ -11,6 +11,9 @@ using LibSolar.Types;
 
 namespace SolarbeamGui
 {
+	/**
+	 * Represents diagram viewport as widget.
+	 */
 	sealed class GuiViewport : Control
 	{
 		public const int IDEAL_DIM_X = 569;

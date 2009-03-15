@@ -6,6 +6,9 @@ using System.Drawing;
 
 namespace LibSolar.Graphing
 {
+	/**
+	 * Represents the graph drawn on top of a grid.
+	 */
 	struct Graph
 	{
 		private Point origin;

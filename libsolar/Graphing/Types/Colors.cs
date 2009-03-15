@@ -6,6 +6,9 @@ using System.Drawing;
 
 namespace LibSolar.Graphing
 {
+	/**
+	 * Package all colors used in graphing.
+	 */
 	public struct Colors
 	{
 		private Color grid_bg;

@@ -8,6 +8,9 @@ using LibSolar.SolarOrbit;
 
 namespace LibSolar.Graphing
 {	
+	/**
+	 * Paint backdrop on a grid.
+	 */
 	partial class Diagram
 	{		
 		public void PaintBackdrop(Graphics g)

@@ -5,6 +5,9 @@ using System;
 
 namespace LibSolar.SolarOrbit
 {
+	/**
+	 * Primitives for handling cartesian coordinates.
+	 */
 	class Coordinate
 	{
 		public static double RadToDeg(double angle_rad)
