@@ -16,10 +16,10 @@ namespace LibSolar.Graphing
 		public static void GenerateBitmap(int dim, string path)
 		{
 			// loc: Trondheim
-			Position pos = new Position(Position.LONGITUDE_POS,
-			                            10, 23, 36,
-			                            Position.LATITUDE_POS,
-			                            63, 25, 47);
+			Position pos = new Position(Position.LATITUDE_POS,
+			                            63, 25, 47,
+			                            Position.LONGITUDE_POS,
+			                            10, 23, 36);
 			// time: Now
 			DateTime now = DateTime.Now;
 			UTCDate dt = new UTCDate(1,

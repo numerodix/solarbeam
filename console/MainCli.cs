@@ -23,8 +23,8 @@ namespace SolarbeamCli
 			bool bench = false;
 	
 			// calc defaults
-			string longitude = null;
 			string latitude = null;
+			string longitude = null;
 			string timezone = null;
 			string date = null;
 			string time = null;
@@ -34,8 +34,8 @@ namespace SolarbeamCli
 			bool timebased = true;
 	
 			OptionSet p = new OptionSet ()
-				.Add ("lon|longitude=", delegate (string v) { longitude = v; })
 				.Add ("lat|latitude=", delegate (string v) { latitude = v; })
+				.Add ("lon|longitude=", delegate (string v) { longitude = v; })
 				.Add ("tz|timezone=", delegate (string v) { timezone = v; })
 				.Add ("dt|date=", delegate (string v) { date = v; })
 				.Add ("tm|time=", delegate (string v) { time = v; })
@@ -92,19 +92,19 @@ namespace SolarbeamCli
 			if ( null == time ) {
 				throw new ArgumentException("Missing --time argument");
 			}
-			if ( null == longitude ) {
-				throw new ArgumentException("Missing --longitude argument");
-			}
 			if ( null == latitude ) {
 				throw new ArgumentException("Missing --latitude argument");
+			}
+			if ( null == longitude ) {
+				throw new ArgumentException("Missing --longitude argument");
 			}
 			if ( null == timezone ) {
 				throw new ArgumentException("Missing --timezone argument");
 			}
 	
 			// All systems go
-			ArrayList los = Parsing.SplitParse(longitude, '.');
 			ArrayList las = Parsing.SplitParse(latitude, '.');
+			ArrayList los = Parsing.SplitParse(longitude, '.');
 			ArrayList tz = Parsing.SplitParse(timezone, '.');
 			ArrayList ds = Parsing.SplitParse(date, '.');
 			ArrayList ts = Parsing.SplitParse(time, ':');
@@ -130,10 +130,10 @@ namespace SolarbeamCli
 						string.Format("Wrong value for longitude: {0}", longitude));
 			}
 	
-			Position pos = new Position(lodir,
-			                            (int) los[1], (int) los[2], (int) los[3],
-			                            ladir,
-			                            (int) las[1], (int) las[2], (int) las[3]);
+			Position pos = new Position(ladir,
+			                            (int) las[1], (int) las[2], (int) las[3],
+			                            lodir,
+			                            (int) los[1], (int) los[2], (int) los[3]);
 	
 			UTCDate dt = new UTCDate((int) tz[0],
 			                   (int) ds[2], (int) ds[1], (int) ds[0],
@@ -159,9 +159,9 @@ namespace SolarbeamCli
 					int lon = 10;
 					int lat = 59;
 					int timezone = (int) (lon / 15);
-					Position pos = new Position(Position.LonDirFromVal(lon), lon, 0, 0, 
-					                            Position.LatDirFromVal(lat), lat, 0, 0);
-	
+					Position pos = new Position(Position.LatDirFromVal(lat), lat, 0, 0,
+					                            Position.LonDirFromVal(lon), lon, 0, 0);
+
 					int year = 2009;
 					int month = 2;
 					int day = 1;
@@ -185,8 +185,8 @@ namespace SolarbeamCli
 						it++;
 	
 						int timezone = (int) (lon / 15);
-						Position pos = new Position(Position.LonDirFromVal(lon), lon, 0, 0, 
-						                            Position.LatDirFromVal(lat), lat, 0, 0);
+						Position pos = new Position(Position.LatDirFromVal(lat), lat, 0, 0,
+						                            Position.LonDirFromVal(lon), lon, 0, 0);
 	
 						int hour = 11;
 						int min = 0;

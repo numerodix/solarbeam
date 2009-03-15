@@ -54,8 +54,8 @@ namespace LibSolar.Types
 		{
 			string s = "";
 			if (print_params) {
-				s += string.Format(template, "longitude", pos.PrintLongitude());
 				s += string.Format(template, "latitude", pos.PrintLatitude());
+				s += string.Format(template, "longitude", pos.PrintLongitude());
 				s += string.Format(template, "timezone", dt.PrintTimezone());
 				s += string.Format(template, "date", dt.Print());
 				s += "\n";

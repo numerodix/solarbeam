@@ -33,10 +33,10 @@ namespace SolarbeamGui
 			Position pos = null;
 			// try to instantiate type, otherwise mark inputs as erroneous
 			try {
-				pos = new Position(lodir,
-				                   lodeg, lomin, losec,
-				                   ladir,
-				                   ladeg, lamin, lasec);
+				pos = new Position(ladir,
+				                   ladeg, lamin, lasec,
+				                   lodir,
+				                   lodeg, lomin, losec);
 			} catch (ArgumentException) {
 				foreach (Id id in ins_render)
 				{

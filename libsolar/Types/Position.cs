@@ -13,10 +13,10 @@ namespace LibSolar.Types
 
 	public enum PositionDirection
 	{
-		East,
-		West,
 		North,
 		South,
+		East,
+		West,
 	}
 
 	/**
@@ -24,10 +24,10 @@ namespace LibSolar.Types
 	 */
 	public class Position
 	{
-		public static PositionDirection LONGITUDE_POS = PositionDirection.East;
-		public static PositionDirection LONGITUDE_NEG = PositionDirection.West;
 		public static PositionDirection LATITUDE_POS = PositionDirection.North;
 		public static PositionDirection LATITUDE_NEG = PositionDirection.South;
+		public static PositionDirection LONGITUDE_POS = PositionDirection.East;
+		public static PositionDirection LONGITUDE_NEG = PositionDirection.West;
 		
 		public const int LATDEGS_MINVALUE = 0;
 		public const int LATDEGS_MAXVALUE = 90;
@@ -43,42 +43,32 @@ namespace LibSolar.Types
 		public const int LONSECS_MINVALUE = 0;
 		public const int LONSECS_MAXVALUE = 59;
 
-		private double longitude;
 		private double latitude;
+		private double longitude;
 
-		private int longitude_int;
 		private int latitude_int;
+		private int longitude_int;
 
-		public Position(PositionDirection lodir,
-		                int lodeg, int lomin, int losec,
-		                PositionDirection ladir,
-		                int ladeg, int lamin, int lasec)
+		public Position(PositionDirection ladir,
+		                int ladeg, int lamin, int lasec,
+		                PositionDirection lodir,
+		                int lodeg, int lomin, int losec)
 		{
-			longitude_int = CollapsePositionUnits(lodir, lodeg, lomin, losec);
 			latitude_int = CollapsePositionUnits(ladir, ladeg, lamin, lasec);
+			longitude_int = CollapsePositionUnits(lodir, lodeg, lomin, losec);
 
-			CheckIsLongitude(lodir);
 			CheckIsLatitude(ladir);
+			CheckIsLongitude(lodir);
 
-			CheckLongitudeVal(longitude_int);
 			CheckLatitudeVal(latitude_int);
+			CheckLongitudeVal(longitude_int);
 
 			longitude_int = InvertLongitude(longitude_int);
 
-			longitude = longitude_int / 3600.0;
 			latitude = latitude_int / 3600.0;
+			longitude = longitude_int / 3600.0;
 			
 			latitude = AdjustLatitude(latitude);
-		}
-
-		public static PositionDirection LonDirFromVal(int val)
-		{
-			if (val >= 0)
-			{
-				return LONGITUDE_POS;
-			} else {
-				return LONGITUDE_NEG;
-			}
 		}
 
 		public static PositionDirection LatDirFromVal(int val)
@@ -91,15 +81,13 @@ namespace LibSolar.Types
 			}
 		}
 
-		/**
-		 * Ensure direction corresponds to longitude direction.
-		 */
-		private void CheckIsLongitude(PositionDirection dir)
+		public static PositionDirection LonDirFromVal(int val)
 		{
-			if ((dir != PositionDirection.East) && (dir != PositionDirection.West))
+			if (val >= 0)
 			{
-				throw new ArgumentException(
-						string.Format("Bad direction for longitude: {0}", dir));
+				return LONGITUDE_POS;
+			} else {
+				return LONGITUDE_NEG;
 			}
 		}
 
@@ -116,15 +104,14 @@ namespace LibSolar.Types
 		}
 
 		/**
-		 * Longitude [0,180] represents west of 0 meridian.
-		 * Longitude [0,-180] represents east of 0 meridian.
+		 * Ensure direction corresponds to longitude direction.
 		 */
-		private void CheckLongitudeVal(int lon)
+		private void CheckIsLongitude(PositionDirection dir)
 		{
-			if ( (lon < -180*3600) || (lon > 180*3600) )
+			if ((dir != PositionDirection.East) && (dir != PositionDirection.West))
 			{
 				throw new ArgumentException(
-						string.Format("Bad value for longitude: {0}", lon));
+						string.Format("Bad direction for longitude: {0}", dir));
 			}
 		}
 
@@ -142,13 +129,16 @@ namespace LibSolar.Types
 		}
 
 		/**
-		 * Most common is to represent east longitude as positive. Solarbeam does
-		 * the opposite, so we accept input in the standard form and switch the
-		 * sign.
+		 * Longitude [0,180] represents west of 0 meridian.
+		 * Longitude [0,-180] represents east of 0 meridian.
 		 */
-		private static int InvertLongitude(int lon)
+		private void CheckLongitudeVal(int lon)
 		{
-			return -lon;
+			if ( (lon < -180*3600) || (lon > 180*3600) )
+			{
+				throw new ArgumentException(
+						string.Format("Bad value for longitude: {0}", lon));
+			}
 		}
 
 		/**
@@ -169,13 +159,23 @@ namespace LibSolar.Types
 		}
 
 		/**
+		 * Most common is to represent east longitude as positive. Solarbeam does
+		 * the opposite, so we accept input in the standard form and switch the
+		 * sign.
+		 */
+		private static int InvertLongitude(int lon)
+		{
+			return -lon;
+		}
+
+		/**
 		 * Normalize integer position to decimal value.
 		 */
 		private static int CollapsePositionUnits(PositionDirection dir,
 		                                         int deg, int min, int sec)
 		{
 			int multiplier =
-				( (dir == LONGITUDE_NEG) || (dir == LATITUDE_NEG) ? -1 : 1 );
+				( (dir == LATITUDE_NEG) || (dir == LONGITUDE_NEG) ? -1 : 1 );
 			return 
 				( multiplier
 				 * ( Math.Abs(deg) * 3600
@@ -192,21 +192,21 @@ namespace LibSolar.Types
 		{
 			PositionDirection dir;
 
-			if (ax == PositionAxis.Longitude)
+			if (ax == PositionAxis.Latitude)
 			{
+				dir = LATITUDE_POS;
+
+				if (degs < 0)
+				{
+					dir = LATITUDE_NEG;
+				}
+			} else {
 				dir = LONGITUDE_POS;
 
 				degs = InvertLongitude(degs);
 				if (degs < 0)
 				{
 					dir = LONGITUDE_NEG;
-				}
-			} else {
-				dir = LATITUDE_POS;
-
-				if (degs < 0)
-				{
-					dir = LATITUDE_NEG;
 				}
 			}
 			degs = Math.Abs(degs);
@@ -220,28 +220,28 @@ namespace LibSolar.Types
 			return new Degree(dir, deg, min, sec);
 		}
 
-		public double Longitude
-		{ get { return longitude; } }
-
-		public Degree LongitudeDegree
-		{ get { return ExpandPositionUnits(PositionAxis.Longitude, longitude_int); } }
-
 		public double Latitude
 		{ get { return latitude; } }
 
 		public Degree LatitudeDegree
 		{ get { return ExpandPositionUnits(PositionAxis.Latitude, latitude_int); } }
 
-		// Helpers
-		public string PrintLongitude()
-		{
-			Degree d = LongitudeDegree;
-			return d.Print();
-		}
+		public double Longitude
+		{ get { return longitude; } }
 
+		public Degree LongitudeDegree
+		{ get { return ExpandPositionUnits(PositionAxis.Longitude, longitude_int); } }
+
+		// Helpers
 		public string PrintLatitude()
 		{
 			Degree d = LatitudeDegree;
+			return d.Print();
+		}
+
+		public string PrintLongitude()
+		{
+			Degree d = LongitudeDegree;
 			return d.Print();
 		}
 	}
