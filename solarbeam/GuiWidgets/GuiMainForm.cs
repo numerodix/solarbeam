@@ -41,6 +41,9 @@ namespace SolarbeamGui
 		{
 			this.Text = form_title;
 			
+			// init datasources before instantiating widgets
+			Controller.InitSources();
+			
 			this.controlpanel = new GuiControlPanel();
 			Controller.InitForm(); // fill in initial form values
 			this.viewport = new GuiViewport(this);
