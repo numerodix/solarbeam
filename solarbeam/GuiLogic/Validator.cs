@@ -16,7 +16,9 @@ namespace SolarbeamGui
 	 */
 	partial class Controller
 	{
-		private static bool validating = false;
+		// validation exclusion lock. set to prevent validation when the
+		// form's input state is invalid/incomplete
+		private static bool validate_lock = false;
 	
 		private static void ValidateLocation()
 		{

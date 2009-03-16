@@ -47,7 +47,7 @@ namespace SolarbeamGui
 			// before all controls have been registered. ignore this early case
 			try {
 				// don't update while validating, input may be partial
-				if (!validating)
+				if (!validate_lock)
 				{
 					Position pos = ReadPosition();
 					UTCDate? dt = ReadDate();
@@ -103,9 +103,9 @@ namespace SolarbeamGui
 			// before all controls have been registered. ignore this early case
 			try {
 				// awful hack to prevent recursive calls causing infinite loop
-				if (!validating)
+				if (!validate_lock)
 				{
-					validating = true;
+					validate_lock = true;
 	
 					Control control = (Control) sender;
 					Id id = reg_rev[control];
@@ -124,10 +124,10 @@ namespace SolarbeamGui
 						ValidateTime();
 					}
 	
-					validating = false;      
+					validate_lock = false;      
 				}
 			} catch (KeyNotFoundException) {
-				validating = false;  
+				validate_lock = false;  
 			}
 		}
 		

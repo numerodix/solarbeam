@@ -102,7 +102,7 @@ namespace SolarbeamGui
 		public static void InitControl(Control control)
 		{
 			// form has no values yet, don't validate this input
-			validating = true;
+			validate_lock = true;
 			
 			if (control is ComboBox) {
 				((ComboBox) control).SelectedIndex = 0;
@@ -118,7 +118,7 @@ namespace SolarbeamGui
 			}
 			
 			// reactivate validation
-			validating = false;
+			validate_lock = false;
 		}
 	}
 }
