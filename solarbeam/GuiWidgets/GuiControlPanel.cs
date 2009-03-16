@@ -157,7 +157,7 @@ namespace SolarbeamGui
 			Label loc_lbl = GetLabel("Location:");
 			Control loc_ins = GetLaidOut(
 				new Control[] {
-					GetComboBox(
+					GetComboBoxInputable(
 						Controller.Id.LOCATION,
 						Controller.locations_source.Locations),
 					GetLabel(String.Empty)},
@@ -312,6 +312,15 @@ namespace SolarbeamGui
 			combo.Items.AddRange(ss);
 			combo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 			Controller.RegisterControl(id, combo);	// register control
+			return combo;
+		}
+			
+		private ComboBox GetComboBoxInputable(Controller.Id id, string[] ss)
+		{
+			ComboBox combo = GetComboBox(id, ss);
+			combo.DropDownStyle = ComboBoxStyle.DropDown;
+			combo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+			combo.AutoCompleteSource = AutoCompleteSource.ListItems;
 			return combo;
 		}
 		

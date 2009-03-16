@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
+using LibSolar.Platform;
 using LibSolar.SolarOrbit;
 
 namespace SolarbeamGui
@@ -42,7 +43,9 @@ namespace SolarbeamGui
 		
 		private Size InitializeComponent(string form_title)
 		{
-			this.Text = form_title;
+			this.Text = String.Format("{0} ({1}/{2})", form_title, 
+			                          Platform.GetRuntime(),
+			                          Platform.GetPlatform());
 			
 			// init datasources before instantiating widgets
 			Controller.InitSources();
