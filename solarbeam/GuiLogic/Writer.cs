@@ -85,10 +85,9 @@ namespace SolarbeamGui
 	
 		public static void SetValue(Control control, object val)
 		{
+			//Console.WriteLine("Set {0} : {1}", reg_rev[control], val);
 			if (control is ComboBox) {
 				((ComboBox) control).Text = (string) val;
-			} else if (control is HScrollBar) {
-				((HScrollBar) control).Value = GetInt(val);
 			} else if (control is NumericUpDown) {
 				((NumericUpDown) control).Value = GetInt(val);
 			} else if (control is TextBox) {
@@ -98,6 +97,25 @@ namespace SolarbeamGui
 					"Cannot set value to unknown control: {0}", 
 					control.GetType().ToString()));
 			}
-		}	
+		}
+		
+		public static void InitControl(Control control)
+		{
+			validating = true;
+			if (control is ComboBox) {
+				((ComboBox) control).SelectedIndex = 0;
+				cache[reg_rev[control]] = String.Format("{0}", 0);
+			} else if (control is NumericUpDown) {
+				NumericUpDown num = ((NumericUpDown) control);
+				int val = (int) (num.Maximum - num.Minimum) / 2;
+				num.Value = val;
+				cache[reg_rev[control]] = String.Format("{0}", val);
+			} else if (control is TextBox) {
+				((TextBox) control).Text = String.Empty;
+				cache[reg_rev[control]] = String.Empty;
+			}
+			validating = false;
+			Console.WriteLine("Set {0} : {1}", reg_rev[control], GetValue(control));
+		}
 	}
 }

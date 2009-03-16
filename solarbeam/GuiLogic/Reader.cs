@@ -80,16 +80,10 @@ namespace SolarbeamGui
 			string val = null;
 			if (control is ComboBox) {
 				val = ((ComboBox) control).Text;
-			} else if (control is HScrollBar) {
-				val = ((HScrollBar) control).Value.ToString();
 			} else if (control is NumericUpDown) {
 				val = ((NumericUpDown) control).Value.ToString();
 			} else if (control is TextBox) {
 				val = ((TextBox) control).Text;
-			} else {
-				throw new ArgumentException(string.Format(
-					"Cannot get value of unknown control: {0}", 
-					control.GetType().ToString()));
 			}
 			return val;
 		}

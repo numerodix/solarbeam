@@ -281,8 +281,8 @@ namespace SolarbeamGui
 		private Button GetButton(Controller.Id id, string s)
 		{
 			Button button = new Button();
-			Controller.RegisterControl(id, button);	// register control
 			button.Text = s;
+			Controller.RegisterControl(id, button);	// register control
 			return button;
 		}
 		
@@ -298,36 +298,36 @@ namespace SolarbeamGui
 		private TextBox GetTextBox(Controller.Id id, string s)
 		{
 			TextBox textbox = new TextBox();
-			Controller.RegisterControl(id, textbox);	// register control
 			textbox.ReadOnly = true;
 			textbox.Anchor = AnchorStyles.Left;
 			textbox.BorderStyle = BorderStyle.None;
-			Controller.SetValue(textbox, s);
+//			Controller.SetValue(textbox, s);
+			Controller.RegisterControl(id, textbox);	// register control
 			return textbox;
 		}
 
 		private ComboBox GetComboBox(Controller.Id id, string[] ss)
 		{
 			ComboBox combo = new ComboBox();
-			Controller.RegisterControl(id, combo);	// register control
 			combo.DropDownStyle = ComboBoxStyle.DropDownList;
 			combo.Items.AddRange(ss);
 			combo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-			if (ss.Length > 0) {
-				Controller.SetValue(combo, ss[0]);
-			} else {
-				Controller.Disable(combo);
-			}
+//			if (ss.Length > 0) {
+//				Controller.SetValue(combo, ss[0]);
+//			} else {
+//				Controller.Disable(combo);
+//			}
+			Controller.RegisterControl(id, combo);	// register control
 			return combo;
 		}
 		
 		private NumericUpDown GetNumericUpDown(Controller.Id id, int min, int max)
 		{
 			NumericUpDown num = new NumericUpDown();
-			Controller.RegisterControl(id, num);	// register control
 			num.Minimum = min;
 			num.Maximum = max;
-			Controller.SetValue(num, max / 2);
+//			Controller.SetValue(num, max / 2);
+			Controller.RegisterControl(id, num);	// register control
 			return num;
 		}
 	}

@@ -119,6 +119,9 @@ namespace SolarbeamGui
 			reg_rev.Add(control, id);
 			cache.Add(id, String.Empty);
 			
+			// set initial value undisturbed, before activating event handlers
+			InitControl(control);
+			
 			// activate buttons
 			if (control is Button) {
 				ActivateButton((Button) control);
