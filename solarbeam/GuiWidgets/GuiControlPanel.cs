@@ -301,7 +301,6 @@ namespace SolarbeamGui
 			textbox.ReadOnly = true;
 			textbox.Anchor = AnchorStyles.Left;
 			textbox.BorderStyle = BorderStyle.None;
-//			Controller.SetValue(textbox, s);
 			Controller.RegisterControl(id, textbox);	// register control
 			return textbox;
 		}
@@ -312,11 +311,6 @@ namespace SolarbeamGui
 			combo.DropDownStyle = ComboBoxStyle.DropDownList;
 			combo.Items.AddRange(ss);
 			combo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-//			if (ss.Length > 0) {
-//				Controller.SetValue(combo, ss[0]);
-//			} else {
-//				Controller.Disable(combo);
-//			}
 			Controller.RegisterControl(id, combo);	// register control
 			return combo;
 		}
@@ -326,7 +320,6 @@ namespace SolarbeamGui
 			NumericUpDown num = new NumericUpDown();
 			num.Minimum = min;
 			num.Maximum = max;
-//			Controller.SetValue(num, max / 2);
 			Controller.RegisterControl(id, num);	// register control
 			return num;
 		}

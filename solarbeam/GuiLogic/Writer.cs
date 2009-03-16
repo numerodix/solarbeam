@@ -101,7 +101,9 @@ namespace SolarbeamGui
 		
 		public static void InitControl(Control control)
 		{
+			// form has no values yet, don't validate this input
 			validating = true;
+			
 			if (control is ComboBox) {
 				((ComboBox) control).SelectedIndex = 0;
 				cache[reg_rev[control]] = String.Format("{0}", 0);
@@ -114,8 +116,9 @@ namespace SolarbeamGui
 				((TextBox) control).Text = String.Empty;
 				cache[reg_rev[control]] = String.Empty;
 			}
+			
+			// reactivate validation
 			validating = false;
-			Console.WriteLine("Set {0} : {1}", reg_rev[control], GetValue(control));
 		}
 	}
 }

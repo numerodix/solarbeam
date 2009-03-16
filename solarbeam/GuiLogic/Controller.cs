@@ -119,9 +119,6 @@ namespace SolarbeamGui
 			reg_rev.Add(control, id);
 			cache.Add(id, String.Empty);
 			
-			// set initial value undisturbed, before activating event handlers
-			InitControl(control);
-			
 			// activate buttons
 			if (control is Button) {
 				ActivateButton((Button) control);
@@ -148,6 +145,9 @@ namespace SolarbeamGui
 				EventHandler handler = new EventHandler(UpdateViewport);
 				RegisterValueChange(control, handler);
 			}
+									
+			// set initial value (make sure to disable validation)
+			InitControl(control);
 		}
 		
 		private static void ActivateButton(Button button)
