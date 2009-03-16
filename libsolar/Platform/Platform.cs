@@ -5,6 +5,9 @@ using System;
 
 namespace LibSolar.Platform
 {
+	/**
+	 * Provide information about the execution platform.
+	 */
 	public static class Platform
 	{
 		public static string GetRuntime()
