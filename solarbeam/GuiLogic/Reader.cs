@@ -59,10 +59,12 @@ namespace SolarbeamGui
 			int sec = GetInt(GetValue(registry[Id.TIME_SECOND]));
 			
 			DateTime? date = null;
+			UTCDate? udt = null;
 			// try to instantiate type, otherwise mark inputs as erroneous
 			try {
 				date = new DateTime(year, month, day,
 				                    hour, min, sec, DateTimeKind.Local);
+				udt = Controller.timezone_source.ApplyZone(tz_name, date.Value);
 			} catch (ArgumentException) {
 				foreach (Id id in ins_update)
 				{
@@ -70,7 +72,7 @@ namespace SolarbeamGui
 				}
 			}
 			
-			return Controller.timezone_source.ApplyZone(tz_name, date.Value);
+			return udt;
 		}
 		
 		private static string GetValue(Control control)

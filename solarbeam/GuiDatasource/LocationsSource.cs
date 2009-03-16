@@ -16,13 +16,6 @@ namespace SolarbeamGui
 		public LocationsSource()
 		{
 			locations_dict = new Dictionary<string,Location>();
-			locations_dict.Add("Trondheim", 
-			                   new Location("Trondheim",
-			                                new Position(Position.LATITUDE_POS,
-			                                             63, 25, 47,
-			                                             Position.LONGITUDE_POS,
-			                                             10, 23, 36),
-			                                "Europe/Oslo"));
 			locations_dict.Add("Baku", 
 			                   new Location("Baku",
 			                                new Position(Position.LATITUDE_POS,
@@ -30,13 +23,6 @@ namespace SolarbeamGui
 			                                             Position.LONGITUDE_POS,
 			                                             49, 52, 56),
 			                                "Asia/Baku"));
-			locations_dict.Add("Sydney", 
-			                   new Location("Sydney",
-			                                new Position(Position.LATITUDE_NEG,
-			                                             33, 51, 36,
-			                                             Position.LONGITUDE_POS,
-			                                             151, 12, 40),
-			                                "Australia/Sydney"));
 			locations_dict.Add("Buenos Aires", 
 			                   new Location("Buenos Aires",
 			                                new Position(Position.LATITUDE_NEG,
@@ -44,6 +30,27 @@ namespace SolarbeamGui
 			                                             Position.LONGITUDE_NEG,
 			                                             58, 22, 12),
 			                                "America/Buenos_Aires"));
+			locations_dict.Add("Equator", 
+			                   new Location("Equator",
+			                                new Position(Position.LATITUDE_NEG,
+			                                             0, 0, 0,
+			                                             Position.LONGITUDE_NEG,
+			                                             0, 0, 0),
+			                                "UTC"));
+			locations_dict.Add("Sydney", 
+			                   new Location("Sydney",
+			                                new Position(Position.LATITUDE_NEG,
+			                                             33, 51, 36,
+			                                             Position.LONGITUDE_POS,
+			                                             151, 12, 40),
+			                                "Australia/Sydney"));
+			locations_dict.Add("Trondheim", 
+			                   new Location("Trondheim",
+			                                new Position(Position.LATITUDE_POS,
+			                                             63, 25, 47,
+			                                             Position.LONGITUDE_POS,
+			                                             10, 23, 36),
+			                                "Europe/Oslo"));
 
 			locations_array = new string[locations_dict.Count];
 			int i=-1;

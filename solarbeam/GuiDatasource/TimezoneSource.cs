@@ -91,15 +91,19 @@ namespace SolarbeamGui
 			return zones_rev[tz_name];
 		}
 		
-		public UTCDate ApplyZone(string tz_name, DateTime dt)
+		public UTCDate? ApplyZone(string tz_name, DateTime dt)
 		{
-			TzTimeZone zone = TzTimeZone.GetTimeZone(tz_name);
-			TzDateTime tzdt = new TzDateTime(dt, zone);
-			double offset = tzdt.UtcOffset.TotalHours;
-			DateTime dt_new = tzdt.DateTimeUtc;
-			return new UTCDate(offset,
-			                   dt_new.Year, dt_new.Month, dt_new.Day,
-			                   dt_new.Hour, dt_new.Minute, dt_new.Second);
+			try {
+				TzTimeZone zone = TzTimeZone.GetTimeZone(tz_name);
+				TzDateTime tzdt = new TzDateTime(dt, zone);
+				double offset = tzdt.UtcOffset.TotalHours;
+				DateTime dt_new = tzdt.DateTimeUtc;
+				return new UTCDate(offset,
+				                   dt_new.Year, dt_new.Month, dt_new.Day,
+				                   dt_new.Hour, dt_new.Minute, dt_new.Second);
+			} catch (TypeInitializationException) {
+				return null;
+			}
 		}
 		
 		public string[] Offsets
