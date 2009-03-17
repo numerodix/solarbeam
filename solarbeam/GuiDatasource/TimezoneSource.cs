@@ -21,11 +21,14 @@ namespace SolarbeamGui
 			// use dummy date as reference point to extract utc offsets
 			DateTime dummy = DateTime.Now;
 			
+			// init timezone objects
+			TzTimeZone.InitTimeZones("./tz");
+			
 			// build mapping offsets -> timezones
 			Dictionary<double,List<TzTimeZone>> zonedict = 
 				new Dictionary<double,List<TzTimeZone>>();
-			foreach (string zone_name in TzTimeZoneLoader.AllZoneNames) {
-				TzTimeZone zone = TzTimeZoneLoader.GetTimeZone(zone_name);
+			foreach (string zone_name in TzTimeZone.AllZoneNames) {
+				TzTimeZone zone = TzTimeZone.GetTimeZone(zone_name);
 				
 				TimeSpan span = zone.FindZone(dummy).UtcOffset;
 				double span_d = span.TotalMinutes;
@@ -103,7 +106,7 @@ namespace SolarbeamGui
 		public UTCDate? ApplyZone(string tz_name, DateTime dt)
 		{
 			try {
-				TzTimeZone zone = TzTimeZoneLoader.GetTimeZone(tz_name);
+				TzTimeZone zone = TzTimeZone.GetTimeZone(tz_name);
 				TzDateTime tzdt = new TzDateTime(dt, zone);
 				double offset = tzdt.UtcOffset.TotalHours;
 				DateTime dt_new = tzdt.DateTimeUtc;

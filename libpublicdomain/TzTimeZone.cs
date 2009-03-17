@@ -2079,6 +2079,79 @@ namespace PublicDomain
         {
             return StandardName.GetHashCode();
         }
+		
+		/**
+		 * Helper struct used during init.
+		 */
+		struct Zone
+		{
+			public string zone_name;
+			public List<TzDatabase.TzZone> zones;
+			public List<TzDatabase.TzRule> rules;
+			
+			public Zone(string zone_name)
+			{
+				this.zone_name = zone_name;
+				this.zones = new List<TzDatabase.TzZone>();
+				this.rules = new List<TzDatabase.TzRule>();
+			}
+		}
+		
+		/**
+		 * Override TzTimeZone.GetTimeZone monstrocity that adds 5-6 seconds
+		 * to static loading. Load from bundled zoneinfo distribution.
+		 */
+		public static void InitTimeZones(string directory)
+		{
+			// init datastructures for ReadDatabase call
+			List<TzDatabase.TzRule> rule_list = new List<TzDatabase.TzRule>();
+			List<TzDatabase.TzZone> zone_list = new List<TzDatabase.TzZone>();
+			List<string[]> links_list = new List<string[]>();
+
+			// read database files
+			TzDatabase.ReadDatabase(directory, rule_list, zone_list, links_list);
+
+			// zone_name -> Zone mapping
+			Dictionary<string,Zone> name_zone_dict = new Dictionary<string,Zone>();
+
+			// iterate over all zones to gather all entries under common key
+			foreach (TzDatabase.TzZone zone in zone_list) {
+				string zone_name = zone.ZoneName;
+				string rule_name = zone.RuleName;
+				if (!name_zone_dict.ContainsKey(zone_name)) {
+					name_zone_dict.Add(zone_name, new Zone(zone_name));
+				}
+				name_zone_dict[zone_name].zones.Add(zone);
+
+				// iterate over all rules to see if they match this zone
+				foreach (TzDatabase.TzRule rule in rule_list) {
+					if (rule.RuleName == rule_name) {
+						name_zone_dict[zone_name].rules.Add(rule);
+					}
+				}
+			}
+
+			// instantiate all timezones
+			foreach (KeyValuePair<string,Zone> pair in name_zone_dict) {
+				string zone_name = pair.Value.zone_name;
+				List<TzDatabase.TzZone> zones = pair.Value.zones;
+				List<TzDatabase.TzRule> rules = pair.Value.rules;
+				TzTimeZone.TzZoneInfo tzzone = 
+					new TzTimeZone.TzZoneInfo(zone_name, zones, rules);
+				s_zones.Add(zone_name, tzzone);
+				
+				// add links
+				foreach (string[] link in links_list) {
+					string from = link[1];
+					string to = link[2];
+					if (from == zone_name) {
+						tzzone = new TzTimeZone.TzZoneInfo(to, zones, rules);
+						s_zones.Add(to, tzzone);
+					}
+				}
+			}
+		}
+
 
         #region All time zones
 
