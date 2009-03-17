@@ -5,7 +5,7 @@ zip:
 	rm -rf dist
 	mkdir -p dist/solarbeam
 	for d in `find . -type d -iname "Release"`; do cp $$d/* dist/solarbeam; done
-	cp zoneinfo/* dist/solarbeam
+	cp zoneinfo dist/solarbeam
 	cd dist
 	zip -j dist/solarbeam.zip dist/solarbeam/*
 	rm -rf dist/solarbeam
