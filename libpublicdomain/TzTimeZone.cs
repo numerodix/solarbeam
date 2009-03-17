@@ -66,7 +66,7 @@ namespace PublicDomain
         static TzTimeZone()
         {
 			// init timezones from bundled zoneinfo
-			InitTimeZones("./tz");
+			InitTimeZones("zoneinfo");
 			
             s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-11:00")] = TzConstants.TimezonePacificMidway;
             s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-10:00")] = TzConstants.TimezonePacificHonolulu;
@@ -969,15 +969,17 @@ namespace PublicDomain
 		 * Override TzTimeZone.GetTimeZone monstrocity that adds 5-6 seconds
 		 * to static loading. Load from bundled zoneinfo distribution.
 		 */
-		public static void InitTimeZones(string directory)
+		public static void InitTimeZones(string file)
 		{
+			FileInfo f = new FileInfo(file);
+			
 			// init datastructures for ReadDatabase call
 			List<TzDatabase.TzRule> rule_list = new List<TzDatabase.TzRule>();
 			List<TzDatabase.TzZone> zone_list = new List<TzDatabase.TzZone>();
 			List<string[]> links_list = new List<string[]>();
 
 			// read database files
-			TzDatabase.ReadDatabase(directory, rule_list, zone_list, links_list);
+			TzDatabase.ReadDatabaseFile(f, rule_list, zone_list, links_list);
 
 			// zone_name -> Zone mapping
 			Dictionary<string,Zone> name_zone_dict = new Dictionary<string,Zone>();

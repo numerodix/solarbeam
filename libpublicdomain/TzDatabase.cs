@@ -82,7 +82,7 @@ namespace PublicDomain
         /// <param name="zones">The zones.</param>
         /// <param name="links">The links.</param>
         /// <exception cref="PublicDomain.TzDatabase.TzException"/>
-        private static void ReadDatabaseFile(FileInfo file, List<TzRule> rules, List<TzZone> zones, List<string[]> links)
+        public static void ReadDatabaseFile(FileInfo file, List<TzRule> rules, List<TzZone> zones, List<string[]> links)
         {
             string[] lines = System.IO.File.ReadAllLines(file.FullName);
             TzZone tempZone;
