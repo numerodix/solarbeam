@@ -15,7 +15,7 @@ filter_out = [
     "solar88",
     "solar89",
 ]
-target_dir = "../zoneinfo"
+target_dir = "../tz"
 target_file = "zoneinfo"
 
 
