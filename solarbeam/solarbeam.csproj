@@ -48,6 +48,7 @@
     <Compile Include="GuiDatasource\TimezoneSource.cs" />
     <Compile Include="GuiDatasource\PositionSource.cs" />
     <Compile Include="GuiDatasource\LocationsSource.cs" />
+    <Compile Include="GuiDatasource\Support\TzTimeZoneLoader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
