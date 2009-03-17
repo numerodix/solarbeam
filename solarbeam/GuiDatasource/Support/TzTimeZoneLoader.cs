@@ -30,7 +30,7 @@ namespace SolarbeamGui
 	 */
 	class TzTimeZoneLoader
 	{
-		private static Dictionary<string,TzTimeZone.TzZoneInfo> yzone_dict = null;
+		private static Dictionary<string,TzTimeZone.TzZoneInfo> zone_dict = null;
 
 		/**
 		 * Override TzTimeZone.GetTimeZone monstrocity that adds 5-6 seconds
@@ -38,10 +38,10 @@ namespace SolarbeamGui
 		 */
 		private static void InitZones()
 		{
-			if (yzone_dict != null) {
+			if (zone_dict != null) {
 				return;
 			} else {
-				yzone_dict = new Dictionary<string,TzTimeZone.TzZoneInfo>();
+				zone_dict = new Dictionary<string,TzTimeZone.TzZoneInfo>();
 			}
 
 			// init datastructures for ReadDatabase call
@@ -53,33 +53,43 @@ namespace SolarbeamGui
 			TzDatabase.ReadDatabase("./tz", rule_list, zone_list, links_list);
 
 			// zone_name -> Zone mapping
-			Dictionary<string,Zone> zone_dict = new Dictionary<string,Zone>();
+			Dictionary<string,Zone> name_zone_dict = new Dictionary<string,Zone>();
 
 			// iterate over all zones to gather all entries under common key
 			foreach (TzDatabase.TzZone zone in zone_list) {
 				string zone_name = zone.ZoneName;
 				string rule_name = zone.RuleName;
-				if (!zone_dict.ContainsKey(zone_name)) {
-					zone_dict.Add(zone_name, new Zone(zone_name));
+				if (!name_zone_dict.ContainsKey(zone_name)) {
+					name_zone_dict.Add(zone_name, new Zone(zone_name));
 				}
-				zone_dict[zone_name].zones.Add(zone);
+				name_zone_dict[zone_name].zones.Add(zone);
 
 				// iterate over all rules to see if they match this zone
 				foreach (TzDatabase.TzRule rule in rule_list) {
 					if (rule.RuleName == rule_name) {
-						zone_dict[zone_name].rules.Add(rule);
+						name_zone_dict[zone_name].rules.Add(rule);
 					}
 				}
 			}
 
 			// instantiate all timezones
-			foreach (KeyValuePair<string,Zone> pair in zone_dict) {
+			foreach (KeyValuePair<string,Zone> pair in name_zone_dict) {
 				string zone_name = pair.Value.zone_name;
 				List<TzDatabase.TzZone> zones = pair.Value.zones;
 				List<TzDatabase.TzRule> rules = pair.Value.rules;
 				TzTimeZone.TzZoneInfo tzzone = 
 					new TzTimeZone.TzZoneInfo(zone_name, zones, rules);
-				yzone_dict.Add(zone_name, tzzone);
+				zone_dict.Add(zone_name, tzzone);
+				
+				// add links
+				foreach (string[] link in links_list) {
+					string from = link[1];
+					string to = link[2];
+					if (from == zone_name) {
+						tzzone = new TzTimeZone.TzZoneInfo(to, zones, rules);
+						zone_dict.Add(to, tzzone);
+					}
+				}
 			}
 		}
 
@@ -90,7 +100,7 @@ namespace SolarbeamGui
 		{
 			InitZones();
 
-			TzTimeZone.TzZoneInfo zoneInfo = yzone_dict[tzName];
+			TzTimeZone.TzZoneInfo zoneInfo = zone_dict[tzName];
 			TzTimeZone result = new TzTimeZone(zoneInfo);
 
 			return result;
@@ -103,9 +113,9 @@ namespace SolarbeamGui
 		{ get { 
 				  InitZones();
 
-				  string[] result = new string[yzone_dict.Count];
+				  string[] result = new string[zone_dict.Count];
 				  int i = -1;
-				  foreach (KeyValuePair<string,TzTimeZone.TzZoneInfo> pair in yzone_dict) {
+				  foreach (KeyValuePair<string,TzTimeZone.TzZoneInfo> pair in zone_dict) {
 					  i++;
 					  result[i] = pair.Key;
 				  }

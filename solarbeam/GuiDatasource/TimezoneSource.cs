@@ -54,13 +54,22 @@ namespace SolarbeamGui
 				string offset_s = FormatTimezone(offset_d);
 				offsets[i] = offset_s;
 				
+				// sort timezones
 				List<TzTimeZone> zlist = zonedict[offset_d];
-				string[] zarray = new string[zlist.Count];
-				for (int j=0; j < zlist.Count; j++) {
-					string zone_name = zlist[j].ToString();
+				List<string> zlist_name = new List<string>();
+				foreach (TzTimeZone zone in zlist) {
+					zlist_name.Add(zone.StandardName);
+				}
+				zlist_name.Sort();
+				
+				string[] zarray = new string[zlist_name.Count];
+				for (int j=0; j < zlist_name.Count; j++) {
+					string zone_name = zlist_name[j];
 					zarray[j] = zone_name;
 					
-					zones_rev.Add(zone_name, offset_s);
+					if (!zones_rev.ContainsKey(zone_name)) {
+						zones_rev.Add(zone_name, offset_s);
+					}
 				}
 				this.zones.Add(offset_s, zarray);
 			}
