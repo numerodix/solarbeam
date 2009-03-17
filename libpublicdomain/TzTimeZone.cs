@@ -2138,13 +2138,15 @@ namespace PublicDomain
 				List<TzDatabase.TzRule> rules = pair.Value.rules;
 				TzTimeZone.TzZoneInfo tzzone = 
 					new TzTimeZone.TzZoneInfo(zone_name, zones, rules);
-				s_zones.Add(zone_name, tzzone);
+				if (!s_zones.ContainsKey(zone_name)) {
+					s_zones.Add(zone_name, tzzone);
+				}
 				
 				// add links
 				foreach (string[] link in links_list) {
 					string from = link[1];
 					string to = link[2];
-					if (from == zone_name) {
+					if ((from == zone_name) && (!s_zones.ContainsKey(to))) {
 						tzzone = new TzTimeZone.TzZoneInfo(to, zones, rules);
 						s_zones.Add(to, tzzone);
 					}
