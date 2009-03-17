@@ -22,7 +22,7 @@ namespace SolarbeamGui
 			DateTime dummy = DateTime.Now;
 			
 			// init timezone objects
-			TzTimeZone.InitTimeZones("./tz");
+//			TzTimeZone.InitTimeZones("./tz");
 			
 			// build mapping offsets -> timezones
 			Dictionary<double,List<TzTimeZone>> zonedict = 
