@@ -1,16 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="solarbeam/GuiLogic/Validator.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="solarbeam/GuiDatasource/Support/TzTimeZoneLoader.cs" ctype="Workbench">
     <Files>
-      <File FileName="solarbeam/GuiLogic/Validator.cs" Line="19" Column="25" />
+      <File FileName="libpublicdomain/TzDatabase.cs" Line="707" Column="34" />
+      <File FileName="libpublicdomain/TzTimeZone.cs" Line="160" Column="42" />
+      <File FileName="solarbeam/GuiDatasource/Support/TzTimeZoneLoader.cs" Line="30" Column="4" />
+      <File FileName="solarbeam/GuiDatasource/TimezoneSource.cs" Line="97" Column="51" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True" />
       </Pad>
       <Pad Id="ClassPad">
-        <State expanded="True" />
+        <State expanded="True" selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" ctype="Workspace" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ctype="Workspace" />
 </Properties>

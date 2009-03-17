@@ -8,54 +8,50 @@ using PublicDomain;
 
 namespace SolarbeamGui
 {	
+	/**
+	 * Helper struct used during init.
+	 */
 	struct Zone
 	{
 		public string zone_name;
 		public List<TzDatabase.TzZone> zones;
 		public List<TzDatabase.TzRule> rules;
-		
+
 		public Zone(string zone_name)
 		{
 			this.zone_name = zone_name;
 			this.zones = new List<TzDatabase.TzZone>();
 			this.rules = new List<TzDatabase.TzRule>();
-			}
+		}
 	}
-		
+
+	/**
+	 * Provide an implementation of relevant methods from TzTimeZone class.
+	 */
 	class TzTimeZoneLoader
 	{
 		private static Dictionary<string,TzTimeZone.TzZoneInfo> yzone_dict = null;
-		
+
+		/**
+		 * Override TzTimeZone.GetTimeZone monstrocity that adds 5-6 seconds
+		 * to static loading. Load from bundled zoneinfo distribution.
+		 */
 		private static void InitZones()
 		{
 			if (yzone_dict != null) {
 				return;
+			} else {
+				yzone_dict = new Dictionary<string,TzTimeZone.TzZoneInfo>();
 			}
-			
+
+			// init datastructures for ReadDatabase call
 			List<TzDatabase.TzRule> rule_list = new List<TzDatabase.TzRule>();
 			List<TzDatabase.TzZone> zone_list = new List<TzDatabase.TzZone>();
 			List<string[]> links_list = new List<string[]>();
+
+			// read database files
 			TzDatabase.ReadDatabase("./tz", rule_list, zone_list, links_list);
 
-//			Console.WriteLine("------------ RULES");
-//			foreach (TzDatabase.TzRule rule in rules) {
-//				Console.WriteLine(rule.ToString());
-//			}
-
-//			Console.WriteLine("------------ ZONES");
-//			foreach (TzDatabase.TzZone zone in zones) {
-//				Console.WriteLine(zone.ZoneName);
-//				Console.WriteLine(zone.RuleName);
-//			}
-/*
-			Console.WriteLine("------------ LINKS");
-			foreach (string[] link in links) {
-				Console.WriteLine("===== NEXT");
-				foreach (string l in link) {
-					Console.WriteLine(l);
-				}
-			}
-*/
 			// zone_name -> Zone mapping
 			Dictionary<string,Zone> zone_dict = new Dictionary<string,Zone>();
 
@@ -86,29 +82,34 @@ namespace SolarbeamGui
 				yzone_dict.Add(zone_name, tzzone);
 			}
 		}
-		
-		public new static TzTimeZone GetTimeZone(string tzName)
+
+		/**
+		 * Override TzTimeZone.GetTimeZone
+		 */
+		public static TzTimeZone GetTimeZone(string tzName)
 		{
 			InitZones();
-			
-			TzTimeZone result = null;
-            TzTimeZone.TzZoneInfo zoneInfo = yzone_dict[tzName];
-			result = new TzTimeZone(zoneInfo);
-			
+
+			TzTimeZone.TzZoneInfo zoneInfo = yzone_dict[tzName];
+			TzTimeZone result = new TzTimeZone(zoneInfo);
+
 			return result;
 		}
-		
+
+		/**
+		 * Override TzTimeZone.AllZoneNames
+		 */
 		public static string[] AllZoneNames
 		{ get { 
-				InitZones();
-				
-				string[] result = new string[yzone_dict.Count];
-				int i = -1;
-				foreach (KeyValuePair<string,TzTimeZone.TzZoneInfo> pair in yzone_dict) {
-					i++;
-					result[i] = pair.Key;
-				}
-				return result;
-			} }
+				  InitZones();
+
+				  string[] result = new string[yzone_dict.Count];
+				  int i = -1;
+				  foreach (KeyValuePair<string,TzTimeZone.TzZoneInfo> pair in yzone_dict) {
+					  i++;
+					  result[i] = pair.Key;
+				  }
+				  return result;
+			  } }
 	}
 }
