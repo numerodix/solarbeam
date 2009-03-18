@@ -2,6 +2,7 @@
 // Licensed under the GNU Public License, version 3.
 
 using System.Collections.Generic;
+using System.IO;
 
 using LibSolar.Locations;
 using LibSolar.Serialization;
@@ -13,8 +14,35 @@ namespace SolarbeamGui
 	{
 		private string[] locations_array;
 		private LocationList list;
+		private string file = "locations.bin";
 		
 		public LocationsSource()
+		{
+			try {
+				list = GetStoredList();
+			} catch (FileNotFoundException) {
+				list = GetDummyList();
+			}
+
+			locations_array = new string[list.Count];
+			int i=-1;
+			foreach (string name in list.Keys) {
+				i++;
+				locations_array[i] = list.Get(name).Name;
+			}
+		}
+		
+		private LocationList GetStoredList()
+		{
+			return ((LocationList) Serializer.Deserialize(file));
+		}
+		
+		private void StoreList()
+		{
+			Serializer.Serialize(file, list);
+		}
+		
+		private LocationList GetDummyList()
 		{
 			list = new LocationList();
 			list.Add("Baku", "Asia/Baku",
@@ -35,13 +63,10 @@ namespace SolarbeamGui
 			list.Add("Trondheim", "Europe/Oslo",
 					new Position(Position.LATITUDE_POS, 63, 25, 47,
 						Position.LONGITUDE_POS, 10, 23, 36));
-
-			locations_array = new string[list.Count];
-			int i=-1;
-			foreach (string name in list.Keys) {
-				i++;
-				locations_array[i] = list.Get(name).Name;
-			}
+			list.Add("Utrecht", "Europe/Amsterdam",
+					new Position(Position.LATITUDE_POS, 52, 5, 36,
+						Position.LONGITUDE_POS, 5, 7, 10));
+			return list;
 		}
 		
 		public Location GetLocation(string name)
@@ -51,6 +76,5 @@ namespace SolarbeamGui
 		
 		public string[] Locations
 		{ get { return locations_array; } }
-
 	}	
 }
