@@ -1,0 +1,26 @@
+SolarBeam is released under the GPL license, see the LICENSE file. In
+addition, the program uses a number of third party libraries under various
+licenses:
+
+* libpublicdomain
+
+This is the "PublicDomain" distribution from
+http://publicdomain.codeplex.com/, pruned of everything not relating to
+timezone/dst functionality and slightly hacked. The distribution is released
+under Public Domain, as is this stripped down version.
+
+* NDesk.Options.dll
+
+This is the NDesk Options command line option parser, see
+http://www.ndesk.org/Options. It is released under the MIT/X11 license, see
+http://www.opensource.org/licenses/mit-license.php.
+
+* nunit.framework.dll
+
+This is the NUnit testing framework, see http://www.nunit.org. It is released
+under its own license, see http://www.nunit.org/index.php?p=license&r=2.4.8.
+
+* zoneinfo
+
+This is timezone data generated from the zoneinfo timezone database in the
+public domain, see http://www.twinsun.com/tz/tz-link.htm.
