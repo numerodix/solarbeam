@@ -34,23 +34,32 @@ namespace SolarbeamCli
 			bool timebased = true;
 	
 			OptionSet p = new OptionSet ()
-				.Add ("lat|latitude=", delegate (string v) { latitude = v; })
-				.Add ("lon|longitude=", delegate (string v) { longitude = v; })
-				.Add ("tz|timezone=", delegate (string v) { timezone = v; })
-				.Add ("dt|date=", delegate (string v) { date = v; })
-				.Add ("tm|time=", delegate (string v) { time = v; })
-				.Add ("v|verbose", delegate (string v) { verbose = true; })
-				.Add ("benchtime-5", delegate (string v) {
+				.Add ("lat=", "Latitude position: (N/S).00.00.00", 
+				      delegate (string v) { latitude = v; })
+				.Add ("lon=", "Longitude position: (E/W).000.00.00", 
+					  delegate (string v) { longitude = v; })
+				.Add ("tz=", "Timezone offset from UTC: [-12,14]",
+					  delegate (string v) { timezone = v; })
+				.Add ("dt=", "Date: dd.mm.yyyy",
+					  delegate (string v) { date = v; })
+				.Add ("tm=", "Time: hh:mm:ss",
+					  delegate (string v) { time = v; })
+				.Add ("benchtime-5", "Benchmark all times with 5sec increments",
+					  delegate (string v) {
 						bench = true;
 						timebased = true;
 						step = 5;
 						})
-				.Add ("benchloc-5", delegate (string v) {
+				.Add ("benchpos-5", "Benchmark all positions with 5° increments",
+					  delegate (string v) {
 						bench = true;
 						timebased = false;
 						step = 5;
 						})
-				.Add ("h|?|help", delegate (string v) { help = true; });
+				.Add ("v|verbose", "Display benchmark results",
+					  delegate (string v) { verbose = true; })
+				.Add ("h|help", "Display this message",
+					  delegate (string v) { help = true; });
 			p.Parse(args);
 	
 			if ((help) || (args.Length == 0)) {

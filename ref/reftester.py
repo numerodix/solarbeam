@@ -160,11 +160,11 @@ while True:
               tz,
               day, month, year,
               hour, min, sec]
-        lu = ["--longitude", ("%s.%s.%s.%s" % (lodir, lodeg, lomin, losec)),
-              "--latitude",  ("%s.%s.%s.%s" % (ladir, ladeg, lamin, lasec)),
-              "--date",      ("%s.%s.%s" % (day, month, year)),
-              "--time",      ("%s:%s:%s" % (hour, min, sec)),
-              "--timezone",  tz]
+        lu = ["--lon", ("%s.%s.%s.%s" % (lodir, lodeg, lomin, losec)),
+              "--lat",  ("%s.%s.%s.%s" % (ladir, ladeg, lamin, lasec)),
+              "--dt",      ("%s.%s.%s" % (day, month, year)),
+              "--tm",      ("%s:%s:%s" % (hour, min, sec)),
+              "--tz",  tz]
 
         o, o2 = "", ""
         try:
