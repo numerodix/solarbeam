@@ -1,6 +1,8 @@
 // Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
 // Licensed under the GNU Public License, version 3.
 
+using System;
+
 using LibSolar.Types;
 
 namespace LibSolar.Locations
@@ -8,6 +10,7 @@ namespace LibSolar.Locations
 	/**
 	 * Describe a geographical location.
 	 */
+	[Serializable]
 	public struct Location
 	{
 		private string name;

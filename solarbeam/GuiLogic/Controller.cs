@@ -163,8 +163,6 @@ namespace SolarbeamGui
 		{
 			if (control is ComboBox) {
 				((ComboBox) control).SelectedValueChanged += handler;
-			} else if (control is HScrollBar) {
-				((HScrollBar) control).ValueChanged += handler;
 			} else if (control is NumericUpDown) {
 				((NumericUpDown) control).ValueChanged += handler;
 			} else if (control is TextBox) {

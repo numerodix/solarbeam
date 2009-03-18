@@ -21,9 +21,6 @@ namespace SolarbeamGui
 			// use dummy date as reference point to extract utc offsets
 			DateTime dummy = DateTime.Now;
 			
-			// init timezone objects
-//			TzTimeZone.InitTimeZones("./tz");
-			
 			// build mapping offsets -> timezones
 			Dictionary<double,List<TzTimeZone>> zonedict = 
 				new Dictionary<double,List<TzTimeZone>>();

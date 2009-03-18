@@ -66,7 +66,7 @@ namespace SolarbeamGui
 			
 			this.Controls.Add(layout);
 			
-			// init rendering
+			// initial rendering
 			Controller.RenderViewport(null, null);
 			
 			// report my size
