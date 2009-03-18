@@ -23,7 +23,8 @@ class Location(object):
         self.lon = lon
         self.region = region
     def __str__(self):
-        s = "%s\t\t%s\t\t%s" % (self.pop, self.name, self.country)
+        s = "%s\t\t%s\t\t%s\t\t%s  %s" % (self.pop, self.name, self.country,
+                                          self.lat, self.lon)
         return s
     def getcountry(self):
         c = self.country
@@ -117,7 +118,11 @@ class Location(object):
             s = "%s (%s)" % (name, self.getcountry()[:3])
             self.name = s
         except UnicodeEncodeError:
+            self.name = uname
             sys.stderr.write("Failed conversion:  %s\n" % name)
+
+
+### READING ROUTINES
 
 
 def read(file):
@@ -136,7 +141,9 @@ def parseint(s):
 
 def parsecoord(s):
     """Parse a latitude/longitude, default to None, won't be used in comparison"""
-    try: return int(s)
+    try: 
+        f = int(s) # see if it's an int
+        return s
     except: return None
 
 def compile(lines):
@@ -162,6 +169,13 @@ def compile(lines):
 
     return locs
 
+
+### ALGEBRA ROUTINES
+
+
+def filtermissingpos(locs):
+    return filter(lambda x: x.lat != None and x.lon != None, locs)
+
 def filtercat(locs, cat):
     return filter(lambda x: x.cat == cat, locs)
 
@@ -178,15 +192,60 @@ def sortname(locs):
     return sorted(locs, cmp=lambda x,y: cmp(x.name, y.name))
 
 
+### CODEGEN ROUTINES
+
+
+def getdeg(val):
+    v = int(val) / 100. # shift decimal place by 2
+    val = abs(v)
+    sign = True
+    if v < 0:
+        sign = False
+    val *= 3600.
+    deg = int(val / 3600.)
+    min = int((val - (deg*3600)) / 60.)
+    sec = int(val - (deg*3600) - (min*60))
+    return (sign, deg, min, sec)
+
+def getlat(loc):
+    (sign, deg, min, sec) = getdeg(loc.lat)
+    dir = "PositionDirection.North"
+    if not sign:
+        dir = "PositionDirection.South"
+    return (dir, deg, min, sec)
+
+def getlon(loc):
+    (sign, deg, min, sec) = getdeg(loc.lon)
+    dir = "PositionDirection.East"
+    if not sign:
+        dir = "PositionDirection.West"
+    return (dir, deg, min, sec)
+
+
+def codegen(loc):
+    (ladir, ladeg, lamin, lasec) = getlat(loc)
+    (lodir, lodeg, lomin, losec) = getlon(loc)
+    s = '\t\t\tlist.Add("%s", "%s",\n\t\t\t\tnew Position(%s, %s, %s, %s,\n'
+    s += '\t\t\t\t\t%s, %s, %s, %s));'
+    f = s % (loc.name, "UTC", 
+             ladir, ladeg, lamin, lasec,
+             lodir, lodeg, lomin, losec)
+    return f
+
 if __name__ == "__main__":
     try:
         datafile = sys.argv[1]
     except IndexError:
         print "Usage:  %s <datafile> <outputfile>" % sys.argv[0]
+    
+    # read locations
     lines = read(datafile)
     locs = compile(lines)
+
+    # do some filtering
     locs = filtercat(locs, "locality")
     locs = sortpop(locs)
+    locs = filtermissingpos(locs)
 
     # 700 world, 20 Norway
     final_locs = filternotcountry(locs, "Norway")[:700]
@@ -195,4 +254,4 @@ if __name__ == "__main__":
 
     final_locs = sortname(final_locs)
     for loc in final_locs:
-        print loc
+        print codegen(loc)
