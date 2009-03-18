@@ -20,6 +20,7 @@ namespace SolarbeamGui
 		private const int VIEWPORT_DIM_X = GuiViewport.IDEAL_DIM_X;
 		private const int VIEWPORT_DIM_Y = GuiViewport.IDEAL_DIM_Y;
 		
+		private GuiMenu menu;
 		private GuiControlPanel controlpanel;
 		private GuiViewport viewport;
 		
@@ -27,7 +28,7 @@ namespace SolarbeamGui
 		{
 			//		this.SuspendLayout();
 			
-			Size sz = InitializeComponent(form_title);
+			InitializeComponent(form_title);
 
 			// makes mono layout differently 1.9 <-> 2.0
 			// VS default: 6F 13F (win ok)
@@ -36,12 +37,12 @@ namespace SolarbeamGui
 //			this.AutoScaleDimensions = new SizeF(6F, 13F);
 			
 			this.AutoScaleMode = AutoScaleMode.Font;
-			this.ClientSize = sz;
+			this.ClientSize = GetFormSize();
 	//		this.ResumeLayout(false);
 	//		this.PerformLayout();
 		}
 		
-		private Size InitializeComponent(string form_title)
+		private void InitializeComponent(string form_title)
 		{
 			this.Text = String.Format("{0} ({1}/{2})", form_title, 
 			                          Platform.GetRuntime(),
@@ -50,6 +51,25 @@ namespace SolarbeamGui
 			// init datasources before instantiating widgets
 			Controller.InitSources();
 			
+			this.menu = new GuiMenu();
+			Control mainarea = GetMainArea();
+			
+			this.MainMenuStrip = menu;
+			TableLayoutPanel layout = GuiCommon.GetTableLayoutPanel(2, 1, 0, BORDER);
+			
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute,
+			                                        menu.Height));
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute,
+			                                        mainarea.Height));
+			
+			layout.Controls.Add(menu, 0, 0);
+			layout.Controls.Add(mainarea, 0, 1);
+			
+			this.Controls.Add(layout);
+		}
+		
+		private Control GetMainArea()
+		{
 			this.controlpanel = new GuiControlPanel();
 			Controller.InitForm(); // fill in initial form values
 			this.viewport = new GuiViewport(this);
@@ -64,21 +84,24 @@ namespace SolarbeamGui
 			layout.Controls.Add(controlpanel, 0, 0);
 			layout.Controls.Add(viewport, 1, 0);
 			
-			this.Controls.Add(layout);
-			
 			// initial rendering
 			Controller.RenderViewport(null, null);
 			
-			// report my size
+			return layout;
+		}
+		
+		private Size GetFormSize()
+		{
 			int width = VIEWPORT_DIM_X + GuiControlPanel.WIDTH;
-			int height = Math.Max(VIEWPORT_DIM_Y, GuiControlPanel.HEIGHT);
+			int height = Math.Max(VIEWPORT_DIM_Y, GuiControlPanel.HEIGHT)
+				+ this.menu.Height;
 			return new Size(width, height);
 		}
 		
 		public Size GetViewportSize()
 		{
 			return new Size(this.ClientSize.Width - GuiControlPanel.WIDTH - BORDER*2,
-			                this.ClientSize.Height - BORDER*2);
+			                this.ClientSize.Height - this.menu.Height - BORDER*2);
 		}
 	}
 }
