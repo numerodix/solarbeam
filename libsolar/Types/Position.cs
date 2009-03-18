@@ -22,25 +22,42 @@ namespace LibSolar.Types
 	/**
 	 * Class to package position primitives, and to intercept invalid values.
 	 */
+	[Serializable]
 	public class Position
 	{
+		[NonSerialized]
 		public static PositionDirection LATITUDE_POS = PositionDirection.North;
+		[NonSerialized]
 		public static PositionDirection LATITUDE_NEG = PositionDirection.South;
+		[NonSerialized]
 		public static PositionDirection LONGITUDE_POS = PositionDirection.East;
+		[NonSerialized]
 		public static PositionDirection LONGITUDE_NEG = PositionDirection.West;
 		
+		[NonSerialized]
 		public const int LATDEGS_MINVALUE = 0;
+		[NonSerialized]
 		public const int LATDEGS_MAXVALUE = 90;
+		[NonSerialized]
 		public const int LATMINS_MINVALUE = 0;
+		[NonSerialized]
 		public const int LATMINS_MAXVALUE = 59;
+		[NonSerialized]
 		public const int LATSECS_MINVALUE = 0;
+		[NonSerialized]
 		public const int LATSECS_MAXVALUE = 59;
 		
+		[NonSerialized]
 		public const int LONDEGS_MINVALUE = 0;
+		[NonSerialized]
 		public const int LONDEGS_MAXVALUE = 180;
+		[NonSerialized]
 		public const int LONMINS_MINVALUE = 0;
+		[NonSerialized]
 		public const int LONMINS_MAXVALUE = 59;
+		[NonSerialized]
 		public const int LONSECS_MINVALUE = 0;
+		[NonSerialized]
 		public const int LONSECS_MAXVALUE = 59;
 
 		private double latitude;
