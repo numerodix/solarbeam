@@ -32,6 +32,12 @@ namespace SolarbeamGui
 			}
 		}
 		
+		// serialize list in finalizer
+		~LocationsSource()
+		{
+			StoreList();
+		}
+		
 		private LocationList GetStoredList()
 		{
 			return ((LocationList) Serializer.Deserialize(file));
