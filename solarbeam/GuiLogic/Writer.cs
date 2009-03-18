@@ -20,7 +20,7 @@ namespace SolarbeamGui
 			DateTime dt = DateTime.Now;
 	
 			SetDate(dt);
-			SetLocation("Trondheim");
+			SetLocation("Equator");
 		}
 		
 		private static void SetLocation(string location)

@@ -321,6 +321,7 @@ namespace SolarbeamGui
 			combo.DropDownStyle = ComboBoxStyle.DropDown;
 			combo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 			combo.AutoCompleteSource = AutoCompleteSource.ListItems;
+			combo.DropDownHeight = 180;
 			return combo;
 		}
 		
