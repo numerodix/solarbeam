@@ -28,13 +28,16 @@ class Location(object):
         self.timezone = None # init timezone field
     def __str__(self):
         s = "%s\t\t%s\t\t%s\t\t    %s" % (self.name, self.country,
-                                          self.pop,
+                                          self.region,
                                           self.timezone)
         return s
     def getcountry(self):
         c = self.country
 
         c = string.replace(c, "El Salvador", "ElS")
+        c = string.replace(c, "Korea (North)", "NKo")
+        c = string.replace(c, "Korea (South)", "SKo")
+        c = string.replace(c, "South Africa", "SA")
         c = string.replace(c, "United Arab Emirates", "UAE")
         c = string.replace(c, "United Kingdom", "UK")
         c = string.replace(c, "United States of America", "USA")
@@ -126,6 +129,7 @@ class Location(object):
         uname = string.replace(uname, "'Adan", "Adan")
         uname = string.replace(uname, "'Ajman", "Ajman")
         uname = string.replace(uname, "'Amman", "Amman")
+        uname = string.replace(uname, "al-'Ayun", "El Aaiun")
         uname = string.replace(uname, "al-'Ayn", "Al Ain")
         uname = string.replace(uname, "al-'Amarah", "Amarah")
         uname = string.replace(uname, "al-Basrah", "Basra")
@@ -146,10 +150,12 @@ class Location(object):
         uname = string.replace(uname, "Nuremberg", "Nurnberg")
         uname = string.replace(uname, "Peking", "Beijing")
         uname = string.replace(uname, "Porsgrunn-Skien", "Porsgrunn")
+        uname = string.replace(uname, "Pyeongyang", "Pyongyang")
         uname = string.replace(uname, "s-Gravenhage", "Den Haag")
         uname = string.replace(uname, "Stavanger-Sandnes", "Stavanger")
         uname = string.replace(uname, "Taibei", "Taipei")
         uname = string.replace(uname, "Ta'izz", "Taiz")
+        uname = string.replace(uname, "Ulaanbaatar", "Ulan Bator")
 
         try:
             name = string.strip(uname.encode("ascii", "strict"))
@@ -236,41 +242,66 @@ def sortpop(locs):
 def sortname(locs):
     return sorted(locs, cmp=lambda x,y: cmp(x.name, y.name))
 
+def sortcountry(locs):
+    return sorted(locs, cmp=lambda x,y: cmp(x.country, y.country))
+
 
 ### CODEGEN ROUTINES
 
 
 zones = {
+    "Afghanistan": "Asia/Kabul",
+    "Albania": "Europe/Tirane",
     "Algeria": "Asia/Algiers",
+    "Angola": "Africa/Luanda",
     "Armenia": "Asia/Yerevan",
     "Austria": "Europe/Vienna",
     "Azerbaijan": "Asia/Baku",
+    "Bahamas": "America/Nassau",
     "Bangladesh": "Asia/Dhaka",
     "Belarus": "Europe/Minsk",
     "Belgium": "Europe/Brussels",
     "Benin": "Africa/Porto-Novo",
     "Bolivia": "America/La_Paz",
+    "Bosnia and Herzegovina": "Europe/Sarajevo",
+    "Botswana": "Africa/Gaborone",
     "Bulgaria": "Europe/Sofia",
+    "Burkina Faso": "Africa/Ouagadougou",
+    "Burundi": "Africa/Bujumbura",
+    "Cambodia": "Asia/Phnom_Penh",
     "Cameroon": "Africa/Douala",
+    "Central African Republic": "Africa/Bangui",
+    "Chad": "Africa/Ndjamena",
     "Chile": "America/Santiago",
     "China": "Asia/Shanghai",
     "Colombia": "America/Bogota",
     "Congo": "Africa/Brazzaville",
     "Croatia": "Europe/Zagreb",
     "Cuba": "America/Havana",
+    "Cyprus": "Europe/Nicosia",
     "Czech Republic": "Europe/Prague",
+    "Djibouti": "Africa/Djibouti",
     "Denmark": "Europe/Copenhagen",
+    "Dominican Republic": "America/Santo_Domingo",
+    "Ecuador": "America/Guayaquil",
+    "Equatorial Guinea": "Africa/Malabo",
     "Egypt": "Africa/Cairo",
     "El Salvador": "America/El_Salvador",
     "Eritrea": "Africa/Asmara",
+    "Estonia": "Europe/Tallinn",
     "Ethiopia": "Africa/Addis_Ababa",
     "Finland": "Europe/Helsinki",
     "France": "Europe/Paris",
+    "Gabon": "Africa/Libreville",
+    "Gambia": "Africa/Banjul",
     "Georgia": "Asia/Tbilisi",
     "Germany": "Europe/Berlin",
     "Ghana": "Africa/Accra",
     "Greece": "Europe/Athens",
+    "Guinea": "Africa/Conakry",
+    "Guinea-Bissau": "Africa/Bissau",
     "Guatemala": "America/Guatemala",
+    "Guyana": "America/Guyana",
     "Haiti": "America/Port-au-Prince",
     "Honduras": "America/Tegucigalpa",
     "Hungary": "Europe/Budapest",
@@ -280,19 +311,31 @@ zones = {
     "Israel": "Asia/Tel_Aviv",
     "Italy": "Europe/Rome",
     "Ivory Coast": "Africa/Abidjan",
+    "Jamaica": "America/Jamaica",
     "Japan": "Asia/Tokyo",
     "Jordan": "Asia/Amman",
+    "Kenya": "Africa/Nairobi",
+    "Korea (North)": "Asia/Pyongyang",
     "Korea (South)": "Asia/Seoul",
     "Kyrgyzstan": "Asia/Bishkek",
+    "Laos": "Asia/Vientiane",
     "Lebanon": "Asia/Beirut",
+    "Lesotho": "America/Maseru",
+    "Liberia": "Africa/Monrovia",
     "Libya": "Africa/Tripoli",
     "Lithuania": "Europe/Vilnius",
-    "Macedonia": "Europe/Skopje",
+    "Macedonia": "Europe/Skopje", 
+    "Madagascar": "Indian/Antananarivo", 
+    "Malawi": "Africa/Blantyre",
     "Malaysia": "Asia/Kuala_Lumpur",
+    "Mauritania": "Africa/Nouakchott",
     "Moldova": "Europe/Chisinau",
+    "Mongolia": "Asia/Ulan_Bator",
     "Morocco": "Africa/Casablanca",
+    "Mozambique": "Africa/Maputo",
     "Myanmar": "Asia/Rangoon",
     "Namibia": "Africa/Windhoek",
+    "Nepal": "Asia/Kathmandu",
     "Netherlands": "Europe/Amsterdam",
     "New Zealand": "Pacific/Auckland",
     "Nicaragua": "America/Managua",
@@ -301,32 +344,53 @@ zones = {
     "Norway": "Europe/Oslo",
     "Oman": "Asia/Muscat",
     "Pakistan": "Asia/Karachi",
+    "Palestine": "Asia/Gaza",
     "Panama": "America/Panama",
     "Paraguay": "America/Asuncion",
     "Peru": "America/Lima",
     "Philippines": "Asia/Manila",
     "Poland": "Europe/Warsaw",
     "Portugal": "Europe/Lisbon",
+    "Puerto Rico": "America/Puerto_Rico",
+    "Qatar": "Asia/Qatar",
     "Romania": "Europe/Bucharest",
+    "Rwanda": "Africa/Kigali",
     "Saudi Arabia": "Asia/Riyadh",
+    "Senegal": "Africa/Dakar",
+    "Serbia": "Europe/Belgrade",
     "Sierra Leone": "Africa/Freetown",
+    "Singapore": "Asia/Singapore",
     "Slovakia": "Europe/Bratislava",
     "Slovenia": "Europe/Ljubljana",
     "South Africa": "Africa/Johannesburg",
+    "Somalia": "Africa/Mogadishu",
     "Spain": "Europe/Madrid",
+    "Sri Lanka": "Asia/Colombo",
     "Sudan": "Africa/Khartoum",
+    "Suriname": "America/Paramaribo",
+    "Sweden": "Europe/Stockholm",
+    "Switzerland": "Europe/Zurich",
     "Syria": "Asia/Damascus",
     "Taiwan": "Asia/Taipei",
+    "Tajikistan": "Asia/Dushanbe",
+    "Tanzania": "Africa/Dar_es_Salaam",
     "Thailand": "Asia/Bangkok",
+    "Togo": "Africa/Lome",
     "Tunisia": "Africa/Tunis",
     "Turkey": "Asia/Istanbul",
+    "Turkmenistan": "Asia/Ashgabat",
+    "Uganda": "Africa/Kampala",
     "Ukraine": "Europe/Kiev",
     "United Arab Emirates": "Asia/Dubai",
     "United Kingdom": "Europe/London",
+    "Uruguay": "America/Montevideo",
     "Uzbekistan": "Asia/Tashkent",
     "Venezuela": "America/Caracas",
     "Vietnam": "Asia/Ho_Chi_Minh",
+    "Western Sahara": "Africa/El_Aaiun",
     "Yemen": "Asia/Aden",
+    "Zambia": "Africa/Lusaka",
+    "Zimbabwe": "Africa/Harare",
 }
 def gettimezone(loc):
     try:
@@ -400,7 +464,8 @@ if __name__ == "__main__":
     nor_locs = filtercountry(locs, "Norway")[:25]
     final_locs.extend(nor_locs)
 
-    final_locs = sortname(final_locs)
+    #final_locs = sortname(final_locs)
+    final_locs = sortcountry(final_locs)
     for loc in final_locs:
         codegen(loc)
         print loc
