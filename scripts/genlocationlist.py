@@ -4,7 +4,7 @@
 # Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
 # Licensed under the GNU Public License, version 3.
 #
-# Generate c# code for LocationList using location data file from
+# Generates c# code for LocationList using location data file from
 # http://www.world-gazetteer.com.
 
 import string
