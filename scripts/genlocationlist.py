@@ -27,8 +27,8 @@ class Location(object):
 
         self.timezone = None # init timezone field
     def __str__(self):
-        s = "%s\t\t%s\t\t%s\t\t    %s" % (self.name, self.country,
-                                          self.region,
+        s = "%s %s %s %s" % (self.region.ljust(25), self.country.ljust(20),
+                                          self.name.ljust(20),
                                           self.timezone)
         return s
     def getcountry(self):
@@ -148,6 +148,8 @@ class Location(object):
         uname = string.replace(uname, "Jiddah", "Jeddah")
         uname = string.replace(uname, "L'viv", "Lvov")
         uname = string.replace(uname, "Nuremberg", "Nurnberg")
+        uname = string.replace(uname, "Qaragandy", "Karaganda")
+        uname = string.replace(uname, "Qostanay", "Kostanay")
         uname = string.replace(uname, "Peking", "Beijing")
         uname = string.replace(uname, "Porsgrunn-Skien", "Porsgrunn")
         uname = string.replace(uname, "Pyeongyang", "Pyongyang")
@@ -250,9 +252,11 @@ def sortcountry(locs):
 
 
 zones = {
+    # States
+
     "Afghanistan": "Asia/Kabul",
     "Albania": "Europe/Tirane",
-    "Algeria": "Asia/Algiers",
+    "Algeria": "Africa/Algiers",
     "Angola": "Africa/Luanda",
     "Armenia": "Asia/Yerevan",
     "Austria": "Europe/Vienna",
@@ -349,6 +353,7 @@ zones = {
     "Pakistan": "Asia/Karachi",
     "Palestine": "Asia/Gaza",
     "Panama": "America/Panama",
+    "Papua New Guinea": "Pacific/Port_Moresby",
     "Paraguay": "America/Asuncion",
     "Peru": "America/Lima",
     "Philippines": "Asia/Manila",
@@ -394,13 +399,165 @@ zones = {
     "Yemen": "Asia/Aden",
     "Zambia": "Africa/Lusaka",
     "Zimbabwe": "Africa/Harare",
+
+    # Regional
+    
+    # Australia +9:30
+    "South Australia": "Australia/Adelaide",
+    # Australia +10
+    "Australian Capital Territory": "Australia/Canberra",
+    "New South Wales": "Australia/Sydney",
+    "Queensland": "Australia/Brisbane",
+    "Victoria": "Australia/Melbourne",
+    
+    # Argentina
+    "Buenos Aires": "America/Argentina/Buenos_Aires",
+    "Distrito Federal": "America/Argentina/Buenos_Aires",
+    "Catamarca": "America/Argentina/Catamarca",
+    "Chaco": "America/Argentina/Cordoba",
+    "Córdoba": "America/Argentina/Cordoba",
+    "Corrientes": "America/Argentina/Cordoba",
+    "Entre Ríos": "America/Argentina/Cordoba",
+    "Formosa": "America/Argentina/Cordoba",
+    "Misiones": "America/Argentina/Cordoba",
+    "Santa Fé": "America/Argentina/Cordoba",
+    "Santiago del Estero": "America/Argentina/Cordoba",
+    "Jujuy": "America/Argentina/Jujuy",
+    "Mendoza": "America/Argentina/Mendoza",
+    "Neuquén": "America/Argentina/Salta",
+    "Salta": "America/Argentina/Salta",
+    "San Juan": "America/Argentina/San_Juan",
+    "San Luis": "America/Argentina/San_Luis",
+    "Tucumán": "America/Argentina/Tucuman",
+
+    # Brazil
+    "Bahia": "America/Bahia",
+    "Amapá": "America/Belem",
+    "Ananindeua (Bra)": "America/Belem",
+    "Roraima": "America/Boa_Vista",
+    "Mato Grosso do Sul": "America/Campo_Grande",
+    "Mato Grosso": "America/Cuiaba",
+    "Ceará": "America/Fortaleza",
+    "Maranhão": "America/Fortaleza",
+    "Paraíba": "America/Fortaleza",
+    "Piauí": "America/Fortaleza",
+    "Rio Grande do Norte": "America/Fortaleza",
+    "Alagoas": "America/Maceio",
+    "Sergipe": "America/Maceio",
+    "Manaus (Bra)": "America/Manaus",
+    "Rondônia": "America/Porto_Velho",
+    "Pernambuco": "America/Recife",
+    "Acre": "America/Rio_Branco",
+    "Santarem (Bra)": "America/Santarem",
+    "Espírito Santo": "America/Sao_Paulo",
+    "Distrito Federal": "America/Sao_Paulo",
+    "Goiás": "America/Sao_Paulo",
+    "Minas Gerais": "America/Sao_Paulo",
+    "Paraná": "America/Sao_Paulo",
+    "Rio de Janeiro": "America/Sao_Paulo",
+    "Rio Grande do Sul": "America/Sao_Paulo",
+    "Santa Catarina": "America/Sao_Paulo",
+    "São Paulo": "America/Sao_Paulo",
+
+    # Canada
+    "Alberta": "America/Edmonton",
+    "Halifax (Can)": "America/Halifax",
+    "Montreal (Can)": "America/Montreal",
+    "Quebec (Can)": "America/Montreal",
+    "Saskatoon (Can)": "America/Regina",
+    "Hamilton (Can)": "America/Toronto",
+    "Kitchener (Can)": "America/Toronto",
+    "London (Can)": "America/Toronto",
+    "Oshawa (Can)": "America/Toronto",
+    "Ottawa (Can)": "America/Toronto",
+    "Saint Catharines-Niagara (Can)": "America/Toronto",
+    "Toronto (Can)": "America/Toronto",
+    "Windsor (Can)": "America/Toronto",
+    "Vancouver (Can)": "America/Vancouver",
+    "Victoria (Can)": "America/Vancouver",
+    "Manitoba": "America/Winnipeg",
+
+    # Congo West +1
+    "Bandundu": "Africa/Kinshasa",
+    "Bas-Congo": "Africa/Kinshasa",
+    "Équateur": "Africa/Kinshasa",
+    "Kinshasa": "Africa/Kinshasa",
+    # Congo East +2
+    "Kasai-Occidental": "Africa/Lubumbashi",
+    "Kasai-Oriental": "Africa/Lubumbashi",
+    "Katanga": "Africa/Lubumbashi",
+    "Maniema": "Africa/Lubumbashi",
+    "Nord-Kivu": "Africa/Lubumbashi",
+    "Haut-Congo": "Africa/Lubumbashi",
+    "Sud-Kivu": "Africa/Lubumbashi",
+
+    # Kazakhstan Regional
+    "Aqtobe (Kaz)": "Asia/Aqtobe",
+    # Kazakhstan East +6
+    "Almaty (Kaz)": "Asia/Almaty",
+    "Astana (Kaz)": "Asia/Almaty",
+    "Karaganda (Kaz)": "Asia/Almaty",
+    "Kostanay (Kaz)": "Asia/Almaty",
+    "Oskemen (Kaz)": "Asia/Almaty",
+    "Pavlodar (Kaz)": "Asia/Almaty",
+    "Petropavl (Kaz)": "Asia/Almaty",
+    "Semey (Kaz)": "Asia/Almaty",
+    "Shymkent (Kaz)": "Asia/Almaty",
+    "Taraz (Kaz)": "Asia/Almaty",
+    # Kazakhstan West +5
+    "Oral (Kaz)": "Asia/Oral",
+
+    # Mexico Central -6
+    "Mexico": "America/Mexico_City", # catchall
+    "Quintana Roo": "America/Cancun",
+    "Campeche": "America/Merida",
+    "Coahuila": "America/Monterrey",
+    "Durango": "America/Monterrey",
+    "Nuevo León": "America/Monterrey",
+    "Tamaulipas": "America/Monterrey",
+    # Mexico Mountain -7
+    "Sinaloa": "America/Mazatlan",
+    "Nayarit": "America/Mazatlan",
+    "Chihuahua": "America/Chihuahua",
+    "Sonora": "America/Hermosillo",
+    # Mexico Pacific -8
+    "Baja California": "America/Tijuana",
+
+    # United States
+    "Alabama": "America/Chicago",
+    "Illinois": "America/Chicago",
+    "Indiana": "America/Chicago",
+    "Kansas": "America/Chicago",
+    "Louisiana": "America/Chicago",
+    "Oklahoma": "America/Chicago",
+    "Texas": "America/Chicago",
+    "Wisconsin": "America/Chicago",
+    "Colorado": "America/Denver",
+    "New Mexico": "America/Denver",
+    "Hawaii": "America/Honolulu",
+    "California": "America/Los_Angeles",
+    "Nevada": "America/Los_Angeles",
+    "Washington": "America/Los_Angeles",
+    "Florida": "America/New_York",
+    "Maryland": "America/New_York",
+    "New Jersey": "America/New_York",
+    "New York": "America/New_York",
+    "North Carolina": "America/New_York",
+    "Ohio": "America/New_York",
+    "Pennsylvania": "America/New_York",
+    "Virginia": "America/New_York",
+    "Arizona": "America/Phoenix",
 }
 def gettimezone(loc):
+    """From most specific to least. Try city, then region, then country"""
     try:
         try:
-            return zones[loc.country]
+            try:
+                return zones[loc.name]
+            except KeyError:
+                return zones[loc.region]
         except KeyError:
-            return zones[loc.name]
+            return zones[loc.country]
     except KeyError:
         return "UTC"
         sys.stderr.write("%s  \t%s  \t%s   \tno timezone\n" % (loc.pop,
