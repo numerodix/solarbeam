@@ -26,6 +26,7 @@ This is timezone data generated from the zoneinfo timezone database in the
 public domain, see http://www.twinsun.com/tz/tz-link.htm.
 
 * the program's collection of geographic locations
-The collection was generated using data obtained from
+The collection was generated using data obtained freely from
 http://www.world-gazetteer.com. Copyright by Stefan Helders
-www.world-gazetteer.com.
+www.world-gazetteer.com. This concerns location names and positional
+coordinates. Timezone data per location was compiled by SolarBeam.
