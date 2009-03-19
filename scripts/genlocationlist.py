@@ -309,6 +309,7 @@ zones = {
     "Haiti": "America/Port-au-Prince",
     "Honduras": "America/Tegucigalpa",
     "Hungary": "Europe/Budapest",
+    "India": "Asia/Kolkata",
     "Iran": "Asia/Tehran",
     "Iraq": "Asia/Baghdad",
     "Ireland": "Europe/Dublin",
@@ -507,6 +508,36 @@ zones = {
     # Kazakhstan West +5
     "Oral (Kaz)": "Asia/Oral",
 
+    # Indonesia
+    "Banten": "Asia/Jakarta",
+    "Bengkulu": "Asia/Jakarta",
+    "Jakarta": "Asia/Jakarta",
+    "Jambi": "Asia/Jakarta",
+    "Jawa Barat": "Asia/Jakarta",
+    "Jawa Tengah": "Asia/Jakarta",
+    "Jawa Timur": "Asia/Jakarta",
+    "Lampung": "Asia/Jakarta",
+    "Riau": "Asia/Jakarta",
+    "Riau Kepulauan": "Asia/Jakarta",
+    "Selatan": "Asia/Jakarta",
+    "Sumatera Barat": "Asia/Jakarta",
+    "Sumatera Selatan": "Asia/Jakarta",
+    "Sumatera Utara": "Asia/Jakarta",
+    "Yogyakarta": "Asia/Jakarta",
+    "Maluku": "Asia/Jayapura",
+    "Bali": "Asia/Makassar",
+    "Nusa Tenggara Barat": "Asia/Makassar",
+    "Nusa Tenggara Timur": "Asia/Makassar",
+    "Sulawesi Selatan": "Asia/Makassar",
+    "Sulawesi Tengah": "Asia/Makassar",
+    "Sulawesi Tenggara": "Asia/Makassar",
+    "Sulawesi Utara": "Asia/Makassar",
+    "Kalimantan Barat": "Asia/Makassar",
+    "Kalimantan Selatan": "Asia/Makassar",
+    "Kalimantan Tengah": "Asia/Pontianak",
+    "Kalimantan Timur": "Asia/Pontianak",
+    "Aceh": "Asia/Pontianak",
+
     # Mexico Central -6
     "Mexico": "America/Mexico_City", # catchall
     "Quintana Roo": "America/Cancun",
@@ -522,6 +553,76 @@ zones = {
     "Sonora": "America/Hermosillo",
     # Mexico Pacific -8
     "Baja California": "America/Tijuana",
+
+    # Russia
+    "Burjatija": "Asia/Irkutsk",
+    "Irkutsk": "Asia/Irkutsk",
+    "Kamčatka": "Asia/Kamchatka",
+    "Kemerovo": "Asia/Krasnoyarsk",
+    "Krasnojarsk": "Asia/Krasnoyarsk",
+    "Hanty-Mansija": "Asia/Novosibirsk",
+    "Novosibirsk": "Asia/Novosibirsk",
+    "Tomsk": "Asia/Novosibirsk",
+    "Altaj": "Asia/Omsk",
+    "Omsk": "Asia/Omsk",
+    "Habarovsk": "Asia/Vladivostok",
+    "Primorje": "Asia/Vladivostok",
+    "Amur": "Asia/Yakutsk",
+    "Čita": "Asia/Yakutsk",
+    "Saha": "Asia/Yakutsk",
+    "Baškortostan": "Asia/Yekaterinburg",
+    "Čeljabinsk": "Asia/Yekaterinburg",
+    "Kurgan": "Asia/Yekaterinburg",
+    "Orenburg": "Asia/Yekaterinburg",
+    "Perm": "Asia/Yekaterinburg",
+    "Sverdlovsk": "Asia/Yekaterinburg",
+    "Tjumen": "Asia/Yekaterinburg",
+    "Kaliningrad": "Europe/Kaliningrad",
+    "Arhangelsk": "Europe/Moscow",
+    "Belgorod": "Europe/Moscow",
+    "Brjansk": "Europe/Moscow",
+    "Čečenija": "Europe/Moscow",
+    "Čuvašija": "Europe/Moscow",
+    "Dagestan": "Europe/Moscow",
+    "Ivanovo": "Europe/Moscow",
+    "Jaroslavl": "Europe/Moscow",
+    "Kabardino-Balkarija": "Europe/Moscow",
+    "Kaluga": "Europe/Moscow",
+    "Karelija": "Europe/Moscow",
+    "Komi": "Europe/Moscow",
+    "Kostroma": "Europe/Moscow",
+    "Krasnodar": "Europe/Moscow",
+    "Kursk": "Europe/Moscow",
+    "Lipeck": "Europe/Moscow",
+    "Marij El": "Europe/Moscow",
+    "Mordovija": "Europe/Moscow",
+    "Moskau": "Europe/Moscow",
+    "Moskovskaja Oblast": "Europe/Moscow",
+    "Murmansk": "Europe/Moscow",
+    "Nižnij Novgorod": "Europe/Moscow",
+    "Novgorod": "Europe/Moscow",
+    "Orjol": "Europe/Moscow",
+    "Penza": "Europe/Moscow",
+    "Pskov": "Europe/Moscow",
+    "Rostov": "Europe/Moscow",
+    "Rjazan": "Europe/Moscow",
+    "Sankt Petersburg": "Europe/Moscow",
+    "Smolensk": "Europe/Moscow",
+    "Stavropol": "Europe/Moscow",
+    "Tambov": "Europe/Moscow",
+    "Tatarstan": "Europe/Moscow",
+    "Tula": "Europe/Moscow",
+    "Tver": "Europe/Moscow",
+    "Uljanovsk": "Europe/Moscow",
+    "Vladimir": "Europe/Moscow",
+    "Vologda": "Europe/Moscow",
+    "Voronež": "Europe/Moscow",
+    "Samara": "Europe/Samara",
+    "Udmurtija": "Europe/Samara",
+    "Alanija": "Europe/Volgograd",
+    "Astrahan": "Europe/Volgograd",
+    "Saratov": "Europe/Volgograd",
+    "Volgograd": "Europe/Volgograd",
 
     # United States
     "Alabama": "America/Chicago",
@@ -624,8 +725,8 @@ if __name__ == "__main__":
     nor_locs = filtercountry(locs, "Norway")[:25]
     final_locs.extend(nor_locs)
 
-    #final_locs = sortname(final_locs)
-    final_locs = sortcountry(final_locs)
+    final_locs = sortname(final_locs)
+#    final_locs = sortcountry(final_locs)
     for loc in final_locs:
-        codegen(loc)
-        print loc
+        print codegen(loc)
+#        print loc
