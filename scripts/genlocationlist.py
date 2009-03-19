@@ -9,6 +9,7 @@
 
 import string
 import sys
+import time
 
 
 class Location(object):
@@ -161,7 +162,12 @@ class Location(object):
 
         try:
             name = string.strip(uname.encode("ascii", "strict"))
-            s = "%s (%s)" % (name, self.getcountry()[:3])
+            country = self.getcountry()
+
+            s = name
+            if country != "":
+                s = "%s (%s)" % (name, country[:3])
+
             self.name = s
         except UnicodeEncodeError:
             sys.stderr.write("%s  \t%s  \t%s   \tfailed conversion\n" % (self.pop,
@@ -327,7 +333,7 @@ zones = {
     "Laos": "Asia/Vientiane",
     "Latvia": "Europe/Riga",
     "Lebanon": "Asia/Beirut",
-    "Lesotho": "America/Maseru",
+    "Lesotho": "Africa/Maseru",
     "Liberia": "Africa/Monrovia",
     "Libya": "Africa/Tripoli",
     "Lithuania": "Europe/Vilnius",
@@ -635,7 +641,7 @@ zones = {
     "Wisconsin": "America/Chicago",
     "Colorado": "America/Denver",
     "New Mexico": "America/Denver",
-    "Hawaii": "America/Honolulu",
+    "Hawaii": "Pacific/Honolulu",
     "California": "America/Los_Angeles",
     "Nevada": "America/Los_Angeles",
     "Washington": "America/Los_Angeles",
@@ -690,7 +696,7 @@ def getlon(loc):
         dir = "PositionDirection.West"
     return (dir, deg, min, sec)
 
-def codegen(loc):
+def codegenloc(loc):
     (ladir, ladeg, lamin, lasec) = getlat(loc)
     (lodir, lodeg, lomin, losec) = getlon(loc)
     loc.timezone = gettimezone(loc)
@@ -702,6 +708,33 @@ def codegen(loc):
 #    s = 'try {\n%s\n} catch (ArgumentException) {\nConsole.WriteLine("%s");\n}'
 #    f = s % (f, loc.name)
     return f
+
+def codegen(locs):
+    t = time.localtime()
+    t_s = "on %s.%s.%s\n\n" % (t.tm_mday, t.tm_mon, t.tm_year)
+
+    pre = "// Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>\n"
+    pre += "// Licensed under the GNU Public License, version 3.\n"
+    pre += "//\n// Generated with %s on %s\n" % (sys.argv[0], t_s)
+    pre += "using LibSolar.Types;\n\n"
+    pre += "namespace LibSolar.Locations\n{\n"
+    pre += "\tclass LocationListData\n\t{\n"
+    pre += "\t\tpublic static LocationList GetStandardList()\n\t\t{\n"
+    pre += "\t\t\tLocationList list = new LocationList();\n"
+
+    post = "\t\t\treturn list;\n\t\t}\n"
+    post += "\t}\n}"
+
+    cd = pre
+    for loc in locs:
+        cd += codegenloc(loc) + "\n"
+    cd += post
+
+    return cd
+
+def getequatorloc():
+    return Location(None, "Equator", [], "locality", 0, "0", "0", "", "")
+
 
 if __name__ == "__main__":
     try:
@@ -724,9 +757,11 @@ if __name__ == "__main__":
     final_locs = filternotcountry(locs, "Norway")[:2000]
     nor_locs = filtercountry(locs, "Norway")[:25]
     final_locs.extend(nor_locs)
+    final_locs.append(getequatorloc())
 
     final_locs = sortname(final_locs)
 #    final_locs = sortcountry(final_locs)
-    for loc in final_locs:
-        print codegen(loc)
+#    for loc in final_locs:
+#        codegen(loc)
 #        print loc
+    print(codegen(final_locs))

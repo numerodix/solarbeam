@@ -65,6 +65,7 @@
     <Compile Include="Platform\Platform.cs" />
     <Compile Include="Locations\LocationList.cs" />
     <Compile Include="Serialization\Serializer.cs" />
+    <Compile Include="Locations\LocationListData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

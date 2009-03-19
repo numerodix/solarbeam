@@ -32,3 +32,4 @@ lines:
 	find libsolar console solarbeam  -iname '*.cs' | xargs cat | wc -l
 	find -iname '*.py' | xargs cat | wc -l
 	find -iname '*.js' | xargs cat | wc -l
+	find -iname '*.html' | xargs cat | wc -l

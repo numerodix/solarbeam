@@ -97,7 +97,13 @@ namespace SolarbeamGui
 		
 		public string GetOffsetName(string tz_name)
 		{
-			return zones_rev[tz_name];
+			// leave this warning at the moment?
+			try {
+				return zones_rev[tz_name];
+			} catch (Exception e) {
+				Console.WriteLine("Failed to look up timezone: {0}", tz_name);
+				throw e;
+			}
 		}
 		
 		public UTCDate? ApplyZone(string tz_name, DateTime dt)

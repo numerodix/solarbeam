@@ -21,7 +21,7 @@ namespace SolarbeamGui
 			try {
 				list = GetStoredList();
 			} catch (FileNotFoundException) {
-				list = GetDummyList();
+				list = LocationListData.GetStandardList();
 			}
 
 			// sort keys
@@ -48,18 +48,6 @@ namespace SolarbeamGui
 		private void StoreList()
 		{
 			Serializer.Serialize(file, list);
-		}
-		
-		private LocationList GetDummyList()
-		{
-			list = new LocationList();
-			list.Add("Equator", "UTC",
-				new Position(Position.LATITUDE_NEG, 0, 0, 0,
-			        Position.LONGITUDE_NEG, 0, 0, 0));
-			
-			
-			
-			return list;
 		}
 		
 		public Location GetLocation(string name)
