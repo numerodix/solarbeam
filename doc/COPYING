@@ -24,3 +24,8 @@ under its own license, see http://www.nunit.org/index.php?p=license&r=2.4.8.
 
 This is timezone data generated from the zoneinfo timezone database in the
 public domain, see http://www.twinsun.com/tz/tz-link.htm.
+
+* the program's collection of geographic locations
+The collection was generated using data obtained from
+http://www.world-gazetteer.com. Copyright by Stefan Helders
+www.world-gazetteer.com.
