@@ -2,6 +2,7 @@
 // Licensed under the GNU Public License, version 3.
 
 using System;
+using System.IO;
 using System.Reflection;
 
 namespace LibSolar.Assemblies
@@ -11,15 +12,16 @@ namespace LibSolar.Assemblies
 	 */
 	public class AsmInfo
 	{
-		private object[] atts;
+		private Assembly asm;
 
 		public AsmInfo(Assembly asm)
 		{
-			atts = asm.GetCustomAttributes(false);
+			this.asm = asm;
 		}
 		
 		public string GetAtt(string att_name)
 		{
+			object[] atts = asm.GetCustomAttributes(false);
 			string att_val = String.Empty;
 			foreach (object obj in atts) {
 				Type type = obj.GetType();
@@ -35,6 +37,11 @@ namespace LibSolar.Assemblies
 				}
 			}
 			return att_val;
+		}
+	
+		public Stream GetResource(string name)
+		{
+			return asm.GetManifestResourceStream(name);
 		}
 	}
 }

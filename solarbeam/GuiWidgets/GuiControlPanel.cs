@@ -4,8 +4,11 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 
+using LibSolar.Assemblies;
 using LibSolar.Types;
 
 namespace SolarbeamGui
@@ -134,7 +137,7 @@ namespace SolarbeamGui
 			Control btns = GetLaidOut(
 				new Control[] {
 					GetLabel(String.Empty), //layout buffer
-					GetButton(Controller.Id.CLEARFORM_ACTION, "Clear"),
+					GetButton(Controller.Id.CLEARFORM_ACTION, "Reset"),
 					GetLabel(String.Empty),
 					GetButton(Controller.Id.RENDER_ACTION, "Render"),
 					GetLabel(String.Empty)},
@@ -160,8 +163,9 @@ namespace SolarbeamGui
 					GetComboBoxInputable(
 						Controller.Id.LOCATION,
 						Controller.locations_source.Locations),
-					GetLabel(String.Empty)},
-				new float[] {70F, 30F});		
+					GetButtonImaged(Controller.Id.LOCATIONSAVE_ACTION, "document-save.png"),
+					GetButtonImaged(Controller.Id.LOCATIONDELETE_ACTION, "edit-delete.png")},
+				new float[] {74F, 12F, 12F});
 	
 			Label lat_lbl = GetLabel("Latitude:");
 			ComboBox lat_dir = GetComboBox(
@@ -282,6 +286,18 @@ namespace SolarbeamGui
 		{
 			Button button = new Button();
 			button.Text = s;
+			Controller.RegisterControl(id, button);	// register control
+			return button;
+		}
+			
+		private Button GetButtonImaged(Controller.Id id, string path)
+		{
+			Button button = new Button();
+			button.FlatAppearance.BorderSize = 0;
+			button.FlatStyle = FlatStyle.Flat;
+			AsmInfo asminfo = new AsmInfo(Assembly.GetExecutingAssembly());
+			Stream stream = asminfo.GetResource(path);
+			button.Image = new Bitmap(stream);
 			Controller.RegisterControl(id, button);	// register control
 			return button;
 		}
