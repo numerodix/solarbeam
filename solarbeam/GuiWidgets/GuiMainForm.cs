@@ -55,7 +55,7 @@ namespace SolarbeamGui
 			Control mainarea = GetMainArea();
 			
 			this.MainMenuStrip = menu;
-			TableLayoutPanel layout = GuiCommon.GetTableLayoutPanel(2, 1, 0, BORDER);
+			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(2, 1, 0, BORDER);
 			
 			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute,
 			                                        menu.Height));
@@ -74,7 +74,7 @@ namespace SolarbeamGui
 			Controller.InitForm(); // fill in initial form values
 			this.viewport = new GuiViewport(this);
 		
-			TableLayoutPanel layout = GuiCommon.GetTableLayoutPanel(1, 2, 0, BORDER);
+			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(1, 2, 0, BORDER);
 			
 			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute,
 			                                        GuiControlPanel.WIDTH));

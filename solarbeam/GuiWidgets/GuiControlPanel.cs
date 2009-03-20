@@ -4,11 +4,8 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.IO;
-using System.Reflection;
 using System.Windows.Forms;
 
-using LibSolar.Assemblies;
 using LibSolar.Types;
 
 namespace SolarbeamGui
@@ -57,7 +54,7 @@ namespace SolarbeamGui
 			outputs.Controls.Add(GetOutputs());
 	
 	
-			TableLayoutPanel layout = GuiCommon.GetTableLayoutPanel(PANEL_COUNT, 1, 
+			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(PANEL_COUNT, 1, 
 			                                              FORM_MARGIN, FORM_PADDING);
 			layout.Width = WIDTH;
 			layout.Height = HEIGHT;
@@ -72,7 +69,7 @@ namespace SolarbeamGui
 	
 		private Control GetOutputs()
 		{
-			TableLayoutPanel layout = GuiCommon.GetTableLayoutPanel(OUTPUTS_COUNT, 1,
+			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(OUTPUTS_COUNT, 1,
 			                                              FORM_MARGIN, FORM_PADDING);
 			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
 	
@@ -80,46 +77,46 @@ namespace SolarbeamGui
 				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
 			}
 	
-			Control el = GetLaidOut(
+			Control el = Widgets.GetLaidOut(
 					new Control[] {
-					GetLabel("Sun elevation"),
-					GetLabel(":"),
-					GetTextBox(Controller.Id.ELEVATION, "-13.1231")},
+					Widgets.GetLabel("Sun elevation"),
+					Widgets.GetLabel(":"),
+					Widgets.GetTextBox(Controller.Id.ELEVATION, "-13.1231")},
 					new float[] {19F, 2F, 23F});
 	
-			Control az = GetLaidOut(
+			Control az = Widgets.GetLaidOut(
 					new Control[] {
-					GetLabel("Sun azimuth"),
-					GetLabel(":"),
-					GetTextBox(Controller.Id.AZIMUTH, "212.6669")},
+					Widgets.GetLabel("Sun azimuth"),
+					Widgets.GetLabel(":"),
+					Widgets.GetTextBox(Controller.Id.AZIMUTH, "212.6669")},
 					new float[] {19F, 2F, 23F});
 	
-			Control rise = GetLaidOut(
+			Control rise = Widgets.GetLaidOut(
 					new Control[] {
-					GetLabel("Sunrise"),
-					GetLabel(":"),
-					GetTextBox(Controller.Id.SUNRISE, "06:09")},
+					Widgets.GetLabel("Sunrise"),
+					Widgets.GetLabel(":"),
+					Widgets.GetTextBox(Controller.Id.SUNRISE, "06:09")},
 					new float[] {19F, 2F, 23F});
 	
-			Control noon = GetLaidOut(
+			Control noon = Widgets.GetLaidOut(
 					new Control[] {
-					GetLabel("Solar noon"),
-					GetLabel(":"),
-					GetTextBox(Controller.Id.SOLAR_NOON, "12:12")},
+					Widgets.GetLabel("Solar noon"),
+					Widgets.GetLabel(":"),
+					Widgets.GetTextBox(Controller.Id.SOLAR_NOON, "12:12")},
 					new float[] {19F, 2F, 23F});    
 	
-			Control sset = GetLaidOut(
+			Control sset = Widgets.GetLaidOut(
 					new Control[] {
-					GetLabel("Sunset"),
-					GetLabel(":"),
-					GetTextBox(Controller.Id.SUNSET, "18:15")},
+					Widgets.GetLabel("Sunset"),
+					Widgets.GetLabel(":"),
+					Widgets.GetTextBox(Controller.Id.SUNSET, "18:15")},
 					new float[] {19F, 2F, 23F});
 	
-			Control dlen = GetLaidOut(
+			Control dlen = Widgets.GetLaidOut(
 					new Control[] {
-					GetLabel("Day length"),
-					GetLabel(":"),
-					GetTextBox(Controller.Id.DAY_LENGTH, "12h 0m")},
+					Widgets.GetLabel("Day length"),
+					Widgets.GetLabel(":"),
+					Widgets.GetTextBox(Controller.Id.DAY_LENGTH, "12h 0m")},
 					new float[] {19F, 2F, 23F}); 
 	
 			layout.Controls.Add(el, 0, 0);
@@ -134,13 +131,13 @@ namespace SolarbeamGui
 	
 		private Control GetButtons()
 		{
-			Control btns = GetLaidOut(
+			Control btns = Widgets.GetLaidOut(
 				new Control[] {
-					GetLabel(String.Empty), //layout buffer
-					GetButton(Controller.Id.CLEARFORM_ACTION, "Reset"),
-					GetLabel(String.Empty),
-					GetButton(Controller.Id.RENDER_ACTION, "Render"),
-					GetLabel(String.Empty)},
+					Widgets.GetLabel(String.Empty), //layout buffer
+					Widgets.GetButton(Controller.Id.CLEARFORM_ACTION, "Reset"),
+					Widgets.GetLabel(String.Empty),
+					Widgets.GetButton(Controller.Id.RENDER_ACTION, "Render"),
+					Widgets.GetLabel(String.Empty)},
 				new float[] {15F, 30F, 15F, 30F, 15F});
 	
 			return btns;
@@ -148,7 +145,7 @@ namespace SolarbeamGui
 	
 		private Control GetInputs()
 		{
-			TableLayoutPanel layout = GuiCommon.GetTableLayoutPanel(INPUTS_COUNT, 3, 
+			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(INPUTS_COUNT, 3, 
 			                                              FORM_MARGIN, FORM_PADDING);
 			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
 			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
@@ -157,90 +154,94 @@ namespace SolarbeamGui
 				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
 			}
 			
-			Label loc_lbl = GetLabel("Location:");
-			Control loc_ins = GetLaidOut(
+			Label loc_lbl = Widgets.GetLabel("Location:");
+			Control loc_ins = Widgets.GetLaidOut(
 				new Control[] {
-					GetComboBoxInputable(
+					Widgets.GetComboBoxInputable(
 						Controller.Id.LOCATION,
-						Controller.locations_source.Locations),
-					GetButtonImaged(Controller.Id.LOCATIONSAVE_ACTION, "document-save.png"),
-					GetButtonImaged(Controller.Id.LOCATIONDELETE_ACTION, "edit-delete.png")},
+						Controller.LocationsSource.Locations),
+					Widgets.GetButtonImaged(
+						Controller.Id.LOCATIONSAVE_ACTION,
+						"document-save.png"),
+					Widgets.GetButtonImaged(
+						Controller.Id.LOCATIONDELETE_ACTION,
+						"edit-delete.png")},
 				new float[] {74F, 12F, 12F});
 	
-			Label lat_lbl = GetLabel("Latitude:");
-			ComboBox lat_dir = GetComboBox(
+			Label lat_lbl = Widgets.GetLabel("Latitude:");
+			ComboBox lat_dir = Widgets.GetComboBox(
 				Controller.Id.LATITUDE_DIRECTION,
-				Controller.position_source.LatitudeDirections);
-			Control lat_ins = GetLaidOut(
+				Controller.PositionSource.LatitudeDirections);
+			Control lat_ins = Widgets.GetLaidOut(
 				new Control[] {
-					GetNumericUpDown(Controller.Id.LATITUDE_DEGS,
+					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_DEGS,
 				                 Position.LATDEGS_MINVALUE-1,
 				                 Position.LATDEGS_MAXVALUE),
-					GetNumericUpDown(Controller.Id.LATITUDE_MINS,
+					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_MINS,
 				                 Position.LATMINS_MINVALUE-1,
 				                 Position.LATMINS_MAXVALUE+1),
-					GetNumericUpDown(Controller.Id.LATITUDE_SECS,
+					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_SECS,
 				                 Position.LATSECS_MINVALUE-1,
 				                 Position.LATSECS_MAXVALUE+1),
 				lat_dir},
 				new float[] {27F, 23F, 23F, 30F});
 			
-			Label lon_lbl = GetLabel("Longitude:");
-			ComboBox lon_dir = GetComboBox(
+			Label lon_lbl = Widgets.GetLabel("Longitude:");
+			ComboBox lon_dir = Widgets.GetComboBox(
 				Controller.Id.LONGITUDE_DIRECTION,
-				Controller.position_source.LongitudeDirections);
-			Control lon_ins = GetLaidOut(
+				Controller.PositionSource.LongitudeDirections);
+			Control lon_ins = Widgets.GetLaidOut(
 				new Control[] {
-					GetNumericUpDown(Controller.Id.LONGITUDE_DEGS,
+					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_DEGS,
 				                 Position.LONDEGS_MINVALUE-1,
 				                 Position.LONDEGS_MAXVALUE),
-					GetNumericUpDown(Controller.Id.LONGITUDE_MINS,
+					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_MINS,
 				                 Position.LONMINS_MINVALUE-1,
 				                 Position.LONMINS_MAXVALUE+1),
-					GetNumericUpDown(Controller.Id.LONGITUDE_SECS,
+					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_SECS,
 				                 Position.LONSECS_MINVALUE-1,
 				                 Position.LONSECS_MAXVALUE+1),
 				lon_dir},
 				new float[] {27F, 23F, 23F, 30F});
 			
-			Label tz_lbl = GetLabel("Timezone:");
-			Control tz_in = GetLaidOut(
+			Label tz_lbl = Widgets.GetLabel("Timezone:");
+			Control tz_in = Widgets.GetLaidOut(
 				new Control[] {
-				GetComboBox(Controller.Id.TIMEZONE_OFFSET,
-					Controller.timezone_source.Offsets),
-				GetComboBox(Controller.Id.TIMEZONE_NAME,
-					Controller.timezone_source.GetTimezones(
-						Controller.timezone_source.Offsets[0]))
+				Widgets.GetComboBox(Controller.Id.TIMEZONE_OFFSET,
+					Controller.TimezoneSource.Offsets),
+				Widgets.GetComboBox(Controller.Id.TIMEZONE_NAME,
+					Controller.TimezoneSource.GetTimezones(
+						Controller.TimezoneSource.Offsets[0]))
 					},
 					new float[] {24F, 50F});
 
-			Label date_lbl = GetLabel("Date:");
-			Control date_scr = GetLabel(String.Empty);
-			Control date_ins = GetLaidOut(
+			Label date_lbl = Widgets.GetLabel("Date:");
+			Control date_scr = Widgets.GetLabel(String.Empty);
+			Control date_ins = Widgets.GetLaidOut(
 				new Control[] {
-					GetNumericUpDown(Controller.Id.DATE_DAY,
+					Widgets.GetNumericUpDown(Controller.Id.DATE_DAY,
 				                 UTCDate.DAY_MINVALUE-1,
 				                 UTCDate.DAY_MAXVALUE+1),
-					GetNumericUpDown(Controller.Id.DATE_MONTH,
+					Widgets.GetNumericUpDown(Controller.Id.DATE_MONTH,
 				                 UTCDate.MONTH_MINVALUE-1,
 				                 UTCDate.MONTH_MAXVALUE+1),
-					GetNumericUpDown(Controller.Id.DATE_YEAR,
+					Widgets.GetNumericUpDown(Controller.Id.DATE_YEAR,
 				                 UTCDate.YEAR_MINVALUE,
 				                 UTCDate.YEAR_MAXVALUE),
 				date_scr},
 				new float[] {20F, 20F, 25F, 30F});
 			
-			Label time_lbl = GetLabel("Time:");
-			Control time_scr = GetLabel(String.Empty);
-			Control time_ins = GetLaidOut(
+			Label time_lbl = Widgets.GetLabel("Time:");
+			Control time_scr = Widgets.GetLabel(String.Empty);
+			Control time_ins = Widgets.GetLaidOut(
 				new Control[] {
-					GetNumericUpDown(Controller.Id.TIME_HOUR,
+					Widgets.GetNumericUpDown(Controller.Id.TIME_HOUR,
 				                 UTCDate.HOUR_MINVALUE-1,
 				                 UTCDate.HOUR_MAXVALUE+1),
-					GetNumericUpDown(Controller.Id.TIME_MINUTE,
+					Widgets.GetNumericUpDown(Controller.Id.TIME_MINUTE,
 				                 UTCDate.MINUTE_MINVALUE-1,
 				                 UTCDate.MINUTE_MAXVALUE+1),
-					GetNumericUpDown(Controller.Id.TIME_SECOND,
+					Widgets.GetNumericUpDown(Controller.Id.TIME_SECOND,
 				                 UTCDate.SECOND_MINVALUE-1,
 				                 UTCDate.SECOND_MAXVALUE+1),
 				time_scr},
@@ -260,94 +261,6 @@ namespace SolarbeamGui
 			layout.Controls.Add(time_ins, 1, 5);
 		
 			return layout;
-		}
-		
-		private TableLayoutPanel GetLaidOut(Control[] controls, float[] widths)
-		{
-			TableLayoutPanel layout = new TableLayoutPanel();
-			layout.Dock = DockStyle.Fill;
-			layout.ColumnCount = controls.Length;
-			layout.RowCount = 1;
-			
-			foreach (float width in widths)
-			{
-				layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, width));
-			}
-	
-			foreach (Control c in controls)
-			{
-				c.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-				layout.Controls.Add(c);
-			}
-			return layout;
-		}
-		
-		private Button GetButton(Controller.Id id, string s)
-		{
-			Button button = new Button();
-			button.Text = s;
-			Controller.RegisterControl(id, button);	// register control
-			return button;
-		}
-			
-		private Button GetButtonImaged(Controller.Id id, string path)
-		{
-			Button button = new Button();
-			button.FlatAppearance.BorderSize = 0;
-			button.FlatStyle = FlatStyle.Flat;
-			AsmInfo asminfo = new AsmInfo(Assembly.GetExecutingAssembly());
-			Stream stream = asminfo.GetResource(path);
-			button.Image = new Bitmap(stream);
-			Controller.RegisterControl(id, button);	// register control
-			return button;
-		}
-		
-		private Label GetLabel(string s)
-		{
-			Label label = new Label();
-			label.Text = s;
-			label.AutoSize = true;
-			label.Anchor = AnchorStyles.Left;
-			return label;
-		}
-		
-		private TextBox GetTextBox(Controller.Id id, string s)
-		{
-			TextBox textbox = new TextBox();
-			textbox.ReadOnly = true;
-			textbox.Anchor = AnchorStyles.Left;
-			textbox.BorderStyle = BorderStyle.None;
-			Controller.RegisterControl(id, textbox);	// register control
-			return textbox;
-		}
-
-		private ComboBox GetComboBox(Controller.Id id, string[] ss)
-		{
-			ComboBox combo = new ComboBox();
-			combo.DropDownStyle = ComboBoxStyle.DropDownList;
-			combo.Items.AddRange(ss);
-			combo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-			Controller.RegisterControl(id, combo);	// register control
-			return combo;
-		}
-			
-		private ComboBox GetComboBoxInputable(Controller.Id id, string[] ss)
-		{
-			ComboBox combo = GetComboBox(id, ss);
-			combo.DropDownStyle = ComboBoxStyle.DropDown;
-			combo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-			combo.AutoCompleteSource = AutoCompleteSource.ListItems;
-			combo.DropDownHeight = 180;
-			return combo;
-		}
-		
-		private NumericUpDown GetNumericUpDown(Controller.Id id, int min, int max)
-		{
-			NumericUpDown num = new NumericUpDown();
-			num.Minimum = min;
-			num.Maximum = max;
-			Controller.RegisterControl(id, num);	// register control
-			return num;
 		}
 	}
 }

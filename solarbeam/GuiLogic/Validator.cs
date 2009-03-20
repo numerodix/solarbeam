@@ -25,7 +25,7 @@ namespace SolarbeamGui
 			Control control_loc = registry[Id.LOCATION];
 			string loc_s = GetValue(control_loc);
 			
-			Location loc = Controller.locations_source.GetLocation(loc_s);
+			Location loc = Controller.LocationsSource.GetLocation(loc_s);
 			SetPosition(loc.Position);
 			SetTimezone(loc.Timezone);
 		}
@@ -106,7 +106,7 @@ namespace SolarbeamGui
 			ComboBox control_tzname = (ComboBox) registry[Id.TIMEZONE_NAME];
 			
 			string tzoff_val = GetValue(control_tzoff);
-			string[] zones = Controller.timezone_source.GetTimezones(tzoff_val);
+			string[] zones = Controller.TimezoneSource.GetTimezones(tzoff_val);
 			
 			control_tzname.Items.Clear();
 			control_tzname.Items.AddRange(zones);

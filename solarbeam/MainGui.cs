@@ -15,12 +15,12 @@ using LibSolar.Graphing;
 namespace SolarbeamGui
 {
 	static class MainGui
-	{		
+	{
 		[STAThread]
 		public static void Main(string[] args)
 		{
-			AsmInfo asminfo = new AsmInfo(Assembly.GetExecutingAssembly());
-			GuiMainForm mainform = new GuiMainForm(asminfo.GetAtt("Title"));
+			GuiMainForm mainform = 
+				new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
 			if ((args.Length > 0) && (args[0] == "-nogui")) {
 				Environment.Exit(0);
 			}

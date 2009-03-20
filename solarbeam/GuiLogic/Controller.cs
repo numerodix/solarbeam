@@ -6,10 +6,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
 
+using LibSolar.Assemblies;
 using LibSolar.Types;
 
 namespace SolarbeamGui
@@ -94,23 +96,30 @@ namespace SolarbeamGui
 		
 		private static Dictionary<Id, string> cache =
 			new Dictionary<Id, string>();
-			
+		
 
-		public static LocationsSource locations_source;
-		public static PositionSource position_source;
-		public static TimezoneSource timezone_source;
+		public static LocationsSource LocationsSource;
+		public static PositionSource PositionSource;
+		public static TimezoneSource TimezoneSource;
+								
+		public static AsmInfo AsmInfo;
+		
 
+		static Controller()
+		{
+			Controller.AsmInfo = new AsmInfo(Assembly.GetExecutingAssembly());
+		}
 							
 		public static void InitSources()
 		{
-			if (locations_source == null) {
-				locations_source = new LocationsSource();
+			if (LocationsSource == null) {
+				LocationsSource = new LocationsSource();
 			}
-			if (position_source == null) {
-				position_source = new PositionSource();
+			if (PositionSource == null) {
+				PositionSource = new PositionSource();
 			}
-			if (timezone_source == null) {
-				timezone_source = new TimezoneSource();
+			if (TimezoneSource == null) {
+				TimezoneSource = new TimezoneSource();
 			}
 		}
 		

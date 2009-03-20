@@ -64,7 +64,7 @@ namespace SolarbeamGui
 			try {
 				date = new DateTime(year, month, day,
 				                    hour, min, sec, DateTimeKind.Local);
-				udt = Controller.timezone_source.ApplyZone(tz_name, date.Value);
+				udt = Controller.TimezoneSource.ApplyZone(tz_name, date.Value);
 			} catch (ArgumentException) {
 				foreach (Id id in ins_update)
 				{
