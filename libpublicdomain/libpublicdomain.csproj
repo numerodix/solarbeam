@@ -37,8 +37,6 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="CharUtilities.cs" />
     <Compile Include="ConversionUtilities.cs" />
-    <Compile Include="Crc32.cs" />
-    <Compile Include="CryptographyUtilities.cs" />
     <Compile Include="DateTimeUtlities.cs" />
     <Compile Include="GenericUtilities.cs" />
     <Compile Include="GlobalConstants.cs" />

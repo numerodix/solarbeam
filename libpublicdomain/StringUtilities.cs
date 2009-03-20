@@ -708,17 +708,6 @@ namespace PublicDomain
         }
 
         /// <summary>
-        /// Computes the non colliding hash
-        /// </summary>
-        /// <param name="str">The STR.</param>
-        /// <returns></returns>
-        public static string ComputeNonCollidingHash(string str)
-        {
-            byte[] data = CryptographyUtilities.ComputeSHA1Hash(str);
-            return StringUtilities.GetStringFromBytes(data);
-        }
-
-        /// <summary>
         /// Splits <paramref name="str"/> based on the index. The first element
         /// is the left portion, and the second element
         /// is the right portion. The character at index <paramref name="index"/>
