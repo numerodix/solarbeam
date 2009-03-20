@@ -42,7 +42,6 @@
     <Compile Include="Month.cs" />
     <Compile Include="ReadOnlyDictionary.cs" />
     <Compile Include="ReadOnlyICollection.cs" />
-    <Compile Include="RegexUtilities.cs" />
     <Compile Include="StringUtilities.cs" />
     <Compile Include="TzConstants.cs" />
     <Compile Include="TzDatabase.cs" />
