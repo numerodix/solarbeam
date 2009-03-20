@@ -38,7 +38,6 @@
     <Compile Include="CharUtilities.cs" />
     <Compile Include="ConversionUtilities.cs" />
     <Compile Include="DateTimeUtlities.cs" />
-    <Compile Include="GenericUtilities.cs" />
     <Compile Include="GlobalConstants.cs" />
     <Compile Include="Month.cs" />
     <Compile Include="ReadOnlyDictionary.cs" />
