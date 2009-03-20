@@ -28,21 +28,20 @@ namespace PublicDomain
         /// <summary>
         /// Represents the largest possible value of PublicDomain.TzDateTime. This field is read-only.
         /// </summary>
-        public static readonly TzDateTime MaxValue;
+        public readonly TzDateTime MaxValue;
         
         /// <summary>
         ///     Represents the smallest possible value of PublicDomain.TzDateTime. This field is
         ///     read-only.
         /// </summary>
-        public static readonly TzDateTime MinValue;
+        public readonly TzDateTime MinValue;
 
         /// <summary>
         /// 
         /// </summary>
         static TzDateTime()
         {
-            MinValue = new TzDateTime(DateTime.MinValue.Ticks, TzTimeZone.ZoneUTC);
-            MaxValue = new TzDateTime(DateTime.MaxValue.Ticks, TzTimeZone.ZoneUTC);
+
         }
 
         /// <summary>
@@ -50,6 +49,8 @@ namespace PublicDomain
         /// </summary>
         public TzDateTime()
         {
+			MinValue = new TzDateTime(DateTime.MinValue.Ticks, TzTimeZone.ZoneUTC);
+            MaxValue = new TzDateTime(DateTime.MaxValue.Ticks, TzTimeZone.ZoneUTC);
         }
 
         /// <summary>

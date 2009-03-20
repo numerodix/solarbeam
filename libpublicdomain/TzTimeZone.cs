@@ -67,54 +67,6 @@ namespace PublicDomain
         {
 			// init timezones from bundled zoneinfo
 			InitTimeZones("zoneinfo");
-			
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-11:00")] = TzConstants.TimezonePacificMidway;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-10:00")] = TzConstants.TimezonePacificHonolulu;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-9:30")] = TzConstants.TimezonePacificMarquesas;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-9:00")] = TzConstants.TimezoneAmericaAnchorage;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-8:00")] = TzConstants.TimezoneAmericaLosAngeles;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-7:00")] = TzConstants.TimezoneAmericaDenver;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-6:00")] = TzConstants.TimezoneAmericaChicago;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-5:00")] = TzConstants.TimezoneAmericaNewYork;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-4:00")] = TzConstants.TimezoneAmericaLaPaz;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-3:30")] = TzConstants.TimezoneAmericaStJohns;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-3:00")] = TzConstants.TimezoneAmericaArgentinaBuenosAires;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-2:00")] = TzConstants.TimezoneAmericaNoronha;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-1:00")] = TzConstants.TimezoneAtlanticAzores;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("0:00")] = TzConstants.TimezoneUtc;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("1:00")] = TzConstants.TimezoneEuropeParis;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("2:00")] = TzConstants.TimezoneEuropeAthens;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("3:00")] = TzConstants.TimezoneEuropeMoscow;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("3:30")] = TzConstants.TimezoneAsiaTehran;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("4:00")] = TzConstants.TimezoneAsiaDubai;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("4:30")] = TzConstants.TimezoneAsiaKabul;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("5:00")] = TzConstants.TimezoneAsiaKarachi;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("5:30")] = TzConstants.TimezoneAsiaCalcutta;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("6:00")] = TzConstants.TimezoneAsiaOmsk;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("6:30")] = TzConstants.TimezoneIndianCocos;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("7:00")] = TzConstants.TimezoneAsiaJakarta;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("8:00")] = TzConstants.TimezoneAsiaShanghai;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("9:00")] = TzConstants.TimezoneAsiaTokyo;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("9:30")] = TzConstants.TimezoneAustraliaDarwin;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("10:00")] = TzConstants.TimezonePacificGuam;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("10:30")] = TzConstants.TimezoneAustraliaLordHowe;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("11:00")] = TzConstants.TimezonePacificGuadalcanal;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("11:30")] = TzConstants.TimezonePacificNorfolk;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("12:00")] = TzConstants.TimezonePacificFiji;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("13:00")] = TzConstants.TimezonePacificEnderbury;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("14:00")] = TzConstants.TimezonePacificKiritimati;
-
-            // Initialize "common" time zones
-            ZoneUTC = TzTimeZone.GetTimeZone(TzConstants.TimezoneUtc);
-            ZoneUsEastern = TzTimeZone.GetTimeZone(TzConstants.TimezoneUsEastern);
-            ZoneUsCentral = TzTimeZone.GetTimeZone(TzConstants.TimezoneUsCentral);
-            ZoneUsMountain = TzTimeZone.GetTimeZone(TzConstants.TimezoneUsMountain);
-            ZoneUsPacific = TzTimeZone.GetTimeZone(TzConstants.TimezoneUsPacific);
-
-            // Get the current time zone
-            TimeZone cur = TimeZone.CurrentTimeZone;
-            TimeSpan utcOffset = cur.GetUtcOffset(DateTime.MinValue);
-            s_currentTimeZone = GetTimeZoneByOffset(utcOffset);
         }
 
         /// <summary>
