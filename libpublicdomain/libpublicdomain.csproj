@@ -43,7 +43,6 @@
     <Compile Include="ReadOnlyDictionary.cs" />
     <Compile Include="ReadOnlyICollection.cs" />
     <Compile Include="StringUtilities.cs" />
-    <Compile Include="TzConstants.cs" />
     <Compile Include="TzDatabase.cs" />
     <Compile Include="TzDateTime.cs" />
     <Compile Include="TzTimeZone.cs" />
