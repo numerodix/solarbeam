@@ -48,7 +48,6 @@
     <Compile Include="TzDateTime.cs" />
     <Compile Include="TzTimeZone.cs" />
     <Compile Include="Exceptions\BaseException.cs" />
-    <Compile Include="Exceptions\WrappedException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
