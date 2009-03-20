@@ -1106,7 +1106,6 @@ namespace PublicDomain
         public class TzZoneDescription
         {
             private string m_twoLetterCode;
-            private Iso6709 m_location;
             private string m_zoneName;
             private string m_comments;
 
@@ -1124,10 +1123,9 @@ namespace PublicDomain
             /// <param name="location">The location.</param>
             /// <param name="zoneName">Name of the zone.</param>
             /// <param name="comments">The comments.</param>
-            public TzZoneDescription(string twoLetterCode, Iso6709 location, string zoneName, string comments)
+            public TzZoneDescription(string twoLetterCode, string zoneName, string comments)
             {
                 m_twoLetterCode = twoLetterCode;
-                m_location = location;
                 m_zoneName = zoneName;
                 m_comments = comments;
             }
@@ -1143,16 +1141,6 @@ namespace PublicDomain
                 }
             }
 
-            /// <summary>
-            /// 
-            /// </summary>
-            public Iso6709 Location
-            {
-                get
-                {
-                    return m_location;
-                }
-            }
 
             /// <summary>
             /// 
@@ -1184,7 +1172,7 @@ namespace PublicDomain
             /// </returns>
             public override string ToString()
             {
-                return string.Format("{0}\t{1}\t{2}\t{3}", TwoLetterCode, Location, ZoneName, Comments);
+                return string.Format("{0}\t{2}\t{3}", TwoLetterCode, ZoneName, Comments);
             }
         }
     }
