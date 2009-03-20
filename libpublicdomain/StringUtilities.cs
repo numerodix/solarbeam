@@ -18,16 +18,6 @@ namespace PublicDomain
         /// </summary>
         public static char[] DefaultQuoteSensitiveChars = new char[] { '\"' };
 
-        private static Random s_random;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        static StringUtilities()
-        {
-            s_random = new Random(unchecked((int)DateTime.UtcNow.Ticks));
-        }
-
         /// <summary>
         /// Splits the string based on whitespace, being sensitive to
         /// quotes. Always returns a non-null array, possibly zero-length.

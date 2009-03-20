@@ -34,32 +34,5 @@ namespace PublicDomain
             Int64 trash;
             return Int64.TryParse(str, out trash);
         }
-
-        /// <summary>
-        /// Parses the long. Default 0
-        /// </summary>
-        /// <param name="str">The STR.</param>
-        /// <returns></returns>
-        public static long ParseLong(string str)
-        {
-            return ParseLong(str, 0);
-        }
-
-        /// <summary>
-        /// Parses the long.
-        /// </summary>
-        /// <param name="str">The STR.</param>
-        /// <param name="defaultValue">The default value.</param>
-        /// <returns></returns>
-        public static long ParseLong(string str, long defaultValue)
-        {
-            long result;
-            if (!long.TryParse(str, out result))
-            {
-                result = defaultValue;
-            }
-            return result;
-        }
-
     }
 }
