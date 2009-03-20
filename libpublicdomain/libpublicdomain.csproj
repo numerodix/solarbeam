@@ -51,9 +51,6 @@
     <Compile Include="TzTimeZone.cs" />
     <Compile Include="Exceptions\BaseException.cs" />
     <Compile Include="Exceptions\WrappedException.cs" />
-    <Compile Include="Geography\CountryOptions.cs" />
-    <Compile Include="Geography\Region.cs" />
-    <Compile Include="Geography\RegionType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
