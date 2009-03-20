@@ -832,67 +832,6 @@ namespace PublicDomain
             }
             return str;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="num"></param>
-        /// <param name="showDecimalPart"></param>
-        /// <returns></returns>
-        public static string FormatNumberWithBytes(long num, bool showDecimalPart)
-        {
-            return FormatNumberWithBytes(num, showDecimalPart, 2);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="num">Bytes</param>
-        /// <param name="showDecimalPart"></param>
-        /// <param name="decimalPrecision"></param>
-        /// <returns></returns>
-        public static string FormatNumberWithBytes(long num, bool showDecimalPart, int decimalPrecision)
-        {
-            decimal val = num;
-            string decorator = "B";
-            if (num > GlobalConstants.BytesInAPetabyte)
-            {
-                val = (decimal)num / (decimal)GlobalConstants.BytesInAPetabyte;
-                decorator = "P" + decorator;
-            }
-            else if (num > GlobalConstants.BytesInATerabyte)
-            {
-                val = (decimal)num / (decimal)GlobalConstants.BytesInATerabyte;
-                decorator = "T" + decorator;
-            }
-            else if (num > GlobalConstants.BytesInAGigabyte)
-            {
-                val = (decimal)num / (decimal)GlobalConstants.BytesInAGigabyte;
-                decorator = "G" + decorator;
-            }
-            else if (num > GlobalConstants.BytesInAMegabyte)
-            {
-                val = (decimal)num / (decimal)GlobalConstants.BytesInAMegabyte;
-                decorator = "M" + decorator;
-            }
-            else if (num > GlobalConstants.BytesInAKilobyte)
-            {
-                val = (decimal)num / (decimal)GlobalConstants.BytesInAKilobyte;
-                decorator = "K" + decorator;
-            }
-
-            string result;
-            if (showDecimalPart)
-            {
-                result = FormatPrecision(val, decimalPrecision, true);
-            }
-            else
-            {
-                result = ((long)val).ToString();
-            }
-            return result + " " + decorator;
-        }
-
         /// <summary>
         /// Calculates the M d5 sum.
         /// </summary>

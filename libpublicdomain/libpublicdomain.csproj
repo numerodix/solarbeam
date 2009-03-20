@@ -57,7 +57,6 @@
     <Compile Include="Geography\CountryOptions.cs" />
     <Compile Include="Geography\Region.cs" />
     <Compile Include="Geography\RegionType.cs" />
-    <Compile Include="Standards\Iso3166.cs" />
     <Compile Include="Standards\Iso6709.cs" />
     <Compile Include="Standards\Iso8601.cs" />
   </ItemGroup>

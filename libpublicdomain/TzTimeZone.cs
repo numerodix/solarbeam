@@ -56,7 +56,6 @@ namespace PublicDomain
         private static Dictionary<string, TzZoneInfo> s_zones = new Dictionary<string, TzZoneInfo>();
         private static ReadOnlyCollection<TzZoneInfo> s_zoneList;
         private static string[] s_allZoneNames;
-        private static TzTimeZone s_currentTimeZone;
         private static ReaderWriterLock s_zonesLock = new ReaderWriterLock();
         private static object s_allZonesLock = new object();
         private static object s_zoneListLock = new object();
@@ -714,31 +713,6 @@ namespace PublicDomain
         }
 
         /// <summary>
-        /// Gets the name of the zone. Setting the zone is
-        /// the same as finding a new zone.
-        /// </summary>
-        /// <value>The name of the zone.</value>
-        internal string ZoneName
-        {
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentNullException("ZoneName");
-                }
-                TzTimeZone newTimeZone = GetTimeZone(value);
-                if (newTimeZone != null)
-                {
-                    m_info = newTimeZone.m_info;
-                }
-                else
-                {
-                    throw new TzDatabase.TzException("Invalid time zone {0}", value);
-                }
-            }
-        }
-
-        /// <summary>
         /// Returns a <see cref="T:System.String"></see> that represents the current <see cref="T:System.Object"></see>.
         /// </summary>
         /// <returns>
@@ -844,18 +818,6 @@ namespace PublicDomain
                 }
             }
             throw new TzDatabase.TzException("Cannot find time zone with UTC offset {0}.", utcOffsetTime);
-        }
-
-        /// <summary>
-        /// Gets the time zone of the current computer system.
-        /// </summary>
-        /// <value>A System.TimeZone instance representing the current, local time zone.</value>
-        public static new TzTimeZone CurrentTimeZone
-        {
-            get
-            {
-                return s_currentTimeZone;
-            }
         }
 
         /// <summary>

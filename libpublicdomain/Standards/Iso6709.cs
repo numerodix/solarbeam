@@ -61,47 +61,7 @@ namespace PublicDomain
         /// </summary>
         public static Regex Iso6709Form2 = new Regex(@"(\+|-)(\d\d)(\d\d)(\d\d)(\+|-)(\d\d\d)(\d\d)(\d\d)", RegexOptions.Compiled);
 
-        /// <summary>
-        /// Parses the specified STR.
-        /// </summary>
-        /// <param name="str">The STR.</param>
-        /// <returns></returns>
-        public static Iso6709 Parse(string str)
-        {
-            Iso6709 result = new Iso6709();
-            Match m = Iso6709Form1.Match(str);
-            if (m.Success)
-            {
-                result.IsLatitudeNorth = m.Groups[1].ToString()[0] == '+';
-                result.LatitudeDegrees = int.Parse(m.Groups[2].ToString());
-                result.LatitudeMinutes = int.Parse(m.Groups[3].ToString());
-                result.IsLongitudeEast = m.Groups[4].ToString()[0] == '+';
-                result.LongitudeDegrees = int.Parse(m.Groups[5].ToString());
-                result.LongitudeMinutes = int.Parse(m.Groups[6].ToString());
-            }
-            else
-            {
-                m = Iso6709Form2.Match(str);
-                if (m.Success)
-                {
-                    result.IsLatitudeNorth = m.Groups[1].ToString()[0] == '+';
-                    result.LatitudeDegrees = int.Parse(m.Groups[2].ToString());
-                    result.LatitudeMinutes = int.Parse(m.Groups[3].ToString());
-                    result.LatitudeSeconds = int.Parse(m.Groups[4].ToString());
-                    result.IsLongitudeEast = m.Groups[5].ToString()[0] == '+';
-                    result.LongitudeDegrees = int.Parse(m.Groups[6].ToString());
-                    result.LongitudeMinutes = int.Parse(m.Groups[7].ToString());
-                    result.LongitudeSeconds = int.Parse(m.Groups[8].ToString());
-                }
-                else
-                {
-                    // Couldn't match a known format
-                    throw new FormatException("ISO 6709 format expected, found " + str);
-                }
-            }
-            return result;
-        }
-
+    
         /// <summary>
         /// Returns the fully qualified type name of this instance.
         /// </summary>
