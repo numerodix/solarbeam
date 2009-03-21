@@ -159,42 +159,51 @@ namespace SolarbeamGui
 				new Control[] {
 					Widgets.GetComboBoxInputable(
 						Controller.Id.LOCATION,
+				        Controller.LocationsSource.Tip,                     
 						Controller.LocationsSource.Locations)},
 				new float[] {100F});
 	
 			Label lat_lbl = Widgets.GetLabel("Latitude:");
 			ComboBox lat_dir = Widgets.GetComboBox(
 				Controller.Id.LATITUDE_DIRECTION,
+			    null,
 				Controller.PositionSource.LatitudeDirections);
 			Control lat_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_DEGS,
-				                 Position.LATDEGS_MINVALUE-1,
-				                 Position.LATDEGS_MAXVALUE),
+						PositionSource.TipLatDegree,
+						Position.LATDEGS_MINVALUE-1,
+						Position.LATDEGS_MAXVALUE),
 					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_MINS,
-				                 Position.LATMINS_MINVALUE-1,
-				                 Position.LATMINS_MAXVALUE+1),
+						PositionSource.TipLatMinute,
+						Position.LATMINS_MINVALUE-1,
+						Position.LATMINS_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_SECS,
-				                 Position.LATSECS_MINVALUE-1,
-				                 Position.LATSECS_MAXVALUE+1),
+						PositionSource.TipLatSecond,
+						Position.LATSECS_MINVALUE-1,
+						Position.LATSECS_MAXVALUE+1),
 				lat_dir},
 				new float[] {27F, 23F, 23F, 30F});
 			
 			Label lon_lbl = Widgets.GetLabel("Longitude:");
 			ComboBox lon_dir = Widgets.GetComboBox(
 				Controller.Id.LONGITUDE_DIRECTION,
+				null,
 				Controller.PositionSource.LongitudeDirections);
 			Control lon_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_DEGS,
-				                 Position.LONDEGS_MINVALUE-1,
-				                 Position.LONDEGS_MAXVALUE),
+						PositionSource.TipLonDegree,
+						Position.LONDEGS_MINVALUE-1,
+						Position.LONDEGS_MAXVALUE),
 					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_MINS,
-				                 Position.LONMINS_MINVALUE-1,
-				                 Position.LONMINS_MAXVALUE+1),
+						PositionSource.TipLonMinute,
+						Position.LONMINS_MINVALUE-1,
+						Position.LONMINS_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_SECS,
-				                 Position.LONSECS_MINVALUE-1,
-				                 Position.LONSECS_MAXVALUE+1),
+						PositionSource.TipLonSecond,
+						Position.LONSECS_MINVALUE-1,
+						Position.LONSECS_MAXVALUE+1),
 				lon_dir},
 				new float[] {27F, 23F, 23F, 30F});
 			
@@ -202,8 +211,10 @@ namespace SolarbeamGui
 			Control tz_in = Widgets.GetLaidOut(
 				new Control[] {
 				Widgets.GetComboBox(Controller.Id.TIMEZONE_OFFSET,
+					TimezoneSource.TipOffset,
 					Controller.TimezoneSource.Offsets),
 				Widgets.GetComboBox(Controller.Id.TIMEZONE_NAME,
+					TimezoneSource.TipZone,
 					Controller.TimezoneSource.GetTimezones(
 						Controller.TimezoneSource.Offsets[0]))
 					},
@@ -214,14 +225,17 @@ namespace SolarbeamGui
 			Control date_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.DATE_DAY,
-				                 UTCDate.DAY_MINVALUE-1,
-				                 UTCDate.DAY_MAXVALUE+1),
+						DateSource.TipDay,
+						UTCDate.DAY_MINVALUE-1,
+						UTCDate.DAY_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.DATE_MONTH,
-				                 UTCDate.MONTH_MINVALUE-1,
-				                 UTCDate.MONTH_MAXVALUE+1),
+						DateSource.TipMonth,
+						UTCDate.MONTH_MINVALUE-1,
+						UTCDate.MONTH_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.DATE_YEAR,
-				                 UTCDate.YEAR_MINVALUE,
-				                 UTCDate.YEAR_MAXVALUE),
+						DateSource.TipYear,
+						UTCDate.YEAR_MINVALUE,
+						UTCDate.YEAR_MAXVALUE),
 				date_scr},
 				new float[] {20F, 20F, 25F, 30F});
 			
@@ -230,14 +244,17 @@ namespace SolarbeamGui
 			Control time_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.TIME_HOUR,
-				                 UTCDate.HOUR_MINVALUE-1,
-				                 UTCDate.HOUR_MAXVALUE+1),
+						TimeSource.TipHour,
+						UTCDate.HOUR_MINVALUE-1,
+						UTCDate.HOUR_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.TIME_MINUTE,
-				                 UTCDate.MINUTE_MINVALUE-1,
-				                 UTCDate.MINUTE_MAXVALUE+1),
+						TimeSource.TipMinute,
+						UTCDate.MINUTE_MINVALUE-1,
+						UTCDate.MINUTE_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.TIME_SECOND,
-				                 UTCDate.SECOND_MINVALUE-1,
-				                 UTCDate.SECOND_MAXVALUE+1),
+						TimeSource.TipSecond,
+						UTCDate.SECOND_MINVALUE-1,
+						UTCDate.SECOND_MAXVALUE+1),
 				time_scr},
 				new float[] {20F, 20F, 20F, 30F});
 

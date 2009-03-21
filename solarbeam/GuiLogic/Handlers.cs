@@ -26,7 +26,7 @@ namespace SolarbeamGui
 			if ((pos != null) && (dt != null))
 			{
 				// clear form changes, update cache with new values
-				foreach (Id id in ins_render)
+				foreach (Id id in ins_position)
 				{
 					Control control = registry[id];
 					UnMark(control);
@@ -66,13 +66,13 @@ namespace SolarbeamGui
 		 */
 		private static void ResetForm(object sender, EventArgs args)
 		{
-			foreach (Id id in ins_render)
+			foreach (Id id in ins_position)
 			{
 				Control control = registry[id];
 				SetValue(control, cache[id]);
 				UnMark(control);
 			}
-			foreach (Id id in ins_update)
+			foreach (Id id in ins_timedate)
 			{
 				Control control = registry[id];
 				UnMark(control);

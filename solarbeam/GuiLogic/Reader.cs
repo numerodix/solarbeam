@@ -38,7 +38,7 @@ namespace SolarbeamGui
 				                   lodir,
 				                   lodeg, lomin, losec);
 			} catch (ArgumentException) {
-				foreach (Id id in ins_render)
+				foreach (Id id in ins_position)
 				{
 					MarkError(registry[id]);
 				}
@@ -66,7 +66,7 @@ namespace SolarbeamGui
 				                    hour, min, sec, DateTimeKind.Local);
 				udt = Controller.TimezoneSource.ApplyZone(tz_name, date.Value);
 			} catch (ArgumentException) {
-				foreach (Id id in ins_update)
+				foreach (Id id in ins_timedate)
 				{
 					MarkError(registry[id]);
 				}

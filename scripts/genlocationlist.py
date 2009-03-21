@@ -133,6 +133,7 @@ class Location(object):
         uname = string.replace(uname, "ad-Dammam", "Damman")
         uname = string.replace(uname, "ad-Diwaniyah", "Ad Diwaniyah")
         uname = string.replace(uname, "ad-Du'ayn", "Ad Du'ayn")
+        uname = string.replace(uname, "al-", "Al 'Aziziyah")
         uname = string.replace(uname, "al-'Ayun", "El Aaiun")
         uname = string.replace(uname, "al-'Ayn", "Al Ain")
         uname = string.replace(uname, "al-'Amarah", "Amarah")

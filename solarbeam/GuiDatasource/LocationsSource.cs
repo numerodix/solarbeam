@@ -62,5 +62,11 @@ namespace SolarbeamGui
 		
 		public List<string> Locations
 		{ get { return locations_list; } }
+		
+		public string Tip
+		{ get { return "Select an existing location or enter a new one"; } }
+		
+		public static string TipTitle
+		{ get { return "Location"; } }
 	}	
 }

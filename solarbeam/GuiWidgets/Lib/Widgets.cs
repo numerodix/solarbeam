@@ -61,7 +61,8 @@ namespace SolarbeamGui
 			return textbox;
 		}
 		
-		public static ComboBox GetComboBox(Controller.Id id, List<string> ss)
+		public static ComboBox GetComboBox(Controller.Id id, string tip,
+		                                   List<string> ss)
 		{
 			ComboBox combo = new ComboBox();
 			foreach (string s in ss) {
@@ -70,25 +71,27 @@ namespace SolarbeamGui
 			combo.DropDownStyle = ComboBoxStyle.DropDownList;
 			combo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 			combo.DropDownHeight = 180;
-			Controller.RegisterControl(id, combo);	// register control
+			Controller.RegisterControl(id, tip, combo);	// register control
 			return combo;
 		}
 		
-		public static ComboBox GetComboBoxInputable(Controller.Id id, List<string> ss)
+		public static ComboBox GetComboBoxInputable(Controller.Id id, string tip, 
+		                                            List<string> ss)
 		{
-			ComboBox combo = GetComboBox(id, ss);
+			ComboBox combo = GetComboBox(id, tip, ss);
 			combo.DropDownStyle = ComboBoxStyle.DropDown;
 			combo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 			combo.AutoCompleteSource = AutoCompleteSource.ListItems;
 			return combo;
 		}
 		
-		public static NumericUpDown GetNumericUpDown(Controller.Id id, int min, int max)
+		public static NumericUpDown GetNumericUpDown(Controller.Id id, string tip,
+		                                             int min, int max)
 		{
 			NumericUpDown num = new NumericUpDown();
 			num.Minimum = min;
 			num.Maximum = max;
-			Controller.RegisterControl(id, num);	// register control
+			Controller.RegisterControl(id, tip, num);	// register control
 			return num;
 		}
 		
@@ -102,6 +105,14 @@ namespace SolarbeamGui
 			layout.Padding = new Padding(padding);
 			layout.Margin = new Padding(margin);
 			return layout;
+		}
+		
+		public static ToolTip GetToolTip(string title)
+		{
+			ToolTip tooltip = new ToolTip();
+			tooltip.ToolTipTitle = title;
+			tooltip.ToolTipIcon = ToolTipIcon.Info;
+			return tooltip;
 		}
 	}
 }

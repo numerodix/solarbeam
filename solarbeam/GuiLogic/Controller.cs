@@ -55,7 +55,7 @@ namespace SolarbeamGui
 		}
 		
 		// inputs whose updates force a complete re-rendering
-		private static StaticList<Id> ins_render = new StaticList<Id>(new Id[] {
+		private static StaticList<Id> ins_position = new StaticList<Id>(new Id[] {
 			Id.LOCATION,
 			Id.LATITUDE_DEGS, Id.LATITUDE_MINS, Id.LATITUDE_SECS, Id.LATITUDE_DIRECTION,
 			Id.LONGITUDE_DEGS, Id.LONGITUDE_MINS, Id.LONGITUDE_SECS, Id.LONGITUDE_DIRECTION,
@@ -63,7 +63,7 @@ namespace SolarbeamGui
 		});
 		
 		// inputs whose updates trigger a plot update without re-rendering
-		private static StaticList<Id> ins_update = new StaticList<Id>(new Id[] {
+		private static StaticList<Id> ins_timedate = new StaticList<Id>(new Id[] {
 			Id.DATE_DAY, Id.DATE_MONTH, Id.DATE_YEAR,
 			Id.TIME_HOUR, Id.TIME_MINUTE, Id.TIME_SECOND
 		});
@@ -78,6 +78,11 @@ namespace SolarbeamGui
 			Id.LONGITUDE_DEGS, Id.LONGITUDE_MINS, Id.LONGITUDE_SECS
 		});
 	
+		// timezone inputs
+		private static StaticList<Id> ins_timezone = new StaticList<Id>(new Id[] {
+			Id.TIMEZONE_OFFSET, Id.TIMEZONE_NAME
+		});
+	
 		// date inputs
 		private static StaticList<Id> ins_date = new StaticList<Id>(new Id[] {
 			Id.DATE_DAY, Id.DATE_MONTH, Id.DATE_YEAR
@@ -88,6 +93,7 @@ namespace SolarbeamGui
 			Id.TIME_HOUR, Id.TIME_MINUTE, Id.TIME_SECOND
 		});
 	
+
 		// the registry maps control identifiers onto widget objects
 		private static Dictionary<Id, Control> registry =
 			new Dictionary<Id, Control>();
@@ -95,22 +101,67 @@ namespace SolarbeamGui
 		private static Dictionary<Control, Id> reg_rev =
 			new Dictionary<Control, Id>();
 		
+
+		// the cache stores the value of a control when submission occurs
+		// when a value change is detectedo on the widget, we can tell if the
+		// value really has changed
 		private static Dictionary<Id, string> cache =
 			new Dictionary<Id, string>();
 		
+		// map controls onto tooltip objects for tooltip clustering
+		private static Dictionary<Id,ToolTip> tooltips;
+		
 
+		// central access to widget source providers
 		public static LocationsSource LocationsSource;
 		public static PositionSource PositionSource;
 		public static TimezoneSource TimezoneSource;
 								
+		// reference point for assembly queries
 		public static AsmInfo AsmInfo;
 		
 
 		static Controller()
 		{
 			Controller.AsmInfo = new AsmInfo(Assembly.GetExecutingAssembly());
+
+			InitTooltips();
 		}
-							
+								
+		/**
+		 * Initialize tooltips objects for groups of widgets.
+		 */
+		private static void InitTooltips()
+		{
+			tooltips = new Dictionary<Id,ToolTip>();
+
+			tooltips.Add(Id.LOCATION, Widgets.GetToolTip(LocationsSource.TipTitle));
+			
+			ToolTip ttlat = Widgets.GetToolTip(PositionSource.LatTipTitle);
+			foreach (Id id in ins_latitude) {
+				tooltips.Add(id, ttlat);
+			}
+			ToolTip ttlon = Widgets.GetToolTip(PositionSource.LonTipTitle);
+			foreach (Id id in ins_longitude) {
+				tooltips.Add(id, ttlon);
+			}
+			ToolTip tttz = Widgets.GetToolTip(TimezoneSource.TipTitle);
+			foreach (Id id in ins_timezone) {
+				tooltips.Add(id, tttz);
+			}
+			ToolTip ttdt = Widgets.GetToolTip(DateSource.TipTitle);
+			foreach (Id id in ins_date) {
+				tooltips.Add(id, ttdt);
+			}
+			ToolTip tttm = Widgets.GetToolTip(TimeSource.TipTitle);
+			foreach (Id id in ins_time) {
+				tooltips.Add(id, tttm);
+			}
+		}
+									
+		/**
+		 * Initialize data sources, potentially expensive.
+		 */
 		public static void InitSources()
 		{
 			if (LocationsSource == null) {
@@ -123,8 +174,13 @@ namespace SolarbeamGui
 				TimezoneSource = new TimezoneSource();
 			}
 		}
-		
+
 		public static void RegisterControl(Id id, Control control)
+		{
+			RegisterControl(id, null, control);
+		}
+		
+		public static void RegisterControl(Id id, string tip, Control control)
 		{
 			// register in registry
 			registry.Add(id, control);
@@ -141,23 +197,29 @@ namespace SolarbeamGui
 			control.LostFocus += new EventHandler(LostFocus);
 			
 			// validate all inputs before dispatching handler acting on new value
-			if (ins_render.Contains(id) || ins_update.Contains(id)) {
+			if (ins_position.Contains(id) || ins_timedate.Contains(id)) {
 				EventHandler handler = new EventHandler(Validate);
 				RegisterValueChange(control, handler);
 			}
 	
 			// register re-rendering inputs for value changes
-			if (ins_render.Contains(id)) {
+			if (ins_position.Contains(id)) {
 				EventHandler handler = new EventHandler(ValueChange);
 				RegisterValueChange(control, handler);
 			}
 			
 			// register updating inputs for value changes
-			if (ins_update.Contains(id)) {
+			if (ins_timedate.Contains(id)) {
 				EventHandler handler = new EventHandler(UpdateViewport);
 				RegisterValueChange(control, handler);
 			}
-									
+			
+			// activate tooltip
+			if (tip != null) {
+				Console.WriteLine("{0}  {1}", tip, id);
+				tooltips[id].SetToolTip(control, tip);
+			}
+		
 			// set initial value (make sure to disable validation)
 			InitControl(control);
 		}
