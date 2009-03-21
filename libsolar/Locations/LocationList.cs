@@ -26,6 +26,11 @@ namespace LibSolar.Locations
 			locations.Add(name, loc);
 		}
 		
+		public void Remove(string name)
+		{
+			locations.Remove(name);
+		}
+		
 		public Location Get(string name)
 		{
 			return locations[name];

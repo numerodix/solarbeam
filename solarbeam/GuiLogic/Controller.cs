@@ -42,7 +42,7 @@ namespace SolarbeamGui
 			TIME_HOUR,
 			TIME_MINUTE,
 			TIME_SECOND,
-			CLEARFORM_ACTION,
+			RESETFORM_ACTION,
 			RENDER_ACTION,
 			ELEVATION,
 			AZIMUTH,
@@ -163,9 +163,11 @@ namespace SolarbeamGui
 		
 		private static void ActivateButton(Button button)
 		{
-			if (reg_rev[button] == Id.CLEARFORM_ACTION) {
-				button.Click += new EventHandler(ClearForm);
-			}	else if (reg_rev[button] == Id.RENDER_ACTION) {
+			if (reg_rev[button] == Id.LOCATIONDELETE_ACTION) {
+				button.Click += new EventHandler(DeleteLocation);
+			} else if (reg_rev[button] == Id.RESETFORM_ACTION) {
+				button.Click += new EventHandler(ResetForm);
+			} else if (reg_rev[button] == Id.RENDER_ACTION) {
 				button.Click += new EventHandler(RenderViewport);
 			}
 		}

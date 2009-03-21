@@ -64,7 +64,7 @@ namespace SolarbeamGui
 		/**
 		 * Clear updates to controls that force viewport re-rendering.
 		 */
-		private static void ClearForm(object sender, EventArgs args)
+		private static void ResetForm(object sender, EventArgs args)
 		{
 			foreach (Id id in ins_render)
 			{
@@ -77,6 +77,19 @@ namespace SolarbeamGui
 				Control control = registry[id];
 				UnMark(control);
 			}
+		}
+		
+		private static void DeleteLocation(object sender, EventArgs args)
+		{
+			ComboBox control = (ComboBox) registry[Id.LOCATION];
+			string val = GetValue(control);
+			int idx = control.SelectedIndex;
+			
+			control.Items.RemoveAt(idx);
+			LocationsSource.RemoveLocation(val);
+			
+			idx = Math.Max(0, idx - 1);
+			control.SelectedIndex = idx;
 		}
 		
 		/**

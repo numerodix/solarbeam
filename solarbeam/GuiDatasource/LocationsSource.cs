@@ -55,6 +55,11 @@ namespace SolarbeamGui
 			return list.Get(name);
 		}
 		
+		public void RemoveLocation(string name)
+		{
+			list.Remove(name);
+		}
+		
 		public List<string> Locations
 		{ get { return locations_list; } }
 	}	

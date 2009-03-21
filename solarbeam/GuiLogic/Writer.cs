@@ -25,7 +25,11 @@ namespace SolarbeamGui
 		
 		private static void SetLocation(string location)
 		{
-			SetValue(registry[Id.LOCATION], location);
+			ComboBox control = (ComboBox) registry[Id.LOCATION];
+			// only set name if it's on the list
+			if (control.Items.Contains(location)) {
+				SetValue(control, location);
+			}
 		}
 		
 		private static void SetPosition(Position pos)
