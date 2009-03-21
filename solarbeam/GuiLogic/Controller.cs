@@ -135,25 +135,25 @@ namespace SolarbeamGui
 		{
 			tooltips = new Dictionary<Id,ToolTip>();
 
-			tooltips.Add(Id.LOCATION, Widgets.GetToolTip(LocationsSource.TipTitle));
+			tooltips.Add(Id.LOCATION, Widgets.GetToolTip(Tooltips.LocTipTitle));
 			
-			ToolTip ttlat = Widgets.GetToolTip(PositionSource.LatTipTitle);
+			ToolTip ttlat = Widgets.GetToolTip(Tooltips.LatTipTitle);
 			foreach (Id id in ins_latitude) {
 				tooltips.Add(id, ttlat);
 			}
-			ToolTip ttlon = Widgets.GetToolTip(PositionSource.LonTipTitle);
+			ToolTip ttlon = Widgets.GetToolTip(Tooltips.LonTipTitle);
 			foreach (Id id in ins_longitude) {
 				tooltips.Add(id, ttlon);
 			}
-			ToolTip tttz = Widgets.GetToolTip(TimezoneSource.TipTitle);
+			ToolTip tttz = Widgets.GetToolTip(Tooltips.TzTipTitle);
 			foreach (Id id in ins_timezone) {
 				tooltips.Add(id, tttz);
 			}
-			ToolTip ttdt = Widgets.GetToolTip(DateSource.TipTitle);
+			ToolTip ttdt = Widgets.GetToolTip(Tooltips.DateTipTitle);
 			foreach (Id id in ins_date) {
 				tooltips.Add(id, ttdt);
 			}
-			ToolTip tttm = Widgets.GetToolTip(TimeSource.TipTitle);
+			ToolTip tttm = Widgets.GetToolTip(Tooltips.TimeTipTitle);
 			foreach (Id id in ins_time) {
 				tooltips.Add(id, tttm);
 			}
@@ -216,7 +216,6 @@ namespace SolarbeamGui
 			
 			// activate tooltip
 			if (tip != null) {
-				Console.WriteLine("{0}  {1}", tip, id);
 				tooltips[id].SetToolTip(control, tip);
 			}
 		

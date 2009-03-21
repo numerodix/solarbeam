@@ -49,8 +49,7 @@
     <Compile Include="GuiDatasource\PositionSource.cs" />
     <Compile Include="GuiDatasource\LocationsSource.cs" />
     <Compile Include="GuiWidgets\GuiMenu.cs" />
-    <Compile Include="GuiDatasource\TimeSource.cs" />
-    <Compile Include="GuiDatasource\DateSource.cs" />
+    <Compile Include="GuiWidgets\Tooltips.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

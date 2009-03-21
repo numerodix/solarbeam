@@ -122,14 +122,5 @@ namespace SolarbeamGui
 		{
 			return zones[offset];
 		}
-		
-		public static string TipTitle
-		{ get { return "Timezone"; } }
-		
-		public static string TipOffset
-		{ get { return "Select the UTC offset your timezone is located in"; } }
-		
-		public static string TipZone
-		{ get { return "Select your timezone by name"; } }
 	}
 }

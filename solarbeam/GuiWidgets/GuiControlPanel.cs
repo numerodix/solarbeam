@@ -159,7 +159,7 @@ namespace SolarbeamGui
 				new Control[] {
 					Widgets.GetComboBoxInputable(
 						Controller.Id.LOCATION,
-				        Controller.LocationsSource.Tip,                     
+						Tooltips.LocTip,
 						Controller.LocationsSource.Locations)},
 				new float[] {100F});
 	
@@ -171,15 +171,15 @@ namespace SolarbeamGui
 			Control lat_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_DEGS,
-						PositionSource.TipLatDegree,
+						Tooltips.LatTipDegree,
 						Position.LATDEGS_MINVALUE-1,
 						Position.LATDEGS_MAXVALUE),
 					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_MINS,
-						PositionSource.TipLatMinute,
+						Tooltips.LatTipMinute,
 						Position.LATMINS_MINVALUE-1,
 						Position.LATMINS_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_SECS,
-						PositionSource.TipLatSecond,
+						Tooltips.LatTipSecond,
 						Position.LATSECS_MINVALUE-1,
 						Position.LATSECS_MAXVALUE+1),
 				lat_dir},
@@ -193,15 +193,15 @@ namespace SolarbeamGui
 			Control lon_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_DEGS,
-						PositionSource.TipLonDegree,
+						Tooltips.LonTipDegree,
 						Position.LONDEGS_MINVALUE-1,
 						Position.LONDEGS_MAXVALUE),
 					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_MINS,
-						PositionSource.TipLonMinute,
+						Tooltips.LonTipMinute,
 						Position.LONMINS_MINVALUE-1,
 						Position.LONMINS_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_SECS,
-						PositionSource.TipLonSecond,
+				        Tooltips.LonTipSecond,
 						Position.LONSECS_MINVALUE-1,
 						Position.LONSECS_MAXVALUE+1),
 				lon_dir},
@@ -211,10 +211,10 @@ namespace SolarbeamGui
 			Control tz_in = Widgets.GetLaidOut(
 				new Control[] {
 				Widgets.GetComboBox(Controller.Id.TIMEZONE_OFFSET,
-					TimezoneSource.TipOffset,
+					Tooltips.TzTipOffset,
 					Controller.TimezoneSource.Offsets),
 				Widgets.GetComboBox(Controller.Id.TIMEZONE_NAME,
-					TimezoneSource.TipZone,
+					Tooltips.TzTipZone,
 					Controller.TimezoneSource.GetTimezones(
 						Controller.TimezoneSource.Offsets[0]))
 					},
@@ -225,15 +225,15 @@ namespace SolarbeamGui
 			Control date_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.DATE_DAY,
-						DateSource.TipDay,
+						Tooltips.DateTipDay,
 						UTCDate.DAY_MINVALUE-1,
 						UTCDate.DAY_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.DATE_MONTH,
-						DateSource.TipMonth,
+						Tooltips.DateTipMonth,
 						UTCDate.MONTH_MINVALUE-1,
 						UTCDate.MONTH_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.DATE_YEAR,
-						DateSource.TipYear,
+						Tooltips.DateTipTitle,
 						UTCDate.YEAR_MINVALUE,
 						UTCDate.YEAR_MAXVALUE),
 				date_scr},
@@ -244,15 +244,15 @@ namespace SolarbeamGui
 			Control time_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.TIME_HOUR,
-						TimeSource.TipHour,
+						Tooltips.TimeTipHour,
 						UTCDate.HOUR_MINVALUE-1,
 						UTCDate.HOUR_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.TIME_MINUTE,
-						TimeSource.TipMinute,
+						Tooltips.TimeTipMinute,
 						UTCDate.MINUTE_MINVALUE-1,
 						UTCDate.MINUTE_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.TIME_SECOND,
-						TimeSource.TipSecond,
+						Tooltips.TimeTipSecond,
 						UTCDate.SECOND_MINVALUE-1,
 						UTCDate.SECOND_MAXVALUE+1),
 				time_scr},
