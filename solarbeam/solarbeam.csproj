@@ -51,6 +51,7 @@
     <Compile Include="GuiWidgets\GuiMenu.cs" />
     <Compile Include="GuiWidgets\Tooltips.cs" />
     <Compile Include="GuiLogic\Sessions.cs" />
+    <Compile Include="GuiWidgets\GuiToolbar.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
