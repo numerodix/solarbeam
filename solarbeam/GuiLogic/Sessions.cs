@@ -19,7 +19,7 @@ namespace SolarbeamGui
 			// enumerating (wtf?)
 			Dictionary<Id,string> dict = new Dictionary<Id,string>();
 			
-			// flush all widget values to cache
+			// flush all widget values to dict
 			foreach (KeyValuePair<Id,string> pair in cache) {
 				Id id = pair.Key;
 				string val = GetValue(registry[id]);

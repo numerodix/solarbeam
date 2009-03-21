@@ -4,9 +4,7 @@
 // <desc> Draw solar diagrams </desc>
 
 using System;
-using System.Drawing;
 using System.Diagnostics;
-using System.Reflection;
 using System.Windows.Forms;
 
 using LibSolar.Assemblies;
