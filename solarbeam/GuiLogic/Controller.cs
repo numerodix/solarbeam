@@ -103,10 +103,10 @@ namespace SolarbeamGui
 		
 
 		// the cache stores the value of a control when submission occurs
-		// when a value change is detectedo on the widget, we can tell if the
+		// when a value change is detected on the widget, we can tell if the
 		// value really has changed
-		private static Dictionary<Id, string> cache =
-			new Dictionary<Id, string>();
+		private static Dictionary<Id,string> cache =
+			new Dictionary<Id,string>();
 		
 		// map controls onto tooltip objects for tooltip clustering
 		private static Dictionary<Id,ToolTip> tooltips;
@@ -127,7 +127,7 @@ namespace SolarbeamGui
 
 			InitTooltips();
 		}
-								
+
 		/**
 		 * Initialize tooltips objects for groups of widgets.
 		 */
@@ -244,54 +244,5 @@ namespace SolarbeamGui
 				((TextBox) control).TextChanged += handler;
 			}
 		}
-	
-		// **************************************************************
-	
-		private static List<string> Save()
-		{
-			List<string> dict_s = new List<string> ();
-			foreach (KeyValuePair<Id, Control> pair in registry)
-			{
-				dict_s.Add(pair.Key.ToString());
-				dict_s.Add(pair.Value.Text);
-			}
-			return dict_s;
-		}
-	/*
-		public static void Load(Dictionary<string, string> dict_s)
-		{
-			foreach (KeyValuePair<string, Control> pair in registry)
-			{
-				if (dict_s.ContainsKey(pair.Key))
-				{
-					registry[pair.Key].Text = dict_s[pair.Key];
-				}
-			}
-		}
-	*/
-		private static void Serialize()
-		{
-			List<string> dict_s = Save();
-			
-			XmlSerializer ser = new XmlSerializer(dict_s.GetType());
-			System.Text.StringBuilder sb = new System.Text.StringBuilder();
-			System.IO.StringWriter writer = new System.IO.StringWriter(sb);
-			ser.Serialize(writer, dict_s);
-	//		XmlDocument doc = new XmlDocument();
-	//		doc.LoadXml(sb.ToString());
-			string s = sb.ToString();
-			Console.WriteLine(s);
-	/*		
-	//		XmlNodeReader reader = new XmlNodeReader(doc.DocumentElement);
-	//		XmlSerializer ser = new XmlSerializer(objType);
-			object obj = ser.Deserialize(new StringReader(s));
-			// Then you just need to cast obj into whatever type it is eg:
-			List<string> dict_s_restored = (List<string>)obj;
-			
-			foreach (string sr in dict_s_restored)
-			{
-				Console.WriteLine(sr);
-			}
-	*/	}
 	}	
 }

@@ -120,6 +120,9 @@ namespace LibSolar.Locations
 			list.Add("Akyab (Mya)", "Asia/Rangoon",
 				new Position(PositionDirection.North, 20, 8, 24,
 					PositionDirection.East, 92, 53, 24));
+			list.Add("Al 'Aziziyah (Lib)", "Africa/Tripoli",
+				new Position(PositionDirection.North, 32, 31, 48,
+					PositionDirection.East, 13, 1, 12));
 			list.Add("Al Ain (UAE)", "Asia/Dubai",
 				new Position(PositionDirection.North, 24, 13, 48,
 					PositionDirection.East, 55, 44, 24));
@@ -1620,15 +1623,15 @@ namespace LibSolar.Locations
 			list.Add("Elazig (Tur)", "Asia/Istanbul",
 				new Position(PositionDirection.North, 38, 40, 48,
 					PositionDirection.East, 39, 13, 48));
+			list.Add("Elche (Spa)", "Europe/Madrid",
+				new Position(PositionDirection.North, 38, 16, 12,
+					PositionDirection.West, 0, 40, 48));
 			list.Add("Eldoret (Ken)", "Africa/Nairobi",
 				new Position(PositionDirection.North, 0, 31, 12,
 					PositionDirection.East, 35, 16, 12));
 			list.Add("Eloy Alfaro (Ecu)", "America/Guayaquil",
 				new Position(PositionDirection.South, 2, 10, 12,
 					PositionDirection.West, 79, 49, 48));
-			list.Add("Elx (Spa)", "Europe/Madrid",
-				new Position(PositionDirection.North, 38, 16, 12,
-					PositionDirection.West, 0, 40, 48));
 			list.Add("Emalahleni (SA)", "Africa/Johannesburg",
 				new Position(PositionDirection.South, 25, 51, 36,
 					PositionDirection.East, 29, 13, 12));
@@ -1953,7 +1956,7 @@ namespace LibSolar.Locations
 			list.Add("Haeju (NKo)", "Asia/Pyongyang",
 				new Position(PositionDirection.North, 38, 2, 24,
 					PositionDirection.East, 125, 42, 36));
-			list.Add("Hafar al-Batin (Sau)", "Asia/Riyadh",
+			list.Add("Hafar Al 'AziziyahBatin (Sau)", "Asia/Riyadh",
 				new Position(PositionDirection.North, 28, 25, 48,
 					PositionDirection.East, 45, 57, 36));
 			list.Add("Hagen (Ger)", "Europe/Berlin",
@@ -6087,9 +6090,6 @@ namespace LibSolar.Locations
 			list.Add("Zuwarah (Lib)", "Africa/Tripoli",
 				new Position(PositionDirection.North, 32, 57, 0,
 					PositionDirection.East, 12, 5, 24));
-			list.Add("al- (Lib)", "Africa/Tripoli",
-				new Position(PositionDirection.North, 32, 31, 48,
-					PositionDirection.East, 13, 1, 12));
 			return list;
 		}
 	}

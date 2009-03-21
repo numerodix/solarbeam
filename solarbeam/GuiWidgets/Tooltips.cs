@@ -75,7 +75,7 @@ namespace SolarbeamGui
 		{ get { return "Timezone"; } }
 		
 		public static string TimezoneOffset
-		{ get { return "Select the UTC offset your timezone is located in"; } }
+		{ get { return "Select the UTC offset your timezone is in"; } }
 		
 		public static string TimezoneZone
 		{ get { return "Select your timezone by name"; } }

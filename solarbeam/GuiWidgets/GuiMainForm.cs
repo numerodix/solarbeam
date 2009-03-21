@@ -66,12 +66,23 @@ namespace SolarbeamGui
 			layout.Controls.Add(mainarea, 0, 1);
 			
 			this.Controls.Add(layout);
+			
+			this.Closed += new EventHandler(Quit);
+		}
+			
+		private void Quit(object o, EventArgs a)
+		{
+			Controller.SaveSession();
 		}
 		
 		private Control GetMainArea()
 		{
 			this.controlpanel = new GuiControlPanel();
-			Controller.InitForm(); // fill in initial form values
+			
+			// TODO handle exception
+			//Controller.InitForm(); // fill in initial form values
+			Controller.LoadSession();
+			
 			this.viewport = new GuiViewport(this);
 		
 			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(1, 2, 0, BORDER);

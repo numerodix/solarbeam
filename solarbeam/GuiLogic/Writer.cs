@@ -92,17 +92,12 @@ namespace SolarbeamGui
 	
 		public static void SetValue(Control control, object val)
 		{
-			//Console.WriteLine("Set {0} : {1}", reg_rev[control], val);
 			if (control is ComboBox) {
 				((ComboBox) control).Text = (string) val;
 			} else if (control is NumericUpDown) {
 				((NumericUpDown) control).Value = GetInt(val);
 			} else if (control is TextBox) {
 				((TextBox) control).Text = (string) val;
-			} else {
-				throw new ArgumentException(string.Format(
-					"Cannot set value to unknown control: {0}", 
-					control.GetType().ToString()));
 			}
 		}
 		

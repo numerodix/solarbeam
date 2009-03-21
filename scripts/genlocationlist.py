@@ -133,7 +133,6 @@ class Location(object):
         uname = string.replace(uname, "ad-Dammam", "Damman")
         uname = string.replace(uname, "ad-Diwaniyah", "Ad Diwaniyah")
         uname = string.replace(uname, "ad-Du'ayn", "Ad Du'ayn")
-        uname = string.replace(uname, "al-", "Al 'Aziziyah")
         uname = string.replace(uname, "al-'Ayun", "El Aaiun")
         uname = string.replace(uname, "al-'Ayn", "Al Ain")
         uname = string.replace(uname, "al-'Amarah", "Amarah")
@@ -188,6 +187,9 @@ class Location(object):
         uname = string.replace(uname, "Taibei", "Taipei")
         uname = string.replace(uname, "Ta'izz", "Taiz")
         uname = string.replace(uname, "Ulaanbaatar", "Ulan Bator")
+
+        # do this last to prevent overwriting all common prefixes
+        uname = string.replace(uname, "al-", "Al 'Aziziyah")
 
         try:
             name = string.strip(uname.encode("ascii", "strict"))
