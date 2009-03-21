@@ -166,6 +166,7 @@ class Location(object):
         uname = string.replace(uname, "az-Zawiyah", "Az Zawiyah")
         uname = string.replace(uname, "Bayrut", "Beirut")
         uname = string.replace(uname, "Dnipropetrovs'k", "Dnipropetrovsk")
+        uname = string.replace(uname, "Elx", "Elche")
         uname = string.replace(uname, "Fes", "Fez")
         uname = string.replace(uname, "Fredrikstad-Sarpsborg", "Fredrikstad")
         uname = string.replace(uname, "Gazzah", "Gaza")
