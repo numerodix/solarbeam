@@ -2,6 +2,7 @@
 // Licensed under the GNU Public License, version 3.
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -69,20 +70,34 @@ namespace SolarbeamGui
 			Controller.RegisterControl(id, textbox);	// register control
 			return textbox;
 		}
-
+		
 		public static ComboBox GetComboBox(Controller.Id id, string[] ss)
 		{
 			ComboBox combo = new ComboBox();
 			combo.DropDownStyle = ComboBoxStyle.DropDownList;
-			combo.Items.AddRange(ss);
+			foreach (string s in ss) {
+				combo.Items.Add(s);
+			}
+			combo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+			Controller.RegisterControl(id, combo);	// register control
+			return combo;
+		}
+
+		public static ComboBox GetComboBoxList(Controller.Id id, List<string> ss)
+		{
+			ComboBox combo = new ComboBox();
+			combo.DropDownStyle = ComboBoxStyle.DropDownList;
+			foreach (string s in ss) {
+				combo.Items.Add(s);
+			}
 			combo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 			Controller.RegisterControl(id, combo);	// register control
 			return combo;
 		}
 			
-		public static ComboBox GetComboBoxInputable(Controller.Id id, string[] ss)
+		public static ComboBox GetComboBoxInputable(Controller.Id id, List<string> ss)
 		{
-			ComboBox combo = GetComboBox(id, ss);
+			ComboBox combo = GetComboBoxList(id, ss);
 			combo.DropDownStyle = ComboBoxStyle.DropDown;
 			combo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 			combo.AutoCompleteSource = AutoCompleteSource.ListItems;

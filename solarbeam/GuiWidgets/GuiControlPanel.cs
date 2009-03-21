@@ -169,7 +169,7 @@ namespace SolarbeamGui
 				new float[] {74F, 12F, 12F});
 	
 			Label lat_lbl = Widgets.GetLabel("Latitude:");
-			ComboBox lat_dir = Widgets.GetComboBox(
+			ComboBox lat_dir = Widgets.GetComboBoxList(
 				Controller.Id.LATITUDE_DIRECTION,
 				Controller.PositionSource.LatitudeDirections);
 			Control lat_ins = Widgets.GetLaidOut(
@@ -187,7 +187,7 @@ namespace SolarbeamGui
 				new float[] {27F, 23F, 23F, 30F});
 			
 			Label lon_lbl = Widgets.GetLabel("Longitude:");
-			ComboBox lon_dir = Widgets.GetComboBox(
+			ComboBox lon_dir = Widgets.GetComboBoxList(
 				Controller.Id.LONGITUDE_DIRECTION,
 				Controller.PositionSource.LongitudeDirections);
 			Control lon_ins = Widgets.GetLaidOut(

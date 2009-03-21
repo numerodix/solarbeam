@@ -12,7 +12,7 @@ namespace SolarbeamGui
 {
 	class LocationsSource
 	{
-		private string[] locations_array;
+		private List<string> locations_list;
 		private LocationList list;
 		private string file = "locations.bin";
 		
@@ -31,7 +31,7 @@ namespace SolarbeamGui
 			}
 			keylist.Sort();
 			
-			locations_array = keylist.ToArray();
+			locations_list = keylist;
 		}
 		
 		// serialize list in finalizer
@@ -55,7 +55,7 @@ namespace SolarbeamGui
 			return list.Get(name);
 		}
 		
-		public string[] Locations
-		{ get { return locations_array; } }
+		public List<string> Locations
+		{ get { return locations_list; } }
 	}	
 }
