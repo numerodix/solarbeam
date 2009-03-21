@@ -11,32 +11,32 @@ namespace SolarbeamGui
 	{
 		// Location
 		
-		public static string LocTipTitle
+		public static string LocationTitle
 		{ get { return "Location"; } }
 		
-		public static string LocTip
+		public static string Location
 		{ get { return "Select an existing location or enter a new one"; } }
 		
 		// Latitude
 		
-		public static string LatTipTitle
+		public static string LatitudeTitle
 		{ get { return "Latitude"; } }
 		
-		public static string LatTipDegree
+		public static string LatitudeDegree
 		{ get { return String.Format(
 					"Enter the number of degrees latitude ({0}-{1})",
 					Position.LATDEGS_MINVALUE,
 					Position.LATDEGS_MAXVALUE);
 		} }
 
-		public static string LatTipMinute
+		public static string LatitudeMinute
 		{ get { return String.Format(
 					"Enter the number of minutes latitude ({0}-{1})",
 					Position.LATMINS_MINVALUE,
 					Position.LATMINS_MAXVALUE);
 		} }
 
-		public static string LatTipSecond
+		public static string LatitudeSecond
 		{ get { return String.Format(
 					"Enter the number of seconds latitude ({0}-{1})",
 					Position.LATSECS_MINVALUE,
@@ -45,24 +45,24 @@ namespace SolarbeamGui
 
 		// Longitude
 		
-		public static string LonTipTitle
+		public static string LongitudeTitle
 		{ get { return "Longitude"; } }
 
-		public static string LonTipDegree
+		public static string LongitudeDegree
 		{ get { return String.Format(
 					"Enter the number of degrees longitude ({0}-{1})",
 					Position.LONDEGS_MINVALUE,
 					Position.LONDEGS_MAXVALUE);
 		} }
 
-		public static string LonTipMinute
+		public static string LongitudeMinute
 		{ get { return String.Format(
 					"Enter the number of minutes longitude ({0}-{1})",
 					Position.LONMINS_MINVALUE,
 					Position.LONMINS_MAXVALUE);
 		} }
 
-		public static string LonTipSecond
+		public static string LongitudeSecond
 		{ get { return String.Format(
 					"Enter the number of seconds longitude ({0}-{1})",
 					Position.LONSECS_MINVALUE,
@@ -71,35 +71,35 @@ namespace SolarbeamGui
 		
 		// Timezone
 		
-		public static string TzTipTitle
+		public static string TimezoneTitle
 		{ get { return "Timezone"; } }
 		
-		public static string TzTipOffset
+		public static string TimezoneOffset
 		{ get { return "Select the UTC offset your timezone is located in"; } }
 		
-		public static string TzTipZone
+		public static string TimezoneZone
 		{ get { return "Select your timezone by name"; } }
 		
 		// Date
 		
-		public static string DateTipTitle
+		public static string DateTitle
 		{ get { return "Date"; } }
 
-		public static string DateTipDay
+		public static string DateDay
 		{ get { return String.Format(
 					"Enter the day of the month ({0}-{1})",
 					UTCDate.DAY_MINVALUE,
 					UTCDate.DAY_MAXVALUE);
 		} }
 
-		public static string DateTipMonth
+		public static string DateMonth
 		{ get { return String.Format(
 					"Enter the month of the year ({0}-{1})",
 					UTCDate.MONTH_MINVALUE,
 					UTCDate.MONTH_MAXVALUE);
 		} }
 
-		public static string DateTipYear
+		public static string DateYear
 		{ get { return String.Format(
 					"Enter the year ({0}-{1})",
 					UTCDate.YEAR_MINVALUE,
@@ -108,24 +108,24 @@ namespace SolarbeamGui
 		
 		// Time
 		
-		public static string TimeTipTitle
+		public static string TimeTitle
 		{ get { return "Time"; } }
 
-		public static string TimeTipHour
+		public static string TimeHour
 		{ get { return String.Format(
 					"Enter the number of hours ({0}-{1})",
 					UTCDate.HOUR_MINVALUE,
 					UTCDate.HOUR_MAXVALUE);
 		} }
 
-		public static string TimeTipMinute
+		public static string TimeMinute
 		{ get { return String.Format(
 					"Enter the number of minutes ({0}-{1})",
 					UTCDate.MINUTE_MINVALUE,
 					UTCDate.MINUTE_MAXVALUE);
 		} }
 
-		public static string TimeTipSecond
+		public static string TimeSecond
 		{ get { return String.Format(
 					"Enter the number of seconds ({0}-{1})",
 					UTCDate.SECOND_MINVALUE,
