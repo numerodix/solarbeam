@@ -145,6 +145,7 @@ class Location(object):
         uname = string.replace(uname, "Fredrikstad-Sarpsborg", "Fredrikstad")
         uname = string.replace(uname, "Gazzah", "Gaza")
         uname = string.replace(uname, "Gizeh", "Giza")
+        uname = string.replace(uname, "Ha Noi", "Hanoi")
         uname = string.replace(uname, "Homjel'", "Homjel")
         uname = string.replace(uname, "Jiddah", "Jeddah")
         uname = string.replace(uname, "L'viv", "Lvov")
@@ -152,6 +153,7 @@ class Location(object):
         uname = string.replace(uname, "Qaragandy", "Karaganda")
         uname = string.replace(uname, "Qostanay", "Kostanay")
         uname = string.replace(uname, "Peking", "Beijing")
+        uname = string.replace(uname, "Phnum Penh", "Phnom Penh")
         uname = string.replace(uname, "Porsgrunn-Skien", "Porsgrunn")
         uname = string.replace(uname, "Pyeongyang", "Pyongyang")
         uname = string.replace(uname, "s-Gravenhage", "Den Haag")
@@ -498,22 +500,6 @@ zones = {
     "Haut-Congo": "Africa/Lubumbashi",
     "Sud-Kivu": "Africa/Lubumbashi",
 
-    # Kazakhstan Regional
-    "Aqtobe (Kaz)": "Asia/Aqtobe",
-    # Kazakhstan East +6
-    "Almaty (Kaz)": "Asia/Almaty",
-    "Astana (Kaz)": "Asia/Almaty",
-    "Karaganda (Kaz)": "Asia/Almaty",
-    "Kostanay (Kaz)": "Asia/Almaty",
-    "Oskemen (Kaz)": "Asia/Almaty",
-    "Pavlodar (Kaz)": "Asia/Almaty",
-    "Petropavl (Kaz)": "Asia/Almaty",
-    "Semey (Kaz)": "Asia/Almaty",
-    "Shymkent (Kaz)": "Asia/Almaty",
-    "Taraz (Kaz)": "Asia/Almaty",
-    # Kazakhstan West +5
-    "Oral (Kaz)": "Asia/Oral",
-
     # Indonesia
     "Banten": "Asia/Jakarta",
     "Bengkulu": "Asia/Jakarta",
@@ -538,11 +524,27 @@ zones = {
     "Sulawesi Tengah": "Asia/Makassar",
     "Sulawesi Tenggara": "Asia/Makassar",
     "Sulawesi Utara": "Asia/Makassar",
-    "Kalimantan Barat": "Asia/Makassar",
+    "Kalimantan Barat": "Asia/Pontianak",
     "Kalimantan Selatan": "Asia/Makassar",
     "Kalimantan Tengah": "Asia/Pontianak",
     "Kalimantan Timur": "Asia/Pontianak",
     "Aceh": "Asia/Pontianak",
+
+    # Kazakhstan Regional
+    "Aqtobe (Kaz)": "Asia/Aqtobe",
+    # Kazakhstan East +6
+    "Almaty (Kaz)": "Asia/Almaty",
+    "Astana (Kaz)": "Asia/Almaty",
+    "Karaganda (Kaz)": "Asia/Almaty",
+    "Kostanay (Kaz)": "Asia/Almaty",
+    "Oskemen (Kaz)": "Asia/Almaty",
+    "Pavlodar (Kaz)": "Asia/Almaty",
+    "Petropavl (Kaz)": "Asia/Almaty",
+    "Semey (Kaz)": "Asia/Almaty",
+    "Shymkent (Kaz)": "Asia/Almaty",
+    "Taraz (Kaz)": "Asia/Almaty",
+    # Kazakhstan West +5
+    "Oral (Kaz)": "Asia/Oral",
 
     # Mexico Central -6
     "Mexico": "America/Mexico_City", # catchall
@@ -715,10 +717,10 @@ def codegen(locs):
 
     pre = "// Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>\n"
     pre += "// Licensed under the GNU Public License, version 3.\n"
-    pre += "//\n// Generated with %s on %s\n" % (sys.argv[0], t_s)
+    pre += "//\n// Generated with %s on %s" % (sys.argv[0], t_s)
     pre += "using LibSolar.Types;\n\n"
     pre += "namespace LibSolar.Locations\n{\n"
-    pre += "\tclass LocationListData\n\t{\n"
+    pre += "\tpublic class LocationListData\n\t{\n"
     pre += "\t\tpublic static LocationList GetStandardList()\n\t\t{\n"
     pre += "\t\t\tLocationList list = new LocationList();\n"
 
@@ -740,7 +742,7 @@ if __name__ == "__main__":
     try:
         datafile = sys.argv[1]
     except IndexError:
-        print "Usage:  %s <datafile> <outputfile>" % sys.argv[0]
+        print "Usage:  %s <datafile>" % sys.argv[0]
         sys.exit()
     
     # read locations

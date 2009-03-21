@@ -1,9 +1,5 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="solarbeam/GuiWidgets/GuiControlPanel.cs" ctype="Workbench">
-    <Files>
-      <File FileName="solarbeam/GuiWidgets/GuiControlPanel.cs" Line="292" Column="41" />
-      <File FileName="solarbeam/GuiLogic/Controller.cs" Line="25" Column="23" />
-    </Files>
+  <MonoDevelop.Ide.Workbench ctype="Workbench">
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True" />

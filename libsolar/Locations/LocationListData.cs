@@ -1,8 +1,7 @@
 // Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
 // Licensed under the GNU Public License, version 3.
 //
-// Generated with ./genlocationlist.py on on 19.3.2009
-
+// Generated with ./genlocationlist.py on on 21.3.2009
 
 using LibSolar.Types;
 
@@ -1885,9 +1884,6 @@ namespace LibSolar.Locations
 			list.Add("Gwalior (Ind)", "Asia/Kolkata",
 				new Position(PositionDirection.North, 26, 13, 48,
 					PositionDirection.East, 78, 10, 12));
-			list.Add("Ha Noi (Vie)", "Asia/Ho_Chi_Minh",
-				new Position(PositionDirection.North, 21, 1, 48,
-					PositionDirection.East, 105, 50, 24));
 			list.Add("Ha'il (Sau)", "Asia/Riyadh",
 				new Position(PositionDirection.North, 27, 31, 48,
 					PositionDirection.East, 41, 42, 0));
@@ -1966,6 +1962,9 @@ namespace LibSolar.Locations
 			list.Add("Hangzhou (Chi)", "Asia/Shanghai",
 				new Position(PositionDirection.North, 30, 15, 0,
 					PositionDirection.East, 120, 10, 12));
+			list.Add("Hanoi (Vie)", "Asia/Ho_Chi_Minh",
+				new Position(PositionDirection.North, 21, 1, 48,
+					PositionDirection.East, 105, 50, 24));
 			list.Add("Hanover (Ger)", "Europe/Berlin",
 				new Position(PositionDirection.North, 52, 24, 0,
 					PositionDirection.East, 9, 43, 48));
@@ -4078,7 +4077,7 @@ namespace LibSolar.Locations
 			list.Add("Petrozavodsk (Rus)", "Europe/Moscow",
 				new Position(PositionDirection.North, 61, 49, 12,
 					PositionDirection.East, 34, 19, 48));
-			list.Add("Phnum Penh (Cam)", "Asia/Phnom_Penh",
+			list.Add("Phnom Penh (Cam)", "Asia/Phnom_Penh",
 				new Position(PositionDirection.North, 11, 34, 12,
 					PositionDirection.East, 104, 55, 12));
 			list.Add("Phoenix (USA)", "America/Phoenix",
@@ -4147,7 +4146,7 @@ namespace LibSolar.Locations
 			list.Add("Ponta Grossa (Bra)", "America/Sao_Paulo",
 				new Position(PositionDirection.South, 25, 5, 24,
 					PositionDirection.West, 50, 9, 36));
-			list.Add("Pontianak (Ind)", "Asia/Makassar",
+			list.Add("Pontianak (Ind)", "Asia/Pontianak",
 				new Position(PositionDirection.South, 0, 1, 12,
 					PositionDirection.East, 109, 20, 24));
 			list.Add("Popayan (Col)", "America/Bogota",
