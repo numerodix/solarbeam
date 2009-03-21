@@ -12,8 +12,8 @@ namespace SolarbeamGui
 {
 	class TimezoneSource
 	{
-		private string[] offsets;
-		private Dictionary<string,string[]> zones;
+		private List<string> offsets;
+		private Dictionary<string,List<string>> zones;
 		private Dictionary<string,string> zones_rev;
 		
 		public TimezoneSource()
@@ -37,41 +37,35 @@ namespace SolarbeamGui
 			}
 			
 			// extract offsets to order numerically
-			List<double> zonelist = new List<double>();
+			List<double> offset_list = new List<double>();
 			foreach (KeyValuePair<double,List<TzTimeZone>> pair in zonedict) {
-				zonelist.Add(pair.Key);
+				offset_list.Add(pair.Key);
 			}
-			zonelist.Sort();
+			offset_list.Sort();
 			
-			// initialize datasource arrays
-			this.offsets = new string[zonelist.Count];
-			this.zones = new Dictionary<string,string[]>();
+			// initialize datasource lists
+			this.offsets = new List<string>();
+			this.zones = new Dictionary<string,List<string>>();
 			this.zones_rev = new Dictionary<string,string>();
 
-			// build member arrays by iterating sorted list
-			for (int i=0; i < zonelist.Count; i++) {
-				double offset_d = zonelist[i];
+			// build member lists by iterating sorted list
+			foreach (double offset_d in offset_list) {
 				string offset_s = FormatTimezone(offset_d);
-				offsets[i] = offset_s;
+				offsets.Add(offset_s);
 				
 				// sort timezones
 				List<TzTimeZone> zlist = zonedict[offset_d];
-				List<string> zlist_name = new List<string>();
+				List<string> zname_list = new List<string>();
 				foreach (TzTimeZone zone in zlist) {
-					zlist_name.Add(zone.StandardName);
-				}
-				zlist_name.Sort();
-				
-				string[] zarray = new string[zlist_name.Count];
-				for (int j=0; j < zlist_name.Count; j++) {
-					string zone_name = zlist_name[j];
-					zarray[j] = zone_name;
-					
+					string zone_name = zone.StandardName;
+					zname_list.Add(zone_name);
+
 					if (!zones_rev.ContainsKey(zone_name)) {
 						zones_rev.Add(zone_name, offset_s);
 					}
 				}
-				this.zones.Add(offset_s, zarray);
+				zname_list.Sort();
+				this.zones.Add(offset_s, zname_list);
 			}
 			
 //			foreach (string offset in this.offsets) {
@@ -121,10 +115,10 @@ namespace SolarbeamGui
 			}
 		}
 		
-		public string[] Offsets
+		public List<string> Offsets
 		{ get { return offsets; } }
 		
-		public string[] GetTimezones(string offset)
+		public List<string> GetTimezones(string offset)
 		{
 			return zones[offset];
 		}

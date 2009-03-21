@@ -2,6 +2,7 @@
 // Licensed under the GNU Public License, version 3.
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -106,11 +107,13 @@ namespace SolarbeamGui
 			ComboBox control_tzname = (ComboBox) registry[Id.TIMEZONE_NAME];
 			
 			string tzoff_val = GetValue(control_tzoff);
-			string[] zones = Controller.TimezoneSource.GetTimezones(tzoff_val);
+			List<string> zones = Controller.TimezoneSource.GetTimezones(tzoff_val);
 			
 			control_tzname.Items.Clear();
-			control_tzname.Items.AddRange(zones);
-			if (zones.Length > 0) {
+			foreach (string zone in zones) {
+				control_tzname.Items.Add(zone);
+			}
+			if (zones.Count > 0) {
 				control_tzname.Text = zones[0];
 				Enable(control_tzname);
 			} else {
