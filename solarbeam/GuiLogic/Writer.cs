@@ -29,6 +29,9 @@ namespace SolarbeamGui
 			// only set name if it's on the list
 			if (control.Items.Contains(location)) {
 				SetValue(control, location);
+			} else {
+				// don't select index 0, will not trigger value change
+				control.SelectedIndex = control.Items.Count / 2;
 			}
 		}
 		

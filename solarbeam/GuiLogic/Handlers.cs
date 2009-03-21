@@ -88,6 +88,7 @@ namespace SolarbeamGui
 			control.Items.RemoveAt(idx);
 			LocationsSource.RemoveLocation(val);
 			
+			// move selection to item below in the list
 			idx = Math.Max(0, idx - 1);
 			control.SelectedIndex = idx;
 		}

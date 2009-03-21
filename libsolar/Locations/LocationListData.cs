@@ -51,6 +51,12 @@ namespace LibSolar.Locations
 			list.Add("Accra (Gha)", "Africa/Accra",
 				new Position(PositionDirection.North, 5, 33, 36,
 					PositionDirection.West, 0, 12, 0));
+			list.Add("Ad Diwaniyah (Ira)", "Asia/Baghdad",
+				new Position(PositionDirection.North, 31, 59, 24,
+					PositionDirection.East, 44, 55, 48));
+			list.Add("Ad Du'ayn (Sud)", "Africa/Khartoum",
+				new Position(PositionDirection.North, 11, 25, 48,
+					PositionDirection.East, 26, 9, 36));
 			list.Add("Adana (Tur)", "Asia/Istanbul",
 				new Position(PositionDirection.North, 37, 0, 0,
 					PositionDirection.East, 35, 19, 12));
@@ -117,6 +123,39 @@ namespace LibSolar.Locations
 			list.Add("Al Ain (UAE)", "Asia/Dubai",
 				new Position(PositionDirection.North, 24, 13, 48,
 					PositionDirection.East, 55, 44, 24));
+			list.Add("Al Fasir (Sud)", "Africa/Khartoum",
+				new Position(PositionDirection.North, 13, 37, 48,
+					PositionDirection.East, 25, 21, 0));
+			list.Add("Al Hillah (Ira)", "Asia/Baghdad",
+				new Position(PositionDirection.North, 32, 28, 47,
+					PositionDirection.East, 44, 25, 48));
+			list.Add("Al Khums (Lib)", "Africa/Tripoli",
+				new Position(PositionDirection.North, 32, 39, 35,
+					PositionDirection.East, 14, 15, 36));
+			list.Add("Al Khurtum Bahri (Sud)", "Africa/Khartoum",
+				new Position(PositionDirection.North, 15, 38, 24,
+					PositionDirection.East, 32, 31, 12));
+			list.Add("Al Mukalla (Yem)", "Asia/Aden",
+				new Position(PositionDirection.North, 0, 0, 0,
+					PositionDirection.East, 99, 59, 24));
+			list.Add("Al Qadarif (Sud)", "Africa/Khartoum",
+				new Position(PositionDirection.North, 14, 2, 24,
+					PositionDirection.East, 35, 22, 48));
+			list.Add("Al-Jilfah (Alg)", "Africa/Algiers",
+				new Position(PositionDirection.North, 34, 40, 48,
+					PositionDirection.East, 3, 15, 0));
+			list.Add("Al-Kharj (Sau)", "Asia/Riyadh",
+				new Position(PositionDirection.North, 24, 9, 0,
+					PositionDirection.East, 47, 18, 36));
+			list.Add("Al-Ladiqiyah (Syr)", "Asia/Damascus",
+				new Position(PositionDirection.North, 35, 32, 24,
+					PositionDirection.East, 35, 46, 48));
+			list.Add("Al-Mubarraz (Sau)", "Asia/Riyadh",
+				new Position(PositionDirection.North, 25, 25, 48,
+					PositionDirection.East, 49, 34, 12));
+			list.Add("Al-Ubayyid (Sud)", "Africa/Khartoum",
+				new Position(PositionDirection.North, 13, 11, 24,
+					PositionDirection.East, 30, 13, 12));
 			list.Add("Alacant (Spa)", "Europe/Madrid",
 				new Position(PositionDirection.North, 38, 21, 0,
 					PositionDirection.West, 0, 28, 48));
@@ -267,6 +306,15 @@ namespace LibSolar.Locations
 			list.Add("Aqtobe (Kaz)", "Asia/Aqtobe",
 				new Position(PositionDirection.North, 50, 16, 48,
 					PositionDirection.East, 57, 10, 12));
+			list.Add("Ar Rayyan (Qat)", "Asia/Qatar",
+				new Position(PositionDirection.North, 25, 19, 12,
+					PositionDirection.East, 51, 22, 12));
+			list.Add("Ar-Raqqah (Syr)", "Asia/Damascus",
+				new Position(PositionDirection.North, 35, 55, 48,
+					PositionDirection.East, 39, 1, 12));
+			list.Add("Ar-Russayfah (Jor)", "Asia/Amman",
+				new Position(PositionDirection.North, 32, 1, 12,
+					PositionDirection.East, 36, 1, 12));
 			list.Add("Aracaju (Bra)", "America/Maceio",
 				new Position(PositionDirection.South, 10, 54, 36,
 					PositionDirection.West, 37, 4, 12));
@@ -306,6 +354,9 @@ namespace LibSolar.Locations
 			list.Add("Aryanah (Tun)", "Africa/Tunis",
 				new Position(PositionDirection.North, 36, 52, 48,
 					PositionDirection.East, 10, 10, 48));
+			list.Add("As Sib (Oma)", "Asia/Muscat",
+				new Position(PositionDirection.North, 23, 40, 12,
+					PositionDirection.East, 58, 11, 24));
 			list.Add("Asaba (Nig)", "Africa/Lagos",
 				new Position(PositionDirection.North, 6, 12, 0,
 					PositionDirection.East, 6, 43, 12));
@@ -363,6 +414,9 @@ namespace LibSolar.Locations
 			list.Add("Avadi (Ind)", "Asia/Kolkata",
 				new Position(PositionDirection.North, 13, 7, 12,
 					PositionDirection.East, 80, 6, 36));
+			list.Add("Az Zawiyah (Lib)", "Africa/Tripoli",
+				new Position(PositionDirection.North, 32, 45, 36,
+					PositionDirection.East, 12, 43, 12));
 			list.Add("Ba'qubah (Ira)", "Asia/Baghdad",
 				new Position(PositionDirection.North, 33, 44, 24,
 					PositionDirection.East, 44, 39, 0));
@@ -1623,6 +1677,9 @@ namespace LibSolar.Locations
 			list.Add("Faisalabad (Pak)", "Asia/Karachi",
 				new Position(PositionDirection.North, 31, 24, 36,
 					PositionDirection.East, 73, 6, 36));
+			list.Add("Fallujah (Ira)", "Asia/Baghdad",
+				new Position(PositionDirection.North, 33, 21, 0,
+					PositionDirection.East, 43, 46, 48));
 			list.Add("Farrukhabad (Ind)", "Asia/Kolkata",
 				new Position(PositionDirection.North, 27, 24, 0,
 					PositionDirection.East, 79, 34, 12));
@@ -2058,6 +2115,9 @@ namespace LibSolar.Locations
 			list.Add("Ho Chi Minh City (Vie)", "Asia/Ho_Chi_Minh",
 				new Position(PositionDirection.North, 10, 46, 48,
 					PositionDirection.East, 106, 41, 24));
+			list.Add("Hofuf (Sau)", "Asia/Riyadh",
+				new Position(PositionDirection.North, 25, 21, 0,
+					PositionDirection.East, 49, 34, 48));
 			list.Add("Hohhot (Chi)", "Asia/Shanghai",
 				new Position(PositionDirection.North, 40, 49, 12,
 					PositionDirection.East, 111, 38, 24));
@@ -2856,6 +2916,9 @@ namespace LibSolar.Locations
 			list.Add("Kusti (Sud)", "Africa/Khartoum",
 				new Position(PositionDirection.North, 13, 10, 12,
 					PositionDirection.East, 32, 39, 35));
+			list.Add("Kut (Ira)", "Asia/Baghdad",
+				new Position(PositionDirection.North, 32, 30, 0,
+					PositionDirection.East, 45, 49, 48));
 			list.Add("Kutahya (Tur)", "Asia/Istanbul",
 				new Position(PositionDirection.North, 39, 25, 12,
 					PositionDirection.East, 29, 58, 48));
@@ -3651,6 +3714,9 @@ namespace LibSolar.Locations
 			list.Add("Nashik (Ind)", "Asia/Kolkata",
 				new Position(PositionDirection.North, 20, 0, 36,
 					PositionDirection.East, 73, 46, 48));
+			list.Add("Nasiriyah (Ira)", "Asia/Baghdad",
+				new Position(PositionDirection.North, 31, 2, 24,
+					PositionDirection.East, 46, 15, 36));
 			list.Add("Nassau (Bah)", "America/Nassau",
 				new Position(PositionDirection.North, 25, 3, 36,
 					PositionDirection.West, 77, 19, 48));
@@ -4347,6 +4413,9 @@ namespace LibSolar.Locations
 			list.Add("Rajshahi (Ban)", "Asia/Dhaka",
 				new Position(PositionDirection.North, 24, 22, 12,
 					PositionDirection.East, 88, 35, 24));
+			list.Add("Ramadi (Ira)", "Asia/Baghdad",
+				new Position(PositionDirection.North, 33, 25, 12,
+					PositionDirection.East, 43, 18, 0));
 			list.Add("Ramagundam (Ind)", "Asia/Kolkata",
 				new Position(PositionDirection.North, 18, 48, 0,
 					PositionDirection.East, 79, 27, 0));
@@ -5016,6 +5085,9 @@ namespace LibSolar.Locations
 			list.Add("Sukkur (Pak)", "Asia/Karachi",
 				new Position(PositionDirection.North, 27, 42, 0,
 					PositionDirection.East, 68, 50, 59));
+			list.Add("Sulaymaniyah (Ira)", "Asia/Baghdad",
+				new Position(PositionDirection.North, 35, 33, 36,
+					PositionDirection.East, 45, 25, 48));
 			list.Add("Sullana (Per)", "America/Lima",
 				new Position(PositionDirection.South, 4, 53, 24,
 					PositionDirection.West, 80, 40, 48));
@@ -5940,6 +6012,9 @@ namespace LibSolar.Locations
 			list.Add("Zaria (Nig)", "Africa/Lagos",
 				new Position(PositionDirection.North, 11, 4, 48,
 					PositionDirection.East, 7, 42, 36));
+			list.Add("Zarqa (Jor)", "Asia/Amman",
+				new Position(PositionDirection.North, 32, 4, 12,
+					PositionDirection.East, 36, 6, 0));
 			list.Add("Zhangdian (Chi)", "Asia/Shanghai",
 				new Position(PositionDirection.North, 36, 48, 0,
 					PositionDirection.East, 118, 3, 36));
@@ -6012,84 +6087,9 @@ namespace LibSolar.Locations
 			list.Add("Zuwarah (Lib)", "Africa/Tripoli",
 				new Position(PositionDirection.North, 32, 57, 0,
 					PositionDirection.East, 12, 5, 24));
-			list.Add("ad-Diwaniyah (Ira)", "Asia/Baghdad",
-				new Position(PositionDirection.North, 31, 59, 24,
-					PositionDirection.East, 44, 55, 48));
-			list.Add("ad-Du'ayn (Sud)", "Africa/Khartoum",
-				new Position(PositionDirection.North, 11, 25, 48,
-					PositionDirection.East, 26, 9, 36));
 			list.Add("al- (Lib)", "Africa/Tripoli",
 				new Position(PositionDirection.North, 32, 31, 48,
 					PositionDirection.East, 13, 1, 12));
-			list.Add("al-Fallujah (Ira)", "Asia/Baghdad",
-				new Position(PositionDirection.North, 33, 21, 0,
-					PositionDirection.East, 43, 46, 48));
-			list.Add("al-Fasir (Sud)", "Africa/Khartoum",
-				new Position(PositionDirection.North, 13, 37, 48,
-					PositionDirection.East, 25, 21, 0));
-			list.Add("al-Harj (Sau)", "Asia/Riyadh",
-				new Position(PositionDirection.North, 24, 9, 0,
-					PositionDirection.East, 47, 18, 36));
-			list.Add("al-Hartum Bahri (Sud)", "Africa/Khartoum",
-				new Position(PositionDirection.North, 15, 38, 24,
-					PositionDirection.East, 32, 31, 12));
-			list.Add("al-Hillah (Ira)", "Asia/Baghdad",
-				new Position(PositionDirection.North, 32, 28, 47,
-					PositionDirection.East, 44, 25, 48));
-			list.Add("al-Hufuf (Sau)", "Asia/Riyadh",
-				new Position(PositionDirection.North, 25, 21, 0,
-					PositionDirection.East, 49, 34, 48));
-			list.Add("al-Hums (Lib)", "Africa/Tripoli",
-				new Position(PositionDirection.North, 32, 39, 35,
-					PositionDirection.East, 14, 15, 36));
-			list.Add("al-Jilfah (Alg)", "Africa/Algiers",
-				new Position(PositionDirection.North, 34, 40, 48,
-					PositionDirection.East, 3, 15, 0));
-			list.Add("al-Kut (Ira)", "Asia/Baghdad",
-				new Position(PositionDirection.North, 32, 30, 0,
-					PositionDirection.East, 45, 49, 48));
-			list.Add("al-Ladiqiyah (Syr)", "Asia/Damascus",
-				new Position(PositionDirection.North, 35, 32, 24,
-					PositionDirection.East, 35, 46, 48));
-			list.Add("al-Mubarraz (Sau)", "Asia/Riyadh",
-				new Position(PositionDirection.North, 25, 25, 48,
-					PositionDirection.East, 49, 34, 12));
-			list.Add("al-Mukalla (Yem)", "Asia/Aden",
-				new Position(PositionDirection.North, 0, 0, 0,
-					PositionDirection.East, 99, 59, 24));
-			list.Add("al-Qadarif (Sud)", "Africa/Khartoum",
-				new Position(PositionDirection.North, 14, 2, 24,
-					PositionDirection.East, 35, 22, 48));
-			list.Add("al-Ubayyid (Sud)", "Africa/Khartoum",
-				new Position(PositionDirection.North, 13, 11, 24,
-					PositionDirection.East, 30, 13, 12));
-			list.Add("an-Nasiriyah (Ira)", "Asia/Baghdad",
-				new Position(PositionDirection.North, 31, 2, 24,
-					PositionDirection.East, 46, 15, 36));
-			list.Add("ar-Ramadi (Ira)", "Asia/Baghdad",
-				new Position(PositionDirection.North, 33, 25, 12,
-					PositionDirection.East, 43, 18, 0));
-			list.Add("ar-Raqqah (Syr)", "Asia/Damascus",
-				new Position(PositionDirection.North, 35, 55, 48,
-					PositionDirection.East, 39, 1, 12));
-			list.Add("ar-Rayyan (Qat)", "Asia/Qatar",
-				new Position(PositionDirection.North, 25, 19, 12,
-					PositionDirection.East, 51, 22, 12));
-			list.Add("ar-Russayfah (Jor)", "Asia/Amman",
-				new Position(PositionDirection.North, 32, 1, 12,
-					PositionDirection.East, 36, 1, 12));
-			list.Add("as-Sib (Oma)", "Asia/Muscat",
-				new Position(PositionDirection.North, 23, 40, 12,
-					PositionDirection.East, 58, 11, 24));
-			list.Add("as-Sulaymaniyah (Ira)", "Asia/Baghdad",
-				new Position(PositionDirection.North, 35, 33, 36,
-					PositionDirection.East, 45, 25, 48));
-			list.Add("az-Zarqa' (Jor)", "Asia/Amman",
-				new Position(PositionDirection.North, 32, 4, 12,
-					PositionDirection.East, 36, 6, 0));
-			list.Add("az-Zawiyah (Lib)", "Africa/Tripoli",
-				new Position(PositionDirection.North, 32, 45, 36,
-					PositionDirection.East, 12, 43, 12));
 			return list;
 		}
 	}
