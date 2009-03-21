@@ -24,6 +24,7 @@ namespace SolarbeamGui
 		// Identify all widgets
 		public enum Id {
 			LOCATION,
+			LOCATIONNEW_ACTION,
 			LOCATIONSAVE_ACTION,
 			LOCATIONDELETE_ACTION,
 			LATITUDE_DEGS,

@@ -1,6 +1,10 @@
 all:
 	mdtool build --configuration:Release
 
+png:
+	for f in icons/*.svg; do g=`echo $$f | sed "s/.svg//g"`; convert -quantize RGB -resize 20x20 $$f $$g.png; done
+	#for f in icons/*.svg; do g=`echo $$f | sed "s/.svg//g"`; inkscape $$f --export-png=$$g.png --export-width=20 --export-height=20; done
+
 zip:
 	rm -rf dist
 	mkdir -p dist/solarbeam

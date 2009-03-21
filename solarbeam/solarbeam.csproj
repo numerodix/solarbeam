@@ -62,14 +62,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\icons\document-save.png" />
-    <EmbeddedResource Include="..\icons\edit-delete.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="..\zoneinfo">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\locations.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

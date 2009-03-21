@@ -41,16 +41,6 @@ namespace SolarbeamGui
 			Controller.RegisterControl(id, button);	// register control
 			return button;
 		}
-			
-		public static Button GetButtonImaged(Controller.Id id, string path)
-		{
-			Button button = new Button();
-			button.FlatAppearance.BorderSize = 0;
-			button.FlatStyle = FlatStyle.Flat;
-			button.Image = new Bitmap(Controller.AsmInfo.GetResource(path));
-			Controller.RegisterControl(id, button);	// register control
-			return button;
-		}
 		
 		public static Label GetLabel(string s)
 		{

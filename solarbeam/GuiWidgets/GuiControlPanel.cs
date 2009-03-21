@@ -159,14 +159,8 @@ namespace SolarbeamGui
 				new Control[] {
 					Widgets.GetComboBoxInputable(
 						Controller.Id.LOCATION,
-						Controller.LocationsSource.Locations),
-					Widgets.GetButtonImaged(
-						Controller.Id.LOCATIONSAVE_ACTION,
-						"document-save.png"),
-					Widgets.GetButtonImaged(
-						Controller.Id.LOCATIONDELETE_ACTION,
-						"edit-delete.png")},
-				new float[] {74F, 12F, 12F});
+						Controller.LocationsSource.Locations)},
+				new float[] {100F});
 	
 			Label lat_lbl = Widgets.GetLabel("Latitude:");
 			ComboBox lat_dir = Widgets.GetComboBoxList(
