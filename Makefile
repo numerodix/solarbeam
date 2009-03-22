@@ -9,7 +9,7 @@ zip:
 	rm -rf dist
 	mkdir -p dist/solarbeam
 	for d in `find . -type d -iname "Release"`; do cp $$d/* dist/solarbeam; done
-	./gui -nogui; cp locations.bin dist/solarbeam
+	rm locations.bin; ./gui -nogui; cp locations.bin dist/solarbeam
 	cp zoneinfo dist/solarbeam
 	cd dist
 	zip -j dist/solarbeam.zip dist/solarbeam/*

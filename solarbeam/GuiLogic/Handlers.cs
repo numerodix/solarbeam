@@ -29,7 +29,7 @@ namespace SolarbeamGui
 				// clear form changes, update cache with new values
 				foreach (Id id in ins_position)
 				{
-					Control control = (Control) registry[id];
+					Component control = (Component) registry[id];
 					UnMark(control);
 					cache[id] = GetValue(control);
 				}
@@ -69,13 +69,13 @@ namespace SolarbeamGui
 		{
 			foreach (Id id in ins_position)
 			{
-				Control control = (Control) registry[id];
+				Component control = (Component) registry[id];
 				SetValue(control, cache[id]);
 				UnMark(control);
 			}
 			foreach (Id id in ins_timedate)
 			{
-				Control control = (Control) registry[id];
+				Component control = (Component) registry[id];
 				UnMark(control);
 			}
 		}
@@ -100,7 +100,7 @@ namespace SolarbeamGui
 		 */
 		private static void ValueChange(object sender, EventArgs args)
 		{
-			Control control = (Control) sender;
+			Component control = (Component) sender;
 			Id id = reg_rev[control];
 			string val = GetValue(control);
 			
@@ -150,7 +150,7 @@ namespace SolarbeamGui
 		{
 			// ignore exception when trying to obtain value of control that has none
 			try {
-				Control control = (Control) sender;
+				Component control = (Component) sender;
 				string val = GetValue(control);
 			
 				if (control is NumericUpDown) {
@@ -161,7 +161,7 @@ namespace SolarbeamGui
 		
 		private static void LostFocus(object sender, EventArgs args)
 		{
-			Control control = (Control) sender;
+			Component control = (Component) sender;
 	
 			if (control is NumericUpDown) {
 				((NumericUpDown) control).Select(0, 0);

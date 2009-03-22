@@ -2,8 +2,11 @@
 // Licensed under the GNU Public License, version 3.
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+
+using LibSolar.Types;
 
 namespace SolarbeamGui
 {
@@ -16,19 +19,31 @@ namespace SolarbeamGui
 		private static Color MARK_BACKCOLOR = Color.Yellow;
 	  	private static Color MARKERROR_BACKCOLOR = Color.Pink;
 			
-		private static void Mark(Control control)
+		private static void Mark(object obj)
 		{
-			control.BackColor = MARK_BACKCOLOR;
+			MarkWidget(obj, MARK_BACKCOLOR);
 		}
 	  
-	 	private static void MarkError(Control control)
+	 	private static void MarkError(object obj)
 		{
-			control.BackColor = MARKERROR_BACKCOLOR;
+			MarkWidget(obj, MARKERROR_BACKCOLOR);
 		}
 	
-		private static void UnMark(Control control)
+		private static void UnMark(object obj)
 		{
-			control.BackColor = NONMARK_BACKCOLOR;
+			MarkWidget(obj, NONMARK_BACKCOLOR);
+		}
+		
+		private static void MarkWidget(object obj, Color color)
+		{
+			if (obj is Control) {
+				((Control) obj).BackColor = color;
+			} else if (obj is StaticList<Id>) {
+				foreach (Id id in (StaticList<Id>) obj) {
+					Component control = registry[id];
+					((Control) control).BackColor = color;
+				}
+			}
 		}
 		
 		public static void Enable(Control control)
