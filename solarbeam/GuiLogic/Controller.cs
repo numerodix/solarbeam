@@ -222,9 +222,11 @@ namespace SolarbeamGui
 		private static void ActivateButton(Component button)
 		{
 			if (reg_rev[button] == Id.LOCATIONNEW_ACTION) {
-				// somin
+				((ToolStripButton) button).Click += new EventHandler(NewLocation);
+			} else if (reg_rev[button] == Id.LOCATIONSAVE_ACTION) {
+				((ToolStripButton) button).Click += new EventHandler(SaveLocation);
 			} else if (reg_rev[button] == Id.LOCATIONDELETE_ACTION) {
-				((Button) button).Click += new EventHandler(DeleteLocation);
+				((ToolStripButton) button).Click += new EventHandler(DeleteLocation);
 			} else if (reg_rev[button] == Id.RESETFORM_ACTION) {
 				((Button) button).Click += new EventHandler(ResetForm);
 			} else if (reg_rev[button] == Id.RENDER_ACTION) {

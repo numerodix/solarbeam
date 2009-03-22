@@ -16,6 +16,81 @@ namespace SolarbeamGui
 	 */
 	partial class Controller
 	{
+		private static void NewLocation(object sender, EventArgs args)
+		{
+			ComboBox loc_control = (ComboBox) registry[Id.LOCATION];
+			loc_control.Items.Add(String.Empty);
+			
+			SetLocation(String.Empty);
+			SetPosition(new Position(Position.LATITUDE_POS, 0, 0, 0,
+			                         Position.LONGITUDE_POS, 0, 0, 0));
+			SetTimezone("UTC");
+			UnMark(ins_position);
+			
+			// set focus on the control
+			loc_control.Focus();
+		}
+
+		private static void SaveLocation(object sender, EventArgs args)
+		{
+			ComboBox loc_control = (ComboBox) registry[Id.LOCATION];
+			
+			string name = GetValue(registry[Id.LOCATION]);
+			Position pos = ReadPosition();
+			string tz = GetValue(registry[Id.TIMEZONE_NAME]);
+			
+			if (name == String.Empty) {
+				return;
+			}
+			
+			// new name, treat as a new location
+			if (!LocationsSource.ContainsLocation(name)) {
+				// add to combobox list
+				if (!loc_control.Items.Contains(name)) {
+					loc_control.Items.Add(name);
+				}
+				// add to LocationsSource
+				LocationsSource.AddLocation(name, tz, pos);
+			// same name, parameters changed
+			} else {
+				LocationsSource.UpdateLocation(name, tz, pos);
+			}
+			
+			LocationsSource.StoreList();
+		}
+		
+		private static void DeleteLocation(object sender, EventArgs args)
+		{
+			ComboBox control = (ComboBox) registry[Id.LOCATION];
+			string val = GetValue(control);
+			int idx = control.SelectedIndex;
+			
+			control.Items.RemoveAt(idx);
+			LocationsSource.RemoveLocation(val);
+			
+			// move selection to item below in the list
+			idx = Math.Max(0, idx - 1);
+			control.SelectedIndex = idx;
+		}
+		
+		/**
+		 * Clear updates to controls that force viewport re-rendering.
+		 */
+		private static void ResetForm(object sender, EventArgs args)
+		{
+			foreach (Id id in ins_position)
+			{
+				Component control = (Component) registry[id];
+				SetValue(control, cache[id]);
+				UnMark(control);
+			}
+			foreach (Id id in ins_timedate)
+			{
+				Component control = (Component) registry[id];
+				UnMark(control);
+			}
+		}
+		
 		/**
 		 * Viewport forced to re-render.
 		 */
@@ -62,38 +137,6 @@ namespace SolarbeamGui
 			} catch (KeyNotFoundException) {}
 		}
 	
-		/**
-		 * Clear updates to controls that force viewport re-rendering.
-		 */
-		private static void ResetForm(object sender, EventArgs args)
-		{
-			foreach (Id id in ins_position)
-			{
-				Component control = (Component) registry[id];
-				SetValue(control, cache[id]);
-				UnMark(control);
-			}
-			foreach (Id id in ins_timedate)
-			{
-				Component control = (Component) registry[id];
-				UnMark(control);
-			}
-		}
-		
-		private static void DeleteLocation(object sender, EventArgs args)
-		{
-			ComboBox control = (ComboBox) registry[Id.LOCATION];
-			string val = GetValue(control);
-			int idx = control.SelectedIndex;
-			
-			control.Items.RemoveAt(idx);
-			LocationsSource.RemoveLocation(val);
-			
-			// move selection to item below in the list
-			idx = Math.Max(0, idx - 1);
-			control.SelectedIndex = idx;
-		}
-		
 		/**
 		 * Handle updates to controls that force viewport re-rendering by marking
 		 * the control as having changed.

@@ -31,6 +31,19 @@ namespace LibSolar.Locations
 			locations.Remove(name);
 		}
 		
+		public void Update(string name, string timezone, Position pos)
+		{
+			locations[name] = new Location(name, pos, timezone);
+		}
+		
+		public bool ContainsKey(string name)
+		{
+			if (locations.ContainsKey(name)) {
+				return true;
+			}
+			return false;
+		}
+		
 		public Location Get(string name)
 		{
 			return locations[name];

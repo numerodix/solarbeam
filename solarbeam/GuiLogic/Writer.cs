@@ -20,7 +20,7 @@ namespace SolarbeamGui
 			// init current time and date
 			DateTime dt = DateTime.Now;
 	
-			SetDate(dt);
+			SetDateTime(dt);
 			SetLocation("Equator");
 		}
 		
@@ -59,7 +59,7 @@ namespace SolarbeamGui
 			SetValue(registry[Id.TIMEZONE_NAME], tz_name);
 		}
 	
-		private static void SetDate(DateTime dt_loc)
+		private static void SetDateTime(DateTime dt_loc)
 		{
 			SetValue(registry[Id.TIME_SECOND], dt_loc.Second);
 			SetValue(registry[Id.TIME_MINUTE], dt_loc.Minute);

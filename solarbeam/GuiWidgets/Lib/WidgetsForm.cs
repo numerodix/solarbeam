@@ -41,6 +41,7 @@ namespace SolarbeamGui
 			combo.DropDownStyle = ComboBoxStyle.DropDown;
 			combo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 			combo.AutoCompleteSource = AutoCompleteSource.ListItems;
+			combo.Sorted = true;
 			return combo;
 		}
 		

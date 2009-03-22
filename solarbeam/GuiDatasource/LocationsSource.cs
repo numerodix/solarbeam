@@ -45,9 +45,14 @@ namespace SolarbeamGui
 			return ((LocationList) Serializer.Deserialize(file));
 		}
 		
-		private void StoreList()
+		public void StoreList()
 		{
 			Serializer.Serialize(file, list);
+		}
+		
+		public bool ContainsLocation(string name)
+		{
+			return list.ContainsKey(name);
 		}
 		
 		public Location GetLocation(string name)
@@ -55,9 +60,19 @@ namespace SolarbeamGui
 			return list.Get(name);
 		}
 		
+		public void AddLocation(string name, string timezone, Position pos)
+		{
+			list.Add(name, timezone, pos);
+		}
+		
 		public void RemoveLocation(string name)
 		{
 			list.Remove(name);
+		}
+		
+		public void UpdateLocation(string name, string timezone, Position pos)
+		{
+			list.Update(name, timezone, pos);
 		}
 		
 		public List<string> Locations
