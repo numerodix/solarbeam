@@ -17,14 +17,14 @@ namespace LibSolar.Graphing
 		{
 			// loc: Trondheim
 			Position pos = new Position(Position.LATITUDE_POS,
-			                            63, 25, 47,
+			                            53, 26, 0,
 			                            Position.LONGITUDE_POS,
-			                            10, 23, 36);
+			                            0, 0, 0);
 			// time: Now
 			DateTime now = DateTime.Now;
-			UTCDate dt = new UTCDate(1,
-			                         now.Year, now.Month, now.Day, 
-			                         now.Hour, now.Minute, now.Second);
+			UTCDate dt = new UTCDate(0,
+			                         2009, 3, 12, 
+			                         11, 0, 0);
 
 			// set up constants
 			Colors colors = new Colors(Color.White, Color.Gray, Color.Black,

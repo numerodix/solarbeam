@@ -5,6 +5,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows.Forms;
 
 using LibSolar.Assemblies;
@@ -14,24 +15,52 @@ namespace SolarbeamGui
 {
 	static class MainGui
 	{
+		private static GuiSplash splash;
+		private static GuiMainForm mainform;
+		
 		[STAThread]
 		public static void Main(string[] args)
 		{
-			GuiMainForm mainform = 
-				new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
-			if ((args.Length > 0) && (args[0] == "-nogui")) {
+			if (args.Length > 0) {
+				if (args[0] == "-nogui") {
+					GuiMainForm mainform =
+						new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
+				} else if (args[0] == "-timeit") {
+					TimeIt();
+				}
 				Environment.Exit(0);
 			}
+/*			
+			Thread thread_splash = new Thread(new ThreadStart(RunSplash));
+			thread_splash.Start();
+			
+			Thread.Sleep(1000);
+			thread_splash.Abort();
+			Thread.Sleep(1000);
+*/			
+			RunMainForm();
+		}
+		
+		private static void RunSplash()
+		{
+			splash = new GuiSplash();
+			Application.Run(splash);
+			//splash.ShowDialog();
+		}
+		
+		private static void RunMainForm()
+		{
+			mainform = new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
 			Application.EnableVisualStyles();
 			Application.Run(mainform);
 		}
 
-		public static void TimeIt()
+		private static void TimeIt()
 		{
 			Stopwatch watch = new Stopwatch();
 			watch.Start();
 			
-			GraphBitmapDemo.GenerateBitmap(2000, "img.png");
+			GraphBitmapDemo.GenerateBitmap(5000, "img.png");
 	
 			watch.Stop();
 			Console.WriteLine("Elapsed: {0}",watch.Elapsed);
