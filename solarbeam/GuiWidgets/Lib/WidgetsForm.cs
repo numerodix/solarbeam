@@ -15,8 +15,8 @@ namespace SolarbeamGui
 	 */
 	partial class Widgets
 	{	
-		public static Button GetButtonImaged(Controller.Id id, string tip,
-		                                     string s, string img)
+		public static Button GetButtonImageText(Controller.Id id,
+		                                        string s, string img)
 		{
 			Button button = new Button();
 			button.Image = new Bitmap(Controller.AsmInfo.GetResource(img));
@@ -24,12 +24,23 @@ namespace SolarbeamGui
 			button.TextImageRelation = TextImageRelation.ImageBeforeText;
 			button.FlatStyle = FlatStyle.Flat;
 			button.FlatAppearance.BorderSize = 0;
-			Controller.RegisterControl(id, tip, button);	// register control
+			Controller.RegisterControl(id, button);	// register control
 			return button;
 		}
 		
-		public static ComboBox GetComboBox(Controller.Id id, string tip,
-		                                   List<string> ss)
+		public static Button GetButtonImage(Controller.Id id, string img)
+		{
+			Button button = new Button();
+			button.Image = new Bitmap(Controller.AsmInfo.GetResource(img));
+//			button.MinimumSize = button.Image.Size;
+			button.FlatStyle = FlatStyle.Flat;
+			button.FlatAppearance.BorderSize = 0;
+			button.TabStop = false;
+			Controller.RegisterControl(id, button);	// register control
+			return button;
+		}
+		
+		public static ComboBox GetComboBox(Controller.Id id, List<string> ss)
 		{
 			ComboBox combo = new ComboBox();
 			foreach (string s in ss) {
@@ -38,14 +49,13 @@ namespace SolarbeamGui
 			combo.DropDownStyle = ComboBoxStyle.DropDownList;
 			combo.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 			combo.DropDownHeight = 180;
-			Controller.RegisterControl(id, tip, combo);	// register control
+			Controller.RegisterControl(id, combo);	// register control
 			return combo;
 		}
 		
-		public static ComboBox GetComboBoxInputable(Controller.Id id, string tip, 
-		                                            List<string> ss)
+		public static ComboBox GetComboBoxInputable(Controller.Id id, List<string> ss)
 		{
-			ComboBox combo = GetComboBox(id, tip, ss);
+			ComboBox combo = GetComboBox(id, ss);
 			combo.DropDownStyle = ComboBoxStyle.DropDown;
 			combo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 			combo.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -62,13 +72,13 @@ namespace SolarbeamGui
 			return label;
 		}
 		
-		public static NumericUpDown GetNumericUpDown(Controller.Id id, string tip,
+		public static NumericUpDown GetNumericUpDown(Controller.Id id,
 		                                             int min, int max)
 		{
 			NumericUpDown num = new NumericUpDown();
 			num.Minimum = min;
 			num.Maximum = max;
-			Controller.RegisterControl(id, tip, num);	// register control
+			Controller.RegisterControl(id, num);	// register control
 			return num;
 		}
 

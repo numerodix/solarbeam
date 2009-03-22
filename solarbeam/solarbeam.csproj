@@ -75,6 +75,9 @@
     <EmbeddedResource Include="..\icons\loc-delete.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\icons\loc-new.png" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="..\icons\loc-save.png" />
   </ItemGroup>
   <ItemGroup>

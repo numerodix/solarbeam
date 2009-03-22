@@ -134,13 +134,11 @@ namespace SolarbeamGui
 			Control btns = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetLabel(String.Empty), //layout buffer
-					Widgets.GetButtonImaged(Controller.Id.RESETFORM_ACTION,
-				                        Tooltips.ResetButton,
-				                        "Reset", "reset.png"),
+					Widgets.GetButtonImageText(Controller.Id.RESETFORM_ACTION,
+				                           "Reset", "reset.png"),
 					Widgets.GetLabel(String.Empty),
-					Widgets.GetButtonImaged(Controller.Id.RENDER_ACTION,
-				                        Tooltips.RenderButton,
-				                        "Render", "render.png"),
+					Widgets.GetButtonImageText(Controller.Id.RENDER_ACTION,
+				                           "Render", "render.png"),
 					Widgets.GetLabel(String.Empty)},
 				new float[] {15F, 30F, 15F, 30F, 15F});
 	
@@ -163,27 +161,29 @@ namespace SolarbeamGui
 				new Control[] {
 					Widgets.GetComboBoxInputable(
 						Controller.Id.LOCATION,
-						Tooltips.Location,
-						Controller.LocationsSource.Locations)},
-				new float[] {100F});
+						Controller.LocationsSource.Locations),
+					Widgets.GetButtonImage(Controller.Id.LOCATIONNEW_ACTION,
+						"loc-new.png"),
+					Widgets.GetButtonImage(Controller.Id.LOCATIONSAVE_ACTION,
+						"loc-save.png"),
+					Widgets.GetButtonImage(Controller.Id.LOCATIONDELETE_ACTION,
+						"loc-delete.png"),
+					},
+				new float[] {80F, 11F, 11F, 11F});
 	
 			Label lat_lbl = Widgets.GetLabel("Latitude:");
 			ComboBox lat_dir = Widgets.GetComboBox(
 				Controller.Id.LATITUDE_DIRECTION,
-			    null,
 				Controller.PositionSource.LatitudeDirections);
 			Control lat_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_DEGS,
-						Tooltips.LatitudeDegree,
 						Position.LATDEGS_MINVALUE-1,
 						Position.LATDEGS_MAXVALUE),
 					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_MINS,
-						Tooltips.LatitudeMinute,
 						Position.LATMINS_MINVALUE-1,
 						Position.LATMINS_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_SECS,
-						Tooltips.LatitudeSecond,
 						Position.LATSECS_MINVALUE-1,
 						Position.LATSECS_MAXVALUE+1),
 				lat_dir},
@@ -192,20 +192,16 @@ namespace SolarbeamGui
 			Label lon_lbl = Widgets.GetLabel("Longitude:");
 			ComboBox lon_dir = Widgets.GetComboBox(
 				Controller.Id.LONGITUDE_DIRECTION,
-				null,
 				Controller.PositionSource.LongitudeDirections);
 			Control lon_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_DEGS,
-						Tooltips.LongitudeDegree,
 						Position.LONDEGS_MINVALUE-1,
 						Position.LONDEGS_MAXVALUE),
 					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_MINS,
-						Tooltips.LongitudeMinute,
 						Position.LONMINS_MINVALUE-1,
 						Position.LONMINS_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_SECS,
-				        Tooltips.LongitudeSecond,
 						Position.LONSECS_MINVALUE-1,
 						Position.LONSECS_MAXVALUE+1),
 				lon_dir},
@@ -215,10 +211,8 @@ namespace SolarbeamGui
 			Control tz_in = Widgets.GetLaidOut(
 				new Control[] {
 				Widgets.GetComboBox(Controller.Id.TIMEZONE_OFFSET,
-					Tooltips.TimezoneOffset,
 					Controller.TimezoneSource.Offsets),
 				Widgets.GetComboBox(Controller.Id.TIMEZONE_NAME,
-					Tooltips.TimezoneZone,
 					Controller.TimezoneSource.GetTimezones(
 						Controller.TimezoneSource.Offsets[0]))
 					},
@@ -229,15 +223,12 @@ namespace SolarbeamGui
 			Control date_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.DATE_DAY,
-						Tooltips.DateDay,
 						UTCDate.DAY_MINVALUE-1,
 						UTCDate.DAY_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.DATE_MONTH,
-						Tooltips.DateMonth,
 						UTCDate.MONTH_MINVALUE-1,
 						UTCDate.MONTH_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.DATE_YEAR,
-						Tooltips.DateYear,
 						UTCDate.YEAR_MINVALUE,
 						UTCDate.YEAR_MAXVALUE),
 				date_scr},
@@ -248,15 +239,12 @@ namespace SolarbeamGui
 			Control time_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.TIME_HOUR,
-						Tooltips.TimeHour,
 						UTCDate.HOUR_MINVALUE-1,
 						UTCDate.HOUR_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.TIME_MINUTE,
-						Tooltips.TimeMinute,
 						UTCDate.MINUTE_MINVALUE-1,
 						UTCDate.MINUTE_MAXVALUE+1),
 					Widgets.GetNumericUpDown(Controller.Id.TIME_SECOND,
-						Tooltips.TimeSecond,
 						UTCDate.SECOND_MINVALUE-1,
 						UTCDate.SECOND_MAXVALUE+1),
 				time_scr},

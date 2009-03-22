@@ -125,40 +125,6 @@ namespace SolarbeamGui
 		static Controller()
 		{
 			Controller.AsmInfo = new AsmInfo(Assembly.GetExecutingAssembly());
-
-			InitTooltips();
-		}
-
-		/**
-		 * Initialize tooltips objects for groups of widgets.
-		 */
-		private static void InitTooltips()
-		{
-			tooltips.Add(Id.LOCATION, Widgets.GetToolTipInfo(Tooltips.LocationTitle));
-			
-			ToolTip ttlat = Widgets.GetToolTipInfo(Tooltips.LatitudeTitle);
-			foreach (Id id in ins_latitude) {
-				tooltips.Add(id, ttlat);
-			}
-			ToolTip ttlon = Widgets.GetToolTipInfo(Tooltips.LongitudeTitle);
-			foreach (Id id in ins_longitude) {
-				tooltips.Add(id, ttlon);
-			}
-			ToolTip tttz = Widgets.GetToolTipInfo(Tooltips.TimezoneTitle);
-			foreach (Id id in ins_timezone) {
-				tooltips.Add(id, tttz);
-			}
-			ToolTip ttdt = Widgets.GetToolTipInfo(Tooltips.DateTitle);
-			foreach (Id id in ins_date) {
-				tooltips.Add(id, ttdt);
-			}
-			ToolTip tttm = Widgets.GetToolTipInfo(Tooltips.TimeTitle);
-			foreach (Id id in ins_time) {
-				tooltips.Add(id, tttm);
-			}
-										
-			tooltips.Add(Id.RESETFORM_ACTION, Widgets.GetToolTipInfo(Tooltips.ResetTitle));
-			tooltips.Add(Id.RENDER_ACTION, Widgets.GetToolTipInfo(Tooltips.RenderTitle));
 		}
 									
 		/**
@@ -178,11 +144,6 @@ namespace SolarbeamGui
 		}
 
 		public static void RegisterControl(Id id, Component control)
-		{
-			RegisterControl(id, null, control);
-		}
-		
-		public static void RegisterControl(Id id, string tip, Component control)
 		{
 			// register in registry
 			registry.Add(id, control);
@@ -216,7 +177,7 @@ namespace SolarbeamGui
 			}
 		
 			// activate tooltip
-			ActivateTooltip(id, control, tip);
+			ActivateTooltip(id, control);
 		
 			// set initial value (make sure to disable validation)
 			InitControl(control);
@@ -225,11 +186,11 @@ namespace SolarbeamGui
 		private static void ActivateButton(Component button)
 		{
 			if (reg_rev[button] == Id.LOCATIONNEW_ACTION) {
-				((ToolStripButton) button).Click += new EventHandler(NewLocation);
+				((Button) button).Click += new EventHandler(NewLocation);
 			} else if (reg_rev[button] == Id.LOCATIONSAVE_ACTION) {
-				((ToolStripButton) button).Click += new EventHandler(SaveLocation);
+				((Button) button).Click += new EventHandler(SaveLocation);
 			} else if (reg_rev[button] == Id.LOCATIONDELETE_ACTION) {
-				((ToolStripButton) button).Click += new EventHandler(DeleteLocation);
+				((Button) button).Click += new EventHandler(DeleteLocation);
 			} else if (reg_rev[button] == Id.RESETFORM_ACTION) {
 				((Button) button).Click += new EventHandler(ResetForm);
 			} else if (reg_rev[button] == Id.RENDER_ACTION) {
@@ -257,10 +218,12 @@ namespace SolarbeamGui
 			}
 		}
 
-		private static void ActivateTooltip(Id id, Component control, string tip)
+		private static void ActivateTooltip(Id id, Component control)
 		{
+			string tip = Tooltips.GetTip(id);
 			if (tip != null) {
 				if (control is Control) {
+					tooltips[id] = Widgets.GetToolTipInfo(Tooltips.GetTitle(id));
 					tooltips[id].SetToolTip((Control) control, tip);
 				}
 			}
