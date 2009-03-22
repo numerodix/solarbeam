@@ -84,11 +84,11 @@ namespace SolarbeamGui
 		{
 			this.controlpanel = new GuiControlPanel();
 			
-			// TODO handle exception
+			// fill in initial form values
 			try {
 				Controller.LoadSession();
 			} catch {
-				Controller.InitForm(); // fill in initial form values
+				Controller.InitForm();
 			}
 			
 			this.viewport = new GuiViewport(this);

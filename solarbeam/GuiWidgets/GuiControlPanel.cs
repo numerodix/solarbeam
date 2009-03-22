@@ -27,7 +27,7 @@ namespace SolarbeamGui
 		private const int BUTTONS_HEIGHT = 30;
 		private const int OUTPUTS_HEIGHT = GROUPBOX_HEIGHT + OUTPUTS_COUNT * FORM_ROW_HEIGHT + 2*FORM_PADDING;
 		private const int PANEL_COUNT = 3;
-		private const int PANEL_WIDTH = 300;
+		private const int PANEL_WIDTH = 350;
 		
 		public const int WIDTH = GROUPBOX_WIDTH + PANEL_WIDTH + 2*FORM_PADDING;
 		public const int HEIGHT = INPUTS_HEIGHT + BUTTONS_HEIGHT + OUTPUTS_HEIGHT + 2*FORM_PADDING;
@@ -218,7 +218,7 @@ namespace SolarbeamGui
 					Controller.TimezoneSource.GetTimezones(
 						Controller.TimezoneSource.Offsets[0]))
 					},
-					new float[] {24F, 50F});
+					new float[] {27F, 73F});
 
 			Label date_lbl = Widgets.GetLabel("Date:");
 			Control date_scr = Widgets.GetLabel(String.Empty);

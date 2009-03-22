@@ -135,25 +135,25 @@ namespace SolarbeamGui
 		{
 			tooltips = new Dictionary<Id,ToolTip>();
 
-			tooltips.Add(Id.LOCATION, Widgets.GetToolTip(Tooltips.LocationTitle));
+			tooltips.Add(Id.LOCATION, Widgets.GetToolTipInfo(Tooltips.LocationTitle));
 			
-			ToolTip ttlat = Widgets.GetToolTip(Tooltips.LatitudeTitle);
+			ToolTip ttlat = Widgets.GetToolTipInfo(Tooltips.LatitudeTitle);
 			foreach (Id id in ins_latitude) {
 				tooltips.Add(id, ttlat);
 			}
-			ToolTip ttlon = Widgets.GetToolTip(Tooltips.LongitudeTitle);
+			ToolTip ttlon = Widgets.GetToolTipInfo(Tooltips.LongitudeTitle);
 			foreach (Id id in ins_longitude) {
 				tooltips.Add(id, ttlon);
 			}
-			ToolTip tttz = Widgets.GetToolTip(Tooltips.TimezoneTitle);
+			ToolTip tttz = Widgets.GetToolTipInfo(Tooltips.TimezoneTitle);
 			foreach (Id id in ins_timezone) {
 				tooltips.Add(id, tttz);
 			}
-			ToolTip ttdt = Widgets.GetToolTip(Tooltips.DateTitle);
+			ToolTip ttdt = Widgets.GetToolTipInfo(Tooltips.DateTitle);
 			foreach (Id id in ins_date) {
 				tooltips.Add(id, ttdt);
 			}
-			ToolTip tttm = Widgets.GetToolTip(Tooltips.TimeTitle);
+			ToolTip tttm = Widgets.GetToolTipInfo(Tooltips.TimeTitle);
 			foreach (Id id in ins_time) {
 				tooltips.Add(id, tttm);
 			}

@@ -14,8 +14,7 @@ namespace SolarbeamGui
 		
 		private void InitializeComponent()
 		{
-			ToolStripButton btn = new ToolStripButton();
-			btn.Text = "B";
+			ToolStripItem btn = Widgets.GetToolStripButton("B");
 			
 			this.Items.AddRange(new ToolStripItem[] {btn});
 		}

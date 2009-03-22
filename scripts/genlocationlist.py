@@ -450,7 +450,7 @@ zones = {
     
     # Argentina
     "Buenos Aires": "America/Argentina/Buenos_Aires",
-    "Distrito Federal": "America/Argentina/Buenos_Aires",
+    "Buenos Aires (Arg)": "America/Argentina/Buenos_Aires",
     "Catamarca": "America/Argentina/Catamarca",
     "Chaco": "America/Argentina/Cordoba",
     "Córdoba": "America/Argentina/Cordoba",
@@ -487,8 +487,8 @@ zones = {
     "Pernambuco": "America/Recife",
     "Acre": "America/Rio_Branco",
     "Santarem (Bra)": "America/Santarem",
+    "Brasilia (Bra)": "America/Sao_Paulo",
     "Espírito Santo": "America/Sao_Paulo",
-    "Distrito Federal": "America/Sao_Paulo",
     "Goiás": "America/Sao_Paulo",
     "Minas Gerais": "America/Sao_Paulo",
     "Paraná": "America/Sao_Paulo",

@@ -44,7 +44,7 @@
     <Compile Include="GuiLogic\Reader.cs" />
     <Compile Include="GuiLogic\Writer.cs" />
     <Compile Include="GuiLogic\Marker.cs" />
-    <Compile Include="GuiWidgets\Lib\Widgets.cs" />
+    <Compile Include="GuiWidgets\Lib\WidgetsForm.cs" />
     <Compile Include="GuiDatasource\TimezoneSource.cs" />
     <Compile Include="GuiDatasource\PositionSource.cs" />
     <Compile Include="GuiDatasource\LocationsSource.cs" />
@@ -52,6 +52,8 @@
     <Compile Include="GuiWidgets\Tooltips.cs" />
     <Compile Include="GuiLogic\Sessions.cs" />
     <Compile Include="GuiWidgets\GuiToolbar.cs" />
+    <Compile Include="GuiWidgets\Lib\Layouts.cs" />
+    <Compile Include="GuiWidgets\Lib\WidgetsToolbar.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
