@@ -2,6 +2,7 @@
 // Licensed under the GNU Public License, version 3.
 
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 using LibSolar.Types;
@@ -40,7 +41,7 @@ namespace SolarbeamGui
 			} catch (ArgumentException) {
 				foreach (Id id in ins_position)
 				{
-					MarkError(registry[id]);
+					MarkError((Control) registry[id]);
 				}
 			}
 			return pos;
@@ -68,14 +69,14 @@ namespace SolarbeamGui
 			} catch (ArgumentException) {
 				foreach (Id id in ins_timedate)
 				{
-					MarkError(registry[id]);
+					MarkError((Control) registry[id]);
 				}
 			}
 			
 			return udt;
 		}
 		
-		private static string GetValue(Control control)
+		private static string GetValue(Component control)
 		{
 			string val = null;
 			if (control is ComboBox) {

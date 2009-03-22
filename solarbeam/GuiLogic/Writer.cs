@@ -2,6 +2,7 @@
 // Licensed under the GNU Public License, version 3.
 
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 using LibSolar.SolarOrbit;
@@ -90,7 +91,7 @@ namespace SolarbeamGui
 			SetValue(registry[Id.DAY_LENGTH], FormatDayLength(st, sp));
 		}
 	
-		public static void SetValue(Control control, object val)
+		public static void SetValue(Component control, object val)
 		{
 			if (control is ComboBox) {
 				((ComboBox) control).Text = (string) val;
@@ -101,7 +102,7 @@ namespace SolarbeamGui
 			}
 		}
 		
-		public static void InitControl(Control control)
+		public static void InitControl(Component control)
 		{
 			// form has no values yet, don't validate this input
 			validate_lock = true;

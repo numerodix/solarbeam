@@ -4,6 +4,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 using LibSolar.Types;
@@ -28,7 +29,7 @@ namespace SolarbeamGui
 				// clear form changes, update cache with new values
 				foreach (Id id in ins_position)
 				{
-					Control control = registry[id];
+					Control control = (Control) registry[id];
 					UnMark(control);
 					cache[id] = GetValue(control);
 				}
@@ -68,13 +69,13 @@ namespace SolarbeamGui
 		{
 			foreach (Id id in ins_position)
 			{
-				Control control = registry[id];
+				Control control = (Control) registry[id];
 				SetValue(control, cache[id]);
 				UnMark(control);
 			}
 			foreach (Id id in ins_timedate)
 			{
-				Control control = registry[id];
+				Control control = (Control) registry[id];
 				UnMark(control);
 			}
 		}
@@ -121,7 +122,7 @@ namespace SolarbeamGui
 				{
 					validate_lock = true;
 	
-					Control control = (Control) sender;
+					Component control = (Component) sender;
 					Id id = reg_rev[control];
 	
 					if (id == Id.LOCATION) {

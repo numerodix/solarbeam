@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -23,8 +24,7 @@ namespace SolarbeamGui
 	
 		private static void ValidateLocation()
 		{
-			Control control_loc = registry[Id.LOCATION];
-			string loc_s = GetValue(control_loc);
+			string loc_s = GetValue(registry[Id.LOCATION]);
 			
 			Location loc = Controller.LocationsSource.GetLocation(loc_s);
 			SetPosition(loc.Position);
@@ -33,9 +33,9 @@ namespace SolarbeamGui
 		
 		private static void ValidatePosition(PositionAxis ax)
 		{
-			Control control_deg = registry[Id.LONGITUDE_DEGS];
-			Control control_min = registry[Id.LONGITUDE_MINS];
-			Control control_sec = registry[Id.LONGITUDE_SECS];
+			Component control_deg = registry[Id.LONGITUDE_DEGS];
+			Component control_min = registry[Id.LONGITUDE_MINS];
+			Component control_sec = registry[Id.LONGITUDE_SECS];
 	
 			int max_deg = Position.LONDEGS_MAXVALUE;
 			int min_deg = Position.LONDEGS_MINVALUE;
@@ -103,7 +103,7 @@ namespace SolarbeamGui
 		
 		private static void ValidateTimezoneOffset()
 		{
-			Control control_tzoff = registry[Id.TIMEZONE_OFFSET];
+			Component control_tzoff = registry[Id.TIMEZONE_OFFSET];
 			ComboBox control_tzname = (ComboBox) registry[Id.TIMEZONE_NAME];
 			
 			string tzoff_val = GetValue(control_tzoff);
@@ -124,9 +124,9 @@ namespace SolarbeamGui
 		
 		private static void ValidateDate()
 		{
-			Control control_year = registry[Id.DATE_YEAR];
-			Control control_month = registry[Id.DATE_MONTH];
-			Control control_day = registry[Id.DATE_DAY];
+			Component control_year = registry[Id.DATE_YEAR];
+			Component control_month = registry[Id.DATE_MONTH];
+			Component control_day = registry[Id.DATE_DAY];
 	
 			int year = GetInt(GetValue(control_year));
 			int month = GetInt(GetValue(control_month));
@@ -164,10 +164,10 @@ namespace SolarbeamGui
 	
 		private static void ValidateTime()
 		{
-			Control control_day = registry[Id.DATE_DAY];
-			Control control_hour = registry[Id.TIME_HOUR];
-			Control control_min = registry[Id.TIME_MINUTE];
-			Control control_sec = registry[Id.TIME_SECOND];
+			Component control_day = registry[Id.DATE_DAY];
+			Component control_hour = registry[Id.TIME_HOUR];
+			Component control_min = registry[Id.TIME_MINUTE];
+			Component control_sec = registry[Id.TIME_SECOND];
 	
 			int max_hour = UTCDate.HOUR_MAXVALUE;
 			int min_hour = UTCDate.HOUR_MINVALUE;

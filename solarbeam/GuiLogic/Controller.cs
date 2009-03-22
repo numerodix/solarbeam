@@ -2,6 +2,7 @@
 // Licensed under the GNU Public License, version 3.
 
 using System;
+using System.ComponentModel;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -95,11 +96,11 @@ namespace SolarbeamGui
 	
 
 		// the registry maps control identifiers onto widget objects
-		private static Dictionary<Id, Control> registry =
-			new Dictionary<Id, Control>();
+		private static Dictionary<Id, Component> registry =
+			new Dictionary<Id, Component>();
 		// the reverse registry is the opposite mapping for lookup on widget objects
-		private static Dictionary<Control, Id> reg_rev =
-			new Dictionary<Control, Id>();
+		private static Dictionary<Component, Id> reg_rev =
+			new Dictionary<Component, Id>();
 		
 
 		// the cache stores the value of a control when submission occurs
@@ -175,12 +176,12 @@ namespace SolarbeamGui
 			}
 		}
 
-		public static void RegisterControl(Id id, Control control)
+		public static void RegisterControl(Id id, Component control)
 		{
 			RegisterControl(id, null, control);
 		}
 		
-		public static void RegisterControl(Id id, string tip, Control control)
+		public static void RegisterControl(Id id, string tip, Component control)
 		{
 			// register in registry
 			registry.Add(id, control);
@@ -188,14 +189,13 @@ namespace SolarbeamGui
 			cache.Add(id, String.Empty);
 			
 			// activate buttons
-			if (control is Button) {
-				ActivateButton((Button) control);
+			if ((control is Button) || (control is ToolStripButton)) {
+				ActivateButton(control);
 			}
-									
+		
 			// select on focus
-			control.GotFocus += new EventHandler(GotFocus);
-			control.LostFocus += new EventHandler(LostFocus);
-			
+			RegisterFocus(control);
+		
 			// validate all inputs before dispatching handler acting on new value
 			if (ins_position.Contains(id) || ins_timedate.Contains(id)) {
 				EventHandler handler = new EventHandler(Validate);
@@ -213,28 +213,37 @@ namespace SolarbeamGui
 				EventHandler handler = new EventHandler(UpdateViewport);
 				RegisterValueChange(control, handler);
 			}
-			
+		
 			// activate tooltip
-			if (tip != null) {
-				tooltips[id].SetToolTip(control, tip);
-			}
+			ActivateTooltip(id, control, tip);
 		
 			// set initial value (make sure to disable validation)
 			InitControl(control);
 		}
 		
-		private static void ActivateButton(Button button)
+		private static void ActivateButton(Component button)
 		{
-			if (reg_rev[button] == Id.LOCATIONDELETE_ACTION) {
-				button.Click += new EventHandler(DeleteLocation);
+			if (reg_rev[button] == Id.LOCATIONNEW_ACTION) {
+				// somin
+			} else if (reg_rev[button] == Id.LOCATIONDELETE_ACTION) {
+				((Button) button).Click += new EventHandler(DeleteLocation);
 			} else if (reg_rev[button] == Id.RESETFORM_ACTION) {
-				button.Click += new EventHandler(ResetForm);
+				((Button) button).Click += new EventHandler(ResetForm);
 			} else if (reg_rev[button] == Id.RENDER_ACTION) {
-				button.Click += new EventHandler(RenderViewport);
+				((Button) button).Click += new EventHandler(RenderViewport);
+			}
+		}
+									
+		private static void RegisterFocus(Component control)
+		{
+			if (control is Control) {
+				((Control) control).GotFocus += new EventHandler(GotFocus);
+				((Control) control).LostFocus += new EventHandler(LostFocus);
 			}
 		}
 			
-		private static void RegisterValueChange(Control control, EventHandler handler)
+		private static void RegisterValueChange(Component control, 
+									            EventHandler handler)
 		{
 			if (control is ComboBox) {
 				((ComboBox) control).SelectedValueChanged += handler;
@@ -244,5 +253,14 @@ namespace SolarbeamGui
 				((TextBox) control).TextChanged += handler;
 			}
 		}
-	}	
+
+		private static void ActivateTooltip(Id id, Component control, string tip)
+		{
+			if (tip != null) {
+				if (control is Control) {
+					tooltips[id].SetToolTip((Control) control, tip);
+				}
+			}
+		}
+	}
 }
