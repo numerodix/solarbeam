@@ -156,6 +156,9 @@ namespace SolarbeamGui
 			foreach (Id id in ins_time) {
 				tooltips.Add(id, tttm);
 			}
+										
+			tooltips.Add(Id.RESETFORM_ACTION, Widgets.GetToolTipInfo(Tooltips.ResetTitle));
+			tooltips.Add(Id.RENDER_ACTION, Widgets.GetToolTipInfo(Tooltips.RenderTitle));
 		}
 									
 		/**

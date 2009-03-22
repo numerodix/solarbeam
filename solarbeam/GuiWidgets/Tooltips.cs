@@ -131,5 +131,19 @@ namespace SolarbeamGui
 					UTCDate.SECOND_MINVALUE,
 					UTCDate.SECOND_MAXVALUE);
 		} }
+		
+		// Buttons
+		
+		public static string ResetTitle
+		{ get { return "Reset form"; } }
+		
+		public static string ResetButton
+		{ get { return "Reset inputs to previous rendering"; } }
+		
+		public static string RenderTitle
+		{ get { return "Render diagram"; } }
+		
+		public static string RenderButton
+		{ get { return "Render a new diagram"; } }
 	}
 }

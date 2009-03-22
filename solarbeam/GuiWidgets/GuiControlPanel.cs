@@ -134,9 +134,13 @@ namespace SolarbeamGui
 			Control btns = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetLabel(String.Empty), //layout buffer
-					Widgets.GetButton(Controller.Id.RESETFORM_ACTION, "Reset"),
+					Widgets.GetButtonImaged(Controller.Id.RESETFORM_ACTION,
+				                        Tooltips.ResetButton,
+				                        "Reset", "reset.png"),
 					Widgets.GetLabel(String.Empty),
-					Widgets.GetButton(Controller.Id.RENDER_ACTION, "Render"),
+					Widgets.GetButtonImaged(Controller.Id.RENDER_ACTION,
+				                        Tooltips.RenderButton,
+				                        "Render", "render.png"),
 					Widgets.GetLabel(String.Empty)},
 				new float[] {15F, 30F, 15F, 30F, 15F});
 	

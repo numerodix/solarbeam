@@ -3,7 +3,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
+
+using LibSolar.Assemblies;
 
 namespace SolarbeamGui
 {
@@ -12,11 +15,16 @@ namespace SolarbeamGui
 	 */
 	partial class Widgets
 	{	
-		public static Button GetButton(Controller.Id id, string s)
+		public static Button GetButtonImaged(Controller.Id id, string tip,
+		                                     string s, string img)
 		{
 			Button button = new Button();
+			button.Image = new Bitmap(Controller.AsmInfo.GetResource(img));
 			button.Text = s;
-			Controller.RegisterControl(id, button);	// register control
+			button.TextImageRelation = TextImageRelation.ImageBeforeText;
+			button.FlatStyle = FlatStyle.Flat;
+			button.FlatAppearance.BorderSize = 0;
+			Controller.RegisterControl(id, tip, button);	// register control
 			return button;
 		}
 		

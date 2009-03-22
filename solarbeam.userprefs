@@ -1,12 +1,21 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="solarbeam/GuiWidgets/GuiControlPanel.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="solarbeam/GuiWidgets/GuiToolbar.cs" ctype="Workbench">
     <Files>
-      <File FileName="solarbeam/GuiWidgets/Tooltips.cs" Line="15" Column="16" />
-      <File FileName="solarbeam/GuiWidgets/GuiControlPanel.cs" Line="174" Column="31" />
+      <File FileName="solarbeam/GuiLogic/Handlers.cs" Line="35" Column="4" />
+      <File FileName="solarbeam/GuiWidgets/Lib/WidgetsToolbar.cs" Line="1" Column="1" />
+      <File FileName="solarbeam/GuiWidgets/GuiToolbar.cs" Line="27" Column="69" />
+      <File FileName="libsolar/Assemblies/AsmInfo.cs" Line="40" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" />
+        <State expanded="True">
+          <Node name="solarbeam" expanded="True">
+            <Node name="GuiWidgets" expanded="True">
+              <Node name="Lib" expanded="True" />
+              <Node name="GuiToolbar.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />
