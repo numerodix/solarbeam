@@ -113,13 +113,8 @@ namespace SolarbeamGui
 			foreach (string zone in zones) {
 				control_tzname.Items.Add(zone);
 			}
-			if (zones.Count > 0) {
-				control_tzname.Text = zones[0];
-				Enable(control_tzname);
-			} else {
-				Disable(control_tzname);
-				control_tzname.Enabled = false;
-			}
+
+			control_tzname.Text = zones[0];
 		}
 		
 		private static void ValidateDate()

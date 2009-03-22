@@ -45,15 +45,5 @@ namespace SolarbeamGui
 				}
 			}
 		}
-		
-		public static void Enable(Control control)
-		{
-			control.Enabled = true;
-		}
-		
-		public static void Disable(Control control)
-		{
-			control.Enabled = false;
-		}
 	}
 }
