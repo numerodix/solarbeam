@@ -1,7 +1,7 @@
 // Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
 // Licensed under the GNU Public License, version 3.
 //
-// Generated with ./genlocationlist.py on on 21.3.2009
+// Generated with ./genlocationlist.py on on 22.3.2009
 
 using LibSolar.Types;
 
@@ -900,7 +900,7 @@ namespace LibSolar.Locations
 			list.Add("Buenaventura (Col)", "America/Bogota",
 				new Position(PositionDirection.North, 3, 53, 24,
 					PositionDirection.West, 77, 2, 24));
-			list.Add("Buenos Aires (Arg)", "America/Sao_Paulo",
+			list.Add("Buenos Aires (Arg)", "America/Argentina/Buenos_Aires",
 				new Position(PositionDirection.South, 34, 36, 36,
 					PositionDirection.West, 58, 22, 12));
 			list.Add("Buhoro (Uzb)", "Asia/Tashkent",
@@ -3450,7 +3450,7 @@ namespace LibSolar.Locations
 			list.Add("Mexicali (Mex)", "America/Tijuana",
 				new Position(PositionDirection.North, 32, 39, 0,
 					PositionDirection.West, 115, 28, 12));
-			list.Add("Mexico City (Mex)", "America/Sao_Paulo",
+			list.Add("Mexico City (Mex)", "America/Mexico_City",
 				new Position(PositionDirection.North, 19, 25, 48,
 					PositionDirection.West, 99, 8, 24));
 			list.Add("Meycauayan (Phi)", "Asia/Manila",
