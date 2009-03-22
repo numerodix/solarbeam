@@ -10,10 +10,12 @@ namespace SolarbeamGui
 	 */
 	partial class Widgets
 	{
-		public static ToolStripButton GetToolStripButton(Controller.Id id, string s)
+		public static ToolStripButton GetToolStripButton(Controller.Id id, 
+		                                                 string s, string tip)
 		{
 			ToolStripButton btn = new ToolStripButton();
 			btn.Text = s;
+			btn.ToolTipText = tip;
 			Controller.RegisterControl(id, btn);	// register control
 			return btn;
 		}

@@ -15,11 +15,11 @@ namespace SolarbeamGui
 		private void InitializeComponent()
 		{
 			ToolStripItem new_btn = Widgets.GetToolStripButton(Controller.Id.LOCATIONNEW_ACTION,
-			                                                   "New");
+			                                                   "New", "Add new location");
 			ToolStripItem save_btn = Widgets.GetToolStripButton(Controller.Id.LOCATIONSAVE_ACTION,
-			                                                    "Save");
+			                                                    "Save", "Save this location");
 			ToolStripItem del_btn = Widgets.GetToolStripButton(Controller.Id.LOCATIONDELETE_ACTION,
-			                                                   "Delete");
+			                                                   "Delete", "Delete this location");
 			
 			this.Items.AddRange(new ToolStripItem[] {new_btn, save_btn, del_btn});
 		}
