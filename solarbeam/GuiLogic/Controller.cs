@@ -96,11 +96,11 @@ namespace SolarbeamGui
 	
 
 		// the registry maps control identifiers onto widget objects
-		private static Dictionary<Id, Component> registry =
-			new Dictionary<Id, Component>();
+		private static Dictionary<Id,Component> registry =
+			new Dictionary<Id,Component>();
 		// the reverse registry is the opposite mapping for lookup on widget objects
-		private static Dictionary<Component, Id> reg_rev =
-			new Dictionary<Component, Id>();
+		private static Dictionary<Component,Id> reg_rev =
+			new Dictionary<Component,Id>();
 		
 
 		// the cache stores the value of a control when submission occurs
@@ -110,7 +110,7 @@ namespace SolarbeamGui
 			new Dictionary<Id,string>();
 		
 		// map controls onto tooltip objects for tooltip clustering
-		private static Dictionary<Id,ToolTip> tooltips;
+		private static Dictionary<Id,ToolTip> tooltips = new Dictionary<Id,ToolTip>();
 		
 
 		// central access to widget source providers
@@ -134,8 +134,6 @@ namespace SolarbeamGui
 		 */
 		private static void InitTooltips()
 		{
-			tooltips = new Dictionary<Id,ToolTip>();
-
 			tooltips.Add(Id.LOCATION, Widgets.GetToolTipInfo(Tooltips.LocationTitle));
 			
 			ToolTip ttlat = Widgets.GetToolTipInfo(Tooltips.LatitudeTitle);
