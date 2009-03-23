@@ -120,11 +120,15 @@ namespace SolarbeamGui
 								
 		// reference point for assembly queries
 		public static AsmInfo AsmInfo;
+									
+		public static Queue<string> SplashQueue = new Queue<string>();
 		
 
 		static Controller()
 		{
 			Controller.AsmInfo = new AsmInfo(Assembly.GetExecutingAssembly());
+										
+			SplashQueue.Enqueue("static Controller()");
 		}
 									
 		/**
@@ -132,6 +136,7 @@ namespace SolarbeamGui
 		 */
 		public static void InitSources()
 		{
+			SplashQueue.Enqueue("Loading locations");
 			if (LocationsSource == null) {
 				LocationsSource = new LocationsSource();
 			}

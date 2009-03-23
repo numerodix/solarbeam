@@ -3,12 +3,17 @@
 
 using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace SolarbeamGui
 {
 	sealed class GuiSplash : Form
 	{
+//		private Timer timer;
+		public bool expired = false;
+		public Label label;
+		
 		public GuiSplash()
 		{
 			InitializeComponent();
@@ -23,12 +28,64 @@ namespace SolarbeamGui
 			this.FormBorderStyle = FormBorderStyle.None;
 			this.Size = logo.Size;
 			
-			this.Closed += new EventHandler(Quit);
-		}
+			label = new Label();
+			label.Text = "Init";
+			label.Size = new Size(200, 20);
+			label.Location = new Point(30, 170);
+			label.BackColor = Color.White;
+			label.ForeColor = Color.OrangeRed;
+			this.Controls.Add(label);
+/*			
+			timer = new Timer();
+			timer.Interval = 1000;
+			timer.Tick += new EventHandler(ProcessTick);
+			timer.Enabled = true;
+*/		}
 		
-		private void Quit(object o, EventArgs a)
+		public void Launch()
 		{
-			Application.Exit();
+			Console.WriteLine("splash :: init");
+			this.Show();
+			Application.DoEvents();
+			
+			while (!expired) {
+				Console.WriteLine("splash :: >> TICK");
+				Thread.Sleep(1000);
+				if (Controller.SplashQueue.Count > 0) {
+					string msg = Controller.SplashQueue.Dequeue();
+					Console.WriteLine("splash dequeue :: {0}", msg);
+					label.Text = msg;
+					Application.DoEvents();
+				}
+				Thread.Sleep(1000);
+				Console.WriteLine("splash :: << TICK");
+			}
+			
+			Console.WriteLine("splash :: start close");
+			this.Close();
+			this.Dispose();
+			Console.WriteLine("splash :: end close");
 		}
-	}
+/*		
+		private void ProcessTick(object o, EventArgs a)
+		{
+			Console.WriteLine("splash :: ProcessTick()");
+			if (expired) {
+				timer.Dispose();
+				Close();
+			}
+			
+			Console.WriteLine("splash :: tick");
+			if (Controller.SplashQueue.Count > 0) {
+				string msg = Controller.SplashQueue.Dequeue();
+				Console.WriteLine(msg);
+			}
+		}
+*/		
+/*		public void Expire(object o, EventArgs a)
+		{
+			Console.WriteLine("splash :: Expire()");
+			expired = true;
+		}
+*/	}
 }
