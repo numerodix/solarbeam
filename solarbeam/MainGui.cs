@@ -32,6 +32,9 @@ namespace SolarbeamGui
 			}
 
 			splashthread = new Thread(RunSplash);
+			splashthread.IsBackground = true;
+			Thread.CurrentThread.IsBackground = true; // cure for cancer?
+			splashthread.Name = "splash";
 			splashthread.Start();
 			Console.WriteLine("main :: After splash invoke");
 			RunMainForm();

@@ -74,9 +74,13 @@ namespace SolarbeamGui
 			
 			this.Controls.Add(layout);
 			
-			this.TopMost = true; // show over splash
-			
 			this.Closed += new EventHandler(Quit);
+			
+			// Hiiiiiiiiiiiideous hack to prevent being shown behind all 
+			// other windows on Windows. ffs!
+			// discarded impotent options: BringToFront(), Activate()
+			this.TopMost = true;
+			this.Load += delegate (object o,EventArgs a) { this.TopMost = false; };
 		}
 			
 		private void Quit(object o, EventArgs a)

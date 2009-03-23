@@ -52,7 +52,7 @@ namespace SolarbeamGui
 			
 			while (!expired) {
 				Console.WriteLine("splash :: >> TICK");
-				Thread.Sleep(300);
+				Thread.Sleep(100); //Thread.Sleep(0); // give up cpu slice only
 				if (Controller.SplashQueue.Count > 0) {
 					string msg = Controller.SplashQueue.Dequeue();
 					Console.WriteLine("splash dequeue :: {0}", msg);
