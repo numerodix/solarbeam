@@ -23,7 +23,7 @@ namespace SolarbeamGui
 			SetDateTime(dt);
 			SetLocation("Equator");
 			
-			SetValue(registry[Id.BITMAP_SIZE], 500);
+			SetValue(registry[Id.IMAGE_SIZE], 500);
 		}
 		
 		private static void SetLocation(string location)

@@ -138,9 +138,9 @@ namespace SolarbeamGui
 			} catch (KeyNotFoundException) {}
 		}
 		
-		private static void SaveBitmap(object sender, EventArgs args)
+		private static void SaveImage(object sender, EventArgs args)
 		{
-			int dim = GetInt(GetValue(registry[Id.BITMAP_SIZE]));
+			int dim = GetInt(GetValue(registry[Id.IMAGE_SIZE]));
 			Position pos = ReadPosition();
 			UTCDate? date = ReadDate();
 			Colors colors = GuiViewport.colors;

@@ -74,7 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\images\logo.png" />
-    <EmbeddedResource Include="..\images\bitmap-save.png" />
+    <EmbeddedResource Include="..\images\image-save.png" />
     <EmbeddedResource Include="..\images\loc-delete.png" />
     <EmbeddedResource Include="..\images\loc-new.png" />
     <EmbeddedResource Include="..\images\loc-save.png" />

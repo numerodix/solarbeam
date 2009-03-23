@@ -24,18 +24,18 @@ namespace SolarbeamGui
 		
 		private const int INPUTS_COUNT = 6;
 		private const int OUTPUTS_COUNT = 6;
-		private const int BITMAPSAVE_COUNT = 1;
+		private const int IMAGESAVE_COUNT = 1;
 		
 		private const int INPUTS_HEIGHT = GROUPBOX_HEIGHT + INPUTS_COUNT * FORM_ROW_HEIGHT + 2*FORM_PADDING;
 		private const int BUTTONS_HEIGHT = 30;
 		private const int OUTPUTS_HEIGHT = GROUPBOX_HEIGHT + OUTPUTS_COUNT * FORM_ROW_HEIGHT + 2*FORM_PADDING;
-		private const int BITMAPSAVE_HEIGHT = GROUPBOX_HEIGHT + BITMAPSAVE_COUNT * FORM_ROW_HEIGHT + 2*FORM_PADDING;
+		private const int IMAGESAVE_HEIGHT = GROUPBOX_HEIGHT + IMAGESAVE_COUNT * FORM_ROW_HEIGHT + 2*FORM_PADDING;
 		
 		private const int PANEL_COUNT = 4;
 		private const int PANEL_WIDTH = 360;
 		
 		public const int WIDTH = GROUPBOX_WIDTH + PANEL_WIDTH + 2*FORM_PADDING;
-		public const int HEIGHT = INPUTS_HEIGHT + BUTTONS_HEIGHT + OUTPUTS_HEIGHT + BITMAPSAVE_HEIGHT + 2*FORM_PADDING + 2*FORM_MARGIN;
+		public const int HEIGHT = INPUTS_HEIGHT + BUTTONS_HEIGHT + OUTPUTS_HEIGHT + IMAGESAVE_HEIGHT + 2*FORM_PADDING + 2*FORM_MARGIN;
 	
 	
 		public GuiControlPanel()
@@ -58,10 +58,10 @@ namespace SolarbeamGui
 			outputs.Size = new Size(PANEL_WIDTH, OUTPUTS_HEIGHT);
 			outputs.Controls.Add(GetOutputs());
 	
-			GroupBox bitmapsave = new GroupBox();
-			bitmapsave.Text = "Save bitmap";
-			bitmapsave.Size = new Size(PANEL_WIDTH, BITMAPSAVE_HEIGHT);
-			bitmapsave.Controls.Add(GetBitmapSave());
+			GroupBox imagesave = new GroupBox();
+			imagesave.Text = "Save image";
+			imagesave.Size = new Size(PANEL_WIDTH, IMAGESAVE_HEIGHT);
+			imagesave.Controls.Add(GetImageSave());
 			
 			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(PANEL_COUNT, 1, 
 			                                                      FORM_MARGIN, FORM_PADDING);
@@ -71,7 +71,7 @@ namespace SolarbeamGui
 			layout.Controls.Add(inputs, 0, 0);
 			layout.Controls.Add(buttons, 0, 1);
 			layout.Controls.Add(outputs, 0, 2);
-			layout.Controls.Add(bitmapsave, 0, 3);
+			layout.Controls.Add(imagesave, 0, 3);
 	
 			this.Dock = DockStyle.Fill;
 			this.Controls.Add(layout);
@@ -276,17 +276,17 @@ namespace SolarbeamGui
 			return layout;
 		}
 
-		private Control GetBitmapSave()
+		private Control GetImageSave()
 		{
 			Control btns = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetLabel(String.Empty), //layout buffer
-					Widgets.GetNumericUpDown(Controller.Id.BITMAP_SIZE,
+					Widgets.GetNumericUpDown(Controller.Id.IMAGE_SIZE,
 					                         300,
 					                         10000),
 					Widgets.GetLabel("pixels"),
-					Widgets.GetButtonImageText(Controller.Id.BITMAPSAVE_ACTION,
-				                           "Save", "bitmap-save.png"),
+					Widgets.GetButtonImageText(Controller.Id.IMAGESAVE_ACTION,
+				                           "Save", "image-save.png"),
 					Widgets.GetLabel(String.Empty)},
 				new float[] {20F, 20F, 15F, 30F, 20F});
 	
