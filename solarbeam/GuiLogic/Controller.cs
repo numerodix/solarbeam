@@ -120,8 +120,9 @@ namespace SolarbeamGui
 								
 		// reference point for assembly queries
 		public static AsmInfo AsmInfo;
-									
-		public static Queue<string> SplashQueue = new Queue<string>();
+				
+		// add strings to be shown in splash screen
+		volatile public static Queue<string> SplashQueue = new Queue<string>();
 		
 
 		static Controller()

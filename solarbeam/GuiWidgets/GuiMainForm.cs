@@ -87,6 +87,7 @@ namespace SolarbeamGui
 		{
 			Controller.SaveSession();
 			Dispose();
+			Environment.Exit(0);
 			
 			Process[] allProcs = Process.GetProcesses();
 			foreach (Process proc in allProcs)

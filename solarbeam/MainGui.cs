@@ -18,17 +18,21 @@ namespace SolarbeamGui
 		private static GuiSplash splash;
 		private static GuiMainForm mainform;
 		private static Thread splashthread;
+		private static string[] args;
 		
 		[STAThread]
 		public static void Main(string[] args)
 		{
+			MainGui.args = args;
+			
 			if (args.Length > 0) {
 				if (args[0] == "-nogui") {
 					TimeGuiCreate();
+					Environment.Exit(0);
 				} else if (args[0] == "-timeit") {
 					TimeBitmapCreate();
+					Environment.Exit(0);
 				}
-				Environment.Exit(0);
 			}
 
 			splashthread = new Thread(RunSplash);
@@ -59,6 +63,15 @@ namespace SolarbeamGui
 			splashthread.Join();
 //			splashthread.Abort();
 			Console.WriteLine("main :: post call expire");
+			
+			if ((args.Length > 0) && (args[0] == "-checkhang")) {
+				mainform.Shown += delegate (object o,EventArgs a) { 
+					mainform.Refresh(); 
+					mainform.Update(); 
+					Thread.Sleep(1000); 
+					Environment.Exit(0); };
+			}
+				
 			Application.Run(mainform);
 		}
 

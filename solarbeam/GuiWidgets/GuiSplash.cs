@@ -11,7 +11,7 @@ namespace SolarbeamGui
 	sealed class GuiSplash : Form
 	{
 //		private Timer timer;
-		public bool expired = false;
+		volatile public bool expired = false; // atomic reads/writes
 		public Label label;
 		
 		public GuiSplash()
