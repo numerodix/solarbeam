@@ -17,45 +17,69 @@ namespace SolarbeamGui
 	{
 		private static GuiSplash splash;
 		private static GuiMainForm mainform;
+		private static Thread splashthread;
+		private static string[] args;
 		
 		[STAThread]
 		public static void Main(string[] args)
 		{
+			MainGui.args = args;
+			
 			if (args.Length > 0) {
 				if (args[0] == "-nogui") {
-					GuiMainForm mainform =
-						new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
+					TimeGuiCreate();
+					Environment.Exit(0);
 				} else if (args[0] == "-timeit") {
-					TimeIt();
+					TimeBitmapCreate();
+					Environment.Exit(0);
 				}
-				Environment.Exit(0);
 			}
-/*			
-			Thread thread_splash = new Thread(new ThreadStart(RunSplash));
-			thread_splash.Start();
-			
-			Thread.Sleep(1000);
-			thread_splash.Abort();
-			Thread.Sleep(1000);
-*/			
+
+			splashthread = new Thread(RunSplash);
+			splashthread.IsBackground = true;
+			Thread.CurrentThread.IsBackground = true; // cure for cancer?
+			splashthread.Name = "splash";
+			splashthread.Start();
+//			Console.WriteLine("main :: After splash invoke");
 			RunMainForm();
 		}
 		
 		private static void RunSplash()
 		{
 			splash = new GuiSplash();
-			Application.Run(splash);
-			//splash.ShowDialog();
+			splash.Launch();
 		}
 		
 		private static void RunMainForm()
 		{
 			mainform = new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
+//			Console.WriteLine("main :: after gui create");
 			Application.EnableVisualStyles();
+			
+//			Console.WriteLine("main :: pre call expire");
+			splash.expired = true;
+			splashthread.Join();
+//			Console.WriteLine("main :: post call expire");
+			
+			if ((args.Length > 0) && (args[0] == "-checkhang")) {
+				mainform.Shown += delegate (object o,EventArgs a) { 
+					mainform.Refresh(); 
+					mainform.Update(); 
+					Thread.Sleep(1000); 
+					Environment.Exit(0); };
+			}
+
+			mainform.Activate();
 			Application.Run(mainform);
 		}
 
-		private static void TimeIt()
+		private static void TimeGuiCreate()
+		{
+			GuiMainForm mainform =
+						new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
+		}
+		
+		private static void TimeBitmapCreate()
 		{
 			Stopwatch watch = new Stopwatch();
 			watch.Start();

@@ -122,6 +122,9 @@ namespace SolarbeamGui
 								
 		// reference point for assembly queries
 		public static AsmInfo AsmInfo;
+				
+		// add strings to be shown in splash screen
+		volatile public static Queue<string> SplashQueue = new Queue<string>();
 		
 
 		static Controller()
@@ -135,12 +138,14 @@ namespace SolarbeamGui
 		public static void InitSources()
 		{
 			if (LocationsSource == null) {
+				Controller.SplashQueue.Enqueue("Loading location list");
 				LocationsSource = new LocationsSource();
 			}
 			if (PositionSource == null) {
 				PositionSource = new PositionSource();
 			}
 			if (TimezoneSource == null) {
+				Controller.SplashQueue.Enqueue("Loading timezones");
 				TimezoneSource = new TimezoneSource();
 			}
 		}

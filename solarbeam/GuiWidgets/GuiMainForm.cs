@@ -1,7 +1,8 @@
 // Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
 // Licensed under the GNU Public License, version 3.
 
-using System;
+using System;using System.Diagnostics;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -52,6 +53,7 @@ namespace SolarbeamGui
 			// init datasources before instantiating widgets
 			Controller.InitSources();
 			
+			Controller.SplashQueue.Enqueue("Initializing gui");
 			this.menu = new GuiMenu();
 			Control mainarea = GetMainArea();
 			
@@ -69,11 +71,43 @@ namespace SolarbeamGui
 			this.Controls.Add(layout);
 			
 			this.Closed += new EventHandler(Quit);
+			
+			// Hiiiiiiiiiiiideous hack to prevent being shown behind all 
+			// other windows on Windows. ffs!
+			// discarded impotent options: BringToFront(), Activate()
+			this.TopMost = true;
+			//this.Load += delegate (object o,EventArgs a) { this.TopMost = false; }; // sigh
+			this.Shown += delegate (object o,EventArgs a) { this.TopMost = false; };
 		}
 			
 		private void Quit(object o, EventArgs a)
 		{
 			Controller.SaveSession();
+			Dispose();
+			Environment.Exit(0);
+			
+			Process[] allProcs = Process.GetProcesses();
+			foreach (Process proc in allProcs)
+			{
+				if (proc.ProcessName == "solarbeam") {
+					ProcessThreadCollection myThreads = proc.Threads;
+					Console.WriteLine("process: {0},  id: {1}", proc.ProcessName, proc.Id);
+					
+					foreach (ProcessThread pt in myThreads)
+					{
+						DateTime startTime = pt.StartTime;
+						TimeSpan cpuTime = pt.TotalProcessorTime;
+						int priority = pt.BasePriority;
+						ThreadState ts = pt.ThreadState;
+						
+						Console.WriteLine("  thread:  {0}", pt.Id);
+						Console.WriteLine("    started: {0}", startTime.ToString());
+						Console.WriteLine("    CPU time: {0}", cpuTime);
+						Console.WriteLine("    priority: {0}", priority);
+						Console.WriteLine("    thread state: {0}", ts.ToString()); 
+					}
+				}
+			}
 		}
 		
 		private Control GetMainArea()
