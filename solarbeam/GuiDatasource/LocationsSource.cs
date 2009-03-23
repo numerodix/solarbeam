@@ -21,6 +21,7 @@ namespace SolarbeamGui
 			try {
 				list = GetStoredList();
 			} catch (FileNotFoundException) {
+				Controller.SplashQueue.Enqueue("Building location list"); // report fallthrough
 				list = LocationListData.GetStandardList();
 			}
 

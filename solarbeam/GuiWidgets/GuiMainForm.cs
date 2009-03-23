@@ -52,6 +52,7 @@ namespace SolarbeamGui
 			// init datasources before instantiating widgets
 			Controller.InitSources();
 			
+			Controller.SplashQueue.Enqueue("Initializing gui");
 			this.menu = new GuiMenu();
 			this.toolbar = new GuiToolbar();
 			Control mainarea = GetMainArea();

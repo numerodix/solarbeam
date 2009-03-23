@@ -29,7 +29,7 @@ namespace SolarbeamGui
 			this.Size = logo.Size;
 			
 			label = new Label();
-			label.Text = "Init";
+			label.Text = "Starting...";
 			label.Size = new Size(200, 20);
 			label.Location = new Point(30, 170);
 			label.BackColor = Color.White;
@@ -50,14 +50,14 @@ namespace SolarbeamGui
 			
 			while (!expired) {
 				Console.WriteLine("splash :: >> TICK");
-				Thread.Sleep(1000);
+				Thread.Sleep(300);
 				if (Controller.SplashQueue.Count > 0) {
 					string msg = Controller.SplashQueue.Dequeue();
 					Console.WriteLine("splash dequeue :: {0}", msg);
-					label.Text = msg;
+					label.Text = msg + "...";
 					Application.DoEvents();
 				}
-				Thread.Sleep(1000);
+				//Thread.Sleep(100);
 				Console.WriteLine("splash :: << TICK");
 			}
 			

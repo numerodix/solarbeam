@@ -127,8 +127,6 @@ namespace SolarbeamGui
 		static Controller()
 		{
 			Controller.AsmInfo = new AsmInfo(Assembly.GetExecutingAssembly());
-										
-			SplashQueue.Enqueue("static Controller()");
 		}
 									
 		/**
@@ -136,14 +134,15 @@ namespace SolarbeamGui
 		 */
 		public static void InitSources()
 		{
-			SplashQueue.Enqueue("Loading locations");
 			if (LocationsSource == null) {
+				Controller.SplashQueue.Enqueue("Loading location list");
 				LocationsSource = new LocationsSource();
 			}
 			if (PositionSource == null) {
 				PositionSource = new PositionSource();
 			}
 			if (TimezoneSource == null) {
+				Controller.SplashQueue.Enqueue("Loading timezones");
 				TimezoneSource = new TimezoneSource();
 			}
 		}

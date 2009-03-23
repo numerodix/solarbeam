@@ -39,11 +39,10 @@ namespace SolarbeamGui
 			thread_splash.Abort();
 			Thread.Sleep(1000);
 */			
-			Thread splashthread = new Thread(RunSplash);
+			splashthread = new Thread(RunSplash);
 			splashthread.Start();
 //			RunSplash();
 			Console.WriteLine("main :: After splash invoke");
-			Controller.SplashQueue.Enqueue("Item");
 			RunMainForm();
 		}
 		
@@ -56,15 +55,15 @@ namespace SolarbeamGui
 		
 		private static void RunMainForm()
 		{
-			Thread.Sleep(3000);
+//			Thread.Sleep(3000);
 			mainform = new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
 			Console.WriteLine("main :: after gui create");
 			Application.EnableVisualStyles();
 			
-			Thread.Sleep(3000);
+//			Thread.Sleep(3000);
 			Console.WriteLine("main :: pre call expire");
 			splash.expired = true;
-			//splashthread.Join();
+			splashthread.Join();
 			Console.WriteLine("main :: post call expire");
 			Application.Run(mainform);
 		}
