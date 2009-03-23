@@ -35,6 +35,8 @@ namespace SolarbeamGui
 			label.BackColor = Color.White;
 			label.ForeColor = Color.OrangeRed;
 			this.Controls.Add(label);
+			
+			this.DoubleBuffered = true; // prevent flicker on updates
 /*			
 			timer = new Timer();
 			timer.Interval = 1000;

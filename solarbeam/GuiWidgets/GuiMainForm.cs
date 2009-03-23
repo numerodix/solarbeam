@@ -1,7 +1,8 @@
 // Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
 // Licensed under the GNU Public License, version 3.
 
-using System;
+using System;using System.Diagnostics;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -73,6 +74,8 @@ namespace SolarbeamGui
 			
 			this.Controls.Add(layout);
 			
+			this.TopMost = true; // show over splash
+			
 			this.Closed += new EventHandler(Quit);
 		}
 			
@@ -80,6 +83,29 @@ namespace SolarbeamGui
 		{
 			Controller.SaveSession();
 			Dispose();
+			
+			Process[] allProcs = Process.GetProcesses();
+			foreach (Process proc in allProcs)
+			{
+				if (proc.ProcessName == "solarbeam") {
+					ProcessThreadCollection myThreads = proc.Threads;
+					Console.WriteLine("process: {0},  id: {1}", proc.ProcessName, proc.Id);
+					
+					foreach (ProcessThread pt in myThreads)
+					{
+						DateTime startTime = pt.StartTime;
+						TimeSpan cpuTime = pt.TotalProcessorTime;
+						int priority = pt.BasePriority;
+						ThreadState ts = pt.ThreadState;
+						
+						Console.WriteLine("  thread:  {0}", pt.Id);
+						Console.WriteLine("    started: {0}", startTime.ToString());
+						Console.WriteLine("    CPU time: {0}", cpuTime);
+						Console.WriteLine("    priority: {0}", priority);
+						Console.WriteLine("    thread state: {0}", ts.ToString()); 
+					}
+				}
+			}
 		}
 		
 		private Control GetMainArea()
