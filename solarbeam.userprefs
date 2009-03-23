@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="solarbeam/MainGui.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="solarbeam/GuiWidgets/GuiMainForm.cs" ctype="Workbench">
     <Files>
-      <File FileName="solarbeam/MainGui.cs" Line="72" Column="6" />
-      <File FileName="solarbeam/GuiWidgets/GuiMainForm.cs" Line="90" Column="24" />
+      <File FileName="solarbeam/MainGui.cs" Line="71" Column="26" />
+      <File FileName="solarbeam/GuiWidgets/GuiMainForm.cs" Line="83" Column="5" />
       <File FileName="solarbeam/GuiWidgets/GuiSplash.cs" Line="15" Column="22" />
     </Files>
     <Pads>

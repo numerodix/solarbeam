@@ -10,7 +10,6 @@ namespace SolarbeamGui
 {
 	sealed class GuiSplash : Form
 	{
-//		private Timer timer;
 		volatile public bool expired = false; // atomic reads/writes
 		public Label label;
 		
@@ -37,57 +36,30 @@ namespace SolarbeamGui
 			this.Controls.Add(label);
 			
 			this.DoubleBuffered = true; // prevent flicker on updates
-/*			
-			timer = new Timer();
-			timer.Interval = 1000;
-			timer.Tick += new EventHandler(ProcessTick);
-			timer.Enabled = true;
-*/		}
+		}
 		
 		public void Launch()
 		{
-			Console.WriteLine("splash :: init");
+//			Console.WriteLine("splash :: init");
 			this.Show();
 			Application.DoEvents();
 			
 			while (!expired) {
-				Console.WriteLine("splash :: >> TICK");
-				Thread.Sleep(100); //Thread.Sleep(0); // give up cpu slice only
+//				Console.WriteLine("splash :: >> TICK");
+				Thread.Sleep(100);
 				if (Controller.SplashQueue.Count > 0) {
 					string msg = Controller.SplashQueue.Dequeue();
-					Console.WriteLine("splash dequeue :: {0}", msg);
+//					Console.WriteLine("splash dequeue :: {0}", msg);
 					label.Text = msg + "...";
 					Application.DoEvents();
 				}
-				//Thread.Sleep(100);
-				Console.WriteLine("splash :: << TICK");
+//				Console.WriteLine("splash :: << TICK");
 			}
 			
-			Console.WriteLine("splash :: start close");
+//			Console.WriteLine("splash :: start close");
 			this.Close();
 			this.Dispose();
-			Console.WriteLine("splash :: end close");
+//			Console.WriteLine("splash :: end close");
 		}
-/*		
-		private void ProcessTick(object o, EventArgs a)
-		{
-			Console.WriteLine("splash :: ProcessTick()");
-			if (expired) {
-				timer.Dispose();
-				Close();
-			}
-			
-			Console.WriteLine("splash :: tick");
-			if (Controller.SplashQueue.Count > 0) {
-				string msg = Controller.SplashQueue.Dequeue();
-				Console.WriteLine(msg);
-			}
-		}
-*/		
-/*		public void Expire(object o, EventArgs a)
-		{
-			Console.WriteLine("splash :: Expire()");
-			expired = true;
-		}
-*/	}
+	}
 }

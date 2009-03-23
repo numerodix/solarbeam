@@ -40,7 +40,7 @@ namespace SolarbeamGui
 			Thread.CurrentThread.IsBackground = true; // cure for cancer?
 			splashthread.Name = "splash";
 			splashthread.Start();
-			Console.WriteLine("main :: After splash invoke");
+//			Console.WriteLine("main :: After splash invoke");
 			RunMainForm();
 		}
 		
@@ -52,17 +52,14 @@ namespace SolarbeamGui
 		
 		private static void RunMainForm()
 		{
-//			Thread.Sleep(3000);
 			mainform = new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
-			Console.WriteLine("main :: after gui create");
+//			Console.WriteLine("main :: after gui create");
 			Application.EnableVisualStyles();
 			
-//			Thread.Sleep(3000);
-			Console.WriteLine("main :: pre call expire");
+//			Console.WriteLine("main :: pre call expire");
 			splash.expired = true;
 			splashthread.Join();
-//			splashthread.Abort();
-			Console.WriteLine("main :: post call expire");
+//			Console.WriteLine("main :: post call expire");
 			
 			if ((args.Length > 0) && (args[0] == "-checkhang")) {
 				mainform.Shown += delegate (object o,EventArgs a) { 
@@ -71,7 +68,8 @@ namespace SolarbeamGui
 					Thread.Sleep(1000); 
 					Environment.Exit(0); };
 			}
-				
+
+			mainform.Activate();
 			Application.Run(mainform);
 		}
 
