@@ -24,10 +24,9 @@ namespace SolarbeamGui
 		{
 			if (args.Length > 0) {
 				if (args[0] == "-nogui") {
-					GuiMainForm mainform =
-						new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
+					TimeGuiCreate();
 				} else if (args[0] == "-timeit") {
-					TimeIt();
+					TimeBitmapCreate();
 				}
 				Environment.Exit(0);
 			}
@@ -60,7 +59,13 @@ namespace SolarbeamGui
 			Application.Run(mainform);
 		}
 
-		private static void TimeIt()
+		private static void TimeGuiCreate()
+		{
+			GuiMainForm mainform =
+						new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
+		}
+		
+		private static void TimeBitmapCreate()
 		{
 			Stopwatch watch = new Stopwatch();
 			watch.Start();
