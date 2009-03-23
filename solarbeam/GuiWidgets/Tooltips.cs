@@ -108,7 +108,7 @@ namespace SolarbeamGui
 			titles.Add(Controller.Id.RESETFORM_ACTION, "Reset form");
 			tips.Add(Controller.Id.RESETFORM_ACTION,
 					"Reset inputs to previous rendering");
-			titles.Add(Controller.Id.RENDER_ACTION, "Reset direction");
+			titles.Add(Controller.Id.RENDER_ACTION, "Render diagram");
 			tips.Add(Controller.Id.RENDER_ACTION, "Render a new diagram");
 			
 			titles.Add(Controller.Id.IMAGE_SIZE, "Save image");
