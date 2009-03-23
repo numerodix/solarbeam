@@ -79,6 +79,7 @@ namespace SolarbeamGui
 		private void Quit(object o, EventArgs a)
 		{
 			Controller.SaveSession();
+			Dispose();
 		}
 		
 		private Control GetMainArea()
