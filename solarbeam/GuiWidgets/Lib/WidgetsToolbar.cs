@@ -18,5 +18,21 @@ namespace SolarbeamGui
 			Controller.RegisterControl(id, btn);	// register control
 			return btn;
 		}
+
+		public static ToolStripLabel GetToolStripLabel(string s)
+		{
+			ToolStripLabel label = new ToolStripLabel();
+			label.Text = s;
+			return label;
+		}
+
+		public static ToolStripTextBox GetToolStripTextBox(Controller.Id id, 
+		                                                   int sz)
+		{
+			ToolStripTextBox txt = new ToolStripTextBox();
+			txt.Text = sz.ToString();
+			Controller.RegisterControl(id, txt);	// register control
+			return txt;
+		}
 	}
 }

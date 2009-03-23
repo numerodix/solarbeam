@@ -20,17 +20,22 @@ namespace SolarbeamGui
 		
 		private const int FORM_ROW_HEIGHT = 30;
 		private const int FORM_PADDING = 3;
-		private const int FORM_MARGIN = 0;
+		private const int FORM_MARGIN = 16;
+		
 		private const int INPUTS_COUNT = 6;
 		private const int OUTPUTS_COUNT = 6;
+		private const int BITMAPSAVE_COUNT = 1;
+		
 		private const int INPUTS_HEIGHT = GROUPBOX_HEIGHT + INPUTS_COUNT * FORM_ROW_HEIGHT + 2*FORM_PADDING;
 		private const int BUTTONS_HEIGHT = 30;
 		private const int OUTPUTS_HEIGHT = GROUPBOX_HEIGHT + OUTPUTS_COUNT * FORM_ROW_HEIGHT + 2*FORM_PADDING;
-		private const int PANEL_COUNT = 3;
+		private const int BITMAPSAVE_HEIGHT = GROUPBOX_HEIGHT + BITMAPSAVE_COUNT * FORM_ROW_HEIGHT + 2*FORM_PADDING;
+		
+		private const int PANEL_COUNT = 4;
 		private const int PANEL_WIDTH = 360;
 		
 		public const int WIDTH = GROUPBOX_WIDTH + PANEL_WIDTH + 2*FORM_PADDING;
-		public const int HEIGHT = INPUTS_HEIGHT + BUTTONS_HEIGHT + OUTPUTS_HEIGHT + 2*FORM_PADDING;
+		public const int HEIGHT = INPUTS_HEIGHT + BUTTONS_HEIGHT + OUTPUTS_HEIGHT + BITMAPSAVE_HEIGHT + 2*FORM_PADDING + 2*FORM_MARGIN;
 	
 	
 		public GuiControlPanel()
@@ -53,96 +58,23 @@ namespace SolarbeamGui
 			outputs.Size = new Size(PANEL_WIDTH, OUTPUTS_HEIGHT);
 			outputs.Controls.Add(GetOutputs());
 	
-	
+			GroupBox bitmapsave = new GroupBox();
+			bitmapsave.Text = "Save bitmap";
+			bitmapsave.Size = new Size(PANEL_WIDTH, BITMAPSAVE_HEIGHT);
+			bitmapsave.Controls.Add(GetBitmapSave());
+			
 			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(PANEL_COUNT, 1, 
-			                                              FORM_MARGIN, FORM_PADDING);
+			                                                      FORM_MARGIN, FORM_PADDING);
 			layout.Width = WIDTH;
 			layout.Height = HEIGHT;
-	
+
 			layout.Controls.Add(inputs, 0, 0);
 			layout.Controls.Add(buttons, 0, 1);
 			layout.Controls.Add(outputs, 0, 2);
+			layout.Controls.Add(bitmapsave, 0, 3);
 	
 			this.Dock = DockStyle.Fill;
 			this.Controls.Add(layout);
-		}
-	
-		private Control GetOutputs()
-		{
-			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(OUTPUTS_COUNT, 1,
-			                                              FORM_MARGIN, FORM_PADDING);
-			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-	
-			for (int i = 0; i < OUTPUTS_COUNT; i++) {
-				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
-			}
-	
-			Control el = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabel("Sun elevation"),
-					Widgets.GetLabel(":"),
-					Widgets.GetTextBox(Controller.Id.ELEVATION, "-13.1231")},
-					new float[] {19F, 2F, 23F});
-	
-			Control az = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabel("Sun azimuth"),
-					Widgets.GetLabel(":"),
-					Widgets.GetTextBox(Controller.Id.AZIMUTH, "212.6669")},
-					new float[] {19F, 2F, 23F});
-	
-			Control rise = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabel("Sunrise"),
-					Widgets.GetLabel(":"),
-					Widgets.GetTextBox(Controller.Id.SUNRISE, "06:09")},
-					new float[] {19F, 2F, 23F});
-	
-			Control noon = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabel("Solar noon"),
-					Widgets.GetLabel(":"),
-					Widgets.GetTextBox(Controller.Id.SOLAR_NOON, "12:12")},
-					new float[] {19F, 2F, 23F});    
-	
-			Control sset = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabel("Sunset"),
-					Widgets.GetLabel(":"),
-					Widgets.GetTextBox(Controller.Id.SUNSET, "18:15")},
-					new float[] {19F, 2F, 23F});
-	
-			Control dlen = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabel("Day length"),
-					Widgets.GetLabel(":"),
-					Widgets.GetTextBox(Controller.Id.DAY_LENGTH, "12h 0m")},
-					new float[] {19F, 2F, 23F}); 
-	
-			layout.Controls.Add(el, 0, 0);
-			layout.Controls.Add(az, 0, 1);
-			layout.Controls.Add(rise, 0, 2);
-			layout.Controls.Add(noon, 0, 3);
-			layout.Controls.Add(sset, 0, 4);
-			layout.Controls.Add(dlen, 0, 5);
-	
-			return layout;
-		}
-	
-		private Control GetButtons()
-		{
-			Control btns = Widgets.GetLaidOut(
-				new Control[] {
-					Widgets.GetLabel(String.Empty), //layout buffer
-					Widgets.GetButtonImageText(Controller.Id.RESETFORM_ACTION,
-				                           "Reset", "reset.png"),
-					Widgets.GetLabel(String.Empty),
-					Widgets.GetButtonImageText(Controller.Id.RENDER_ACTION,
-				                           "Render", "render.png"),
-					Widgets.GetLabel(String.Empty)},
-				new float[] {15F, 30F, 15F, 30F, 15F});
-	
-			return btns;
 		}
 	
 		private Control GetInputs()
@@ -264,6 +196,101 @@ namespace SolarbeamGui
 			layout.Controls.Add(time_ins, 1, 5);
 		
 			return layout;
+		}
+
+		private Control GetButtons()
+		{
+			Control btns = Widgets.GetLaidOut(
+				new Control[] {
+					Widgets.GetLabel(String.Empty), //layout buffer
+					Widgets.GetButtonImageText(Controller.Id.RESETFORM_ACTION,
+				                           "Reset", "reset.png"),
+					Widgets.GetLabel(String.Empty),
+					Widgets.GetButtonImageText(Controller.Id.RENDER_ACTION,
+				                           "Render", "render.png"),
+					Widgets.GetLabel(String.Empty)},
+				new float[] {15F, 30F, 15F, 30F, 15F});
+	
+			return btns;
+		}
+	
+		private Control GetOutputs()
+		{
+			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(OUTPUTS_COUNT, 1,
+			                                              FORM_MARGIN, FORM_PADDING);
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+	
+			for (int i = 0; i < OUTPUTS_COUNT; i++) {
+				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
+			}
+	
+			Control el = Widgets.GetLaidOut(
+					new Control[] {
+					Widgets.GetLabel("Sun elevation"),
+					Widgets.GetLabel(":"),
+					Widgets.GetTextBox(Controller.Id.ELEVATION, "-13.1231")},
+					new float[] {19F, 2F, 23F});
+	
+			Control az = Widgets.GetLaidOut(
+					new Control[] {
+					Widgets.GetLabel("Sun azimuth"),
+					Widgets.GetLabel(":"),
+					Widgets.GetTextBox(Controller.Id.AZIMUTH, "212.6669")},
+					new float[] {19F, 2F, 23F});
+	
+			Control rise = Widgets.GetLaidOut(
+					new Control[] {
+					Widgets.GetLabel("Sunrise"),
+					Widgets.GetLabel(":"),
+					Widgets.GetTextBox(Controller.Id.SUNRISE, "06:09")},
+					new float[] {19F, 2F, 23F});
+	
+			Control noon = Widgets.GetLaidOut(
+					new Control[] {
+					Widgets.GetLabel("Solar noon"),
+					Widgets.GetLabel(":"),
+					Widgets.GetTextBox(Controller.Id.SOLAR_NOON, "12:12")},
+					new float[] {19F, 2F, 23F});    
+	
+			Control sset = Widgets.GetLaidOut(
+					new Control[] {
+					Widgets.GetLabel("Sunset"),
+					Widgets.GetLabel(":"),
+					Widgets.GetTextBox(Controller.Id.SUNSET, "18:15")},
+					new float[] {19F, 2F, 23F});
+	
+			Control dlen = Widgets.GetLaidOut(
+					new Control[] {
+					Widgets.GetLabel("Day length"),
+					Widgets.GetLabel(":"),
+					Widgets.GetTextBox(Controller.Id.DAY_LENGTH, "12h 0m")},
+					new float[] {19F, 2F, 23F}); 
+	
+			layout.Controls.Add(el, 0, 0);
+			layout.Controls.Add(az, 0, 1);
+			layout.Controls.Add(rise, 0, 2);
+			layout.Controls.Add(noon, 0, 3);
+			layout.Controls.Add(sset, 0, 4);
+			layout.Controls.Add(dlen, 0, 5);
+	
+			return layout;
+		}
+
+		private Control GetBitmapSave()
+		{
+			Control btns = Widgets.GetLaidOut(
+				new Control[] {
+					Widgets.GetLabel(String.Empty), //layout buffer
+					Widgets.GetNumericUpDown(Controller.Id.BITMAP_SIZE,
+					                         300,
+					                         10000),
+					Widgets.GetLabel("pixels"),
+					Widgets.GetButtonImageText(Controller.Id.BITMAPSAVE_ACTION,
+				                           "Save", "bitmap-save.png"),
+					Widgets.GetLabel(String.Empty)},
+				new float[] {20F, 20F, 15F, 30F, 20F});
+	
+			return btns;
 		}
 	}
 }

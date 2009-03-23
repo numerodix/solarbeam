@@ -24,6 +24,8 @@ namespace SolarbeamGui
 	{
 		// Identify all widgets
 		public enum Id {
+			BITMAP_SIZE,
+			BITMAPSAVE_ACTION,
 			LOCATION,
 			LOCATIONNEW_ACTION,
 			LOCATIONSAVE_ACTION,
@@ -195,6 +197,8 @@ namespace SolarbeamGui
 				((Button) button).Click += new EventHandler(ResetForm);
 			} else if (reg_rev[button] == Id.RENDER_ACTION) {
 				((Button) button).Click += new EventHandler(RenderViewport);
+			} else if (reg_rev[button] == Id.BITMAPSAVE_ACTION) {
+				((Button) button).Click += new EventHandler(SaveBitmap);
 			}
 		}
 									

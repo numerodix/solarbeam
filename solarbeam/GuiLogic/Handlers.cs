@@ -5,8 +5,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
+using LibSolar.Graphing;
 using LibSolar.Types;
 
 namespace SolarbeamGui
@@ -128,13 +130,35 @@ namespace SolarbeamGui
 					Position pos = ReadPosition();
 					UTCDate? dt = ReadDate();
 	
-					if ((pos != null) && (dt != null ))
-					{
+					if ((pos != null) && (dt != null )) {
 						((GuiViewport) registry[Id.VIEWPORT]).Update(dt.Value);
 						SetOutputs(pos, dt.Value);
 					}
 				}
 			} catch (KeyNotFoundException) {}
+		}
+		
+		private static void SaveBitmap(object sender, EventArgs args)
+		{
+			int dim = GetInt(GetValue(registry[Id.BITMAP_SIZE]));
+			Position pos = ReadPosition();
+			UTCDate? date = ReadDate();
+			Colors colors = GuiViewport.colors;
+			string font_face = GuiViewport.font_face;
+			
+			SaveFileDialog dlg = new SaveFileDialog();
+			dlg.InitialDirectory = ".";
+			dlg.FileName = "img.png";
+			dlg.ShowDialog();
+			string filename = dlg.FileName;
+			
+			if ((pos != null) && (date != null)) {
+				UTCDate dt = date.Value;
+				GraphBitmap grbit = new GraphBitmap(dim, colors, font_face);
+				Bitmap bitmap_plain = grbit.RenderBaseImage(pos, dt);
+				Bitmap bitmap_final = grbit.RenderCurrentDay(bitmap_plain, dim, pos, dt);
+				grbit.SaveBitmap(bitmap_final, filename);
+			}
 		}
 	
 		/**

@@ -21,10 +21,10 @@ namespace SolarbeamGui
 		
 		private const int BORDER = 5;
 	
-		private Colors colors = new Colors(Color.White, Color.Gray, Color.Black,
-		                                   Color.Blue, Color.Green,
-		                                   Color.Red);
-		private string font_face = "Arial";
+		public static readonly Colors colors = new Colors(Color.White, Color.Gray, Color.Black,
+		                                            Color.Blue, Color.Green,
+		                                            Color.Red);
+		public static readonly string font_face = "Arial";
 		
 		private Position position;
 		private UTCDate? date;

@@ -28,6 +28,16 @@ namespace SolarbeamGui
 			save_btn.Image = new Bitmap(Controller.AsmInfo.GetResource("loc-save.png"));
 			del_btn.Image = new Bitmap(Controller.AsmInfo.GetResource("loc-delete.png"));
 			this.Items.AddRange(new ToolStripItem[] {new_btn, save_btn, del_btn});
+*/
+/*			ToolStripItem bit_lbl = Widgets.GetToolStripLabel("Save bitmap:");
+			ToolStripItem bit_in = Widgets.GetToolStripTextBox(Controller.Id.BITMAP_SIZE,
+			                                                   500);
+			bit_in.Size = new Size(40, bit_in.Height);
+			ToolStripItem bit_lblu = Widgets.GetToolStripLabel("pixels");
+			ToolStripItem bit_btn = Widgets.GetToolStripButton(Controller.Id.BITMAPSAVE_ACTION,
+			                                                   "Save");
+			
+			this.Items.AddRange(new ToolStripItem[] {bit_lbl, bit_in, bit_lblu, bit_btn});
 */		}
 	}
 }
