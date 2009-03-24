@@ -40,18 +40,25 @@ namespace SolarbeamGui
 		public static ToolStripItem GetLocations()
 		{
 			ToolStripMenuItem locs = Widgets.GetToolStripMenuColumn("&Locations");
+			
 			ToolStripMenuItem loc_new = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENULOCNEW_ACTION,
 					Tooltips.GetTip(Controller.Id.LOCATIONNEW_ACTION),
 					"loc-new.png");
+			loc_new.ShortcutKeys = ((Keys) ((Keys.Alt | Keys.A)));
+			
 			ToolStripMenuItem loc_save = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENULOCSAVE_ACTION,
 					Tooltips.GetTip(Controller.Id.LOCATIONSAVE_ACTION),
 					"loc-save.png");
+			loc_save.ShortcutKeys = ((Keys) ((Keys.Control | Keys.S)));
+			
 			ToolStripMenuItem loc_delete = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENULOCDELETE_ACTION,
 					Tooltips.GetTip(Controller.Id.LOCATIONDELETE_ACTION),
 					"loc-delete.png");
+			loc_delete.ShortcutKeys = ((Keys) ((Keys.Alt | Keys.D)));
+			
 			locs.DropDownItems.AddRange(new ToolStripItem[] {
 					loc_new,
 					loc_save,
