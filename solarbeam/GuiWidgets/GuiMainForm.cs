@@ -22,7 +22,7 @@ namespace SolarbeamGui
 		private const int VIEWPORT_DIM_Y = GuiViewport.IDEAL_DIM_Y;
 		
 		// make about form accessible to logic
-		public static GuiAbout aboutform = new GuiAbout();
+		public static GuiAbout aboutform;
 		
 		// my widgets
 		private GuiMenu menu;
@@ -34,6 +34,7 @@ namespace SolarbeamGui
 			//		this.SuspendLayout();
 			
 			InitializeComponent(form_title);
+			aboutform = new GuiAbout(form_title);
 
 			// makes mono layout differently 1.9 <-> 2.0
 			// VS default: 6F 13F (win ok)

@@ -173,7 +173,7 @@ namespace SolarbeamGui
 		
 		private static void ShowAboutDialog(object sender, EventArgs args)
 		{
-			GuiMainForm.aboutform.ShowDialog();
+			GuiMainForm.aboutform.Show();
 		}
 	
 		/**
