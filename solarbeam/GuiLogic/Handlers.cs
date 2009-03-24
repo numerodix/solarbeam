@@ -141,23 +141,28 @@ namespace SolarbeamGui
 		private static void SaveImage(object sender, EventArgs args)
 		{
 			int dim = GetInt(GetValue(registry[Id.IMAGE_SIZE]));
+			string location = GetValue(registry[Id.LOCATION]);
 			Position pos = ReadPosition();
 			UTCDate? date = ReadDate();
 			Colors colors = GuiViewport.colors;
 			string font_face = GuiViewport.font_face;
 			
-			SaveFileDialog dlg = new SaveFileDialog();
-			dlg.InitialDirectory = ".";
-			dlg.FileName = "img.png";
-			dlg.ShowDialog();
-			string filename = dlg.FileName;
-			
 			if ((pos != null) && (date != null)) {
 				UTCDate dt = date.Value;
-				GraphBitmap grbit = new GraphBitmap(dim, colors, font_face);
-				Bitmap bitmap_plain = grbit.RenderBaseImage(pos, dt);
-				Bitmap bitmap_final = grbit.RenderCurrentDay(bitmap_plain, dim, pos, dt);
-				grbit.SaveBitmap(bitmap_final, filename);
+				
+				string filename = FormatFilename(location, pos, dt) + ".png";
+				SaveFileDialog dlg = Widgets.GetSaveFileDialog(filename,
+				                                               "Png images",
+				                                               "*.png");
+				DialogResult ans = dlg.ShowDialog();
+				filename = dlg.FileName;
+			
+				if (ans == DialogResult.OK) {
+					GraphBitmap grbit = new GraphBitmap(dim, colors, font_face);
+					Bitmap bitmap_plain = grbit.RenderBaseImage(pos, dt);
+					Bitmap bitmap_final = grbit.RenderCurrentDay(bitmap_plain, dim, pos, dt);
+					grbit.SaveBitmap(bitmap_final, filename);
+				}
 			}
 		}
 	

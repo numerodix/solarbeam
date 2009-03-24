@@ -44,5 +44,33 @@ namespace SolarbeamGui
 		{
 			return string.Format("{0:0.00}°", ang);
 		}
+		
+		private static string FormatFilename(string loc, Position pos, UTCDate dt)
+		{
+			string dt_s = String.Format("{0:0000}-{1:00}-{2:00}",
+			                            dt.Year, dt.Month, dt.Day);
+			string tm_s = String.Format("{0:00}:{1:00}:{2:00}",
+			                            dt.Hour, dt.Minute, dt.Second);
+			string loc_s = loc;
+			if (loc == String.Empty) {
+				string latdir_s = (pos.LatitudeDegree.Direction
+						== PositionDirection.North) ? "N" : "S";
+				string lat_s = String.Format("{0:00}:{1:00}:{2:00}{3}",
+				                             pos.LatitudeDegree.Deg,
+				                             pos.LatitudeDegree.Min,
+				                             pos.LatitudeDegree.Sec,
+				                             latdir_s);
+				string londir_s = (pos.LongitudeDegree.Direction
+						== PositionDirection.East) ? "E" : "W";
+				string lon_s = String.Format("{0:00}:{1:00}:{2:00}{3}",
+				                             pos.LongitudeDegree.Deg,
+				                             pos.LongitudeDegree.Min,
+				                             pos.LongitudeDegree.Sec,
+				                             londir_s);
+				loc_s = String.Format("{0} {1}", lat_s, lon_s);
+			}
+			string s = String.Format("{0} - {1} {2}", loc_s, dt_s, tm_s);
+			return s;
+		}
 	}
 }

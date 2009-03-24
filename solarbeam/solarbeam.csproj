@@ -55,6 +55,7 @@
     <Compile Include="GuiWidgets\Lib\Layouts.cs" />
     <Compile Include="GuiWidgets\Lib\WidgetsToolbar.cs" />
     <Compile Include="GuiWidgets\GuiSplash.cs" />
+    <Compile Include="GuiWidgets\Lib\Dialogs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
