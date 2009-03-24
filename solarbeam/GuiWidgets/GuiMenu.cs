@@ -26,7 +26,7 @@ namespace SolarbeamGui
 			ToolStripMenuItem file = Widgets.GetToolStripMenuColumn("&File");
 			ToolStripMenuItem exit = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENUEXIT_ACTION,
-					"Exit",
+					"E&xit",
 					"app-exit.png");
 			file.DropDownItems.AddRange(new ToolStripItem[] {
 					exit});
@@ -37,15 +37,15 @@ namespace SolarbeamGui
 		{
 			ToolStripMenuItem locs = Widgets.GetToolStripMenuColumn("&Locations");
 			ToolStripMenuItem loc_new = Widgets.GetToolStripMenuItem(
-					Controller.Id.MENUNEWLOC_ACTION,
+					Controller.Id.MENULOCNEW_ACTION,
 					Tooltips.GetTip(Controller.Id.LOCATIONNEW_ACTION),
 					"loc-new.png");
 			ToolStripMenuItem loc_save = Widgets.GetToolStripMenuItem(
-					Controller.Id.MENUSAVELOC_ACTION,
+					Controller.Id.MENULOCSAVE_ACTION,
 					Tooltips.GetTip(Controller.Id.LOCATIONSAVE_ACTION),
 					"loc-save.png");
 			ToolStripMenuItem loc_delete = Widgets.GetToolStripMenuItem(
-					Controller.Id.MENUDELETELOC_ACTION,
+					Controller.Id.MENULOCDELETE_ACTION,
 					Tooltips.GetTip(Controller.Id.LOCATIONDELETE_ACTION),
 					"loc-delete.png");
 			locs.DropDownItems.AddRange(new ToolStripItem[] {

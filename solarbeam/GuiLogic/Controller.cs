@@ -25,9 +25,9 @@ namespace SolarbeamGui
 		// Identify all widgets
 		public enum Id {
 			MENUEXIT_ACTION,
-			MENUNEWLOC_ACTION,
-			MENUSAVELOC_ACTION,
-			MENUDELETELOC_ACTION,
+			MENULOCNEW_ACTION,
+			MENULOCSAVE_ACTION,
+			MENULOCDELETE_ACTION,
 			IMAGE_SIZE,
 			IMAGESAVE_ACTION,
 			LOCATION,
@@ -195,11 +195,11 @@ namespace SolarbeamGui
 		{
 			if (reg_rev[button] == Id.MENUEXIT_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(Exit);
-			} else if (reg_rev[button] == Id.MENUNEWLOC_ACTION) {
+			} else if (reg_rev[button] == Id.MENULOCNEW_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(NewLocation);
-			} else if (reg_rev[button] == Id.MENUSAVELOC_ACTION) {
+			} else if (reg_rev[button] == Id.MENULOCSAVE_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(SaveLocation);
-			} else if (reg_rev[button] == Id.MENUDELETELOC_ACTION) {
+			} else if (reg_rev[button] == Id.MENULOCDELETE_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(DeleteLocation);
 										
 			} else if (reg_rev[button] == Id.LOCATIONNEW_ACTION) {

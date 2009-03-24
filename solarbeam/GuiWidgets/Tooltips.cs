@@ -21,11 +21,11 @@ namespace SolarbeamGui
 			tips.Add(Controller.Id.LOCATION,
 					"Select an existing location or enter a new one");
 			titles.Add(Controller.Id.LOCATIONNEW_ACTION, "New location");
-			tips.Add(Controller.Id.LOCATIONNEW_ACTION, "Add new location");
+			tips.Add(Controller.Id.LOCATIONNEW_ACTION, "&Add new location");
 			titles.Add(Controller.Id.LOCATIONSAVE_ACTION, "Save location");
-			tips.Add(Controller.Id.LOCATIONSAVE_ACTION, "Save this location");
+			tips.Add(Controller.Id.LOCATIONSAVE_ACTION, "&Save this location");
 			titles.Add(Controller.Id.LOCATIONDELETE_ACTION, "Delete location");
-			tips.Add(Controller.Id.LOCATIONDELETE_ACTION, "Delete this location");
+			tips.Add(Controller.Id.LOCATIONDELETE_ACTION, "&Delete this location");
 
 			string lat_title = "Latitude";
 			titles.Add(Controller.Id.LATITUDE_DEGS, lat_title);
