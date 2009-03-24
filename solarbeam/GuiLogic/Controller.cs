@@ -197,15 +197,28 @@ namespace SolarbeamGui
 		
 		private static void ActivateButton(Component button)
 		{
+			// MENU ITEMS
+		
+			// File
 			if (reg_rev[button] == Id.MENUEXIT_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(Exit);
+			// Locations
 			} else if (reg_rev[button] == Id.MENULOCNEW_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(NewLocation);
 			} else if (reg_rev[button] == Id.MENULOCSAVE_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(SaveLocation);
 			} else if (reg_rev[button] == Id.MENULOCDELETE_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(DeleteLocation);
+			// Actions
+			} else if (reg_rev[button] == Id.MENURESETFORM_ACTION) {
+				((ToolStripMenuItem) button).Click += new EventHandler(ResetForm);
+			} else if (reg_rev[button] == Id.MENURENDER_ACTION) {
+				((ToolStripMenuItem) button).Click += new EventHandler(RenderViewport);
+			} else if (reg_rev[button] == Id.MENUSAVEIMAGE_ACTION) {
+				((ToolStripMenuItem) button).Click += new EventHandler(SaveImage);
 										
+			// FORM BUTTONS
+			
 			} else if (reg_rev[button] == Id.LOCATIONNEW_ACTION) {
 				((Button) button).Click += new EventHandler(NewLocation);
 			} else if (reg_rev[button] == Id.LOCATIONSAVE_ACTION) {
