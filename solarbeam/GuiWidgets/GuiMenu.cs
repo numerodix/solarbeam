@@ -16,9 +16,14 @@ namespace SolarbeamGui
 		{
 			ToolStripItem file = GetFile();
 			ToolStripItem locs = GetLocations();
+			ToolStripItem actions = GetActions();
 			ToolStripItem help = GetHelp();
 			
-			this.Items.AddRange(new ToolStripItem[] {file, locs, help});
+			this.Items.AddRange(new ToolStripItem[] {
+				file,
+				locs,
+				actions,
+				help});
 		}
 
 		public static ToolStripItem GetFile()
@@ -33,7 +38,7 @@ namespace SolarbeamGui
 			exit.ShortcutKeys = ((Keys) ((Keys.Control | Keys.Q)));
 			
 			file.DropDownItems.AddRange(new ToolStripItem[] {
-					exit});
+				exit});
 			return file;
 		}
 
@@ -60,10 +65,39 @@ namespace SolarbeamGui
 			loc_delete.ShortcutKeys = ((Keys) ((Keys.Alt | Keys.D)));
 			
 			locs.DropDownItems.AddRange(new ToolStripItem[] {
-					loc_new,
-					loc_save,
-					loc_delete});
+				loc_new,
+				loc_save,
+				loc_delete});
 			return locs;
+		}
+		
+		public static ToolStripItem GetActions()
+		{
+			ToolStripMenuItem actions = Widgets.GetToolStripMenuColumn("&Actions");
+			
+			ToolStripMenuItem action_resetform = Widgets.GetToolStripMenuItem(
+					Controller.Id.MENURESETFORM_ACTION,
+					Tooltips.GetTip(Controller.Id.RESETFORM_ACTION),
+					"reset.png");
+			
+			ToolStripMenuItem action_render = Widgets.GetToolStripMenuItem(
+					Controller.Id.MENURENDER_ACTION,
+					Tooltips.GetTip(Controller.Id.RENDER_ACTION),
+					"render.png");
+			
+			ToolStripSeparator sep = Widgets.GetToolStripSeparator();
+			
+			ToolStripMenuItem action_saveimage = Widgets.GetToolStripMenuItem(
+					Controller.Id.MENUSAVEIMAGE_ACTION,
+					Tooltips.GetTip(Controller.Id.IMAGESAVE_ACTION),
+					"image-save.png");
+			
+			actions.DropDownItems.AddRange(new ToolStripItem[] {
+				action_resetform,
+				action_render,
+				sep,
+				action_saveimage});
+			return actions;
 		}
 		
 		public static ToolStripItem GetHelp()
@@ -75,7 +109,7 @@ namespace SolarbeamGui
 					"&About",
 			        "app-about.png");
 			help.DropDownItems.AddRange(new ToolStripItem[] {
-					about});
+				about});
 			
 			return help;
 		}

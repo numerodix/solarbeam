@@ -18,16 +18,12 @@ namespace SolarbeamGui
 			return item;
 		}
 
-		public static ToolStripMenuItem GetToolStripMenuItem(Controller.Id id,
-		                                                     string s)
+		public static ToolStripSeparator GetToolStripSeparator()
 		{
-			ToolStripMenuItem item = new ToolStripMenuItem();
-			item.Name = s;
-            //item.Size = new System.Drawing.Size(152, 22);
-            item.Text = s;
-			Controller.RegisterControl(id, item);	// register control
-			return item;
+			ToolStripSeparator sep = new ToolStripSeparator();
+			return sep;
 		}
+		
 		public static ToolStripMenuItem GetToolStripMenuItem(Controller.Id id,
 		                                                     string s, string img)
 		{
