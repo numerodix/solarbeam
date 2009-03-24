@@ -18,6 +18,11 @@ namespace SolarbeamGui
 	 */
 	partial class Controller
 	{
+		private static void Exit(object sender, EventArgs args)
+		{
+			MainGui.Quit();
+		}
+		
 		private static void NewLocation(object sender, EventArgs args)
 		{
 			ComboBox loc_control = (ComboBox) registry[Id.LOCATION];

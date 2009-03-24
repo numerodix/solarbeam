@@ -24,6 +24,10 @@ namespace SolarbeamGui
 	{
 		// Identify all widgets
 		public enum Id {
+			MENUEXIT_ACTION,
+			MENUNEWLOC_ACTION,
+			MENUSAVELOC_ACTION,
+			MENUDELETELOC_ACTION,
 			IMAGE_SIZE,
 			IMAGESAVE_ACTION,
 			LOCATION,
@@ -79,11 +83,6 @@ namespace SolarbeamGui
 		// longitude inputs
 		private static StaticList<Id> ins_longitude = new StaticList<Id>(new Id[] {
 			Id.LONGITUDE_DEGS, Id.LONGITUDE_MINS, Id.LONGITUDE_SECS
-		});
-	
-		// timezone inputs
-		private static StaticList<Id> ins_timezone = new StaticList<Id>(new Id[] {
-			Id.TIMEZONE_OFFSET, Id.TIMEZONE_NAME
 		});
 	
 		// date inputs
@@ -158,7 +157,9 @@ namespace SolarbeamGui
 			cache.Add(id, String.Empty);
 			
 			// activate buttons
-			if ((control is Button) || (control is ToolStripButton)) {
+			if ((control is Button)
+					|| (control is ToolStripButton)
+					|| (control is ToolStripMenuItem)) {
 				ActivateButton(control);
 			}
 		
@@ -192,16 +193,27 @@ namespace SolarbeamGui
 		
 		private static void ActivateButton(Component button)
 		{
-			if (reg_rev[button] == Id.LOCATIONNEW_ACTION) {
+			if (reg_rev[button] == Id.MENUEXIT_ACTION) {
+				((ToolStripMenuItem) button).Click += new EventHandler(Exit);
+			} else if (reg_rev[button] == Id.MENUNEWLOC_ACTION) {
+				((ToolStripMenuItem) button).Click += new EventHandler(NewLocation);
+			} else if (reg_rev[button] == Id.MENUSAVELOC_ACTION) {
+				((ToolStripMenuItem) button).Click += new EventHandler(SaveLocation);
+			} else if (reg_rev[button] == Id.MENUDELETELOC_ACTION) {
+				((ToolStripMenuItem) button).Click += new EventHandler(DeleteLocation);
+										
+			} else if (reg_rev[button] == Id.LOCATIONNEW_ACTION) {
 				((Button) button).Click += new EventHandler(NewLocation);
 			} else if (reg_rev[button] == Id.LOCATIONSAVE_ACTION) {
 				((Button) button).Click += new EventHandler(SaveLocation);
 			} else if (reg_rev[button] == Id.LOCATIONDELETE_ACTION) {
 				((Button) button).Click += new EventHandler(DeleteLocation);
+
 			} else if (reg_rev[button] == Id.RESETFORM_ACTION) {
 				((Button) button).Click += new EventHandler(ResetForm);
 			} else if (reg_rev[button] == Id.RENDER_ACTION) {
 				((Button) button).Click += new EventHandler(RenderViewport);
+
 			} else if (reg_rev[button] == Id.IMAGESAVE_ACTION) {
 				((Button) button).Click += new EventHandler(SaveImage);
 			}

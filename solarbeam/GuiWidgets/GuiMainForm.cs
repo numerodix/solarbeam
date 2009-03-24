@@ -1,7 +1,7 @@
 // Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
 // Licensed under the GNU Public License, version 3.
 
-using System;using System.Diagnostics;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -22,7 +22,6 @@ namespace SolarbeamGui
 		private const int VIEWPORT_DIM_Y = GuiViewport.IDEAL_DIM_Y;
 		
 		private GuiMenu menu;
-		private GuiToolbar toolbar;
 		private GuiControlPanel controlpanel;
 		private GuiViewport viewport;
 		

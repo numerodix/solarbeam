@@ -14,25 +14,45 @@ namespace SolarbeamGui
 		
 		private void InitializeComponent()
 		{
-			ToolStripMenuItem fileToolStripMenuItem = new ToolStripMenuItem();
-			ToolStripMenuItem exitToolStripMenuItem = new ToolStripMenuItem();
-			  
-			// mainMenuStrip
-			this.Items.AddRange(new ToolStripItem[] {fileToolStripMenuItem});
-			this.Location = new System.Drawing.Point(0, 0);
-			this.Name = "mainMenuStrip";
-			this.Size = new System.Drawing.Size(244, 24);
-			this.TabIndex = 0;
-
-			// fileToolStripMenuItem
-			fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] {exitToolStripMenuItem});
-			fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-			fileToolStripMenuItem.Text = "&File";
-			fileToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
+			ToolStripItem file = GetFile();
+			ToolStripItem locs = GetLocations();
 			
-			exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            exitToolStripMenuItem.Text = "Exit";
+			this.Items.AddRange(new ToolStripItem[] {file, locs});
+		}
+
+		public static ToolStripItem GetFile()
+		{
+
+			ToolStripMenuItem file = Widgets.GetToolStripMenuColumn("&File");
+			ToolStripMenuItem exit = Widgets.GetToolStripMenuItem(
+					Controller.Id.MENUEXIT_ACTION,
+					"Exit",
+					"app-exit.png");
+			file.DropDownItems.AddRange(new ToolStripItem[] {
+					exit});
+			return file;
+		}
+
+		public static ToolStripItem GetLocations()
+		{
+			ToolStripMenuItem locs = Widgets.GetToolStripMenuColumn("&Locations");
+			ToolStripMenuItem loc_new = Widgets.GetToolStripMenuItem(
+					Controller.Id.MENUNEWLOC_ACTION,
+					Tooltips.GetTip(Controller.Id.LOCATIONNEW_ACTION),
+					"loc-new.png");
+			ToolStripMenuItem loc_save = Widgets.GetToolStripMenuItem(
+					Controller.Id.MENUSAVELOC_ACTION,
+					Tooltips.GetTip(Controller.Id.LOCATIONSAVE_ACTION),
+					"loc-save.png");
+			ToolStripMenuItem loc_delete = Widgets.GetToolStripMenuItem(
+					Controller.Id.MENUDELETELOC_ACTION,
+					Tooltips.GetTip(Controller.Id.LOCATIONDELETE_ACTION),
+					"loc-delete.png");
+			locs.DropDownItems.AddRange(new ToolStripItem[] {
+					loc_new,
+					loc_save,
+					loc_delete});
+			return locs;
 		}
 	}
 }

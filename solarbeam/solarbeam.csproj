@@ -56,6 +56,7 @@
     <Compile Include="GuiWidgets\Lib\WidgetsToolbar.cs" />
     <Compile Include="GuiWidgets\GuiSplash.cs" />
     <Compile Include="GuiWidgets\Lib\Dialogs.cs" />
+    <Compile Include="GuiWidgets\Lib\WidgetsMenu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -75,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\images\logo.png" />
+    <EmbeddedResource Include="..\images\app-exit.png" />
     <EmbeddedResource Include="..\images\image-save.png" />
     <EmbeddedResource Include="..\images\loc-delete.png" />
     <EmbeddedResource Include="..\images\loc-new.png" />

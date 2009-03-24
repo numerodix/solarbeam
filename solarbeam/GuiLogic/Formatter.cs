@@ -55,18 +55,18 @@ namespace SolarbeamGui
 			if (loc == String.Empty) {
 				string latdir_s = (pos.LatitudeDegree.Direction
 						== PositionDirection.North) ? "N" : "S";
-				string lat_s = String.Format("{0:00}:{1:00}:{2:00}{3}",
+				string lat_s = String.Format("{0}{1:00}:{2:00}:{3:00}",
+				                             latdir_s,
 				                             pos.LatitudeDegree.Deg,
 				                             pos.LatitudeDegree.Min,
-				                             pos.LatitudeDegree.Sec,
-				                             latdir_s);
+				                             pos.LatitudeDegree.Sec);
 				string londir_s = (pos.LongitudeDegree.Direction
 						== PositionDirection.East) ? "E" : "W";
-				string lon_s = String.Format("{0:00}:{1:00}:{2:00}{3}",
+				string lon_s = String.Format("{0}{1:00}:{2:00}:{3:00}",
+				                             londir_s,
 				                             pos.LongitudeDegree.Deg,
 				                             pos.LongitudeDegree.Min,
-				                             pos.LongitudeDegree.Sec,
-				                             londir_s);
+				                             pos.LongitudeDegree.Sec);
 				loc_s = String.Format("{0} {1}", lat_s, lon_s);
 			}
 			string s = String.Format("{0} - {1} {2}", loc_s, dt_s, tm_s);

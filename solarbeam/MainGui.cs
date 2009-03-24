@@ -91,5 +91,11 @@ namespace SolarbeamGui
 			Console.WriteLine("In milliseconds: {0}",watch.ElapsedMilliseconds);
 			Console.WriteLine("In timer ticks: {0}",watch.ElapsedTicks);
 		}
+		
+		public static void Quit()
+		{
+			mainform.Close();
+			Application.Exit();
+		}
 	}
 }
