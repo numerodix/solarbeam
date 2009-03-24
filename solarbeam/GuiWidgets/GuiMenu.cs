@@ -69,6 +69,14 @@ namespace SolarbeamGui
 		public static ToolStripItem GetHelp()
 		{
 			ToolStripMenuItem help = Widgets.GetToolStripMenuColumn("&Help");
+			
+			ToolStripMenuItem about = Widgets.GetToolStripMenuItem(
+					Controller.Id.MENUABOUT_ACTION,
+					"&About",
+			        "app-about.png");
+			help.DropDownItems.AddRange(new ToolStripItem[] {
+					about});
+			
 			return help;
 		}
 	}
