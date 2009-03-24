@@ -21,6 +21,10 @@ namespace SolarbeamGui
 		private const int VIEWPORT_DIM_X = GuiViewport.IDEAL_DIM_X;
 		private const int VIEWPORT_DIM_Y = GuiViewport.IDEAL_DIM_Y;
 		
+		// make about form accessible to logic
+		public static GuiAbout aboutform = new GuiAbout();
+		
+		// my widgets
 		private GuiMenu menu;
 		private GuiControlPanel controlpanel;
 		private GuiViewport viewport;
@@ -69,44 +73,21 @@ namespace SolarbeamGui
 			
 			this.Controls.Add(layout);
 			
-			this.Closed += new EventHandler(Quit);
+			this.Closed += new EventHandler(OnQuit);
 			
 			// Hiiiiiiiiiiiideous hack to prevent being shown behind all 
 			// other windows on Windows. ffs!
 			// discarded impotent options: BringToFront(), Activate()
 			this.TopMost = true;
-			//this.Load += delegate (object o,EventArgs a) { this.TopMost = false; }; // sigh
-			this.Shown += delegate (object o,EventArgs a) { this.TopMost = false; };
+			this.Load += delegate (object o,EventArgs a) { this.TopMost = false; }; // sigh
+			//this.Shown += delegate (object o,EventArgs a) { this.TopMost = false; };
 		}
 			
-		private void Quit(object o, EventArgs a)
+		private void OnQuit(object o, EventArgs a)
 		{
 			Controller.SaveSession();
 			Dispose();
 			Environment.Exit(0);
-			
-			Process[] allProcs = Process.GetProcesses();
-			foreach (Process proc in allProcs)
-			{
-				if (proc.ProcessName == "solarbeam") {
-					ProcessThreadCollection myThreads = proc.Threads;
-					Console.WriteLine("process: {0},  id: {1}", proc.ProcessName, proc.Id);
-					
-					foreach (ProcessThread pt in myThreads)
-					{
-						DateTime startTime = pt.StartTime;
-						TimeSpan cpuTime = pt.TotalProcessorTime;
-						int priority = pt.BasePriority;
-						ThreadState ts = pt.ThreadState;
-						
-						Console.WriteLine("  thread:  {0}", pt.Id);
-						Console.WriteLine("    started: {0}", startTime.ToString());
-						Console.WriteLine("    CPU time: {0}", cpuTime);
-						Console.WriteLine("    priority: {0}", priority);
-						Console.WriteLine("    thread state: {0}", ts.ToString()); 
-					}
-				}
-			}
 		}
 		
 		private Control GetMainArea()

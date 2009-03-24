@@ -170,6 +170,11 @@ namespace SolarbeamGui
 				}
 			}
 		}
+		
+		private static void ShowAboutDialog(object sender, EventArgs args)
+		{
+			GuiMainForm.aboutform.ShowDialog();
+		}
 	
 		/**
 		 * Handle updates to controls that force viewport re-rendering by marking

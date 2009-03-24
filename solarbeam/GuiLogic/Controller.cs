@@ -216,6 +216,9 @@ namespace SolarbeamGui
 				((ToolStripMenuItem) button).Click += new EventHandler(RenderViewport);
 			} else if (reg_rev[button] == Id.MENUSAVEIMAGE_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(SaveImage);
+			// Help
+			} else if (reg_rev[button] == Id.MENUABOUT_ACTION) {
+				((ToolStripMenuItem) button).Click += new EventHandler(ShowAboutDialog);
 										
 			// FORM BUTTONS
 			
