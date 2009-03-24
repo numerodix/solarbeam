@@ -16,18 +16,22 @@ namespace SolarbeamGui
 		{
 			ToolStripItem file = GetFile();
 			ToolStripItem locs = GetLocations();
+			ToolStripItem help = GetHelp();
 			
-			this.Items.AddRange(new ToolStripItem[] {file, locs});
+			this.Items.AddRange(new ToolStripItem[] {file, locs, help});
 		}
 
 		public static ToolStripItem GetFile()
 		{
 
 			ToolStripMenuItem file = Widgets.GetToolStripMenuColumn("&File");
+			
 			ToolStripMenuItem exit = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENUEXIT_ACTION,
 					"E&xit",
 					"app-exit.png");
+			exit.ShortcutKeys = ((Keys) ((Keys.Control | Keys.Q)));
+			
 			file.DropDownItems.AddRange(new ToolStripItem[] {
 					exit});
 			return file;
@@ -53,6 +57,12 @@ namespace SolarbeamGui
 					loc_save,
 					loc_delete});
 			return locs;
+		}
+		
+		public static ToolStripItem GetHelp()
+		{
+			ToolStripMenuItem help = Widgets.GetToolStripMenuColumn("&Help");
+			return help;
 		}
 	}
 }
