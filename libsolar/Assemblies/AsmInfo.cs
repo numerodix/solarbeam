@@ -24,7 +24,8 @@ namespace LibSolar.Assemblies
 			string att_val = String.Empty;
 			
 			if (att_name == "Version") {
-				att_val = asm.GetName().Version.ToString();
+				Version v = asm.GetName().Version;
+				att_val = String.Format("{0}.{1}", v.Major, v.Minor);
 			} else {
 				object[] atts = asm.GetCustomAttributes(false);
 				foreach (object obj in atts) {
