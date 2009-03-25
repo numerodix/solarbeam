@@ -2,6 +2,18 @@ SolarBeam is released under the GPL license, see the LICENSE file. In
 addition, the program uses a number of third party libraries under various
 licenses:
 
+* the program's collection of geographic locations
+
+The collection was generated using data obtained freely from
+http://www.world-gazetteer.com. Copyright by Stefan Helders
+www.world-gazetteer.com. This concerns location names and positional
+coordinates. Timezone data per location was compiled by SolarBeam.
+
+* zoneinfo
+
+This is timezone data generated from the zoneinfo timezone database in the
+public domain, see http://www.twinsun.com/tz/tz-link.htm.
+
 * libpublicdomain
 
 This is the "PublicDomain" distribution from
@@ -20,20 +32,8 @@ http://www.opensource.org/licenses/mit-license.php.
 This is the NUnit testing framework, see http://www.nunit.org. It is released
 under its own license, see http://www.nunit.org/index.php?p=license&r=2.4.8.
 
-* zoneinfo
-
-This is timezone data generated from the zoneinfo timezone database in the
-public domain, see http://www.twinsun.com/tz/tz-link.htm.
-
-* the program's collection of geographic locations
-
-The collection was generated using data obtained freely from
-http://www.world-gazetteer.com. Copyright by Stefan Helders
-www.world-gazetteer.com. This concerns location names and positional
-coordinates. Timezone data per location was compiled by SolarBeam.
-
 * icons
 
 The icons used in the program are from the "oxygen" icon theme in KDE and were
-obtained freely from http://www.oxygen-icons.org/. For license terms see
-http://www.oxygen-icons.org/?page_id=4.
+obtained freely from http://www.oxygen-icons.org/. It is released under the
+LGPL, see http://www.gnu.org/licenses/lgpl.html.

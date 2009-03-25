@@ -77,7 +77,10 @@ namespace SolarbeamGui
 			// other windows on Windows. ffs!
 			// discarded impotent options: BringToFront(), Activate()
 			this.TopMost = true;
-			this.Load += delegate (object o,EventArgs a) { this.TopMost = false; }; // sigh
+			this.Load += delegate (object o,EventArgs a) { 
+				this.TopMost = false; 
+				this.Focus();
+			}; // sigh
 			//this.Shown += delegate (object o,EventArgs a) { this.TopMost = false; };
 		}
 			
