@@ -41,6 +41,7 @@ namespace SolarbeamGui
 			
 			this.Controls.Add(table);
 			
+			this.DoubleBuffered = true;
 			this.Text = "About " + app_title;
 			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 			this.StartPosition = FormStartPosition.CenterParent;

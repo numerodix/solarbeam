@@ -92,7 +92,13 @@ namespace SolarbeamGui
 			txt.Dock = DockStyle.Fill;
 			txt.LinkClicked += delegate (object o, LinkClickedEventArgs a) { 
 				Process.Start(a.LinkText); // launch brower
-			};	
+			};
+			txt.SelectionChanged += delegate (object o, EventArgs a) {
+				if (txt.SelectedText != String.Empty) {
+					Clipboard.SetDataObject(txt.SelectedText);
+					Console.WriteLine(Clipboard.GetText());
+				}
+			};
 			return txt;
 		}
 		

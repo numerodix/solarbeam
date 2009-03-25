@@ -49,6 +49,7 @@ namespace SolarbeamGui
 		
 		private void InitializeComponent(string form_title)
 		{
+			this.DoubleBuffered = true;
 			this.Text = form_title;
 			
 			// init datasources before instantiating widgets
