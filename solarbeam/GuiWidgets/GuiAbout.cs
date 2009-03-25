@@ -25,8 +25,9 @@ namespace SolarbeamGui
 			
 			Button close_btn = Widgets.GetButtonImageText(
 				Controller.Id.ABOUTCLOSE_ACTION,
-				"Close", "app-exit.png");
+				"&Close", "app-exit.png");
 			close_btn.Anchor = AnchorStyles.Right;
+			close_btn.TabIndex = 0;
 			
 			TableLayoutPanel table = Widgets.GetTableLayoutPanel(3, 1, 0, 0);
 			
