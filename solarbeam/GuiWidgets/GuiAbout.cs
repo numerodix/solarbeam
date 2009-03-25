@@ -93,11 +93,13 @@ namespace SolarbeamGui
 			
 			string s;
 			
-			s = String.Format("{0} {1} - ({2}/{3})\n",
+			s = String.Format("{0} {1}  {2}: {3}, {4}: {5}\n",
 			                  Controller.AsmInfo.GetAtt("Title"),
 			                  Controller.AsmInfo.GetAtt("Version"),
+			                  "{runtime",
 			                  Platform.GetRuntime(),
-			                  Platform.GetPlatform());
+			                  "platform",
+			                  Platform.GetPlatform() + "}");
 			s += Controller.AsmInfo.GetAtt("Description") + "\n\n";
 			
 			s += Controller.AsmInfo.GetAtt("Copyright") + "\n\n";
