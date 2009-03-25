@@ -35,6 +35,7 @@ namespace SolarbeamGui
 				}
 			}
 
+			splash = new GuiSplash();
 			splashthread = new Thread(RunSplash);
 			splashthread.IsBackground = true;
 			Thread.CurrentThread.IsBackground = true; // cure for cancer?
@@ -46,7 +47,6 @@ namespace SolarbeamGui
 		
 		private static void RunSplash()
 		{
-			splash = new GuiSplash();
 			splash.Launch();
 		}
 		
