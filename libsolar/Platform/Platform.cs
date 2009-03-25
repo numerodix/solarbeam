@@ -19,10 +19,20 @@ namespace LibSolar.Platform
 			}
 			return platform;
 		}
+				
+		public static string GetRuntimeVersion()
+		{
+			return Environment.Version.ToString();
+		}
 		
 		public static string GetPlatform()
 		{
 			return Environment.OSVersion.Platform.ToString();
+		}
+		
+		public static string GetPlatformVersion()
+		{
+			return Environment.OSVersion.Version.ToString();
 		}
 	}
 }

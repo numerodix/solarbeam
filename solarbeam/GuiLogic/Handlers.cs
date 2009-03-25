@@ -175,6 +175,12 @@ namespace SolarbeamGui
 		{
 			GuiMainForm.aboutform.Show();
 		}
+		
+		private static void HideAboutDialog(object sender, EventArgs args)
+		{
+			GuiMainForm.aboutform.Close();
+		}
+	
 	
 		/**
 		 * Handle updates to controls that force viewport re-rendering by marking

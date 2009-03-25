@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -79,7 +80,22 @@ namespace SolarbeamGui
 			Controller.RegisterControl(id, num);	// register control
 			return num;
 		}
-
+		
+		public static RichTextBox GetRichTextBox(string s)
+		{
+			RichTextBox txt = new RichTextBox();
+			txt.Multiline = true;
+			txt.WordWrap = true;
+			txt.ReadOnly = true;
+			txt.BorderStyle = BorderStyle.None;
+			txt.Text = s;
+			txt.Dock = DockStyle.Fill;
+			txt.LinkClicked += delegate (object o, LinkClickedEventArgs a) { 
+				Process.Start(a.LinkText); // launch brower
+			};	
+			return txt;
+		}
+		
 		public static TextBox GetTextBox(Controller.Id id, string s)
 		{
 			TextBox textbox = new TextBox();

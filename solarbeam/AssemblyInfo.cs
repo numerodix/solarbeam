@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 // Change them to the values specific to your project.
 
 [assembly: AssemblyTitle("SolarBeam")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("An application for drawing solar diagrams")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]

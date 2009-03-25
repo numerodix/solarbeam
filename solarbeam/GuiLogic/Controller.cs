@@ -62,7 +62,9 @@ namespace SolarbeamGui
 	    	DAY_LENGTH,
 			IMAGE_SIZE,
 			IMAGESAVE_ACTION,
-			VIEWPORT
+			VIEWPORT,
+
+			ABOUTCLOSE_ACTION,
 		}
 		
 		// inputs whose updates force a complete re-rendering
@@ -219,7 +221,7 @@ namespace SolarbeamGui
 			// Help
 			} else if (reg_rev[button] == Id.MENUABOUT_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(ShowAboutDialog);
-										
+
 			// FORM BUTTONS
 			
 			} else if (reg_rev[button] == Id.LOCATIONNEW_ACTION) {
@@ -236,6 +238,11 @@ namespace SolarbeamGui
 
 			} else if (reg_rev[button] == Id.IMAGESAVE_ACTION) {
 				((Button) button).Click += new EventHandler(SaveImage);
+			
+
+			// About form
+			} else if (reg_rev[button] == Id.ABOUTCLOSE_ACTION) {
+				((Button) button).Click += new EventHandler(HideAboutDialog);
 			}
 		}
 									

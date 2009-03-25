@@ -25,7 +25,9 @@ namespace SolarbeamGui
 			
 			this.StartPosition = FormStartPosition.CenterScreen;
 			this.FormBorderStyle = FormBorderStyle.None;
-			this.Size = logo.Size;
+			this.Size = new Size(logo.Size.Width+2, logo.Size.Height+2);
+			this.BackColor = Color.Black;
+			this.BackgroundImageLayout = ImageLayout.Center;
 			
 			label = new Label();
 			label.Text = "Starting...";
