@@ -21,6 +21,7 @@ namespace SolarbeamGui
 		{	
 			Control logo = GetLogo();
 			Control tabs = GetTabs();
+			int tabs_height = 180;
 			
 			Button close_btn = Widgets.GetButtonImageText(
 				Controller.Id.ABOUTCLOSE_ACTION,
@@ -30,7 +31,7 @@ namespace SolarbeamGui
 			TableLayoutPanel table = Widgets.GetTableLayoutPanel(3, 1, 0, 0);
 			
 			table.RowStyles.Add(new RowStyle(SizeType.Absolute, logo.Height));
-			table.RowStyles.Add(new RowStyle(SizeType.Absolute, logo.Height));
+			table.RowStyles.Add(new RowStyle(SizeType.Absolute, tabs_height));
 			table.RowStyles.Add(new RowStyle(SizeType.Absolute, close_btn.Height));
 			
 			table.Controls.Add(logo, 0, 0);
@@ -43,7 +44,7 @@ namespace SolarbeamGui
 			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 			this.StartPosition = FormStartPosition.CenterParent;
 			this.ClientSize = new Size(logo.Width + 2*3,
-			                           logo.Height + logo.Height + close_btn.Height + 30);
+			                           logo.Height + tabs_height + close_btn.Height + 24);
 			
 			// prevent disposal by intercepting Close() and calling Hide()
 			this.Closing += delegate (object o, CancelEventArgs args) {
@@ -97,10 +98,15 @@ namespace SolarbeamGui
 			                  Platform.GetPlatform());
 			s += Controller.AsmInfo.GetAtt("Description") + "\n\n";
 			
-			s += Controller.AsmInfo.GetAtt("Copyright");
-			//s += "Norwegian University of Science and Technology\n";
-			//s += "Department of Architectural Design, Form and Colour Studies";
+			s += Controller.AsmInfo.GetAtt("Copyright") + "\n\n";
 			
+			s += "This application was developed in cooperation with";
+			s += " the Norwegian University of Science and Technology (NTNU),";
+			s += " Norway, and sponsored by The Research Council of Norway.\n\n";
+			
+			s += "Coordinator: Professor Barbara Matusiak,";
+			s += " Department of Architectural Design, Form and Colour Studies, NTNU";
+
 			RichTextBox txt = Widgets.GetRichTextBox(s);
 			tab.Controls.Add(txt);
 			return tab;

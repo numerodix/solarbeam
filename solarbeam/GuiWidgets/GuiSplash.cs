@@ -31,7 +31,7 @@ namespace SolarbeamGui
 			
 			label = new Label();
 			label.Text = "Starting...";
-			label.Size = new Size(200, 20);
+			label.Size = new Size(200, 18);
 			label.Location = new Point(30, 170);
 			label.BackColor = Color.White;
 			label.ForeColor = Color.OrangeRed;
