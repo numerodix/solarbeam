@@ -42,6 +42,10 @@ class SelectionTest
  * no output in console
  * clipboard not working, neither middle click nor paste
  *
+ * osx:mono 2.2
+ * output in console as expected
+ * clipboard not working, neither middle click nor paste
+ *
  * winxp:mono 2.2
  * output in console as expected
  * clipboard working as expected

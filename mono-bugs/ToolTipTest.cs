@@ -46,6 +46,9 @@ class ToolTipTest
  * linux:mono 1.9.1
  * plain tooltip
  *
+ * osx:mono 2.2
+ * plain tooltip
+ *
  * winxp:mono 2.2
  * plain tooltip
  *
