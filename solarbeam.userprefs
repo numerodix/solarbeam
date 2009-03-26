@@ -1,15 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="solarbeam/AssemblyInfo.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="solarbeam/GuiWidgets/Lib/WidgetsForm.cs" ctype="Workbench">
     <Files>
-      <File FileName="solarbeam/GuiWidgets/GuiAbout.cs" Line="26" Column="14" />
-      <File FileName="libsolar/AssemblyInfo.cs" Line="1" Column="1" />
-      <File FileName="console/MainCli.cs" Line="66" Column="19" />
-      <File FileName="solarbeam/GuiWidgets/GuiSplash.cs" Line="32" Column="1" />
-      <File FileName="solarbeam/AssemblyInfo.cs" Line="8" Column="1" />
+      <File FileName="solarbeam/GuiWidgets/GuiMainForm.cs" Line="49" Column="3" />
+      <File FileName="solarbeam/GuiWidgets/Lib/WidgetsForm.cs" Line="52" Column="17" />
+      <File FileName="solarbeam/MainGui.cs" Line="29" Column="5" />
+      <File FileName="solarbeam/GuiLogic/Controller.cs" Line="275" Column="54" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" />
+        <State expanded="True">
+          <Node name="solarbeam" expanded="True">
+            <Node name="GuiLogic" expanded="True" />
+            <Node name="GuiWidgets" expanded="True">
+              <Node name="Lib" expanded="True">
+                <Node name="WidgetsForm.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />

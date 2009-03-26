@@ -57,6 +57,9 @@ class ComboInputTest
  * linux:mono 1.9.1
  * missing popup
  *
+ * osx:mono 2.2
+ * working as expected
+ *
  * winxp:mono 2.2
  * working as expected
  *
