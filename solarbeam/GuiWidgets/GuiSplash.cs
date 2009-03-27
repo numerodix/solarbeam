@@ -42,26 +42,20 @@ namespace SolarbeamGui
 		
 		public void Launch()
 		{
-//			Console.WriteLine("splash :: init");
 			this.Show();
 			Application.DoEvents();
 			
 			while (!expired) {
-//				Console.WriteLine("splash :: >> TICK");
 				Thread.Sleep(100);
 				if (Controller.SplashQueue.Count > 0) {
 					string msg = Controller.SplashQueue.Dequeue();
-//					Console.WriteLine("splash dequeue :: {0}", msg);
 					label.Text = msg + "...";
 					Application.DoEvents();
 				}
-//				Console.WriteLine("splash :: << TICK");
 			}
 			
-//			Console.WriteLine("splash :: start close");
 			this.Close();
 			this.Dispose();
-//			Console.WriteLine("splash :: end close");
 		}
 	}
 }
