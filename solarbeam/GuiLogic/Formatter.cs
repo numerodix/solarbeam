@@ -42,7 +42,7 @@ namespace SolarbeamGui
 	
 		private static string FormatAngle(double ang)
 		{
-			return string.Format("{0:0.00}\u02da", ang);
+			return string.Format("{0:0.00}°", ang);
 		}
 		
 		private static string FormatFilename(string loc, Position pos, UTCDate dt)
