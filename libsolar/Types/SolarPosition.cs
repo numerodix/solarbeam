@@ -65,9 +65,9 @@ namespace LibSolar.Types
 			}
 //			s += string.Format(template, "jc", jc);
 //			s += string.Format(template, "eqtime", eqtime + " min");
-//			s += string.Format(template, "decl", decl + " °");
-			s += string.Format(template, "azimuth", az + " °");
-			s += string.Format(template, "elevation", el + " °");
+//			s += string.Format(template, "decl", decl + " \u02da");
+			s += string.Format(template, "azimuth", az + " \u02da");
+			s += string.Format(template, "elevation", el + " \u02da");
 			return s;
 		}
 	}
