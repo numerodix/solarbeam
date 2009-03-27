@@ -59,10 +59,9 @@ namespace SolarbeamGui
 			DateTime? date = null;
 			UTCDate? udt = null;
 			// try to instantiate type, otherwise mark inputs as erroneous
-			try {
-				date = new DateTime(year, month, day,
-				                    hour, min, sec, DateTimeKind.Local);
-				udt = Controller.TimezoneSource.ApplyZone(tz_name, date.Value);
+			try {				
+				udt = new Nullable<UTCDate>(new UTCDate(0, year, month, day,
+				                                        hour, min, sec));
 			} catch (ArgumentException) {
 				MarkError(ins_timedate);
 			}
