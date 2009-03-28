@@ -157,7 +157,6 @@ namespace SolarbeamGui
 					new float[] {25F, 75F});
 
 			Label date_lbl = Widgets.GetLabel("Date:");
-			Control date_scr = Widgets.GetLabel(String.Empty);
 			Control date_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.DATE_DAY,
@@ -171,7 +170,8 @@ namespace SolarbeamGui
 					Widgets.GetNumericUpDown(Controller.Id.DATE_YEAR,
 						UTCDate.YEAR_MINVALUE,
 						UTCDate.YEAR_MAXVALUE),
-					date_scr},
+					Widgets.GetTextBox(Controller.Id.DATE_DSTSTATUS,
+					    "DST")},
 				new float[] {22F, 5F, 22F, 5F, 27F, 30F});
 			
 			Label time_lbl = Widgets.GetLabel("Time:");

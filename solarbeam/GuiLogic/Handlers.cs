@@ -181,6 +181,21 @@ namespace SolarbeamGui
 			GuiMainForm.aboutform.Close();
 		}
 	
+		private static void UpdateDSTStatus(object sender, EventArgs args)
+		{
+			try { // handle trigger before all controls have been registered
+				if (!validate_lock) { // don't read while validating
+					string tz_name = GetValue(registry[Id.TIMEZONE_NAME]);
+					UTCDate? n_udt = ReadDate();
+					
+					if (n_udt != null) {
+						UTCDate udt = n_udt.Value;
+						string status = TimezoneSource.GetDSTStatus(tz_name, udt);
+						SetValue(registry[Id.DATE_DSTSTATUS], status);
+					}
+				}
+			} catch (KeyNotFoundException) {}
+		}
 	
 		/**
 		 * Handle updates to controls that force viewport re-rendering by marking

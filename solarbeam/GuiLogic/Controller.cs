@@ -47,6 +47,7 @@ namespace SolarbeamGui
 			DATE_DAY,
 			DATE_MONTH,
 			DATE_YEAR,
+			DATE_DSTSTATUS,
 			TIME_HOUR,
 			TIME_MINUTE,
 			TIME_SECOND,
@@ -179,6 +180,12 @@ namespace SolarbeamGui
 			// register re-rendering inputs for value changes
 			if (ins_position.Contains(id)) {
 				EventHandler handler = new EventHandler(ValueChange);
+				RegisterValueChange(control, handler);
+			}
+
+			// register handler for daylight time status update
+			if (ins_date.Contains(id) || (ins_position.Contains(id))) {
+				EventHandler handler = new EventHandler(UpdateDSTStatus);
 				RegisterValueChange(control, handler);
 			}
 			

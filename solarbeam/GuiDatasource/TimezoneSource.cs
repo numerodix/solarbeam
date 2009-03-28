@@ -115,6 +115,43 @@ namespace SolarbeamGui
 			}
 		}
 		
+		public string GetDSTStatus(string tz_name, UTCDate udt)
+		{
+			DateTime dt = udt.ExtractLocaltime();
+			TzTimeZone zone = TzTimeZone.GetTimeZone(tz_name);
+			DaylightTime dst = zone.GetDaylightChanges(dt.Year);
+			string dst_s = "no DST";
+			if ((dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
+				if ((dt > dst.Start) && (dt < dst.End)) {
+					dst_s = "DST";
+				} else {
+					dst_s = "Standard";
+				}
+			}
+			return dst_s;
+		}
+		
+		public void Ya(DateTime dt, string tz_name)
+		{
+			try {
+			TzTimeZone zone = TzTimeZone.GetTimeZone(tz_name);
+			TzDateTime tzdt = new TzDateTime(dt, zone);
+			Console.WriteLine(tzdt);
+			double utc_offset = tzdt.UtcOffset.TotalHours;
+			Console.WriteLine("utc offset  : {0}", utc_offset);
+			Console.WriteLine("local       : {0}", tzdt.DateTimeLocal);
+			Console.WriteLine("utc         : {0}", tzdt.DateTimeUtc);
+			Console.WriteLine("dst_name    : {0}", zone.DaylightName);
+			Console.WriteLine("std_name    : {0}", zone.StandardName);
+			Console.WriteLine("is dst?     : {0}", zone.IsDaylightSavingTime(dt));
+			DaylightTime dst = zone.GetDaylightChanges(dt.Year);
+			Console.WriteLine("dst_delta   : {0}", dst.Delta);
+			Console.WriteLine("dst_start   : {0}", dst.Start);
+			Console.WriteLine("dst_end     : {0}", dst.End);
+			Console.WriteLine("");
+			} catch {}
+		}
+		
 		public List<string> Offsets
 		{ get { return offsets; } }
 		
