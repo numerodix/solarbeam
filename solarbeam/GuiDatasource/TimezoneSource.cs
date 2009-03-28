@@ -10,6 +10,12 @@ using PublicDomain;
 
 namespace SolarbeamGui
 {
+	enum DSTStatus {
+		NoDST,
+		Standard,
+		Daylight,
+	}
+	
 	class TimezoneSource
 	{
 		private List<string> offsets;
@@ -115,17 +121,17 @@ namespace SolarbeamGui
 			}
 		}
 		
-		public string GetDSTStatus(string tz_name, UTCDate udt)
+		public DSTStatus GetDSTStatus(string tz_name, UTCDate udt)
 		{
 			DateTime dt = udt.ExtractLocaltime();
 			TzTimeZone zone = TzTimeZone.GetTimeZone(tz_name);
 			DaylightTime dst = zone.GetDaylightChanges(dt.Year);
-			string dst_s = "no DST";
+			DSTStatus dst_s = DSTStatus.NoDST;
 			if ((dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
 				if ((dt > dst.Start) && (dt < dst.End)) {
-					dst_s = "DST";
+					dst_s = DSTStatus.Daylight;
 				} else {
-					dst_s = "Standard";
+					dst_s = DSTStatus.Standard;
 				}
 			}
 			return dst_s;

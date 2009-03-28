@@ -170,8 +170,8 @@ namespace SolarbeamGui
 					Widgets.GetNumericUpDown(Controller.Id.DATE_YEAR,
 						UTCDate.YEAR_MINVALUE,
 						UTCDate.YEAR_MAXVALUE),
-					Widgets.GetTextBox(Controller.Id.DATE_DSTSTATUS,
-					    "DST")},
+					Widgets.GetLabelImage(Controller.Id.DATE_DSTSTATUS,
+					    "dst-status-nodst.png")},
 				new float[] {22F, 5F, 22F, 5F, 27F, 30F});
 			
 			Label time_lbl = Widgets.GetLabel("Time:");

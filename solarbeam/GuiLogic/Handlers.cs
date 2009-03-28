@@ -190,8 +190,19 @@ namespace SolarbeamGui
 					
 					if (n_udt != null) {
 						UTCDate udt = n_udt.Value;
-						string status = TimezoneSource.GetDSTStatus(tz_name, udt);
-						SetValue(registry[Id.DATE_DSTSTATUS], status);
+						DSTStatus status = TimezoneSource.GetDSTStatus(tz_name, udt);
+						
+						string img = "dst-status-nodst.png";
+						switch (status) {
+						case DSTStatus.Standard:
+							img = "dst-status-standard.png"; break;
+						case DSTStatus.Daylight:
+							img = "dst-status-daylight.png"; break;
+						}
+						SetImage(registry[Id.DATE_DSTSTATUS], img);
+						
+						string tip = Tooltips.GetTipDst(status);
+						UpdateTooltip(registry[Id.DATE_DSTSTATUS], tip);
 					}
 				}
 			} catch (KeyNotFoundException) {}

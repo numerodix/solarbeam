@@ -115,6 +115,9 @@ namespace SolarbeamGui
 			titles.Add(Controller.Id.IMAGESAVE_ACTION, "Save image");
 			tips.Add(Controller.Id.IMAGE_SIZE, "Enter a size for the image");
 			tips.Add(Controller.Id.IMAGESAVE_ACTION, "&Save diagram to image");
+			
+			titles.Add(Controller.Id.DATE_DSTSTATUS, "Daylight saving time");
+			tips.Add(Controller.Id.DATE_DSTSTATUS, "This timezone has no daylight saving time"); // default
 		}
 
 		public static string GetTitle(Controller.Id id)
@@ -129,6 +132,18 @@ namespace SolarbeamGui
 			string val = null;
 			tips.TryGetValue(id, out val);
 			return val;
+		}
+		
+		public static string GetTipDst(DSTStatus status)
+		{
+			string tip = "This timezone has no daylight saving time";
+			switch (status) {
+			case DSTStatus.Daylight:
+				tip = "Time is daylight saving time"; break;
+			case DSTStatus.Standard:
+				tip = "Time is standard time"; break;
+			}
+			return tip;
 		}
 	}
 }
