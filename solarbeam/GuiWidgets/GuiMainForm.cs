@@ -92,8 +92,6 @@ namespace SolarbeamGui
 		private void OnQuit(object o, EventArgs a)
 		{
 			Controller.SaveSession();
-			Dispose();
-			Environment.Exit(0);
 		}
 		
 		private Control GetMainArea()

@@ -93,7 +93,6 @@ namespace SolarbeamGui
 		public static void Quit()
 		{
 			mainform.Close();
-			Application.Exit();
 		}
 	}
 }
