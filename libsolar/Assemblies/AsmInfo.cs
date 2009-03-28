@@ -56,7 +56,7 @@ namespace LibSolar.Assemblies
 			Stream stream = GetResource(name);
 			byte[] bts = new byte[(int) stream.Length];
 			stream.Read(bts, 0, bts.Length);
-			string s = System.Text.Encoding.ASCII.GetString(bts);
+			string s = System.Text.Encoding.ASCII.GetString(bts).Trim();
 			return s;
 		}
 	}
