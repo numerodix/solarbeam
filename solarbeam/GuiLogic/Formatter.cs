@@ -20,22 +20,27 @@ namespace SolarbeamGui
 	
 		private static string FormatDayLength(SolarTimes st, SolarPosition sp)
 		{
-			double fullday = 24*3600;
-			double begin = 0, end = fullday;
+			DateTime? begin = null, end = null;
 			if (st.Sunrise != null) {
-				DateTime dt = st.Sunrise.Value.ExtractLocaltime();
-				begin = dt.Hour * 3600 + dt.Minute * 60 + dt.Second;
+				begin = st.Sunrise.Value.ExtractLocaltime();
 			}
 			if (st.Sunset != null) {
-				DateTime dt = st.Sunset.Value.ExtractLocaltime();
-				end = dt.Hour * 3600 + dt.Minute * 60 + dt.Second;
+				end = st.Sunset.Value.ExtractLocaltime();
 			}
-			double diff = end - begin;
+			
+			double diff = 0;
+			if ((begin != null) && (end != null)) {
+				diff = (end.Value - begin.Value).TotalSeconds;
+			}
+		
+			double fullday = 24*3600;
 			int h = (int) (diff / 3600.0);
 			int m = (int) ((diff - h * 3600.0) / 60.0);
 			// can be all day or all night
-			if ((diff == fullday) && (sp.Elevation < 0)) {
+			if ((diff >= fullday) && (sp.Elevation < 0)) {
 				h = 0;
+			} else if ((diff == 0) && (sp.Elevation >= 0)) {
+				h = 24;
 			}
 			return string.Format("{0}h {1}m", h, m);
 		}
