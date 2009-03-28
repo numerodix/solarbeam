@@ -280,6 +280,7 @@ namespace SolarbeamGui
 			if (tip != null) {
 				if (control is Control) {
 					tooltips[id] = Widgets.GetToolTipInfo(Tooltips.GetTitle(id));
+					tooltips[id].StripAmpersands = true; // tips also used for menu items
 					tooltips[id].SetToolTip((Control) control, tip);
 				}
 			}
