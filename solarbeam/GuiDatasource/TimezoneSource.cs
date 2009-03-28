@@ -123,17 +123,21 @@ namespace SolarbeamGui
 		
 		public DSTStatus GetDSTStatus(string tz_name, UTCDate udt)
 		{
-			DateTime dt = udt.ExtractLocaltime();
-			TzTimeZone zone = TzTimeZone.GetTimeZone(tz_name);
-			DaylightTime dst = zone.GetDaylightChanges(dt.Year);
 			DSTStatus dst_s = DSTStatus.NoDST;
-			if ((dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
-				if ((dt > dst.Start) && (dt < dst.End)) {
-					dst_s = DSTStatus.Daylight;
-				} else {
-					dst_s = DSTStatus.Standard;
+			try {
+				DateTime dt = udt.ExtractLocaltime();
+				TzTimeZone zone = TzTimeZone.GetTimeZone(tz_name);
+				DaylightTime dst = zone.GetDaylightChanges(dt.Year);
+				
+				if ((dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
+					if ((dt > dst.Start) && (dt < dst.End)) {
+						dst_s = DSTStatus.Daylight;
+					} else {
+						dst_s = DSTStatus.Standard;
+					}
 				}
-			}
+			} catch (TzException) {}
+			
 			return dst_s;
 		}
 		

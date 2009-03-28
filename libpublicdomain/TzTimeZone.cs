@@ -498,7 +498,7 @@ namespace PublicDomain
 
                 if (curRuleIndex == -1)
                 {
-                    throw new Exception("Could not find rule");
+                    throw new TzException("Could not find rule");
                 }
             }
             return curRuleIndex;

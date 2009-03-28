@@ -59,4 +59,10 @@ namespace PublicDomain
         {
         }
     }
+	
+	public class TzException : Exception {
+		public TzException(string msg)
+			: base(msg)
+		{}
+	}
 }
