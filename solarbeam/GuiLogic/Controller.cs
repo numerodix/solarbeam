@@ -154,6 +154,9 @@ namespace SolarbeamGui
 			}
 		}
 
+		/**
+		 * A single point of call where all widgets get their handlers set up.
+		 */
 		public static void RegisterControl(Id id, Component control)
 		{
 			// register in registry
