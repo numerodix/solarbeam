@@ -28,9 +28,13 @@ class Location(object):
 
         self.timezone = None # init timezone field
     def __str__(self):
-        s = "%s %s %s %s" % (self.region.ljust(25), self.country.ljust(20),
-                                          self.name.ljust(20),
-                                          self.timezone)
+        fst = str(self.name)
+        snd = str(self.country)
+        thd = str(self.region)
+        frh = str(self.pop)
+        fih = str(self.timezone)
+        s = "%s %s %s %s %s" % (fst.ljust(25), snd.ljust(20), thd.ljust(20),
+                            frh.ljust(20), fih)
         return s
     def getcountry(self):
         c = self.country
@@ -317,6 +321,7 @@ zones = {
     "China": "Asia/Shanghai",
     "Colombia": "America/Bogota",
     "Congo": "Africa/Brazzaville",
+    "Costa Rica": "America/Costa_Rica",
     "Croatia": "Europe/Zagreb",
     "Cuba": "America/Havana",
     "Cyprus": "Europe/Nicosia",
@@ -440,6 +445,7 @@ zones = {
 
     # Regional
     
+    "Western Australia": "Australia/Perth",
     # Australia +9:30
     "South Australia": "Australia/Adelaide",
     # Australia +10
@@ -469,9 +475,11 @@ zones = {
     "Tucumán": "America/Argentina/Tucuman",
 
     # Brazil
+    "Tocantins": "America/Araguaina",
     "Bahia": "America/Bahia",
     "Amapá": "America/Belem",
     "Ananindeua (Bra)": "America/Belem",
+    "Pará": "America/Belem",
     "Roraima": "America/Boa_Vista",
     "Mato Grosso do Sul": "America/Campo_Grande",
     "Mato Grosso": "America/Cuiaba",
@@ -658,26 +666,39 @@ zones = {
     "Udmurtija": "Europe/Samara",
     "Alanija": "Europe/Volgograd",
     "Astrahan": "Europe/Volgograd",
+    "Kirov": "Europe/Volgograd",
     "Saratov": "Europe/Volgograd",
     "Volgograd": "Europe/Volgograd",
 
     # United States
+    "Anchorage (USA)": "America/Anchorage",
     "Alabama": "America/Chicago",
     "Illinois": "America/Chicago",
     "Indiana": "America/Chicago",
     "Kansas": "America/Chicago",
     "Louisiana": "America/Chicago",
+    "Memphis (USA)": "America/Chicago",
+    "Minnesota": "America/Chicago",
+    "Missouri": "America/Chicago",
+    "Nashville (USA)": "America/Chicago",
+    "Nebraska": "America/Chicago",
     "Oklahoma": "America/Chicago",
     "Texas": "America/Chicago",
     "Wisconsin": "America/Chicago",
     "Colorado": "America/Denver",
     "New Mexico": "America/Denver",
+    "Michigan": "America/Detroit",
     "Hawaii": "Pacific/Honolulu",
+    "Louisville (USA)": "America/Kentucky/Louisville",
     "California": "America/Los_Angeles",
     "Nevada": "America/Los_Angeles",
+    "Portland (USA)": "America/Los_Angeles",
     "Washington": "America/Los_Angeles",
+    "District of Columbia": "America/New_York",
     "Florida": "America/New_York",
+    "Kentucky": "America/New_York",
     "Maryland": "America/New_York",
+    "Massachusetts": "America/New_York",
     "New Jersey": "America/New_York",
     "New York": "America/New_York",
     "North Carolina": "America/New_York",
@@ -780,6 +801,7 @@ if __name__ == "__main__":
 
     # do some filtering
     locs = filtercat(locs, "locality")
+    locs = sortpop(locs)
     locs = killdupes(locs)
     locs = sortpop(locs)
     locs = filtermissingpos(locs)
@@ -792,9 +814,5 @@ if __name__ == "__main__":
 
     final_locs = sortname(final_locs)
 #    final_locs = sortcountry(final_locs)
-#    for loc in final_locs:
-#        codegen(loc)
-#        print loc
     print(codegen(final_locs))
-    for loc in final_locs:
-        sys.stderr.write("%s\n" % loc)
+    for loc in final_locs: sys.stderr.write("%s\n" % loc)
