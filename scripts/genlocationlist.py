@@ -262,10 +262,12 @@ def compile(lines):
 
 def killdupes(locs):
     d = {}
+    ls = []
     for loc in locs:
         if loc.name not in d:
             d[loc.name] = loc
-    return d.values()
+            ls.append(loc)
+    return ls
 
 def filtermissingpos(locs):
     return filter(lambda x: x.lat != None and x.lon != None, locs)
@@ -803,7 +805,6 @@ if __name__ == "__main__":
     locs = filtercat(locs, "locality")
     locs = sortpop(locs)
     locs = killdupes(locs)
-    locs = sortpop(locs)
     locs = filtermissingpos(locs)
 
     # 2000 world, 25 Norway
