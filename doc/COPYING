@@ -2,6 +2,11 @@ SolarBeam is released under the GPL license, see the LICENSE file. In
 addition, the program uses a number of third party libraries under various
 licenses:
 
+* astronomy algorithms for solar position
+
+The code in libsolar/SolarOrbit/Orbit.cs is a port of the javascript code
+offered at http://www.srrb.noaa.gov/highlights/sunrise/calcdetails.html.
+
 * the program's collection of geographic locations
 
 The collection was generated using data obtained freely from
