@@ -10,6 +10,13 @@ namespace LibSolar.SolarOrbit
 	/**
 	 * This class is a port of SRRB javascript code from
 	 * http://www.srrb.noaa.gov/highlights/sunrise/sunrise.html
+	 *
+	 * Note from original source:
+	 * The calculations in the NOAA Sunrise/Sunset and Solar Position
+	 * Calculators are based on equations from Astronomical Algorithms,
+	 * by Jean Meeus. The sunrise and sunset results have been verified
+	 * to be accurate to within a minute for locations between +/- 72° 
+	 * latitude, and within 10 minutes outside of those latitudes.
 	 */
 	public class Orbit
 	{
