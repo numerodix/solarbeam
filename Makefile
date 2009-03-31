@@ -21,7 +21,7 @@ apidocs:
 
 test:
 	nunit-console libsolar/bin/Release/libsolar.dll
-	rm TestResult.xml "C:\NUnitPrimaryTrace.txt"
+	rm TestResult.xml #"C:\NUnitPrimaryTrace.txt"
 
 arch:
 	rm -rf apidoc
