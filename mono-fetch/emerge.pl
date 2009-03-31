@@ -195,77 +195,165 @@ sub pkg_install {
 }
 
 
-env_write();
+sub pkglist_get {
+	my $mono_svn = "svn://anonsvn.mono-project.com/source/trunk";
+	my (@pkglist) = (
+		{"libgdiplus" => "$mono_svn/libgdiplus"}, 
+		{"mcs" => "$mono_svn/mcs"}, 
+		{"olive" => "$mono_svn/olive"}, 
+		{"mono" => "$mono_svn/mono"}, 
+		{"debugger" => "$mono_svn/debugger"}, 
+		{"mono-addins" => "$mono_svn/mono-addins"}, 
+		{"mono-tools" => "$mono_svn/mono-tools"}, 
+		{"gtk-sharp" => "$mono_svn/gtk-sharp"}, 
+		{"gnome-sharp" => "$mono_svn/gnome-sharp"}, 
+		{"monodoc-widgets" => "$mono_svn/monodoc-widgets"}, 
+		{"monodevelop" => "$mono_svn/monodevelop"}, 
+		{"paint-mono" => "http://paint-mono.googlecode.com/svn/trunk"},
+	);
 
-my $mono_svn = "svn://anonsvn.mono-project.com/source/trunk";
-my (@pkgs) = ( 
-#	{"libgdiplus" => "$mono_svn/libgdiplus"}, 
-#	{"mcs" => "$mono_svn/mcs"}, 
-	{"olive" => "$mono_svn/olive"}, 
-	{"mono" => "$mono_svn/mono"}, 
-	{"debugger" => "$mono_svn/debugger"}, 
-	{"mono-addins" => "$mono_svn/mono-addins"}, 
-	{"mono-tools" => "$mono_svn/mono-tools"}, 
-	{"gtk-sharp" => "$mono_svn/gtk-sharp"}, 
-	{"gnome-sharp" => "$mono_svn/gnome-sharp"}, 
-	{"monodoc-widgets" => "$mono_svn/monodoc-widgets"}, 
-	{"monodevelop" => "$mono_svn/monodevelop"}, 
-	{"paint-mono" => "http://paint-mono.googlecode.com/svn/trunk"},
+	my (@pkgs);
+	foreach my $pkgh (@pkglist) {
+		# prep
+		my @ks = keys(%$pkgh); my $key = $ks[0];
+
+		# init pkg
+		my $pkg = pkg_get($key, $pkgh->{$key});
+
+		# override defaults
+		if ($pkg->{name} eq "mcs") {
+			delete($pkg->{configurer});
+			delete($pkg->{maker});
+			delete($pkg->{installer});
+		}
+		if ($pkg->{name} eq "olive") {
+			delete($pkg->{configurer});
+			delete($pkg->{maker});
+			delete($pkg->{installer});
+		}
+		if ($pkg->{name} eq "mono") {
+			$pkg->{premaker} = "make get-monolite-latest";
+		}
+		if ($pkg->{name} eq "gtk-sharp") {
+			$pkg->{configurer} = "bootstrap-2.14";
+		}
+		if ($pkg->{name} eq "gnome-sharp") {
+			$pkg->{configurer} = "bootstrap-2.24";
+		}
+		if ($pkg->{name} eq "paint-mono") {
+			$pkg->{workdir} = File::Spec->catdir($pkg->{dir}, "src");
+		}
+
+		push(@pkgs, $pkg);
+	}
+	return @pkgs;
+}
+
+
+sub action_list {
+	my (@pkgs) = pkglist_get();
+	foreach my $pkg (@pkgs) {
+		printf("%s\n", $pkg->{name});
+	}
+}
+
+my %actions = (
+	list => -1,
+	merge => 0,
+	fetch => 1,
+	configure => 2,
+	make => 3,
+	install => 4,
 );
 
-unless (-d $SRCDIR) {
-	mkpath($SRCDIR);
+sub action_merge {
+	my ($action, @worklist) = @_;
+
+	# spit out env.sh to source when running
+	env_write();
+
+	# init source dir
+	unless (-d $SRCDIR) {
+		mkpath($SRCDIR);
+	}
+
+	my (@pkgs) = pkglist_get();
+	foreach my $pkg (@pkgs) {
+		# filter on membership in worklist
+		if (grep {$_ eq $pkg->{name}} @worklist) {
+			pkg_print($pkg);
+
+			# fetch
+			if (($action == $actions{merge}) || ($action == $actions{fetch})) {
+				my $revision = "HEAD";
+				pkg_fetch($pkg, $revision);
+			}
+
+			# configure
+			if (($action == $actions{merge}) || ($action == $actions{configure})) {
+				pkg_configure($pkg);
+			}
+
+			if (($action == $actions{merge}) || ($action == $actions{make})) {
+				# premake, if any
+				pkg_premake($pkg);
+
+				# make
+				pkg_make($pkg);
+			}
+
+			# install
+			if (($action == $actions{merge}) || ($action == $actions{install})) {
+				pkg_install($pkg);
+			}
+		}
+	}
 }
 
-foreach my $pkgh (@pkgs) {
 
-	# prep
-	my @ks = keys(%$pkgh);
-	my $key = $ks[0];
-
-	# init pkg
-	my $pkg = pkg_get($key, $pkgh->{$key});
-
-	# override defaults
-	if ($pkg->{name} eq "mcs") {
-		delete($pkg->{configurer});
-		delete($pkg->{maker});
-		delete($pkg->{installer});
-	}
-	if ($pkg->{name} eq "olive") {
-		delete($pkg->{configurer});
-		delete($pkg->{maker});
-		delete($pkg->{installer});
-	}
-	if ($pkg->{name} eq "mono") {
-		$pkg->{premaker} = "make get-monolite-latest";
-	}
-	if ($pkg->{name} eq "gtk-sharp") {
-		$pkg->{configurer} = "bootstrap-2.4";
-	}
-	if ($pkg->{name} eq "gnome-sharp") {
-		$pkg->{configurer} = "bootstrap-2.24";
-	}
-	if ($pkg->{name} eq "paint-mono") {
-		$pkg->{workdir} = File::Spec->catdir($pkg->{dir}, "src");
+sub parse_args {
+	if (scalar(@ARGV) == 0) {
+		printf("Usage:  %s <action> [<pkg1> <pkg2> | world]\n", $0);
+		printf("Actions: %s\n", join(" ", keys(%actions)));
+		exit(2);
 	}
 
-	pkg_print($pkg);
+	my ($action) = $ARGV[0];
+	if (!grep {$_ eq $action} keys(%actions)) {
+		printf("Invalid action: %s\n", $action);
+		exit(2);
+	}
 
-	# fetch
-	my $revision = "HEAD";
-	pkg_fetch($pkg, $revision);
+	my (@pkgnames) = splice(@ARGV, 1);
+	if (grep {$_ eq "world"} @pkgnames) {
+		@allpkgs = pkglist_get();
+		@pkgnames = ();
+		foreach my $pkg (@allpkgs) {
+			push(@pkgnames, $pkg->{name});
+		}
+	}
 
-	# configure
-	pkg_configure($pkg);
-
-	# premake, if any
-	pkg_premake($pkg);
-
-	# make
-	pkg_make($pkg);
-
-	# install
-	pkg_install($pkg);
+	return (action => $action, pkgs => \@pkgnames);
 }
 
+sub main {
+	my (%input) = parse_args();
+
+	printf("Action selected: %s\n", $input{action});
+	if (scalar(@{ $input{pkgs} }) > 0) {
+		printf("Packages selected:\n");
+		foreach my $pkgname (@{ $input{pkgs} }) {
+			printf(" * %s\n", $pkgname);
+		}
+		print("\n");
+	}
+
+	if ($actions{$input{action}} == $actions{list}) {
+		action_list();
+		exit(2);
+	}
+
+	action_merge($actions{$input{action}}, @{ $input{pkgs} })
+}
+
+main();
