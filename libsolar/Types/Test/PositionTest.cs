@@ -5,6 +5,7 @@ using System;
 
 using NUnit.Framework;
 
+using LibSolar.Testing;
 using LibSolar.Types;
 
 namespace LibSolar.SolarOrbit.Test
@@ -19,29 +20,26 @@ namespace LibSolar.SolarOrbit.Test
 		[Test]
 		public void TestPositionCoordinateConversion()
 		{
-			Random random = new Random();
 			for (int i = 0; i < 1000; i++)
 			{
 				// upper 89 59 59
-				int ladeg = random.Next(0, 90);
-				int lamin = random.Next(0, 60);
-				int lasec = random.Next(0, 60);
+				int ladeg = Rand.GetInt(0, 89);
+				int lamin = Rand.GetInt(0, 59);
+				int lasec = Rand.GetInt(0, 59);
 				// upper 179 59 59
-				int lodeg = random.Next(0, 180);
-				int lomin = random.Next(0, 60);
-				int losec = random.Next(0, 60);
+				int lodeg = Rand.GetInt(0, 179);
+				int lomin = Rand.GetInt(0, 59);
+				int losec = Rand.GetInt(0, 59);
 
 				PositionDirection ladir;
-				if ( random.Next(0, 2) == 0 )
-				{
+				if ( Rand.GetBool() ) {
 					ladir = Position.LATITUDE_POS;
 				} else {
 					ladir = Position.LATITUDE_NEG;
 				}
 
 				PositionDirection lodir;
-				if ( random.Next(0, 2) == 0 )
-				{
+				if ( Rand.GetBool() ) {
 					lodir = Position.LONGITUDE_POS;
 				} else {
 					lodir = Position.LONGITUDE_NEG;

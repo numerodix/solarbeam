@@ -5,6 +5,8 @@ using System;
 
 using NUnit.Framework;
 
+using LibSolar.Testing;
+
 namespace LibSolar.SolarOrbit.Test
 {
 	[TestFixture]
@@ -16,10 +18,9 @@ namespace LibSolar.SolarOrbit.Test
 		[Test]
 		public void TestDayToCentury()
 		{
-			Random random = new Random();
 			for (int i = 0; i < 100; i++)
 			{
-				int day = random.Next(1, 2455853); // 2009 + 1000
+				int day = Rand.GetInt(1, 2455853); // 2009 + 1000
 				int new_day = (int) Math.Round( JulianDate.CalcJulianDay(
 						JulianDate.CalcJulianCentury(day) ) );
 

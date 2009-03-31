@@ -5,6 +5,8 @@ using System;
 
 using NUnit.Framework;
 
+using LibSolar.Testing;
+
 namespace LibSolar.SolarOrbit.Test
 {
 	[TestFixture]
@@ -16,10 +18,9 @@ namespace LibSolar.SolarOrbit.Test
 		[Test]
 		public void TestDegToRad()
 		{
-			Random random = new Random();
 			for (int i = 0; i < 100; i++)
 			{
-				int deg = random.Next(-360, 361);
+				int deg = Rand.GetInt(-360, 360);
 				int new_deg = (int) 
 					Math.Round( Coordinate.RadToDeg( Coordinate.DegToRad(deg) ) );
 
