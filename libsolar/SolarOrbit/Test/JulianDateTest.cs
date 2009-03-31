@@ -10,6 +10,9 @@ namespace LibSolar.SolarOrbit.Test
 	[TestFixture]
 	public class JulianDateTest
 	{
+		/**
+		 * Test roundtrip conversion.
+		 */
 		[Test]
 		public void TestDayToCentury()
 		{
@@ -24,6 +27,9 @@ namespace LibSolar.SolarOrbit.Test
 			}
 		}
 
+		/**
+		 * Test roundtrip conversion.
+		 */
 		[Test]
 		public void TestCenturyToDay()
 		{

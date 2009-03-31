@@ -10,6 +10,9 @@ namespace LibSolar.SolarOrbit.Test
 	[TestFixture]
 	public class CoordinateTest
 	{
+		/**
+		 * Test roundtrip conversion.
+		 */
 		[Test]
 		public void TestDegToRad()
 		{
@@ -24,6 +27,9 @@ namespace LibSolar.SolarOrbit.Test
 			}
 		}
 
+		/**
+		 * Test roundtrip conversion.
+		 */
 		[Test]
 		public void TestRadToDeg()
 		{

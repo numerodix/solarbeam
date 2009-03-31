@@ -12,6 +12,10 @@ namespace LibSolar.SolarOrbit.Test
 	[TestFixture]
 	public class PositionTest
 	{
+		/**
+		 * Make sure position given as tuple of integer values is not
+		 * distorted by internal conversions.
+		 */
 		[Test]
 		public void TestPositionCoordinateConversion()
 		{
