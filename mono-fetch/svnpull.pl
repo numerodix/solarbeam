@@ -84,7 +84,7 @@ sub pkg_get {
 		dir => $name, # fetch to
 		workdir => $name, # build from
 		svnurl => $svnurl,
-		configurer => "configure",
+		configurer => "autogen.sh",
 		maker => "make",
 		installer => "make install",
 	};
@@ -151,8 +151,8 @@ sub pkg_configure {
 		my $code = sub {
 			my ($configurer) = $pkg->{configurer};
 			if (!-e $configurer) {
-				if (-e "autogen.sh") {
-					$configurer = "autogen.sh";
+				if (-e "configure") {
+					$configurer = "configure";
 				}
 			}
 			return invoke("./$configurer --prefix=$DESTDIR");
@@ -201,15 +201,15 @@ my $mono_svn = "svn://anonsvn.mono-project.com/source/trunk";
 my (@pkgs) = ( 
 #	{"libgdiplus" => "$mono_svn/libgdiplus"}, 
 #	{"mcs" => "$mono_svn/mcs"}, 
-#	{"mono" => "$mono_svn/mono"}, 
-#	{"debugger" => "$mono_svn/debugger"}, 
-#	{"mono-addins" => "$mono_svn/mono-addins"}, 
-#	{"mono-tools" => "$mono_svn/mono-tools"}, 
-#	{"gtk-sharp" => "$mono_svn/gtk-sharp"}, 
-#	{"gnome-sharp" => "$mono_svn/gnome-sharp"}, 
-#	{"monodoc-widgets" => "$mono_svn/monodoc-widgets"}, 
-#	{"monodevelop" => "$mono_svn/monodevelop"}, 
-#	{"olive" => "$mono_svn/olive"}, 
+	{"olive" => "$mono_svn/olive"}, 
+	{"mono" => "$mono_svn/mono"}, 
+	{"debugger" => "$mono_svn/debugger"}, 
+	{"mono-addins" => "$mono_svn/mono-addins"}, 
+	{"mono-tools" => "$mono_svn/mono-tools"}, 
+	{"gtk-sharp" => "$mono_svn/gtk-sharp"}, 
+	{"gnome-sharp" => "$mono_svn/gnome-sharp"}, 
+	{"monodoc-widgets" => "$mono_svn/monodoc-widgets"}, 
+	{"monodevelop" => "$mono_svn/monodevelop"}, 
 	{"paint-mono" => "http://paint-mono.googlecode.com/svn/trunk"},
 );
 
@@ -228,6 +228,11 @@ foreach my $pkgh (@pkgs) {
 
 	# override defaults
 	if ($pkg->{name} eq "mcs") {
+		delete($pkg->{configurer});
+		delete($pkg->{maker});
+		delete($pkg->{installer});
+	}
+	if ($pkg->{name} eq "olive") {
 		delete($pkg->{configurer});
 		delete($pkg->{maker});
 		delete($pkg->{installer});
