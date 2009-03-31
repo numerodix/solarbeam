@@ -81,7 +81,8 @@ sub pkg_get {
 	my ($name, $svnurl) = @_;
 	my $pkg = {
 		name => $name,
-		dir => $name,
+		dir => $name, # fetch to
+		workdir => $name, # build from
 		svnurl => $svnurl,
 		configurer => "configure",
 		maker => "make",
@@ -99,23 +100,31 @@ sub pkg_print {
 }
 
 sub pkg_action {
-	my ($action, $pkg, $code) = @_;
+	my ($action, $dir, $pkg, $code) = @_;
 
+	# Report on action that is to commence
 	term_title(sprintf("Running %s %s", $action, $pkg->{name}));
 
-	my ($path) = File::Spec->catdir($SRCDIR, $pkg->{dir});
-	unless (-d $pkg->{dir}) {
+	# Create destination path if it does not exist
+	my ($path) = File::Spec->catdir($SRCDIR, $dir);
+	unless (-d $dir) {
 		mkpath($path);
 	}
 
+	# Chdir to source path
 	my ($cwd) = getcwd();
 	chdir($path);
 
+	# Set environment
 	env_set();
+
+	# Perform action
 	my ($exit) = &$code;
 
+	# Chdir back to original path
 	chdir($cwd);
 
+	# Check exit code
 	if ($exit == 0) {
 		term_title(sprintf("Done %s %s", $action, $pkg->{name}));
 	} else {
@@ -131,7 +140,7 @@ sub pkg_fetch {
 		my $code = sub {
 			return invoke("svn", "checkout", "-r", $rev, $pkg->{svnurl}, ".");
 		};
-		pkg_action("fetch", $pkg, $code);
+		pkg_action("fetch", $pkg->{dir}, $pkg, $code);
 	}
 }
 
@@ -148,7 +157,18 @@ sub pkg_configure {
 			}
 			return invoke("./$configurer --prefix=$DESTDIR");
 		};
-		pkg_action("configure", $pkg, $code);
+		pkg_action("configure", $pkg->{workdir}, $pkg, $code);
+	}
+}
+
+sub pkg_premake {
+	my ($pkg) = @_;
+
+	if (exists($pkg->{premaker})) {
+		my $code = sub {
+			return invoke($pkg->{premaker});
+		};
+		pkg_action("premake", $pkg->{workdir}, $pkg, $code);
 	}
 }
 
@@ -159,7 +179,7 @@ sub pkg_make {
 		my $code = sub {
 			return invoke($pkg->{maker});
 		};
-		pkg_action("make", $pkg, $code);
+		pkg_action("make", $pkg->{workdir}, $pkg, $code);
 	}
 }
 
@@ -170,7 +190,7 @@ sub pkg_install {
 		my $code = sub {
 			return invoke($pkg->{installer});
 		};
-		pkg_action("install", $pkg, $code);
+		pkg_action("install", $pkg->{workdir}, $pkg, $code);
 	}
 }
 
@@ -190,8 +210,12 @@ my (@pkgs) = (
 #	{"monodoc-widgets" => "$mono_svn/monodoc-widgets"}, 
 #	{"monodevelop" => "$mono_svn/monodevelop"}, 
 #	{"olive" => "$mono_svn/olive"}, 
-#	{"paint-mono" => "http://paint-mono.googlecode.com/svn"},
+	{"paint-mono" => "http://paint-mono.googlecode.com/svn/trunk"},
 );
+
+unless (-d $SRCDIR) {
+	mkpath($SRCDIR);
+}
 
 foreach my $pkgh (@pkgs) {
 
@@ -202,17 +226,23 @@ foreach my $pkgh (@pkgs) {
 	# init pkg
 	my $pkg = pkg_get($key, $pkgh->{$key});
 
-	# overwrite defaults
+	# override defaults
 	if ($pkg->{name} eq "mcs") {
 		delete($pkg->{configurer});
 		delete($pkg->{maker});
 		delete($pkg->{installer});
+	}
+	if ($pkg->{name} eq "mono") {
+		$pkg->{premaker} = "make get-monolite-latest";
 	}
 	if ($pkg->{name} eq "gtk-sharp") {
 		$pkg->{configurer} = "bootstrap-2.4";
 	}
 	if ($pkg->{name} eq "gnome-sharp") {
 		$pkg->{configurer} = "bootstrap-2.24";
+	}
+	if ($pkg->{name} eq "paint-mono") {
+		$pkg->{workdir} = File::Spec->catdir($pkg->{dir}, "src");
 	}
 
 	pkg_print($pkg);
@@ -223,6 +253,9 @@ foreach my $pkgh (@pkgs) {
 
 	# configure
 	pkg_configure($pkg);
+
+	# premake, if any
+	pkg_premake($pkg);
 
 	# make
 	pkg_make($pkg);
