@@ -5,8 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-using LibSolar.Types;
 using PublicDomain;
+
+using LibSolar.Types;
 
 namespace SolarbeamGui
 {
@@ -106,14 +107,16 @@ namespace SolarbeamGui
 			}
 		}
 		
-		public UTCDate? ApplyZone(string tz_name, DateTime dt)
+		public UTCDate? ResolveZone(string tz_name, DateTime dt)
 		{
 			try {
 				TzTimeZone zone = TzTimeZone.GetTimeZone(tz_name);
 				TzDateTime tzdt = new TzDateTime(dt, zone);
+				
 				double offset = tzdt.UtcOffset.TotalHours;
-				DateTime dt_new = tzdt.DateTimeUtc;
-				return new UTCDate(offset,
+				DateTime dt_new = tzdt.DateTimeLocal;
+				DaylightTime dst = zone.GetDaylightChanges(dt.Year);
+				return new UTCDate(offset, dst,
 				                   dt_new.Year, dt_new.Month, dt_new.Day,
 				                   dt_new.Hour, dt_new.Minute, dt_new.Second);
 			} catch (TypeInitializationException) {
@@ -125,7 +128,7 @@ namespace SolarbeamGui
 		{
 			DSTStatus dst_s = DSTStatus.NoDST;
 			try {
-				DateTime dt = udt.ExtractLocaltime();
+				DateTime dt = udt.ExtractLocal();
 				TzTimeZone zone = TzTimeZone.GetTimeZone(tz_name);
 				DaylightTime dst = zone.GetDaylightChanges(dt.Year);
 				

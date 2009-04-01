@@ -30,7 +30,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
-    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+    <Reference Include="nunit.framework, Version=2.5.0.9015, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -66,6 +66,10 @@
     <Compile Include="Locations\LocationList.cs" />
     <Compile Include="Serialization\Serializer.cs" />
     <Compile Include="Locations\LocationListData.cs" />
+    <Compile Include="Types\Test\UTCDateTest.cs" />
+    <Compile Include="Testing\Rand.cs" />
+    <Compile Include="Testing\Test\RandTest.cs" />
+    <Compile Include="Testing\Asserter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

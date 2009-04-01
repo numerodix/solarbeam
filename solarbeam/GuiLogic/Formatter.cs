@@ -14,7 +14,7 @@ namespace SolarbeamGui
 	{
 		private static string FormatTime(UTCDate dt)
 		{
-			DateTime d = dt.ExtractLocaltime();
+			DateTime d = dt.ExtractLocal();
 			return string.Format("{0:HH:mm}", d);
 		}
 	
@@ -22,10 +22,10 @@ namespace SolarbeamGui
 		{
 			DateTime? begin = null, end = null;
 			if (st.Sunrise != null) {
-				begin = st.Sunrise.Value.ExtractLocaltime();
+				begin = st.Sunrise.Value.ExtractLocal();
 			}
 			if (st.Sunset != null) {
-				end = st.Sunset.Value.ExtractLocaltime();
+				end = st.Sunset.Value.ExtractLocal();
 			}
 			
 			double diff = 0;

@@ -25,9 +25,7 @@ namespace LibSolar.Types.Test
 			int min = Rand.GetInt(0, 59);
 			int sec = Rand.GetInt(0, 59);
 			
-			double tz = Rand.GetDouble(3,
-			                           UTCDate.TIMEZONE_MIN,
-			                           UTCDate.TIMEZONE_MAX);
+			double tz = Rand.GetDouble(3, UTCDate.TIMEZONE_MIN, UTCDate.TIMEZONE_MAX);
 			
 			UTCDate udt = new UTCDate(tz, year, mon, day, hour, min, sec);
 			DateTime dt = new DateTime(year, mon, day, hour, min, sec);
@@ -36,7 +34,28 @@ namespace LibSolar.Types.Test
 			
 			Assert.True(udt.ExtractUTC().CompareTo(dt) == 0);
 			Assert.True(udt.ExtractUTC().Kind == DateTimeKind.Utc);
-			Assert.True(udt.ExtractLocaltime().Kind == DateTimeKind.Local);
+			Assert.True(udt.ExtractLocal().Kind == DateTimeKind.Local);
+		}
+		
+		[Test]
+		public void TestIsDST()
+		{
+			int tz = 1;
+			DaylightTime dst = GetDSTCET();
+			DateTime lower = dst.Start;
+			DateTime upper = dst.End;
+
+			UTCDate dst_pre = new UTCDate(tz, dst,
+			                              lower.Year, lower.Month, lower.Day,
+			                              lower.Hour, lower.Minute, lower.Second).AddDays(-14);
+			UTCDate dst_in = new UTCDate(tz, dst,
+			                             lower.Year, lower.Month, lower.Day,
+			                             lower.Hour, lower.Minute, lower.Second).AddDays(14);
+			UTCDate dst_post = new UTCDate(tz, dst,
+			                               upper.Year, upper.Month, upper.Day,
+			                               upper.Hour, upper.Minute, upper.Second).AddDays(14);
+			
+			Assert.IsTrue(dst_in.IsDST);
 		}
 		
 		[Test]
@@ -64,7 +83,7 @@ namespace LibSolar.Types.Test
 				// compute dates using UTCDate
 				UTCDate udt = new UTCDate(tz, dst, lower.Year, i, day, hour, min, sec);
 				DateTime dt_utc = udt.ExtractUTC();
-				DateTime dt_loc = udt.ExtractLocaltime();
+				DateTime dt_loc = udt.ExtractLocal();
 				
 				// compute dates manually
 				DateTime dt_utc2 = new DateTime(lower.Year, i, day, hour, min, sec,

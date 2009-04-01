@@ -160,7 +160,7 @@ namespace LibSolar.Graphing
 			                                year, shortest, 21,
 			                                hour, 0, 0);
 			
-			int hour_inner = udt_inner.ExtractLocaltime().Hour;
+			int hour_inner = udt_inner.ExtractLocal().Hour;
 			int hour_outer = udt_outer.ExtractUTC().Hour;
 			
 			float font_size = GetLabelFontSize();

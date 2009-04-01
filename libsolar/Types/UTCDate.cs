@@ -156,7 +156,7 @@ namespace LibSolar.Types
 		}
 
 		// Extract DateTime result
-		public DateTime ExtractLocaltime()
+		public DateTime ExtractLocal()
 		{
 			// create new DateTime object with kind Local
 			DateTime dt_n = new DateTime(dt.Year, dt.Month, dt.Day, 
@@ -244,7 +244,7 @@ namespace LibSolar.Types
 		public string Print()
 		{
 			DateTime dt_utc = ExtractUTC();
-			DateTime dt_local = ExtractLocaltime();
+			DateTime dt_local = ExtractLocal();
 			string fmt = "HH':'mm':'ss' 'dd'.'MM'.'yyyy";
 			return string.Format("{0}  [{1} UTC]",
 								 dt_local.ToString(fmt), dt_utc.ToString(fmt));
@@ -253,8 +253,7 @@ namespace LibSolar.Types
 		public string PrintTimezone()
 		{
 			char sign = '+';
-			if (tz < 0)
-			{
+			if (tz < 0) {
 				sign = '-';
 			}
 			double val = Math.Abs(tz);
