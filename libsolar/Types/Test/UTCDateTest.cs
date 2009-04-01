@@ -26,8 +26,8 @@ namespace LibSolar.Types.Test
 			int sec = Rand.GetInt(0, 59);
 			
 			double tz = Rand.GetDouble(3,
-			                           UTCDate.TIMEZONE_MINVALUE,
-			                           UTCDate.TIMEZONE_MAXVALUE);
+			                           UTCDate.TIMEZONE_MIN,
+			                           UTCDate.TIMEZONE_MAX);
 			
 			UTCDate udt = new UTCDate(tz, year, mon, day, hour, min, sec);
 			DateTime dt = new DateTime(year, mon, day, hour, min, sec);
@@ -43,13 +43,10 @@ namespace LibSolar.Types.Test
 		public void TestDST()
 		{
 			// European Summer Time 2009
-			double tz = 1; // zone UTC+1 / CET
-			TimeSpan dst = new TimeSpan(1, 0, 0);
-			DateTime lower = new DateTime(2009, 3, 29, 2, 0, 0);
-			DateTime upper = new DateTime(2009, 10, 25, 2, 0, 0);
-			DaylightTime dayl = new DaylightTime(lower, upper, dst);
+			int tz = 1; // zone UTC+1 / CET
+			DaylightTime dst = GetDSTCET();
 			
-			TestDate((int) tz, dayl);
+			TestDate(tz, dst);
 		}
 		
 		private void TestDate(int tz, DaylightTime dst)
@@ -63,7 +60,7 @@ namespace LibSolar.Types.Test
 			int min = 0;
 			int sec = 0;
 			
-			for (int i=UTCDate.MONTH_MINVALUE; i<=UTCDate.MONTH_MAXVALUE; i++) {
+			for (int i=UTCDate.MONTH_MIN; i<=UTCDate.MONTH_MAX; i++) {
 				// compute dates using UTCDate
 				UTCDate udt = new UTCDate(tz, dst, lower.Year, i, day, hour, min, sec);
 				DateTime dt_utc = udt.ExtractUTC();
@@ -81,6 +78,16 @@ namespace LibSolar.Types.Test
 				Assert.True(dt_utc.CompareTo(dt_utc2) == 0);
 				Assert.True(dt_loc.CompareTo(dt_loc2) == 0);
 			}
+		}
+		
+		private DaylightTime GetDSTCET()
+		{
+			// European Summer Time 2009
+			TimeSpan dst = new TimeSpan(1, 0, 0);
+			DateTime lower = new DateTime(2009, 3, 29, 2, 0, 0);
+			DateTime upper = new DateTime(2009, 10, 25, 2, 0, 0);
+			DaylightTime daytime = new DaylightTime(lower, upper, dst);
+			return daytime;
 		}
 	}
 }

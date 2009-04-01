@@ -34,16 +34,16 @@ namespace SolarbeamGui
 			titles.Add(Controller.Id.LATITUDE_DIRECTION, lat_title);
 			tips.Add(Controller.Id.LATITUDE_DEGS,
 					String.Format("Enter the number of degrees latitude ({0}-{1})",
-						Position.LATDEGS_MINVALUE,
-						Position.LATDEGS_MAXVALUE));
+						Position.LATDEGS_MIN,
+						Position.LATDEGS_MAX));
 			tips.Add(Controller.Id.LATITUDE_MINS,
 					String.Format("Enter the number of minutes latitude ({0}-{1})",
-						Position.LATMINS_MINVALUE,
-						Position.LATMINS_MAXVALUE));
+						Position.LATMINS_MIN,
+						Position.LATMINS_MAX));
 			tips.Add(Controller.Id.LATITUDE_SECS,
 					String.Format("Enter the number of seconds latitude ({0}-{1})",
-						Position.LATSECS_MINVALUE,
-						Position.LATSECS_MAXVALUE));
+						Position.LATSECS_MIN,
+						Position.LATSECS_MAX));
 			tips.Add(Controller.Id.LATITUDE_DIRECTION, "Select the direction latitude");
 
 			string lon_title = "Longitude";
@@ -53,16 +53,16 @@ namespace SolarbeamGui
 			titles.Add(Controller.Id.LONGITUDE_DIRECTION, lon_title);
 			tips.Add(Controller.Id.LONGITUDE_DEGS,
 					String.Format("Enter the number of degrees longitude ({0}-{1})",
-						Position.LONDEGS_MINVALUE,
-						Position.LONDEGS_MAXVALUE));
+						Position.LONDEGS_MIN,
+						Position.LONDEGS_MAX));
 			tips.Add(Controller.Id.LONGITUDE_MINS,
 					String.Format("Enter the number of minutes longitude ({0}-{1})",
-						Position.LONMINS_MINVALUE,
-						Position.LONMINS_MAXVALUE));
+						Position.LONMINS_MIN,
+						Position.LONMINS_MAX));
 			tips.Add(Controller.Id.LONGITUDE_SECS,
 					String.Format("Enter the number of seconds longitude ({0}-{1})",
-						Position.LONSECS_MINVALUE,
-						Position.LONSECS_MAXVALUE));
+						Position.LONSECS_MIN,
+						Position.LONSECS_MAX));
 			tips.Add(Controller.Id.LONGITUDE_DIRECTION, "Select the direction longitude");
 
 			titles.Add(Controller.Id.TIMEZONE_OFFSET, "Timezone offset");
@@ -77,16 +77,16 @@ namespace SolarbeamGui
 			titles.Add(Controller.Id.DATE_YEAR, dt_title);
 			tips.Add(Controller.Id.DATE_DAY,
 					String.Format("Enter the day of the month ({0}-{1})",
-						UTCDate.DAY_MINVALUE,
-						UTCDate.DAY_MAXVALUE));
+						UTCDate.DAY_MIN,
+						UTCDate.DAY_MAX));
 			tips.Add(Controller.Id.DATE_MONTH,
 					String.Format("Enter the month of the year ({0}-{1})",
-						UTCDate.MONTH_MINVALUE,
-						UTCDate.MONTH_MAXVALUE));
+						UTCDate.MONTH_MIN,
+						UTCDate.MONTH_MAX));
 			tips.Add(Controller.Id.DATE_YEAR,
 					String.Format("Enter the year ({0}-{1})",
-						UTCDate.YEAR_MINVALUE,
-						UTCDate.YEAR_MAXVALUE));
+						UTCDate.YEAR_MIN,
+						UTCDate.YEAR_MAX));
 
 			string tm_title = "Time";
 			titles.Add(Controller.Id.TIME_HOUR, tm_title);
@@ -94,16 +94,16 @@ namespace SolarbeamGui
 			titles.Add(Controller.Id.TIME_SECOND, tm_title);
 			tips.Add(Controller.Id.TIME_HOUR,
 					String.Format("Enter the number of hours ({0}-{1})",
-						UTCDate.HOUR_MINVALUE,
-						UTCDate.HOUR_MAXVALUE));
+						UTCDate.HOUR_MIN,
+						UTCDate.HOUR_MAX));
 			tips.Add(Controller.Id.TIME_MINUTE,
 					String.Format("Enter the number of minutes ({0}-{1})",
-						UTCDate.MINUTE_MINVALUE,
-						UTCDate.MINUTE_MAXVALUE));
+						UTCDate.MINUTE_MIN,
+						UTCDate.MINUTE_MAX));
 			tips.Add(Controller.Id.TIME_SECOND,
 					String.Format("Enter the number of seconds ({0}-{1})",
-						UTCDate.SECOND_MINVALUE,
-						UTCDate.SECOND_MAXVALUE));
+						UTCDate.SECOND_MIN,
+						UTCDate.SECOND_MAX));
 
 			titles.Add(Controller.Id.RESETFORM_ACTION, "Reset form");
 			tips.Add(Controller.Id.RESETFORM_ACTION,

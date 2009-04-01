@@ -37,24 +37,24 @@ namespace SolarbeamGui
 			Component control_min = registry[Id.LONGITUDE_MINS];
 			Component control_sec = registry[Id.LONGITUDE_SECS];
 	
-			int max_deg = Position.LONDEGS_MAXVALUE;
-			int min_deg = Position.LONDEGS_MINVALUE;
-			int max_min = Position.LONMINS_MAXVALUE;
-			int min_min = Position.LONMINS_MINVALUE;
-			int max_sec = Position.LONSECS_MAXVALUE;
-			int min_sec = Position.LONSECS_MINVALUE;
+			int max_deg = Position.LONDEGS_MAX;
+			int min_deg = Position.LONDEGS_MIN;
+			int max_min = Position.LONMINS_MAX;
+			int min_min = Position.LONMINS_MIN;
+			int max_sec = Position.LONSECS_MAX;
+			int min_sec = Position.LONSECS_MIN;
 	
 			if (ax == PositionAxis.Latitude) {
 				control_deg = registry[Id.LATITUDE_DEGS];
 				control_min = registry[Id.LATITUDE_MINS];
 				control_sec = registry[Id.LATITUDE_SECS];
 	
-				max_deg = Position.LATDEGS_MAXVALUE;
-				min_deg = Position.LATDEGS_MINVALUE;
-				max_min = Position.LATMINS_MAXVALUE;
-				min_min = Position.LATMINS_MINVALUE;
-				max_sec = Position.LATSECS_MAXVALUE;
-				min_sec = Position.LATSECS_MINVALUE;
+				max_deg = Position.LATDEGS_MAX;
+				min_deg = Position.LATDEGS_MIN;
+				max_min = Position.LATMINS_MAX;
+				min_min = Position.LATMINS_MIN;
+				max_sec = Position.LATSECS_MAX;
+				min_sec = Position.LATSECS_MIN;
 			}
 	
 			int deg = GetInt(GetValue(control_deg));
@@ -164,12 +164,12 @@ namespace SolarbeamGui
 			Component control_min = registry[Id.TIME_MINUTE];
 			Component control_sec = registry[Id.TIME_SECOND];
 	
-			int max_hour = UTCDate.HOUR_MAXVALUE;
-			int min_hour = UTCDate.HOUR_MINVALUE;
-			int max_min = UTCDate.MINUTE_MAXVALUE;
-			int min_min = UTCDate.MINUTE_MINVALUE;
-			int max_sec = UTCDate.SECOND_MAXVALUE;
-			int min_sec = UTCDate.SECOND_MINVALUE;
+			int max_hour = UTCDate.HOUR_MAX;
+			int min_hour = UTCDate.HOUR_MIN;
+			int max_min = UTCDate.MINUTE_MAX;
+			int min_min = UTCDate.MINUTE_MIN;
+			int max_sec = UTCDate.SECOND_MAX;
+			int min_sec = UTCDate.SECOND_MIN;
 	
 			int day = GetInt(GetValue(control_day));
 			int hour = GetInt(GetValue(control_hour));

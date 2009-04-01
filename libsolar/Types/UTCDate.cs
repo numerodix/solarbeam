@@ -15,20 +15,20 @@ namespace LibSolar.Types
 	 */
 	public struct UTCDate
 	{
-		public const int TIMEZONE_MINVALUE = -12;
-		public const int TIMEZONE_MAXVALUE = 14;
-		public const int YEAR_MINVALUE = 2;
-		public const int YEAR_MAXVALUE = 3000;
-		public const int MONTH_MINVALUE = 1;
-		public const int MONTH_MAXVALUE = 12;
-		public const int DAY_MINVALUE = 1;
-		public const int DAY_MAXVALUE = 31;
-		public const int HOUR_MINVALUE = 0;
-		public const int HOUR_MAXVALUE = 23;
-		public const int MINUTE_MINVALUE = 0;
-		public const int MINUTE_MAXVALUE = 59;
-		public const int SECOND_MINVALUE = 0;
-		public const int SECOND_MAXVALUE = 59;
+		public const double TIMEZONE_MIN = -12;
+		public const double TIMEZONE_MAX = 14;
+		public const int YEAR_MIN = 2;
+		public const int YEAR_MAX = 3000;
+		public const int MONTH_MIN = 1;
+		public const int MONTH_MAX = 12;
+		public const int DAY_MIN = 1;
+		public const int DAY_MAX = 31;
+		public const int HOUR_MIN = 0;
+		public const int HOUR_MAX = 23;
+		public const int MINUTE_MIN = 0;
+		public const int MINUTE_MAX = 59;
+		public const int SECOND_MIN = 0;
+		public const int SECOND_MAX = 59;
 		
 		private double tz;
 		private DaylightTime dst;
@@ -82,7 +82,7 @@ namespace LibSolar.Types
 		 */
 		private void CheckTimezone(double tz)
 		{
-			if ( (tz < TIMEZONE_MINVALUE) || (tz > TIMEZONE_MAXVALUE) )
+			if ( (tz < TIMEZONE_MIN) || (tz > TIMEZONE_MAX) )
 			{
 				throw new ArgumentException(
 						string.Format("Bad value for timezone: {0}", tz));
