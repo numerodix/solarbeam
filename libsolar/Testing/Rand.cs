@@ -16,8 +16,7 @@ namespace LibSolar.Testing
 		
 		public static bool GetBool()
 		{
-			bool v = true;
-			if (GetInt(0, 1) == 1) v = false;
+			bool v = (GetInt(0, 1) == 0) ? true : false;
 			return v;
 		}
 		
