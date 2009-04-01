@@ -134,8 +134,8 @@ namespace LibSolar.Types.Test
 		{
 			// Australian Eastern Daylight Time 2009
 			TimeSpan dst = new TimeSpan(1, 0, 0);
-			DateTime lower = new DateTime(2009, 10, 4, 2, 0, 0);
-			DateTime upper = new DateTime(2010, 4, 4, 2, 0, 0);
+			DateTime lower = new DateTime(2009, 4, 5, 2, 0, 0);
+			DateTime upper = new DateTime(2009, 10, 4, 2, 0, 0);
 			daytime = new DaylightTime(lower, upper, dst);
 			tz = 10;
 		}
