@@ -5,6 +5,7 @@ using System;
 
 using NUnit.Framework;
 
+using LibSolar.Testing;
 using LibSolar.Types;
 
 namespace LibSolar.SolarOrbit.Test
@@ -13,20 +14,26 @@ namespace LibSolar.SolarOrbit.Test
 	public class UTCDateTest
 	{
 		[Test]
+		[Repeat(1000)]
 		public void TestTimezoneOffset()
 		{
-			int year = 2009;
-			int mon = 6;
-			int day = 12;
-			int hour = 11;
-			int min = 45;
-			int sec = 13;
+			int year = Rand.GetInt(2, 3000);
+			int mon = Rand.GetInt(1, 12);
+			int day = Rand.GetInt(1, DateTime.DaysInMonth(year, mon));
+			int hour = Rand.GetInt(0, 23);
+			int min = Rand.GetInt(0, 59);
+			int sec = Rand.GetInt(0, 59);
 			
-			double tz = 3.5; // Tehran UTC+3:30
+			double tz = Rand.GetDouble(3,
+			                           UTCDate.TIMEZONE_MINVALUE,
+			                           UTCDate.TIMEZONE_MAXVALUE);
 			
 			UTCDate udt = new UTCDate(tz, year, mon, day, hour, min, sec);
 			DateTime dt = new DateTime(year, mon, day, hour, min, sec);
-			dt = dt.AddHours(-tz); // 11:45:31 in Tehran, 3.5h earlier UTC
+			
+			// timezone is UTC+x -> x hours ahead of UTC -> subtract tz
+			// timezone is UTC-x -> x hours behind UTC -> add tz
+			dt = dt.AddHours(-tz);
 			
 			Assert.True(udt.ExtractUTC().CompareTo(dt) == 0);
 			Assert.True(udt.ExtractUTC().Kind == DateTimeKind.Utc);

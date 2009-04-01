@@ -38,8 +38,8 @@ namespace LibSolar.Types
 		 * Create an instance resetting the time to UTC
 		 */
 		public UTCDate(double tz,
-					int year, int month, int day,
-					int hour, int min, int sec)
+		               int year, int month, int day,
+		               int hour, int min, int sec)
 		{
 			this.tz = tz;
 			this.dst = null;
@@ -50,15 +50,13 @@ namespace LibSolar.Types
 		}
 		
 		public UTCDate(double tz, DaylightTime dst,
-					int year, int month, int day,
-					int hour, int min, int sec)
+		               int year, int month, int day,
+		               int hour, int min, int sec)
 		{
-			this.tz = tz;
+			UTCDate udt = new UTCDate(tz, year, month, day, hour, min, sec);
+			this.tz = udt.tz;
 			this.dst = dst;
-			this.dt = new DateTime(year, month, day, hour, min, sec,
-								   DateTimeKind.Utc).AddHours(-tz);
-
-			CheckTimezone(this.tz);
+			this.dt = udt.dt;
 		}
 
 		private UTCDate(double tz, DateTime dt)
