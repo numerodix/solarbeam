@@ -32,9 +32,7 @@ namespace LibSolar.Types.Test
 			UTCDate udt = new UTCDate(tz, year, mon, day, hour, min, sec);
 			DateTime dt = new DateTime(year, mon, day, hour, min, sec);
 			
-			// timezone is UTC+x -> x hours ahead of UTC -> subtract tz
-			// timezone is UTC-x -> x hours behind UTC -> add tz
-			dt = dt.AddHours(-tz);
+			dt = UTCDate.ResolveTimezone(dt, tz);
 			
 			Assert.True(udt.ExtractUTC().CompareTo(dt) == 0);
 			Assert.True(udt.ExtractUTC().Kind == DateTimeKind.Utc);
@@ -46,30 +44,43 @@ namespace LibSolar.Types.Test
 		{
 			// European Summer Time 2009
 			double tz = 1; // zone UTC+1 / CET
-			int dst = 1;
+			TimeSpan dst = new TimeSpan(1, 0, 0);
 			DateTime lower = new DateTime(2009, 3, 29, 2, 0, 0);
 			DateTime upper = new DateTime(2009, 10, 25, 2, 0, 0);
-			DaylightTime dayl = new DaylightTime(lower, upper,
-			                                     new TimeSpan(dst, 0, 0));
+			DaylightTime dayl = new DaylightTime(lower, upper, dst);
 			
-			UTCDate udt_pre = new UTCDate(tz, dayl, 2009, 2, 21, 12, 0, 0);
-			DateTime dt_pre = udt_pre.ExtractLocaltime();
-			DateTime dt_pre2 = new DateTime(2009, 2, 21, 12, 0, 0,
-			                                DateTimeKind.Local);
+			TestDate((int) tz, dayl);
+		}
+		
+		private void TestDate(int tz, DaylightTime dst)
+		{
+			DateTime lower = dst.Start;
+			DateTime upper = dst.End;
+			TimeSpan dst_span = dst.Delta;
 			
-			UTCDate udt_in = new UTCDate(tz, dayl, 2009, 5, 21, 12, 0, 0);
-			DateTime dt_in = udt_in.ExtractLocaltime();
-			DateTime dt_in2 = new DateTime(2009, 5, 21, 12, 0, 0, 
-			                               DateTimeKind.Local).AddHours(dst);
+			int day = 15;
+			int hour = 12;
+			int min = 0;
+			int sec = 0;
 			
-			UTCDate udt_post = new UTCDate(tz, dayl, 2009, 11, 21, 12, 0, 0);
-			DateTime dt_post = udt_post.ExtractLocaltime();
-			DateTime dt_post2 = new DateTime(2009, 11, 21, 12, 0, 0, 
-			                                 DateTimeKind.Local);
-			
-			Assert.True(dt_pre.CompareTo(dt_pre2) == 0);
-			Assert.True(dt_in.CompareTo(dt_in2) == 0);
-			Assert.True(dt_post.CompareTo(dt_post2) == 0);
+			for (int i=UTCDate.MONTH_MINVALUE; i<=UTCDate.MONTH_MAXVALUE; i++) {
+				// compute dates using UTCDate
+				UTCDate udt = new UTCDate(tz, dst, lower.Year, i, day, hour, min, sec);
+				DateTime dt_utc = udt.ExtractUTC();
+				DateTime dt_loc = udt.ExtractLocaltime();
+				
+				// compute dates manually
+				DateTime dt_utc2 = new DateTime(lower.Year, i, day, hour, min, sec,
+				                                DateTimeKind.Utc);
+				dt_utc2 = dt_utc2.AddHours(-tz); // resolve tz offset
+				if (udt.IsDST) dt_utc2 = dt_utc2.Add(-dst_span); // resolve dst
+				
+				DateTime dt_loc2 = new DateTime(lower.Year, i, day, hour, min, sec,
+				                                DateTimeKind.Local);
+				
+				Assert.True(dt_utc.CompareTo(dt_utc2) == 0);
+				Assert.True(dt_loc.CompareTo(dt_loc2) == 0);
+			}
 		}
 	}
 }

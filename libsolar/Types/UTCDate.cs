@@ -31,9 +31,13 @@ namespace LibSolar.Types
 		public const int SECOND_MAXVALUE = 59;
 		
 		private double tz;
-		private DateTime dt;
 		private DaylightTime dst;
+		private DateTime dt;
 
+		// ##########################################################
+		// ### Constructors 
+		// ##########################################################
+		
 		/**
 		 * Create an instance resetting the time to UTC
 		 */
@@ -43,8 +47,9 @@ namespace LibSolar.Types
 		{
 			this.tz = tz;
 			this.dst = null;
-			this.dt = new DateTime(year, month, day, hour, min, sec,
-								   DateTimeKind.Utc).AddHours(-tz);
+			DateTime dt = new DateTime(year, month, day, hour, min, sec,
+			                           DateTimeKind.Utc);
+			this.dt = ResolveTimezone(dt, tz);
 
 			CheckTimezone(this.tz);
 		}
@@ -56,7 +61,7 @@ namespace LibSolar.Types
 			UTCDate udt = new UTCDate(tz, year, month, day, hour, min, sec);
 			this.tz = udt.tz;
 			this.dst = dst;
-			this.dt = udt.dt;
+			this.dt = ResolveDST(udt.dt, dst);
 		}
 
 		private UTCDate(double tz, DateTime dt)
@@ -68,6 +73,10 @@ namespace LibSolar.Types
 			CheckTimezone(this.tz);
 		}
 
+		// ##########################################################
+		// ### Construction checkers
+		// ##########################################################
+		
 		/**
 		 * Reference: http://en.wikipedia.org/wiki/List_of_time_zones
 		 */
@@ -79,7 +88,59 @@ namespace LibSolar.Types
 						string.Format("Bad value for timezone: {0}", tz));
 			}
 		}
+		
+		// ##########################################################
+		// ### Adjuster methods
+		// ##########################################################
+		
+		/**
+		 * Obtain absolute date (utc) from relative (local).
+		 */
+		public static DateTime ResolveTimezone(DateTime dt, double tz)
+		{
+			// timezone is UTC+x -> x hours ahead of UTC -> subtract tz
+			// timezone is UTC-x -> x hours behind UTC -> add tz
+			return dt.AddHours(-tz);
+		}
+		
+		/**
+		 * Obtain relative date (local) from absolute (utc).
+		 */
+		public static DateTime ApplyTimezone(DateTime dt, double tz)
+		{
+			return dt.AddHours(tz);
+		}
+		
+		/**
+		 * Obtain absolute date (utc) from relative (local).
+		 */
+		public static DateTime ResolveDST(DateTime dt, DaylightTime dst)
+		{
+			if ((dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
+				if ((dst.Start < dt) && (dt < dst.End)) {
+					dt = dt.Add(-dst.Delta);
+				}
+			}
+			return dt;
+		}
+		
+		/**
+		 * Obtain relative date (local) from absolute (utc).
+		 */
+		public static DateTime ApplyDST(DateTime dt, DaylightTime dst)
+		{
+			if ((dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
+				if ((dst.Start < dt) && (dt < dst.End)) {
+					dt = dt.Add(dst.Delta);
+				}
+			}
+			return dt;
+		}
     
+		// ##########################################################
+		// ### Common public API
+		// ##########################################################
+		
 		/**
 		 * Clone current date, but set time to null.
 		 */
@@ -97,16 +158,12 @@ namespace LibSolar.Types
 		// Extract DateTime result
 		public DateTime ExtractLocaltime()
 		{
-			double dst_delta = 0;
-			if ((this.dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
-				if ((dst.Start < this.dt) && (this.dt < dst.End)) {
-					dst_delta = dst.Delta.TotalHours;
-				}
-			}
+			// create new DateTime object with kind Local
 			DateTime dt_n = new DateTime(dt.Year, dt.Month, dt.Day, 
 			                             dt.Hour, dt.Minute, dt.Second, 
 			                             DateTimeKind.Local);
-			dt_n = dt_n.AddHours(tz+dst_delta);
+			dt_n = ApplyTimezone(dt_n, this.tz);
+			dt_n = ApplyDST(dt_n, this.dst);
 			return dt_n;
 		}
 
@@ -114,9 +171,22 @@ namespace LibSolar.Types
 		{
 			return dt;
 		}
+		
+		public bool IsDST
+		{ get {
+			bool v = false;
+			if ((this.dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
+				if ((dst.Start < this.dt) && (this.dt < dst.End)) {
+					v = true;
+				}
+			}
+			return v;
+		} }
 
-		// Provide partial DateTime interface. Everything is UTC based
-
+		// ##########################################################
+		// ### Partial adaption of DateTime interface
+		// ##########################################################
+		
 		public UTCDate AddDays(double days)
 		{
 			DateTime new_dt = dt.AddDays(days);
@@ -129,10 +199,6 @@ namespace LibSolar.Types
 			return new UTCDate(tz, new_dt);
 		}
 
-		/**
-		 * Overlay the AddMinutes method in DateTime, but careful not to touch the
-		 * instance attributes here, so do all work on fresh object!
-		 */
 		public UTCDate AddMinutes(double mins)
 		{
 			DateTime new_dt = dt.AddMinutes(mins);
@@ -147,7 +213,7 @@ namespace LibSolar.Types
 		
 		public int CompareTo(UTCDate dt)
 		{
-			return this.ExtractLocaltime().CompareTo(dt.ExtractLocaltime());
+			return this.ExtractUTC().CompareTo(dt.ExtractUTC());
 		}
 
 		public double Timezone
@@ -171,7 +237,10 @@ namespace LibSolar.Types
 		public int Second
 		{ get { return dt.Second; } }
 
-		// Helpers
+		// ##########################################################
+		// ### Helpers
+		// ##########################################################
+		
 		public string Print()
 		{
 			DateTime dt_utc = ExtractUTC();
