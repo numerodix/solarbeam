@@ -44,18 +44,27 @@ namespace LibSolar.Types.Test
 			DaylightTime dst = GetDSTCET();
 			DateTime lower = dst.Start;
 			DateTime upper = dst.End;
+			
+			DateTime year_lower = new DateTime(lower.Year, 1, 1, 0, 0, 0);
+			DateTime year_upper = new DateTime(upper.Year, 12, 31, 23, 59, 59);
+			
+			DateTime dt_pre = Rand.GetDateTime(year_lower, lower);
+			DateTime dt_in = Rand.GetDateTime(lower, upper);
+			DateTime dt_post = Rand.GetDateTime(upper, year_upper);
 
 			UTCDate dst_pre = new UTCDate(tz, dst,
-			                              lower.Year, lower.Month, lower.Day,
-			                              lower.Hour, lower.Minute, lower.Second).AddDays(-14);
+			                              dt_pre.Year, dt_pre.Month, dt_pre.Day,
+			                              dt_pre.Hour, dt_pre.Minute, dt_pre.Second);
 			UTCDate dst_in = new UTCDate(tz, dst,
-			                             lower.Year, lower.Month, lower.Day,
-			                             lower.Hour, lower.Minute, lower.Second).AddDays(14);
+			                             dt_in.Year, dt_in.Month, dt_in.Day,
+			                             dt_in.Hour, dt_in.Minute, dt_in.Second);
 			UTCDate dst_post = new UTCDate(tz, dst,
-			                               upper.Year, upper.Month, upper.Day,
-			                               upper.Hour, upper.Minute, upper.Second).AddDays(14);
+			                               dt_post.Year, dt_post.Month, dt_post.Day,
+			                               dt_post.Hour, dt_post.Minute, dt_post.Second);
 			
+			Assert.IsFalse(dst_pre.IsDST);
 			Assert.IsTrue(dst_in.IsDST);
+			Assert.IsFalse(dst_post.IsDST);
 		}
 		
 		[Test]

@@ -65,5 +65,18 @@ namespace LibSolar.Testing.Test
 			Assert.GreaterOrEqual(upper, v);
 			Assert.LessOrEqual(lower, v);
 		}
+		
+		[Test]
+		[Repeat(1000)]
+		public void TestGetDateTimeBoundsStatic()
+		{
+			DateTime lower = new DateTime(1312, 1, 1, 12, 0, 0);
+			DateTime upper = new DateTime(1736, 1, 1, 12, 0, 0);
+			
+			DateTime v = Rand.GetDateTime(lower, upper);
+			
+			Assert.GreaterOrEqual(upper, v);
+			Assert.LessOrEqual(lower, v);
+		}
 	}
 }

@@ -14,8 +14,7 @@ namespace LibSolar.Testing
 		 */
 		public static void Equal(uint digits, double a, double b)
 		{
-			int scale = 1;
-			for (int i=0; i<digits; i++) scale *= 10;
+			int scale = (int) Math.Pow(10, digits);
 			double scale_inv = 1.0 / (double) scale;
 			
 			double diff = Math.Abs(a - b);
