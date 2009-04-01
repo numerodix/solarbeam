@@ -176,7 +176,8 @@ namespace LibSolar.Types
 		{ get {
 			bool v = false;
 			if ((this.dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
-				if ((dst.Start < this.dt) && (this.dt < dst.End)) {
+				DateTime dt = ExtractLocal(); // dst is local time
+				if ((dst.Start < dt) && (dt < dst.End)) {
 					v = true;
 				}
 			}

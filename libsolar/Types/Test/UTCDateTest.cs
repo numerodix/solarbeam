@@ -38,6 +38,7 @@ namespace LibSolar.Types.Test
 		}
 		
 		[Test]
+		[Repeat(1000)]
 		public void TestIsDST()
 		{
 			int tz = 1;
