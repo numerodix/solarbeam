@@ -2,6 +2,7 @@
 // Licensed under the GNU Public License, version 3.
 
 using System;
+using System.Globalization;
 
 namespace LibSolar.Types
 {
@@ -31,6 +32,7 @@ namespace LibSolar.Types
 		
 		private double tz;
 		private DateTime dt;
+		private DaylightTime dst;
 
 		/**
 		 * Create an instance resetting the time to UTC
@@ -40,6 +42,19 @@ namespace LibSolar.Types
 					int hour, int min, int sec)
 		{
 			this.tz = tz;
+			this.dst = null;
+			this.dt = new DateTime(year, month, day, hour, min, sec,
+								   DateTimeKind.Utc).AddHours(-tz);
+
+			CheckTimezone(this.tz);
+		}
+		
+		public UTCDate(double tz, DaylightTime dst,
+					int year, int month, int day,
+					int hour, int min, int sec)
+		{
+			this.tz = tz;
+			this.dst = dst;
 			this.dt = new DateTime(year, month, day, hour, min, sec,
 								   DateTimeKind.Utc).AddHours(-tz);
 
@@ -49,6 +64,7 @@ namespace LibSolar.Types
 		private UTCDate(double tz, DateTime dt)
 		{
 			this.tz = tz;
+			this.dst = null;
 			this.dt = dt;
 
 			CheckTimezone(this.tz);
@@ -83,7 +99,17 @@ namespace LibSolar.Types
 		// Extract DateTime result
 		public DateTime ExtractLocaltime()
 		{
-			return dt.AddHours(tz);
+			double dst_delta = 0;
+			if ((this.dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
+				if ((dst.Start < this.dt) && (this.dt < dst.End)) {
+					dst_delta = dst.Delta.TotalHours;
+				}
+			}
+			DateTime dt_n = new DateTime(dt.Year, dt.Month, dt.Day, 
+			                             dt.Hour, dt.Minute, dt.Second, 
+			                             DateTimeKind.Local);
+			dt_n = dt_n.AddHours(tz+dst_delta);
+			return dt_n;
 		}
 
 		public DateTime ExtractUTC()
