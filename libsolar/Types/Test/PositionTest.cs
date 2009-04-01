@@ -8,7 +8,7 @@ using NUnit.Framework;
 using LibSolar.Testing;
 using LibSolar.Types;
 
-namespace LibSolar.SolarOrbit.Test
+namespace LibSolar.Types.Test
 {
 	[TestFixture]
 	public class PositionTest

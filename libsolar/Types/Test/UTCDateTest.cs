@@ -2,13 +2,14 @@
 // Licensed under the GNU Public License, version 3.
 
 using System;
+using System.Globalization;
 
 using NUnit.Framework;
 
 using LibSolar.Testing;
 using LibSolar.Types;
 
-namespace LibSolar.SolarOrbit.Test
+namespace LibSolar.Types.Test
 {
 	[TestFixture]
 	public class UTCDateTest
@@ -38,6 +39,37 @@ namespace LibSolar.SolarOrbit.Test
 			Assert.True(udt.ExtractUTC().CompareTo(dt) == 0);
 			Assert.True(udt.ExtractUTC().Kind == DateTimeKind.Utc);
 			Assert.True(udt.ExtractLocaltime().Kind == DateTimeKind.Local);
+		}
+		
+		[Test]
+		public void TestDST()
+		{
+			// European Summer Time 2009
+			double tz = 1; // zone UTC+1 / CET
+			int dst = 1;
+			DateTime lower = new DateTime(2009, 3, 29, 2, 0, 0);
+			DateTime upper = new DateTime(2009, 10, 25, 2, 0, 0);
+			DaylightTime dayl = new DaylightTime(lower, upper,
+			                                     new TimeSpan(dst, 0, 0));
+			
+			UTCDate udt_pre = new UTCDate(tz, dayl, 2009, 2, 21, 12, 0, 0);
+			DateTime dt_pre = udt_pre.ExtractLocaltime();
+			DateTime dt_pre2 = new DateTime(2009, 2, 21, 12, 0, 0,
+			                                DateTimeKind.Local);
+			
+			UTCDate udt_in = new UTCDate(tz, dayl, 2009, 5, 21, 12, 0, 0);
+			DateTime dt_in = udt_in.ExtractLocaltime();
+			DateTime dt_in2 = new DateTime(2009, 5, 21, 12, 0, 0, 
+			                               DateTimeKind.Local).AddHours(dst);
+			
+			UTCDate udt_post = new UTCDate(tz, dayl, 2009, 11, 21, 12, 0, 0);
+			DateTime dt_post = udt_post.ExtractLocaltime();
+			DateTime dt_post2 = new DateTime(2009, 11, 21, 12, 0, 0, 
+			                                 DateTimeKind.Local);
+			
+			Assert.True(dt_pre.CompareTo(dt_pre2) == 0);
+			Assert.True(dt_in.CompareTo(dt_in2) == 0);
+			Assert.True(dt_post.CompareTo(dt_post2) == 0);
 		}
 	}
 }
