@@ -9,6 +9,9 @@ namespace LibSolar.Testing
 {
 	public static class Asserter
 	{
+		/**
+		 * Assert double equality to a given number of significant digits.
+		 */
 		public static void Equal(uint digits, double a, double b)
 		{
 			int scale = 1;
