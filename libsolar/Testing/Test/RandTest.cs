@@ -15,7 +15,7 @@ namespace LibSolar.Testing.Test
 		 * Make sure bools are not all the same.
 		 */
 		[Test]
-		public void TestGetBool()
+		public void TestGetBoolUniqueness()
 		{
 			List<bool> vs = new List<bool>();
 			for (int i=0; i<1000; i++) {
@@ -25,12 +25,28 @@ namespace LibSolar.Testing.Test
 			Assert.AreNotEqual(vs[0], vs[vs.Count-1]);
 		}
 		
+		/**
+		 * Check upper bound.
+		 */
 		[Test]
-		public void TestGetInt()
+		public void TestGetIntUpperBound()
 		{
-			// check upper bound
 			int v = Rand.GetInt(1, 1);
 			Assert.AreEqual(v, 1);
+		}
+		
+		/**
+		 * Check that double is within bounds.
+		 */
+		[Test]
+		[Repeat(1000)]
+		public void TestGetDoubleBounds()
+		{
+			double lower = -Math.PI;
+			double upper = Math.E;
+			double v = Rand.GetDouble(9, lower, upper);
+			Assert.GreaterOrEqual(upper, v);
+			Assert.LessOrEqual(lower, v);
 		}
 	}
 }

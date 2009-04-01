@@ -22,7 +22,6 @@ namespace LibSolar.SolarOrbit.Test
 			int day = Rand.GetInt(1, 2455853); // 2009 + 1000
 			int new_day = (int) Math.Round( JulianDate.CalcJulianDay(
 						JulianDate.CalcJulianCentury(day) ) );
-
 			Assert.AreEqual(day, new_day);
 		}
 
@@ -33,14 +32,11 @@ namespace LibSolar.SolarOrbit.Test
 		[Repeat(100)]
 		public void TestCenturyToDay()
 		{
-			Random random = new Random();
-			int scale = 10000;
-			double cent = (double) random.Next(-scale, scale+1) / (double) scale;
+			uint digits = 9;
+			double cent = Rand.GetDouble(digits, -1, 1);
 			double new_cent = JulianDate.CalcJulianCentury(
 					JulianDate.CalcJulianDay(cent) );
-
-			double diff = Math.Abs(cent - new_cent);
-			Assert.LessOrEqual(diff, (double) 1 / (double) scale);
+			Asserter.Equal(digits, cent, new_cent);
 		}
 	}
 }

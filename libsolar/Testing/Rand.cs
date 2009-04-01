@@ -27,12 +27,48 @@ namespace LibSolar.Testing
 		 */
 		public static int GetInt(int lower, int upper)
 		{
-			return random.Next(lower, upper+1);
+			if (lower > upper) {
+				throw new ArgumentException(string.Format(
+					"Lower bound must be less than upper: {0}, {1}", lower, upper));
+			}
+			
+			int v = random.Next(lower, upper+1);
+			return v;
 		}
 		
-		public static double GetDouble(double lower, double upper, uint digits)
+		/**
+		 * Get a random double to a given precision.
+		 * Algorithm:
+		 *   input -> precision: 3, lower: -3, upper: 2
+		 * half = 2.5
+		 * mid  = -0.5
+		 * scale : 1e(precision) = 1000
+		 *
+		 * random int range: -1000,1000
+		 *   x half       = -2500,2500
+		 *   + mid*scale  = -3000,2000
+		 *   / scale      = -3.000,2.000
+		 */
+		public static double GetDouble(uint digits, double lower, double upper)
 		{
-			return 0;
+			if (lower > upper) {
+				throw new ArgumentException(string.Format(
+					"Lower bound must be less than upper: {0}, {1}", lower, upper));
+			}
+			
+			double half = Math.Abs((upper - lower) / 2.0);
+			double midpoint = lower + half;
+			
+			int scale = 1;
+			for (int i=0; i<digits; i++) scale *= 10;
+			
+			int r = GetInt(-scale, scale);
+			
+			double v = r * half;
+			v += midpoint * scale;
+			v /= scale;
+			
+			return v;
 		}
 	}
 }
