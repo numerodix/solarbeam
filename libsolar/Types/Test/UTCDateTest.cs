@@ -41,8 +41,17 @@ namespace LibSolar.Types.Test
 		[Repeat(1000)]
 		public void TestIsDST()
 		{
-			int tz = 1;
-			DaylightTime dst = GetDSTCET();
+			int tz = 0; DaylightTime dst = null;
+			GetDSTCET(out dst, out tz);
+			TestIsDST(tz, dst);
+			
+			tz = 0; dst = null;
+			GetDSTAEDT(out dst, out tz);
+			TestIsDST(tz, dst);
+		}
+		
+		public void TestIsDST(int tz, DaylightTime dst)
+		{
 			DateTime lower = dst.Start;
 			DateTime upper = dst.End;
 			
@@ -71,14 +80,16 @@ namespace LibSolar.Types.Test
 		[Test]
 		public void TestDST()
 		{
-			// European Summer Time 2009
-			int tz = 1; // zone UTC+1 / CET
-			DaylightTime dst = GetDSTCET();
+			int tz = 0; DaylightTime dst = null;
+			GetDSTCET(out dst, out tz);
+			TestDST(tz, dst);
 			
-			TestDate(tz, dst);
+			tz = 0; dst = null;
+			GetDSTAEDT(out dst, out tz);
+			TestDST(tz, dst);
 		}
 		
-		private void TestDate(int tz, DaylightTime dst)
+		private void TestDST(int tz, DaylightTime dst)
 		{
 			DateTime lower = dst.Start;
 			DateTime upper = dst.End;
@@ -109,14 +120,24 @@ namespace LibSolar.Types.Test
 			}
 		}
 		
-		private DaylightTime GetDSTCET()
+		private void GetDSTCET(out DaylightTime daytime, out int tz)
 		{
 			// European Summer Time 2009
 			TimeSpan dst = new TimeSpan(1, 0, 0);
 			DateTime lower = new DateTime(2009, 3, 29, 2, 0, 0);
 			DateTime upper = new DateTime(2009, 10, 25, 2, 0, 0);
-			DaylightTime daytime = new DaylightTime(lower, upper, dst);
-			return daytime;
+			daytime = new DaylightTime(lower, upper, dst);
+			tz = 1;
+		}
+
+		private void GetDSTAEDT(out DaylightTime daytime, out int tz)
+		{
+			// Australian Eastern Daylight Time 2009
+			TimeSpan dst = new TimeSpan(1, 0, 0);
+			DateTime lower = new DateTime(2009, 10, 4, 2, 0, 0);
+			DateTime upper = new DateTime(2010, 4, 4, 2, 0, 0);
+			daytime = new DaylightTime(lower, upper, dst);
+			tz = 10;
 		}
 	}
 }
