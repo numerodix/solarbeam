@@ -40,10 +40,27 @@ namespace LibSolar.Testing.Test
 		 */
 		[Test]
 		[Repeat(1000)]
-		public void TestGetDoubleBounds()
+		public void TestGetDoubleBoundsStatic()
 		{
 			double lower = -Math.PI;
 			double upper = Math.E;
+			double v = Rand.GetDouble(9, lower, upper);
+			Assert.GreaterOrEqual(upper, v);
+			Assert.LessOrEqual(lower, v);
+		}
+
+		[Test]
+		[Repeat(1000)]
+		public void TestGetDoubleBoundsDynamic()
+		{
+			int numerator = Rand.GetInt(Int32.MinValue, Int32.MaxValue);
+			int denominator = Rand.GetInt(Int32.MinValue, Int32.MaxValue);
+			denominator = denominator == 0 ? denominator+1 : denominator; // div by 0
+			double lower = (double) numerator / (double) denominator;
+			
+			int width = Rand.GetInt(0, Int32.MaxValue);
+			double upper = lower + width;
+			
 			double v = Rand.GetDouble(9, lower, upper);
 			Assert.GreaterOrEqual(upper, v);
 			Assert.LessOrEqual(lower, v);

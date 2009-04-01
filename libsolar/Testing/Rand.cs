@@ -31,7 +31,8 @@ namespace LibSolar.Testing
 					"Lower bound must be less than upper: {0}, {1}", lower, upper));
 			}
 			
-			int v = random.Next(lower, upper+1);
+			int upper_adj = upper == Int32.MaxValue ? Int32.MaxValue : upper+1;
+			int v = random.Next(lower, upper_adj);
 			return v;
 		}
 		
