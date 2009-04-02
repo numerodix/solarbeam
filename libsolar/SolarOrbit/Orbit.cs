@@ -485,7 +485,7 @@ namespace LibSolar.SolarOrbit
 		{
 			// reset time to start of day as solar times are given in increments
 			// from the beginning of the day
-			dt = dt.AtStartOfDay();
+			dt = dt.AtStartOfUTCDay();
 
 			double jc = JulianDate.CalcJulianCentury(dt.Year, dt.Month, dt.Day, 
 													 dt.Hour, dt.Minute, dt.Second);

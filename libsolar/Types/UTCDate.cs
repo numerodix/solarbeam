@@ -64,13 +64,11 @@ namespace LibSolar.Types
 			this.dt = ResolveDST(udt.dt, dst);
 		}
 
-		private UTCDate(double tz, DateTime dt)
+		private UTCDate(double tz, DaylightTime dst, DateTime dt)
 		{
 			this.tz = tz;
-			this.dst = null;
+			this.dst = dst;
 			this.dt = dt;
-
-			CheckTimezone(this.tz);
 		}
 
 		// ##########################################################
@@ -164,15 +162,19 @@ namespace LibSolar.Types
 		/**
 		 * Clone current date, but set time to null.
 		 */
-		public UTCDate AtStartOfDay()
+		public UTCDate AtStartOfUTCDay()
 		{
 			// build a Date with null time
+			// set tz and dst to nil to prevent time adjustments, this time is
+			// given as utc
 			// but we cannot return this, the timezone setting is invalid
-			UTCDate new_dt = new UTCDate(0, this.Year, this.Month, this.Day, 0, 0, 0);
+			UTCDate new_dt = new UTCDate(0, null, 
+			                             this.Year, this.Month, this.Day, 
+			                             0, 0, 0);
 			
 			// use manufactured Date to extract correct DateTime object,
 			// then build another Date with the right DateTime and timezone
-			return new UTCDate(tz, new_dt.ExtractUTC());
+			return new UTCDate(tz, dst, new_dt.ExtractUTC());
 		}
 
 		// Extract DateTime result
@@ -224,25 +226,25 @@ namespace LibSolar.Types
 		public UTCDate AddDays(double days)
 		{
 			DateTime new_dt = dt.AddDays(days);
-			return new UTCDate(tz, new_dt);
+			return new UTCDate(tz, dst, new_dt);
 		}
 		
 		public UTCDate AddHours(double hours)
 		{
 			DateTime new_dt = dt.AddHours(hours);
-			return new UTCDate(tz, new_dt);
+			return new UTCDate(tz, dst, new_dt);
 		}
 
 		public UTCDate AddMinutes(double mins)
 		{
 			DateTime new_dt = dt.AddMinutes(mins);
-			return new UTCDate(tz, new_dt);
+			return new UTCDate(tz, dst, new_dt);
 		}
 
 		public UTCDate AddSeconds(double secs)
 		{
 			DateTime new_dt = dt.AddSeconds(secs);
-			return new UTCDate(tz, new_dt);
+			return new UTCDate(tz, dst, new_dt);
 		}
 		
 		public int CompareTo(UTCDate dt)
@@ -253,6 +255,9 @@ namespace LibSolar.Types
 		public double Timezone
 		{ get { return tz; } }
 
+		public DaylightTime DST
+		{ get { return dst; } }
+		
 		public int Year
 		{ get { return dt.Year; } }
 

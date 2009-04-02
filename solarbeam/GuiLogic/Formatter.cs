@@ -14,12 +14,13 @@ namespace SolarbeamGui
 	{
 		private static string FormatTime(UTCDate udt)
 		{
-			DateTime dt_utc = udt.ExtractUTC();
+			DateTime dt_loc = udt.ExtractLocal();
 			DateTime dt_std = udt.ExtractStandard();
-			string s_loc = string.Format("{0:HH:mm}", udt.ExtractLocal());
+			DateTime dt_utc = udt.ExtractUTC();
+			string s_loc = string.Format("{0:HH:mm}", dt_loc);
 			string s_std = string.Format("{0:HH:mm}", dt_std);
 			string s_utc = string.Format("{0:HH:mm}", dt_utc);
-			string s = string.Format("{0}   {1} ST   {1} UTC", s_loc, s_std, s_utc);
+			string s = string.Format("{0} -- {1} ST -- {2} UTC", s_loc, s_std, s_utc);
 			return s;
 		}
 	
