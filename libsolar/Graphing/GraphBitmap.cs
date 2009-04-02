@@ -40,26 +40,30 @@ namespace LibSolar.Graphing
 				// paint backdrop coordinate system
 				diagram.PaintBackdrop(g);
 				
-				// plot milestone dates first half of the year
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, udt.SetDate(1, 1));
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, udt.SetDate(2, 4));
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, udt.SetDate(3, 6));
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, udt.SetDate(4, 5));
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, udt.SetDate(5, 5));
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, udt.SetDate(6, 4));
-		
-				// plot milestone dates second half of the year
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, udt.SetDate(6, 21));
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, udt.SetDate(7, 21));
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, udt.SetDate(8, 20));
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, udt.SetDate(9, 19));
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, udt.SetDate(10, 19));
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, udt.SetDate(11, 18));
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, udt.SetDate(12, 21));
-		
+				// plot milestone dates
+				int[] days = new int[] {
+					 1, 1,    4, 2,    6, 3,    5, 4,    5, 5,     4, 6,
+					21, 6,   21, 7,   20, 8,   19, 9,   19, 10,   18, 11,   21, 12,
+				};
+				
+				for (int i=0, j=1; j<days.Length; i+=2, j+=2) {
+					UTCDate udt_n = udt.SetDate(days[i], days[j]);
+					
+					// first half
+					Color color = udt_n.IsDST ? colors.YearFstHalfDst : colors.YearFstHalfStd;
+					// second half
+					if (udt_n.CompareTo(udt.SetDate(5, 6)) >= 0) {
+						color = udt_n.IsDST ? colors.YearSndHalfDst : colors.YearSndHalfStd;
+					}
+					
+					diagram.PlotMilestoneDay(g, color, pos, udt_n);
+				}
+
 				// plot analemma curves
 				for (int i = 0; i < 24; i++) {
-					diagram.PlotAnalemma(g, colors.YearFstHalf, colors.YearSndHalf,
+					diagram.PlotAnalemma(g, 
+					                     colors.YearFstHalfStd, colors.YearFstHalfDst, 
+					                     colors.YearSndHalfStd, colors.YearSndHalfDst,
 					                     pos, udt.SetHour(i));
 				}
 

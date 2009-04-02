@@ -54,14 +54,13 @@ namespace SolarbeamGui
 			int min = GetInt(GetValue(registry[Id.TIME_MINUTE]));
 			int sec = GetInt(GetValue(registry[Id.TIME_SECOND]));
 			
-			DateTime? date = null;
 			UTCDate? udt = null;
 			// try to instantiate type, otherwise mark inputs as erroneous
 			try {
 				DateTime dt = new DateTime(year, month, day, hour, min, sec,
 				                           DateTimeKind.Local);
 				udt = TimezoneSource.GetUTCDate(tz_name, dt);
-				TimezoneSource.Ya(dt, tz_name);
+//				TimezoneSource.Ya(dt, tz_name);
 			} catch (ArgumentException) {
 				MarkError(ins_timedate);
 			}

@@ -9,26 +9,16 @@ namespace LibSolar.Graphing
 	/**
 	 * Package all colors used in graphing.
 	 */
-	public struct Colors
+	public class Colors
 	{
-		private Color grid_bg;
-		private Color grid_fg;
-		private Color year_fst_half;
-		private Color year_snd_half;
-		private Color current_day;
-		private Color graph_fg;
-
-		public Colors(Color grid_bg, Color grid_fg, Color graph_fg,
-				Color year_fst_half, Color year_snd_half,
-				Color current_day)
-		{
-			this.grid_bg = grid_bg;
-			this.grid_fg = grid_fg;
-			this.graph_fg = graph_fg;
-			this.year_fst_half = year_fst_half;
-			this.year_snd_half = year_snd_half;
-			this.current_day = current_day;
-		}
+		private Color grid_bg = Color.White;
+		private Color grid_fg = Color.Gray;
+		private Color graph_fg = Color.Black;
+		private Color year_fst_half_std = Color.SteelBlue;
+		private Color year_fst_half_dst = Color.DarkBlue;
+		private Color year_snd_half_std = Color.LightGreen;
+		private Color year_snd_half_dst = Color.Green;
+		private Color current_day = Color.Red;
 		
 		public Color GridBg
 		{ get { return this.grid_bg; } }
@@ -39,11 +29,17 @@ namespace LibSolar.Graphing
 		public Color GraphFg
 		{ get { return this.graph_fg; } }
 		
-		public Color YearFstHalf
-		{ get { return this.year_fst_half; } }
+		public Color YearFstHalfStd
+		{ get { return this.year_fst_half_std; } }
 		
-		public Color YearSndHalf
-		{ get { return this.year_snd_half; } }
+		public Color YearFstHalfDst
+		{ get { return this.year_fst_half_dst; } }
+		
+		public Color YearSndHalfStd
+		{ get { return this.year_snd_half_std; } }
+		
+		public Color YearSndHalfDst
+		{ get { return this.year_snd_half_dst; } }
 		
 		public Color CurrentDay
 		{ get { return this.current_day; } }

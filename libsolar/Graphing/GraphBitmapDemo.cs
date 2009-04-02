@@ -27,9 +27,7 @@ namespace LibSolar.Graphing
 			                         11, 0, 0);
 
 			// set up constants
-			Colors colors = new Colors(Color.White, Color.Gray, Color.Black,
-			                           Color.Blue, Color.Green,
-			                           Color.Red);
+			Colors colors = new Colors();
 			string font_face = "Arial";
 			
 			// generate base image

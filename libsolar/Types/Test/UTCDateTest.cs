@@ -99,7 +99,6 @@ namespace LibSolar.Types.Test
 		private void TestDST(int tz, DaylightTime dst)
 		{
 			DateTime lower = dst.Start;
-			DateTime upper = dst.End;
 			TimeSpan dst_span = dst.Delta;
 			
 			int day = 15;
