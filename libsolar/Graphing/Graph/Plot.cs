@@ -37,7 +37,7 @@ namespace LibSolar.Graphing
 		                             Graphics g, Color col, Position pos,
 		                             UTCDate udt)
 		{
-			UTCDate dt = new UTCDate(udt.Timezone, udt.DST,
+			UTCDate udt_lower = new UTCDate(udt.Timezone, udt.DST,
 			                         udt.Year, udt.Month, udt.Day,
 			                         0, 0, 1);
 			
@@ -50,9 +50,9 @@ namespace LibSolar.Graphing
 			double step = GetResolutionStep(dayseconds);
 			for (double cursor = 0; cursor < dayseconds; cursor+=step)
 			{
-				UTCDate dt_new = dt.AddSeconds(cursor);
+				UTCDate udt_new = udt_lower.AddSeconds(cursor);
  
-				SolarPosition sp = Orbit.CalcSolarPosition(pos, dt_new);
+				SolarPosition sp = Orbit.CalcSolarPosition(pos, udt_new);
 				Point? point = FindPoint(sp.Azimuth, sp.Elevation);
 				if (point != null) {
 					using (SolidBrush br = new SolidBrush(col)) {
@@ -64,7 +64,7 @@ namespace LibSolar.Graphing
 						double el = Math.Abs(sp.Elevation);
 						
 						// first half of the year
-						if (dt.CompareTo(dt_midyear) == -1) {
+						if (udt_lower.CompareTo(dt_midyear) == -1) {
 							// make sure we keep to the left of the graph
 							if (point.Value.X < graph.Origin.X) {
 								if (el_min > el) {
@@ -75,7 +75,7 @@ namespace LibSolar.Graphing
 						}
 						
 						// second half of the year
-						if (dt.CompareTo(dt_midyear) >= 0) {
+						if (udt_lower.CompareTo(dt_midyear) >= 0) {
 							// make sure we keep to the right of the graph
 							if (point.Value.X >= graph.Origin.X) {
 								if (el_min > el) {
@@ -89,7 +89,7 @@ namespace LibSolar.Graphing
 			}
 			
 			if (track_intersect) {
-				intersects.Add(dt, new KeyValuePair<Color,Point?>(col, pt));
+				intersects.Add(udt_lower, new KeyValuePair<Color,Point?>(col, pt));
 			}
 		}
 		
