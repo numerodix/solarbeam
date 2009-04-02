@@ -51,6 +51,7 @@ namespace SolarbeamGui
 			TIME_HOUR,
 			TIME_MINUTE,
 			TIME_SECOND,
+			TIMENOW_ACTION,
 			RESETFORM_ACTION,
 			RENDER_ACTION,
 			ELEVATION,
@@ -238,6 +239,9 @@ namespace SolarbeamGui
 				((Button) button).Click += new EventHandler(SaveLocation);
 			} else if (reg_rev[button] == Id.LOCATIONDELETE_ACTION) {
 				((Button) button).Click += new EventHandler(DeleteLocation);
+										
+			} else if (reg_rev[button] == Id.TIMENOW_ACTION) {
+				((Button) button).Click += new EventHandler(SetTimeNow);
 
 			} else if (reg_rev[button] == Id.RESETFORM_ACTION) {
 				((Button) button).Click += new EventHandler(ResetForm);

@@ -175,7 +175,6 @@ namespace SolarbeamGui
 				new float[] {22F, 5F, 22F, 5F, 27F, 30F});
 			
 			Label time_lbl = Widgets.GetLabel("Time:");
-			Control time_scr = Widgets.GetLabel(String.Empty);
 			Control time_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.TIME_HOUR,
@@ -189,8 +188,9 @@ namespace SolarbeamGui
 					Widgets.GetNumericUpDown(Controller.Id.TIME_SECOND,
 						UTCDate.SECOND_MIN-1,
 						UTCDate.SECOND_MAX+1),
-					time_scr},
-				new float[] {20F, 5F, 20F, 5F, 20F, 30F});
+					Widgets.GetButtonImageText(Controller.Id.TIMENOW_ACTION,
+				                           "Now", "now.png")},
+				new float[] {23F, 5F, 23F, 5F, 23F, 30F});
 
 			layout.Controls.Add(loc_lbl, 0, 0);
 			layout.Controls.Add(loc_ins, 1, 0);

@@ -80,6 +80,11 @@ namespace SolarbeamGui
 			control.SelectedIndex = idx;
 		}
 		
+		private static void SetTimeNow(object sender, EventArgs args)
+		{
+			SetDateTime(DateTime.Now);
+		}
+		
 		/**
 		 * Clear updates to controls that force viewport re-rendering.
 		 */
