@@ -41,21 +41,21 @@ namespace LibSolar.Graphing
 				diagram.PaintBackdrop(g);
 				
 				// plot milestone dates first half of the year
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, 1, udt.Year, 1, 1);
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, 1, udt.Year, 2, 4);
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, 1, udt.Year, 3, 6);
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, 1, udt.Year, 4, 5);
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, 1, udt.Year, 5, 5);
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, 1, udt.Year, 6, 4);
+				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, udt, 1, 1);
+				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, udt, 2, 4);
+				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, udt, 3, 6);
+				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, udt, 4, 5);
+				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, udt, 5, 5);
+				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, udt, 6, 4);
 		
 				// plot milestone dates second half of the year
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, 1, udt.Year, 6, 21);
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, 1, udt.Year, 7, 21);
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, 1, udt.Year, 8, 20);
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, 1, udt.Year, 9, 19);
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, 1, udt.Year, 10, 19);
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, 1, udt.Year, 11, 18);
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, 1, udt.Year, 12, 21);
+				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, udt, 6, 21);
+				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, udt, 7, 21);
+				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, udt, 8, 20);
+				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, udt, 9, 19);
+				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, udt, 10, 19);
+				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, udt, 11, 18);
+				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, udt, 12, 21);
 		
 				// plot analemma curves
 				for (int i = 0; i < 24; i++) {
@@ -86,8 +86,7 @@ namespace LibSolar.Graphing
 		                               Position pos, UTCDate dt)
 		{
 			using (Graphics g = Graphics.FromImage(bitmap)) {
-				diagram.PlotDay(g, colors.CurrentDay, pos, dt.Timezone, 
-				              dt.Year, dt.Month, dt.Day);
+				diagram.PlotDay(g, colors.CurrentDay, pos, dt);
 				diagram.PlotSun(g, colors.CurrentDay, dimensions, pos, dt);
 			}
 			return bitmap;

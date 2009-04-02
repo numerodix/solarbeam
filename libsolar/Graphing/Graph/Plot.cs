@@ -23,28 +23,27 @@ namespace LibSolar.Graphing
 		
 		
 		public void PlotMilestoneDay(Graphics g, Color col, Position pos, 
-		                             double tz,
-		                             int year, int month, int day)
+		                             UTCDate udt, int month, int day)
 		{
-			PlotDayInternal(true, g, col, pos, tz, year, month, day);
+			PlotDayInternal(true, g, col, pos, udt, month, day);
 		}
 		
-		public void PlotDay(Graphics g, Color col, Position pos, double tz,
-		                             int year, int month, int day)
+		public void PlotDay(Graphics g, Color col, Position pos, UTCDate udt)
 		{
-			PlotDayInternal(false, g, col, pos, tz, year, month, day);
+			PlotDayInternal(false, g, col, pos, udt, udt.Month, udt.Day);
 		}
 		
 		private void PlotDayInternal(bool track_intersect,
-		                             Graphics g, Color col, Position pos, double tz,
-		                             int year, int month, int day)
+		                             Graphics g, Color col, Position pos,
+		                             UTCDate udt, int month, int day)
 		{
-			UTCDate dt = new UTCDate(tz,
-					year, month, day,
-					0, 0, 1);
+			UTCDate dt = new UTCDate(udt.Timezone, udt.DST,
+			                         udt.Year, month, day,
+			                         0, 0, 1);
 			
 			// record points to place labels
-			UTCDate dt_midyear = new UTCDate(tz, year, 6, 5, 0, 0, 1);
+			UTCDate dt_midyear = new UTCDate(udt.Timezone, udt.DST,
+			                                 udt.Year, 6, 5, 0, 0, 1);
 			double el_min = 90;
 			Point? pt = null; 
 
