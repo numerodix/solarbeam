@@ -116,7 +116,7 @@ namespace LibSolar.Types
 		 */
 		public static DateTime ResolveDST(DateTime dt, DaylightTime dst)
 		{
-			if ((dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
+			if (IsNonZero(dst)) {
 				if ((dst.Start < dt) && (dt < dst.End)) {
 					dt = dt.Add(-dst.Delta);
 				}
@@ -129,7 +129,7 @@ namespace LibSolar.Types
 		 */
 		public static DateTime ApplyDST(DateTime dt, DaylightTime dst)
 		{
-			if ((dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
+			if (IsNonZero(dst)) {
 				if ((dst.Start < dt) && (dt < dst.End)) {
 					dt = dt.Add(dst.Delta);
 				}
@@ -174,17 +174,13 @@ namespace LibSolar.Types
 		
 		public bool HasDST
 		{ get {
-			bool v = false;
-			if ((this.dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
-				v = true;
-			}
-			return v;
+			return IsNonZero(this.dst);
 		} }
 		
 		public bool IsDST
 		{ get {
 			bool v = false;
-			if ((this.dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
+			if (this.HasDST) {
 				DateTime dt = ExtractLocal(); // dst is local time
 				if ((dst.Start < dt) && (dt < dst.End)) {
 					v = true;
@@ -192,6 +188,15 @@ namespace LibSolar.Types
 			}
 			return v;
 		} }
+		
+		private static bool IsNonZero(DaylightTime dst)
+		{
+			bool v = false;
+			if ((dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
+				v = true;
+			}
+			return v;
+		}
 
 		// ##########################################################
 		// ### Partial adaption of DateTime interface
