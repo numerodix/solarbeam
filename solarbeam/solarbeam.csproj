@@ -87,8 +87,8 @@
     <EmbeddedResource Include="..\images\loc-delete.png" />
     <EmbeddedResource Include="..\images\loc-new.png" />
     <EmbeddedResource Include="..\images\loc-save.png" />
-    <EmbeddedResource Include="..\images\now.png" />
     <EmbeddedResource Include="..\images\render.png" />
     <EmbeddedResource Include="..\images\reset.png" />
+    <EmbeddedResource Include="..\images\time-now.png" />
   </ItemGroup>
 </Project>

@@ -105,6 +105,8 @@ namespace SolarbeamGui
 						UTCDate.SECOND_MIN,
 						UTCDate.SECOND_MAX));
 
+			titles.Add(Controller.Id.TIMENOW_ACTION, "Current time");
+			tips.Add(Controller.Id.TIMENOW_ACTION, "&Set time to current");
 			titles.Add(Controller.Id.RESETFORM_ACTION, "Reset form");
 			tips.Add(Controller.Id.RESETFORM_ACTION,
 					"R&eset inputs to previous rendering");

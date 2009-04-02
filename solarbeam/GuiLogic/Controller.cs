@@ -26,6 +26,7 @@ namespace SolarbeamGui
 			MENULOCNEW_ACTION,
 			MENULOCSAVE_ACTION,
 			MENULOCDELETE_ACTION,
+			MENUTIMENOW_ACTION,
 			MENURESETFORM_ACTION,
 			MENURENDER_ACTION,
 			MENUSAVEIMAGE_ACTION,
@@ -221,6 +222,8 @@ namespace SolarbeamGui
 			} else if (reg_rev[button] == Id.MENULOCDELETE_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(DeleteLocation);
 			// Actions
+			} else if (reg_rev[button] == Id.MENUTIMENOW_ACTION) {
+				((ToolStripMenuItem) button).Click += new EventHandler(SetTimeNow);
 			} else if (reg_rev[button] == Id.MENURESETFORM_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(ResetForm);
 			} else if (reg_rev[button] == Id.MENURENDER_ACTION) {

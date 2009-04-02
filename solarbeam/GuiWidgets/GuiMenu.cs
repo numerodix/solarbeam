@@ -75,6 +75,13 @@ namespace SolarbeamGui
 		{
 			ToolStripMenuItem actions = Widgets.GetToolStripMenuColumn("&Actions");
 			
+			ToolStripMenuItem action_settimenow = Widgets.GetToolStripMenuItem(
+					Controller.Id.MENUTIMENOW_ACTION,
+					Tooltips.GetTip(Controller.Id.TIMENOW_ACTION),
+					"time-now.png");
+			
+			ToolStripSeparator sep = Widgets.GetToolStripSeparator();
+			
 			ToolStripMenuItem action_resetform = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENURESETFORM_ACTION,
 					Tooltips.GetTip(Controller.Id.RESETFORM_ACTION),
@@ -86,17 +93,19 @@ namespace SolarbeamGui
 					"render.png");
 			action_render.ShortcutKeys = (Keys) Keys.F5;
 			
-			ToolStripSeparator sep = Widgets.GetToolStripSeparator();
-			
+			ToolStripSeparator sep2 = Widgets.GetToolStripSeparator();
+						
 			ToolStripMenuItem action_saveimage = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENUSAVEIMAGE_ACTION,
 					Tooltips.GetTip(Controller.Id.IMAGESAVE_ACTION),
 					"image-save.png");
 			
 			actions.DropDownItems.AddRange(new ToolStripItem[] {
+				action_settimenow,
+				sep,
 				action_resetform,
 				action_render,
-				sep,
+				sep2,
 				action_saveimage});
 			return actions;
 		}
