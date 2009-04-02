@@ -77,8 +77,8 @@ namespace SolarbeamGui
 			// Hiiiiiiiiiiiideous hack to prevent being shown behind all 
 			// other windows on Windows. ffs!
 			// discarded impotent options: BringToFront(), Activate()
-			this.TopMost = true;
-			this.Load += delegate (object o, EventArgs a) { this.TopMost = false; };
+//			this.TopMost = true;
+//			this.Load += delegate (object o, EventArgs a) { this.TopMost = false; };
 			//this.Shown += delegate (object o,EventArgs a) { this.TopMost = false; };
 			
 			// try to bring to front somehow
