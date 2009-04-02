@@ -42,7 +42,7 @@ namespace SolarbeamGui
 		private static void RunSplash()
 		{
 			// start splash in separate thread
-			splash = new GuiSplash();
+			splash = new GuiSplash(Controller.AsmInfo.GetAtt("Title"));
 			splashthread = new Thread(splash.Launch);
 			splashthread.IsBackground = true;
 			splashthread.Name = "splash";

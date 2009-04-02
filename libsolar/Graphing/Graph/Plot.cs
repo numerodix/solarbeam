@@ -205,7 +205,7 @@ namespace LibSolar.Graphing
 		
 		public void PlotSun(Graphics g, Color col, int dim, Position pos, UTCDate dt)
 		{
-			dt = dt.AsStandard();
+//			dt = dt.AsStandard(); // confusing
 			SolarPosition sp = Orbit.CalcSolarPosition(pos, dt);
 			Point? point = FindPoint(sp.Azimuth, sp.Elevation);
 			if (point != null)

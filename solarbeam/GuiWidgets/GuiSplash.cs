@@ -13,14 +13,15 @@ namespace SolarbeamGui
 		volatile public bool expired = false; // atomic reads/writes
 		public Label label;
 		
-		public GuiSplash()
+		public GuiSplash(string form_title)
 		{
-			InitializeComponent();
+			InitializeComponent(form_title);
 		}
 		
-		private void InitializeComponent()
+		private void InitializeComponent(string form_title)
 		{
 			this.DoubleBuffered = true; // prevent flicker on updates
+			this.Text = form_title;
 			
 			Bitmap logo = new Bitmap(Controller.AsmInfo.GetResource("logo.png"));
 			this.BackgroundImage = logo;
