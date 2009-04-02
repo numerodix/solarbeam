@@ -176,6 +176,16 @@ namespace LibSolar.Types
 			// then build another Date with the right DateTime and timezone
 			return new UTCDate(tz, dst, new_dt.ExtractUTC());
 		}
+		
+		/**
+		 * Shift time to disregard dst, output standard time.
+		 */
+		public UTCDate AsStandard()
+		{
+			DateTime new_dt = dt.AddSeconds(0); // clone dt
+			new_dt = ApplyDST(new_dt, dst);
+			return new UTCDate(tz, dst, new_dt);
+		}
 
 		/**
 		 * Get a fully applied local time.
