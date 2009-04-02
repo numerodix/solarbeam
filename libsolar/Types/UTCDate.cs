@@ -116,10 +116,8 @@ namespace LibSolar.Types
 		 */
 		public static DateTime ResolveDST(DateTime dt, DaylightTime dst)
 		{
-			if (IsNonZero(dst)) {
-				if ((dst.Start < dt) && (dt < dst.End)) {
-					dt = dt.Add(-dst.Delta);
-				}
+			if (IsWithinDST(dt, dst)) {
+				dt = dt.Add(-dst.Delta);
 			}
 			return dt;
 		}
@@ -129,16 +127,38 @@ namespace LibSolar.Types
 		 */
 		public static DateTime ApplyDST(DateTime dt, DaylightTime dst)
 		{
-			if (IsNonZero(dst)) {
-				if ((dst.Start < dt) && (dt < dst.End)) {
-					dt = dt.Add(dst.Delta);
-				}
+			if (IsWithinDST(dt, dst)) {
+				dt = dt.Add(dst.Delta);
 			}
 			return dt;
 		}
     
 		// ##########################################################
-		// ### Common public API
+		// ### Common public API static methods
+		// ##########################################################
+		
+		public static bool IsWithinDST(DateTime dt, DaylightTime dst)
+		{
+			bool v = false;
+			if (IsNonZero(dst)) {
+				if ((dst.Start < dt) && (dt < dst.End)) {
+					v = true;
+				}
+			}
+			return v;
+		}
+		
+		private static bool IsNonZero(DaylightTime dst)
+		{
+			bool v = false;
+			if ((dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
+				v = true;
+			}
+			return v;
+		}
+
+		// ##########################################################
+		// ### Common public API instance methods
 		// ##########################################################
 		
 		/**
@@ -180,24 +200,13 @@ namespace LibSolar.Types
 		public bool IsDST
 		{ get {
 			bool v = false;
-			if (this.HasDST) {
-				DateTime dt = ExtractLocal(); // dst is local time
-				if ((dst.Start < dt) && (dt < dst.End)) {
-					v = true;
-				}
+			DateTime dt = ExtractLocal(); // dst is local time
+			if (IsWithinDST(dt, dst)) {
+				v = true;
 			}
 			return v;
 		} }
 		
-		private static bool IsNonZero(DaylightTime dst)
-		{
-			bool v = false;
-			if ((dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
-				v = true;
-			}
-			return v;
-		}
-
 		// ##########################################################
 		// ### Partial adaption of DateTime interface
 		// ##########################################################
