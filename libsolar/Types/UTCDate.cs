@@ -168,13 +168,13 @@ namespace LibSolar.Types
 			// set tz and dst to nil to prevent time adjustments, this time is
 			// given as utc
 			// but we cannot return this, the timezone setting is invalid
-			UTCDate new_dt = new UTCDate(0, null, 
+			UTCDate new_udt = new UTCDate(0, null, 
 			                             this.Year, this.Month, this.Day, 
 			                             0, 0, 0);
 			
 			// use manufactured Date to extract correct DateTime object,
 			// then build another Date with the right DateTime and timezone
-			return new UTCDate(tz, dst, new_dt.ExtractUTC());
+			return new UTCDate(tz, dst, new_udt.ExtractUTC());
 		}
 		
 		/**
