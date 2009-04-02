@@ -177,7 +177,9 @@ namespace LibSolar.Types
 			return new UTCDate(tz, dst, new_dt.ExtractUTC());
 		}
 
-		// Extract DateTime result
+		/**
+		 * Get a fully applied local time.
+		 */
 		public DateTime ExtractLocal()
 		{
 			// create new DateTime object with kind Local
@@ -189,6 +191,9 @@ namespace LibSolar.Types
 			return dt_n;
 		}
 		
+		/**
+		 * Get local time but without dst applied.
+		 */
 		public DateTime ExtractStandard()
 		{
 			// create new DateTime object with kind Local
@@ -204,11 +209,17 @@ namespace LibSolar.Types
 			return dt;
 		}
 		
+		/**
+		 * This time object has dst applicable to some period of the year.
+		 */
 		public bool HasDST
 		{ get {
 			return IsNonZero(this.dst);
 		} }
 		
+		/**
+		 * This concrete time is daylight saving time.
+		 */
 		public bool IsDST
 		{ get {
 			bool v = false;
