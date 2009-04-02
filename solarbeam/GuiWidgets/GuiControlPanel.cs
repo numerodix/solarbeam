@@ -188,8 +188,8 @@ namespace SolarbeamGui
 					Widgets.GetNumericUpDown(Controller.Id.TIME_SECOND,
 						UTCDate.SECOND_MIN-1,
 						UTCDate.SECOND_MAX+1),
-					Widgets.GetButtonImageText(Controller.Id.TIMENOW_ACTION,
-					                           "Now", "time-now.png")},
+					Widgets.GetButtonImageTextAnon(Controller.Id.TIMENOW_ACTION,
+					                               "Now", "time-now.png")},
 				new float[] {23F, 5F, 23F, 5F, 23F, 30F});
 
 			layout.Controls.Add(loc_lbl, 0, 0);
