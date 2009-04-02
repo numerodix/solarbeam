@@ -228,7 +228,7 @@ namespace SolarbeamGui
 		{
 			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(OUTPUTS_COUNT, 1,
 			                                              FORM_MARGIN, FORM_PADDING);
-			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
 	
 			for (int i = 0; i < OUTPUTS_COUNT; i++) {
 				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
@@ -239,42 +239,42 @@ namespace SolarbeamGui
 					Widgets.GetLabel("Sun elevation"),
 					Widgets.GetLabel(":"),
 					Widgets.GetTextBox(Controller.Id.ELEVATION, "-13.1231")},
-					new float[] {19F, 2F, 23F});
+					new float[] {19F, 2F, 25F});
 	
 			Control az = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabel("Sun azimuth"),
 					Widgets.GetLabel(":"),
 					Widgets.GetTextBox(Controller.Id.AZIMUTH, "212.6669")},
-					new float[] {19F, 2F, 23F});
+					new float[] {19F, 2F, 25F});
 	
 			Control rise = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabel("Sunrise"),
 					Widgets.GetLabel(":"),
 					Widgets.GetTextBox(Controller.Id.SUNRISE, "06:09")},
-					new float[] {19F, 2F, 23F});
+					new float[] {19F, 2F, 25F});
 	
 			Control noon = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabel("Solar noon"),
 					Widgets.GetLabel(":"),
 					Widgets.GetTextBox(Controller.Id.SOLAR_NOON, "12:12")},
-					new float[] {19F, 2F, 23F});    
+					new float[] {19F, 2F, 25F});    
 	
 			Control sset = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabel("Sunset"),
 					Widgets.GetLabel(":"),
 					Widgets.GetTextBox(Controller.Id.SUNSET, "18:15")},
-					new float[] {19F, 2F, 23F});
+					new float[] {19F, 2F, 25F});
 	
 			Control dlen = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabel("Day length"),
 					Widgets.GetLabel(":"),
 					Widgets.GetTextBox(Controller.Id.DAY_LENGTH, "12h 0m")},
-					new float[] {19F, 2F, 23F}); 
+					new float[] {19F, 2F, 25F}); 
 	
 			layout.Controls.Add(el, 0, 0);
 			layout.Controls.Add(az, 0, 1);

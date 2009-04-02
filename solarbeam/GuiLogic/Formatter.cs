@@ -12,10 +12,13 @@ namespace SolarbeamGui
 	 */
 	partial class Controller
 	{
-		private static string FormatTime(UTCDate dt)
+		private static string FormatTime(UTCDate udt)
 		{
-			DateTime d = dt.ExtractLocal();
-			return string.Format("{0:HH:mm}", d);
+			DateTime dt_utc = udt.ExtractUTC();
+			string s_loc = string.Format("{0:HH:mm}", udt.ExtractLocal());
+			string s_utc = string.Format("{0:HH:mm} {1:dd.mm.yyyy}", dt_utc, dt_utc);
+			string s = string.Format("{0}   [{1} UTC]", s_loc, s_utc);
+			return s;
 		}
 	
 		private static string FormatDayLength(SolarTimes st, SolarPosition sp)

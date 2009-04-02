@@ -186,6 +186,16 @@ namespace LibSolar.Types
 			dt_n = ApplyDST(dt_n, this.dst);
 			return dt_n;
 		}
+		
+		public DateTime ExtractStandard()
+		{
+			// create new DateTime object with kind Local
+			DateTime dt_n = new DateTime(dt.Year, dt.Month, dt.Day, 
+			                             dt.Hour, dt.Minute, dt.Second, 
+			                             DateTimeKind.Local);
+			dt_n = ApplyTimezone(dt_n, this.tz);
+			return dt_n;
+		}
 
 		public DateTime ExtractUTC()
 		{
