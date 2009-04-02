@@ -185,12 +185,11 @@ namespace SolarbeamGui
 		{
 			try { // handle trigger before all controls have been registered
 				if (!validate_lock) { // don't read while validating
-					string tz_name = GetValue(registry[Id.TIMEZONE_NAME]);
 					UTCDate? n_udt = ReadDate();
 					
 					if (n_udt != null) {
 						UTCDate udt = n_udt.Value;
-						DSTStatus status = TimezoneSource.GetDSTStatus(tz_name, udt);
+						DSTStatus status = TimezoneSource.GetDSTStatus(udt);
 						
 						string img = "dst-status-nodst.png";
 						switch (status) {

@@ -172,6 +172,15 @@ namespace LibSolar.Types
 			return dt;
 		}
 		
+		public bool HasDST
+		{ get {
+			bool v = false;
+			if ((this.dst != null) && (dst.Start.CompareTo(dst.End) != 0)) {
+				v = true;
+			}
+			return v;
+		} }
+		
 		public bool IsDST
 		{ get {
 			bool v = false;
