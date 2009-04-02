@@ -35,6 +35,11 @@ namespace LibSolar.Graphing
 			return string.Format("{0} {1}", month_s, date.Day);
 		}
 		
+		private static string FormatHour(int hour)
+		{
+			return hour == 0 ? "24" : hour.ToString();
+		}
+		
 		private int GetLineThickness()
 		{
 			return Math.Max(1, (int) ((double) grid.Diameter / 450.0));

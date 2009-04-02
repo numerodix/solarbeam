@@ -174,8 +174,8 @@ namespace LibSolar.Graphing
 			int hour_outer = udt_outer.ExtractStandard().Hour;
 			
 			float font_size = GetLabelFontSize();
-			string hour_inner_s = hour_inner == 0 ? "24" : hour_inner.ToString();
-			string hour_outer_s = hour_outer == 0 ? "24" : hour_outer.ToString();
+			string hour_inner_s = FormatHour(hour_inner);
+			string hour_outer_s = FormatHour(hour_outer);
 			
 			KeyValuePair<Point?,double?> pair_max =
 				FindPointSlopeAtHour(pos, udt_inner);
