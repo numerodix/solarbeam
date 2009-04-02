@@ -34,6 +34,7 @@ namespace LibSolar.Types.Test
 			
 			Assert.True(udt.ExtractUTC().CompareTo(dt) == 0);
 			Assert.True(udt.ExtractUTC().Kind == DateTimeKind.Utc);
+			Assert.True(udt.ExtractStandard().Kind == DateTimeKind.Local);
 			Assert.True(udt.ExtractLocal().Kind == DateTimeKind.Local);
 		}
 		
@@ -50,6 +51,9 @@ namespace LibSolar.Types.Test
 			TestIsDST(tz, dst);
 		}
 		
+		/**
+		 * Randomized testing of dst status.
+		 */
 		public void TestIsDST(int tz, DaylightTime dst)
 		{
 			DateTime lower = dst.Start;
@@ -89,6 +93,9 @@ namespace LibSolar.Types.Test
 			TestDST(tz, dst);
 		}
 		
+		/**
+		 * Traverse year and verify dst status.
+		 */
 		private void TestDST(int tz, DaylightTime dst)
 		{
 			DateTime lower = dst.Start;
