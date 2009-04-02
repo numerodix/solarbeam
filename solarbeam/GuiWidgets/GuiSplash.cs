@@ -20,6 +20,8 @@ namespace SolarbeamGui
 		
 		private void InitializeComponent()
 		{
+			this.DoubleBuffered = true; // prevent flicker on updates
+			
 			Bitmap logo = new Bitmap(Controller.AsmInfo.GetResource("logo.png"));
 			this.BackgroundImage = logo;
 			
@@ -36,8 +38,6 @@ namespace SolarbeamGui
 			label.BackColor = Color.White;
 			label.ForeColor = Color.OrangeRed;
 			this.Controls.Add(label);
-			
-			this.DoubleBuffered = true; // prevent flicker on updates
 		}
 		
 		public void Launch()
