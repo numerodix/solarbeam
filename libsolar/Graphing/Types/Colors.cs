@@ -14,10 +14,10 @@ namespace LibSolar.Graphing
 		private Color grid_bg = Color.White;
 		private Color grid_fg = Color.Gray;
 		private Color graph_fg = Color.Black;
-		private Color year_fst_half_std = Color.SteelBlue;
-		private Color year_fst_half_dst = Color.DarkBlue;
-		private Color year_snd_half_std = Color.LightGreen;
-		private Color year_snd_half_dst = Color.Green;
+		private Color year_fst_half_std = Color.DarkBlue;
+		private Color year_fst_half_dst = Color.SteelBlue;
+		private Color year_snd_half_std = Color.Green;
+		private Color year_snd_half_dst = Color.LimeGreen;
 		private Color current_day = Color.Red;
 		
 		public Color GridBg
