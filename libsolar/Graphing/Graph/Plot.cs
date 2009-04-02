@@ -120,11 +120,11 @@ namespace LibSolar.Graphing
 		}
 		
 		public void PlotAnalemma(Graphics g, Color col_fst, Color col_snd,
-		                         Position pos, double tz, int year, int hour)
+		                         Position pos, UTCDate udt)
 		{
-			UTCDate dt = new UTCDate(tz,
-					year, 1, 1,
-					hour, 0, 0);
+			UTCDate dt = new UTCDate(udt.Timezone, udt.DST,
+			                         udt.Year, 1, 1,
+			                         udt.Hour, 0, 0);
 			
 			using (SolidBrush br_fst = new SolidBrush(col_fst))
 			using (SolidBrush br_snd = new SolidBrush(col_snd)) {
@@ -141,7 +141,7 @@ namespace LibSolar.Graphing
 		}
 		
 		public void PrintAnalemmaLabel(Graphics g, Color color,
-		                               Position pos, double tz, int year, int hour)
+		                               Position pos, UTCDate udt)
 		{
 			// northern hemisphere -> june longest, dec shortest
 			int longest = 6;
@@ -152,12 +152,12 @@ namespace LibSolar.Graphing
 				shortest = 6;
 			}
 			
-			UTCDate udt_inner = new UTCDate(tz,
-			                                year, longest, 21,
-			                                hour, 0, 0);
-			UTCDate udt_outer = new UTCDate(tz,
-			                                year, shortest, 21,
-			                                hour, 0, 0);
+			UTCDate udt_inner = new UTCDate(udt.Timezone, udt.DST,
+			                                udt.Year, longest, 21,
+			                                udt.Hour, 0, 0);
+			UTCDate udt_outer = new UTCDate(udt.Timezone, udt.DST,
+			                                udt.Year, shortest, 21,
+			                                udt.Hour, 0, 0);
 			
 			int hour_inner = udt_inner.ExtractLocal().Hour;
 			int hour_outer = udt_outer.ExtractUTC().Hour;

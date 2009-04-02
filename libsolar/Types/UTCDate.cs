@@ -167,6 +167,14 @@ namespace LibSolar.Types
 			                   this.Hour, this.Minute, this.Second);
 		}
 		
+		public UTCDate SetHour(int hour)
+		{
+			return new UTCDate(this.Timezone, this.DST,
+			                   this.Year, this.Month, this.Day,
+			                   hour, this.Minute, this.Second);
+		}
+		
+		
 		/**
 		 * Clone current date, but set time to null.
 		 */

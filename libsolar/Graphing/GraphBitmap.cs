@@ -60,7 +60,7 @@ namespace LibSolar.Graphing
 				// plot analemma curves
 				for (int i = 0; i < 24; i++) {
 					diagram.PlotAnalemma(g, colors.YearFstHalf, colors.YearSndHalf,
-					                     pos, udt.Timezone, udt.Year, i);
+					                     pos, udt.SetHour(i));
 				}
 
 				// print milestone day labels
@@ -68,8 +68,8 @@ namespace LibSolar.Graphing
 				
 				// print analemma labels
 				for (int i = 0; i < 24; i++) {
-					diagram.PrintAnalemmaLabel(g, colors.GraphFg,
-					                           pos, udt.Timezone, udt.Year, i);
+					diagram.PrintAnalemmaLabel(g, colors.GraphFg, 
+					                           pos, udt.SetHour(i));
 				}
 			}
 			
