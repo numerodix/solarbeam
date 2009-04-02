@@ -30,7 +30,7 @@ namespace LibSolar.Types.Test
 			UTCDate udt = new UTCDate(tz, year, mon, day, hour, min, sec);
 			DateTime dt = new DateTime(year, mon, day, hour, min, sec);
 			
-			dt = UTCDate.ResolveTimezone(dt, tz);
+			dt = dt.AddHours(-tz); // resolve tz offset
 			
 			Assert.True(udt.ExtractUTC().CompareTo(dt) == 0);
 			Assert.True(udt.ExtractUTC().Kind == DateTimeKind.Utc);
@@ -104,18 +104,28 @@ namespace LibSolar.Types.Test
 				// compute dates using UTCDate
 				UTCDate udt = new UTCDate(tz, dst, lower.Year, i, day, hour, min, sec);
 				DateTime dt_utc = udt.ExtractUTC();
+				DateTime dt_std = udt.ExtractStandard();
 				DateTime dt_loc = udt.ExtractLocal();
 				
 				// compute dates manually
+				
+				// utc time -> resolve timezone offset and dst
 				DateTime dt_utc2 = new DateTime(lower.Year, i, day, hour, min, sec,
 				                                DateTimeKind.Utc);
 				dt_utc2 = dt_utc2.AddHours(-tz); // resolve tz offset
 				if (udt.IsDST) dt_utc2 = dt_utc2.Add(-dst_span); // resolve dst
 				
+				// standard time -> resolve dst only
+				DateTime dt_std2 = new DateTime(lower.Year, i, day, hour, min, sec,
+				                                DateTimeKind.Local);
+				if (udt.IsDST) dt_std2 = dt_std2.Add(-dst_span); // resolve dst
+				
+				// standard time -> given as input
 				DateTime dt_loc2 = new DateTime(lower.Year, i, day, hour, min, sec,
 				                                DateTimeKind.Local);
 				
 				Assert.True(dt_utc.CompareTo(dt_utc2) == 0);
+				Assert.True(dt_std.CompareTo(dt_std2) == 0);
 				Assert.True(dt_loc.CompareTo(dt_loc2) == 0);
 			}
 		}
