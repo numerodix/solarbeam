@@ -82,11 +82,12 @@ namespace SolarbeamGui
 			//this.Shown += delegate (object o,EventArgs a) { this.TopMost = false; };
 			
 			// try to bring to front somehow
-			this.Load += delegate (object o, EventArgs a) {
+/*			this.Load += delegate (object o, EventArgs a) {
 				this.Activate();
 				this.BringToFront();
 				this.Focus();
 			};
+*/
 		}
 			
 		private void OnQuit(object o, EventArgs a)

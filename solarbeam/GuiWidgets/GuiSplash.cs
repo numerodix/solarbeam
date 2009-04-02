@@ -43,6 +43,7 @@ namespace SolarbeamGui
 		public void Launch()
 		{
 			this.Show();
+			this.Activate(); // bring to front
 			Application.DoEvents();
 			
 			while (!expired) {
@@ -55,7 +56,6 @@ namespace SolarbeamGui
 			}
 			
 			this.Close();
-			this.Dispose();
 		}
 	}
 }
