@@ -159,6 +159,14 @@ namespace LibSolar.Types
 		// ### Common public API instance methods
 		// ##########################################################
 		
+		
+		public UTCDate SetDate(int day, int month)
+		{
+			return new UTCDate(this.Timezone, this.DST,
+			                   this.Year, month, day,
+			                   this.Hour, this.Minute, this.Second);
+		}
+		
 		/**
 		 * Clone current date, but set time to null.
 		 */
