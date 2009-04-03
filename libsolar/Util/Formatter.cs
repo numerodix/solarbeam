@@ -12,7 +12,11 @@ namespace LibSolar.Util
 		public const string BinaryFileExtension = ".bin";
 		public const string SessionFileExtension = ".solarbeam";
 		public const string SessionFileFilter = "*" + SessionFileExtension;
+		public const string SessionFileDesc = "SolarBeam sessions";
+		
 		public const string ImageFileExtension = ".png";
+		public const string ImageFileFilter = "*" + ImageFileExtension;
+		public const string ImageFileDesc = "Png images";
 		
 		public const string AutoSessionFilename = "autosave" + BinaryFileExtension;
 		

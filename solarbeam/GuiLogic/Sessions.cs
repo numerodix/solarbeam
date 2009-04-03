@@ -22,7 +22,7 @@ namespace SolarbeamGui
 			Dictionary<Id,string> dict = new Dictionary<Id,string>();
 			
 			// flush all widget values to dict
-			foreach (KeyValuePair<Id,string> pair in cache) {
+			foreach (KeyValuePair<Id,Component> pair in registry) {
 				Id id = pair.Key;
 				string val = GetValue(registry[id]);
 				dict.Add(id, val);
@@ -41,7 +41,7 @@ namespace SolarbeamGui
 			foreach (KeyValuePair<Id,string> pair in dict) {
 				Id id = pair.Key;
 				string val = dict[id];
-				if ((cache.ContainsKey(id)) && (val != null)) {
+				if ((registry.ContainsKey(id)) && (val != null)) {
 					cache[id] = val;
 					SetValue(registry[id], val);
 				}
@@ -52,7 +52,7 @@ namespace SolarbeamGui
 		{
 			Dictionary<Id,string> dict = new Dictionary<Id,string>();
 			
-			// flush all widget values to dict
+			// save location, position and date
 			foreach (KeyValuePair<Id,Component> pair in registry) {
 				Id id = pair.Key;
 				Component control = pair.Value;
