@@ -21,10 +21,10 @@ namespace LibSolar.Graphing
 			                            Position.LONGITUDE_POS,
 			                            0, 0, 0);
 			// time: Now
-			DateTime now = DateTime.Now;
-			UTCDate dt = new UTCDate(0, null,
-			                         now.Year, now.Month, now.Day,
-			                         now.Hour, now.Minute, now.Second);
+			DateTime dt = DateTime.Now;
+			UTCDate udt = new UTCDate(0, null,
+			                         dt.Year, dt.Month, dt.Day,
+			                         dt.Hour, dt.Minute, dt.Second);
 
 			// set up constants
 			Colors colors = new Colors();
@@ -32,10 +32,10 @@ namespace LibSolar.Graphing
 			
 			// generate base image
 			GraphBitmap grbit = new GraphBitmap(dim, colors, font_face);
-			Bitmap bitmap_plain = grbit.RenderBaseImage(pos, dt);
+			Bitmap bitmap_plain = grbit.RenderBaseImage(pos, udt);
 			
 			// render current day
-			Bitmap bitmap_fst = grbit.RenderCurrentDay(bitmap_plain, dim, pos, dt);
+			Bitmap bitmap_fst = grbit.RenderCurrentDay(bitmap_plain, dim, pos, udt);
 			
 			// save
 			grbit.SaveBitmap(bitmap_fst, path);

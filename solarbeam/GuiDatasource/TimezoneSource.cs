@@ -74,13 +74,6 @@ namespace SolarbeamGui
 				zname_list.Sort();
 				this.zones.Add(offset_s, zname_list);
 			}
-			
-//			foreach (string offset in this.offsets) {
-//				Console.WriteLine("\n{0}", offset);
-//				foreach (string zone in this.zones[offset]) {
-//					Console.WriteLine("{0}", zone);
-//				}
-//			}
 		}
 
 		private string FormatTimezone(double tz)
@@ -135,7 +128,15 @@ namespace SolarbeamGui
 			return dst_s;
 		}
 		
-		public void Ya(DateTime dt, string tz_name)
+		public List<string> Offsets
+		{ get { return offsets; } }
+		
+		public List<string> GetTimezones(string offset)
+		{
+			return zones[offset];
+		}
+
+		private void PrintDate(DateTime dt, string tz_name)
 		{
 			TzTimeZone zone = TzTimeZone.GetTimeZone(tz_name);
 			TzDateTime tzdt = new TzDateTime(dt, zone);
@@ -151,20 +152,22 @@ namespace SolarbeamGui
 			Console.WriteLine("std_name        : {0}", zone.StandardName);
 			Console.WriteLine("is dst?         : {0}", zone.IsDaylightSavingTime(dt));
 			try {
-			DaylightTime dst = zone.GetDaylightChanges(dt.Year);
-			Console.WriteLine("dst_delta       : {0}", dst.Delta);
-			Console.WriteLine("dst_start       : {0}", dst.Start);
-			Console.WriteLine("dst_end         : {0}", dst.End);
+				DaylightTime dst = zone.GetDaylightChanges(dt.Year);
+				Console.WriteLine("dst_delta       : {0}", dst.Delta);
+				Console.WriteLine("dst_start       : {0}", dst.Start);
+				Console.WriteLine("dst_end         : {0}", dst.End);
+			} catch (NullReferenceException) {}
 			Console.WriteLine("");
-			} catch {}
 		}
 		
-		public List<string> Offsets
-		{ get { return offsets; } }
-		
-		public List<string> GetTimezones(string offset)
+		private void PrintZonelist()
 		{
-			return zones[offset];
+			foreach (string offset in this.offsets) {
+				Console.WriteLine("\n{0}", offset);
+				foreach (string zone in this.zones[offset]) {
+					Console.WriteLine("{0}", zone);
+				}
+			}
 		}
 	}
 }
