@@ -4,11 +4,13 @@
 using System;
 using System.Collections;
 using System.Diagnostics;
+using System.Drawing;
 using System.Reflection;
 
 using NDesk.Options;
 
 using LibSolar.Assemblies;
+using LibSolar.Graphing;
 using LibSolar.SolarOrbit;
 using LibSolar.Types;
 
@@ -28,6 +30,9 @@ namespace SolarbeamCli
 			string timezone = null;
 			string date = null;
 			string time = null;
+			
+			// generate image, set to negative dimensions
+			int imgsz = -1;
 	
 			// bench defaults
 			int step = 1;
@@ -44,6 +49,8 @@ namespace SolarbeamCli
 					  delegate (string v) { date = v; })
 				.Add ("tm=", "Time: hh:mm:ss",
 					  delegate (string v) { time = v; })
+				.Add ("img=", "Generate diagram image: 500",
+					  delegate (int v) { imgsz = v; })
 				.Add ("benchtime-5", "Benchmark all times with 5sec increments",
 					  delegate (string v) {
 						bench = true;
@@ -85,14 +92,14 @@ namespace SolarbeamCli
 			}
 			try
 			{
-				Calc(longitude, latitude, timezone, date, time);
+				Calc(imgsz, longitude, latitude, timezone, date, time);
 			} catch (ArgumentException e) {
 				Console.WriteLine(e.Message);
 			}
 		}
 	
-		public static void Calc(string longitude, string latitude, string timezone,
-		                        string date, string time)
+		public static void Calc(int imgsz, string longitude, string latitude, 
+		                        string timezone, string date, string time)
 		{
 			// Halt on missing arguments
 			if ( null == date ) {
@@ -152,6 +159,29 @@ namespace SolarbeamCli
 			SolarTimes sns = Orbit.CalcSolarTimes(pos, dt);
 	
 			Printing.Print(sp, sns);
+			
+			if (imgsz > 0) {
+				GenImg(imgsz, pos, dt);
+			}
+		}
+		
+		private static void GenImg(int dim, Position pos, UTCDate udt)
+		{
+			string path = "img.png";
+
+			// set up constants
+			Colors colors = new Colors();
+			string font_face = "Arial";
+			
+			// generate base image
+			GraphBitmap grbit = new GraphBitmap(dim, colors, font_face);
+			Bitmap bitmap_plain = grbit.RenderBaseImage(pos, udt);
+			
+			// render current day
+			Bitmap bitmap_fst = grbit.RenderCurrentDay(bitmap_plain, dim, pos, udt);
+			
+			// save
+			grbit.SaveBitmap(bitmap_fst, path);
 		}
 	
 		public static void Bench(int step, bool timebased, bool verbose)
