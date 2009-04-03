@@ -167,7 +167,7 @@ namespace SolarbeamCli
 		
 		private static void GenImg(int dim, Position pos, UTCDate udt)
 		{
-			string path = Formatter.FormatFilename(string.Empty, pos, udt);
+			string path = Formatter.FormatImgFilename(string.Empty, pos, udt);
 
 			// set up constants
 			Colors colors = new Colors();

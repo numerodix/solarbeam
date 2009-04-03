@@ -19,11 +19,45 @@ namespace SolarbeamGui
 	 */
 	partial class Controller
 	{
+		private static void SaveSession(object sender, EventArgs args)
+		{
+			string location = GetValue(registry[Id.LOCATION]);
+			Position pos = ReadPosition();
+			UTCDate? date = ReadDate();
+			
+			if ((pos != null) && (date != null)) {
+				UTCDate dt = date.Value;
+				
+				string filename = Formatter.FormatSessionFilename(location, pos, dt);
+				SaveFileDialog dlg = Widgets.GetSaveFileDialog(filename,
+				                                               "SolarBeam sessions",
+				                                               Formatter.SessionFileFilter);
+				DialogResult ans = dlg.ShowDialog();
+				filename = dlg.FileName;
+				
+				if (ans == DialogResult.OK) {
+					WriteSession(filename);
+				}
+			}
+		}
+		
+		private static void LoadSession(object sender, EventArgs args)
+		{
+			OpenFileDialog dlg = Widgets.GetOpenFileDialog("SolarBeam sessions",
+			                                               Formatter.SessionFileFilter);
+			DialogResult ans = dlg.ShowDialog();
+			string filename = dlg.FileName;
+			
+			if (ans == DialogResult.OK) {
+				ReadSession(filename);
+			}
+		}
+		
 		private static void Exit(object sender, EventArgs args)
 		{
 			MainGui.Quit();
 		}
-		
+			
 		private static void NewLocation(object sender, EventArgs args)
 		{
 			ComboBox loc_control = (ComboBox) registry[Id.LOCATION];
@@ -161,7 +195,7 @@ namespace SolarbeamGui
 			if ((pos != null) && (date != null)) {
 				UTCDate dt = date.Value;
 				
-				string filename = Formatter.FormatFilename(location, pos, dt);
+				string filename = Formatter.FormatImgFilename(location, pos, dt);
 				SaveFileDialog dlg = Widgets.GetSaveFileDialog(filename,
 				                                               "Png images",
 				                                               "*.png");

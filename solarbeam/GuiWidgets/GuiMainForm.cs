@@ -85,7 +85,7 @@ namespace SolarbeamGui
 			
 		private void OnQuit(object o, EventArgs a)
 		{
-			Controller.SaveSession();
+			Controller.SaveAutoSession();
 		}
 		
 		private Control GetMainArea()
@@ -94,7 +94,7 @@ namespace SolarbeamGui
 			
 			// fill in initial form values
 			try {
-				Controller.LoadSession();
+				Controller.LoadAutoSession();
 			} catch {
 				Controller.InitForm();
 			}

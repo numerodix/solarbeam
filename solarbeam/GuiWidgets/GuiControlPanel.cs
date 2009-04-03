@@ -95,11 +95,11 @@ namespace SolarbeamGui
 						Controller.Id.LOCATION,
 						Controller.LocationsSource.Locations),
 					Widgets.GetButtonImage(Controller.Id.LOCATIONNEW_ACTION,
-						"loc-new.png"),
+						"new.png"),
 					Widgets.GetButtonImage(Controller.Id.LOCATIONSAVE_ACTION,
-						"loc-save.png"),
+						"save.png"),
 					Widgets.GetButtonImage(Controller.Id.LOCATIONDELETE_ACTION,
-						"loc-delete.png"),
+						"delete.png"),
 					},
 				new float[] {80F, 11F, 11F, 11F});
 	

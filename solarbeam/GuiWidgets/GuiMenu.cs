@@ -28,8 +28,19 @@ namespace SolarbeamGui
 
 		public static ToolStripItem GetFile()
 		{
-
 			ToolStripMenuItem file = Widgets.GetToolStripMenuColumn("&File");
+			
+			ToolStripMenuItem save = Widgets.GetToolStripMenuItem(
+					Controller.Id.MENUSESSIONSAVE_ACTION,
+					"&Save session",
+					"save.png");
+			save.ShortcutKeys = (Keys) (Keys.Control | Keys.S);
+			
+			ToolStripMenuItem load = Widgets.GetToolStripMenuItem(
+					Controller.Id.MENUSESSIONLOAD_ACTION,
+					"&Load session",
+					"open.png");
+			load.ShortcutKeys = (Keys) (Keys.Control | Keys.O);
 			
 			ToolStripMenuItem exit = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENUEXIT_ACTION,
@@ -38,6 +49,8 @@ namespace SolarbeamGui
 			exit.ShortcutKeys = (Keys) (Keys.Control | Keys.Q);
 			
 			file.DropDownItems.AddRange(new ToolStripItem[] {
+				save,
+				load,
 				exit});
 			return file;
 		}
@@ -49,19 +62,19 @@ namespace SolarbeamGui
 			ToolStripMenuItem loc_new = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENULOCNEW_ACTION,
 					Tooltips.GetTip(Controller.Id.LOCATIONNEW_ACTION),
-					"loc-new.png");
-			loc_new.ShortcutKeys = (Keys) (Keys.Alt | Keys.A);
+					"new.png");
+			loc_new.ShortcutKeys = (Keys) (Keys.Alt | Keys.N);
 			
 			ToolStripMenuItem loc_save = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENULOCSAVE_ACTION,
 					Tooltips.GetTip(Controller.Id.LOCATIONSAVE_ACTION),
-					"loc-save.png");
-			loc_save.ShortcutKeys = (Keys) (Keys.Control | Keys.S);
+					"save.png");
+			loc_save.ShortcutKeys = (Keys) (Keys.Alt | Keys.S);
 			
 			ToolStripMenuItem loc_delete = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENULOCDELETE_ACTION,
 					Tooltips.GetTip(Controller.Id.LOCATIONDELETE_ACTION),
-					"loc-delete.png");
+					"delete.png");
 			loc_delete.ShortcutKeys = (Keys) (Keys.Alt | Keys.D);
 			
 			locs.DropDownItems.AddRange(new ToolStripItem[] {

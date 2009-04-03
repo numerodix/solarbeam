@@ -9,7 +9,24 @@ namespace LibSolar.Util
 {
 	public class Formatter
 	{
-		public static string FormatFilename(string loc, Position pos, UTCDate dt)
+		public const string BinaryFileExtension = ".bin";
+		public const string SessionFileExtension = ".solarbeam";
+		public const string SessionFileFilter = "*" + SessionFileExtension;
+		public const string ImageFileExtension = ".png";
+		
+		public const string AutoSessionFilename = "autosave" + BinaryFileExtension;
+		
+		public static string FormatImgFilename(string loc, Position pos, UTCDate dt)
+		{
+			return FormatFilename(loc, pos, dt) + ImageFileExtension;
+		}
+		
+		public static string FormatSessionFilename(string loc, Position pos, UTCDate dt)
+		{
+			return FormatFilename(loc, pos, dt) + SessionFileExtension;
+		}
+		
+		private static string FormatFilename(string loc, Position pos, UTCDate dt)
 		{
 			string dt_s = String.Format("{0:0000}-{1:00}-{2:00}",
 			                            dt.Year, dt.Month, dt.Day);
@@ -33,7 +50,7 @@ namespace LibSolar.Util
 				                             pos.LongitudeDegree.Sec);
 				loc_s = String.Format("{0} {1}", lat_s, lon_s);
 			}
-			string s = String.Format("{0} - {1} {2}.png", loc_s, dt_s, tm_s);
+			string s = String.Format("{0} - {1} {2}", loc_s, dt_s, tm_s);
 			return s;
 		}	
 	}
