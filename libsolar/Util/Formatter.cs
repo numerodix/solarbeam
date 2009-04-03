@@ -9,7 +9,6 @@ namespace LibSolar.Util
 {
 	public class Formatter
 	{
-		public const string BinaryFileExtension = ".bin";
 		public const string SessionFileExtension = ".solarbeam";
 		public const string SessionFileFilter = "*" + SessionFileExtension;
 		public const string SessionFileDesc = "SolarBeam sessions";
@@ -18,7 +17,9 @@ namespace LibSolar.Util
 		public const string ImageFileFilter = "*" + ImageFileExtension;
 		public const string ImageFileDesc = "Png images";
 		
+		public const string BinaryFileExtension = ".bin";
 		public const string AutoSessionFilename = "autosave" + BinaryFileExtension;
+		public const string LocationListFilename = "locations" + BinaryFileExtension;
 		
 		public static string FormatImgFilename(string loc, Position pos, UTCDate dt)
 		{

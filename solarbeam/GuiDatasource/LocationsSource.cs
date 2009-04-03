@@ -14,7 +14,7 @@ namespace SolarbeamGui
 	{
 		private List<string> locations_list;
 		private LocationList list;
-		private string file = "locations.bin";
+		private string file = Formatter.LocationListFilename;
 		
 		public LocationsSource()
 		{
@@ -38,9 +38,7 @@ namespace SolarbeamGui
 		// serialize list in finalizer
 		~LocationsSource()
 		{
-			// unclear semantics with respect to list editing and we have save
-			// per location anyway
-			//StoreList();
+			StoreList();
 		}
 		
 		private LocationList GetStoredList()
