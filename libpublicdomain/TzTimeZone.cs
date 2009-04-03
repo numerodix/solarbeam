@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
-using System.Xml.Serialization;
+using System.Reflection;
+using System.Text;
 using System.Threading;
+using System.Xml.Serialization;
 
 namespace PublicDomain
 {
@@ -67,6 +68,77 @@ namespace PublicDomain
 			// init timezones from bundled zoneinfo
 			InitTimeZones("zoneinfo");
         }
+
+		/**
+		 * Override TzTimeZone.GetTimeZone monstrocity that adds 5-6 seconds
+		 * to static loading. Load from bundled zoneinfo distribution.
+		 */
+		public static void InitTimeZones(string file)
+		{
+			// Extract line array from bundled zoneinfo
+			
+			Assembly asm = Assembly.GetExecutingAssembly();
+			Stream stream = asm.GetManifestResourceStream(file);
+			
+			int len = (int) stream.Length; // int overflow in [1,2]gb for utf-8 stream
+			byte[] buffer = new byte[len];
+			stream.Read(buffer, 0, len);
+			
+			buffer = Encoding.Convert(Encoding.ASCII, Encoding.UTF8, buffer);
+			string s = Encoding.UTF8.GetString(buffer, 0, len);
+			string[] ss = s.Split(new char[] {'\n'}); // Python generated with unix linebreaks. obviously.
+			
+			// init datastructures for ReadDatabase call
+			List<TzDatabase.TzRule> rule_list = new List<TzDatabase.TzRule>();
+			List<TzDatabase.TzZone> zone_list = new List<TzDatabase.TzZone>();
+			List<string[]> links_list = new List<string[]>();
+
+			// Read database
+			TzDatabase.ReadDatabaseFile(ss, rule_list, zone_list, links_list);
+
+			// zone_name -> Zone mapping
+			Dictionary<string,Zone> name_zone_dict = new Dictionary<string,Zone>();
+
+			// iterate over all zones to gather all entries under common key
+			foreach (TzDatabase.TzZone zone in zone_list) {
+				string zone_name = zone.ZoneName;
+				string rule_name = zone.RuleName;
+				if (!name_zone_dict.ContainsKey(zone_name)) {
+					name_zone_dict.Add(zone_name, new Zone(zone_name));
+				}
+				name_zone_dict[zone_name].zones.Add(zone);
+
+				// iterate over all rules to see if they match this zone
+				foreach (TzDatabase.TzRule rule in rule_list) {
+					if (rule.RuleName == rule_name) {
+						name_zone_dict[zone_name].rules.Add(rule);
+					}
+				}
+			}
+
+			// instantiate all timezones
+			foreach (KeyValuePair<string,Zone> pair in name_zone_dict) {
+				string zone_name = pair.Value.zone_name;
+				List<TzDatabase.TzZone> zones = pair.Value.zones;
+				List<TzDatabase.TzRule> rules = pair.Value.rules;
+				TzTimeZone.TzZoneInfo tzzone = 
+					new TzTimeZone.TzZoneInfo(zone_name, zones, rules);
+				if (!s_zones.ContainsKey(zone_name)) {
+					s_zones.Add(zone_name, tzzone);
+				}
+				
+				// add links
+				foreach (string[] link in links_list) {
+					string from = link[1];
+					string to = link[2];
+					if ((from == zone_name) && (!s_zones.ContainsKey(to))) {
+						tzzone = new TzTimeZone.TzZoneInfo(to, zones, rules);
+						s_zones.Add(to, tzzone);
+					}
+				}
+			}
+		}
+
 
         /// <summary>
         /// 
@@ -879,66 +951,6 @@ namespace PublicDomain
 			}
 		}
 		
-		/**
-		 * Override TzTimeZone.GetTimeZone monstrocity that adds 5-6 seconds
-		 * to static loading. Load from bundled zoneinfo distribution.
-		 */
-		public static void InitTimeZones(string file)
-		{
-			FileInfo f = new FileInfo(file);
-			
-			// init datastructures for ReadDatabase call
-			List<TzDatabase.TzRule> rule_list = new List<TzDatabase.TzRule>();
-			List<TzDatabase.TzZone> zone_list = new List<TzDatabase.TzZone>();
-			List<string[]> links_list = new List<string[]>();
-
-			// read database files
-			TzDatabase.ReadDatabaseFile(f, rule_list, zone_list, links_list);
-
-			// zone_name -> Zone mapping
-			Dictionary<string,Zone> name_zone_dict = new Dictionary<string,Zone>();
-
-			// iterate over all zones to gather all entries under common key
-			foreach (TzDatabase.TzZone zone in zone_list) {
-				string zone_name = zone.ZoneName;
-				string rule_name = zone.RuleName;
-				if (!name_zone_dict.ContainsKey(zone_name)) {
-					name_zone_dict.Add(zone_name, new Zone(zone_name));
-				}
-				name_zone_dict[zone_name].zones.Add(zone);
-
-				// iterate over all rules to see if they match this zone
-				foreach (TzDatabase.TzRule rule in rule_list) {
-					if (rule.RuleName == rule_name) {
-						name_zone_dict[zone_name].rules.Add(rule);
-					}
-				}
-			}
-
-			// instantiate all timezones
-			foreach (KeyValuePair<string,Zone> pair in name_zone_dict) {
-				string zone_name = pair.Value.zone_name;
-				List<TzDatabase.TzZone> zones = pair.Value.zones;
-				List<TzDatabase.TzRule> rules = pair.Value.rules;
-				TzTimeZone.TzZoneInfo tzzone = 
-					new TzTimeZone.TzZoneInfo(zone_name, zones, rules);
-				if (!s_zones.ContainsKey(zone_name)) {
-					s_zones.Add(zone_name, tzzone);
-				}
-				
-				// add links
-				foreach (string[] link in links_list) {
-					string from = link[1];
-					string to = link[2];
-					if ((from == zone_name) && (!s_zones.ContainsKey(to))) {
-						tzzone = new TzTimeZone.TzZoneInfo(to, zones, rules);
-						s_zones.Add(to, tzzone);
-					}
-				}
-			}
-		}
-
-
         /// <summary>
         /// Represents a time zone, with all of its transitions and rules.
         /// </summary>

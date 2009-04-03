@@ -56,4 +56,7 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <EmbeddedResource Include="..\zoneinfo" />
+  </ItemGroup>
 </Project>

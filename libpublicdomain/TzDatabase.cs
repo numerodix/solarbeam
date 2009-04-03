@@ -43,36 +43,6 @@ namespace PublicDomain
         public const string FactoryZoneName = "Factory";
 
         /// <summary>
-        /// Reads the tz database from the specific <paramref name="dir"/>.
-        /// All files without extensions are checked for relevant data. The
-        /// directory is not recursively searched. Parameters <paramref name="rules"/>,
-        /// <paramref name="zones"/>, and <paramref name="links"/> should be non-null
-        /// arrays into which the database will be added.
-        /// </summary>
-        /// <param name="dir">The dir.</param>
-        /// <param name="rules">The rules.</param>
-        /// <param name="zones">The zones.</param>
-        /// <param name="links">The links.</param>
-        public static void ReadDatabase(string dir, List<TzRule> rules, List<TzZone> zones, List<string[]> links)
-        {
-            if (dir == null)
-            {
-                throw new ArgumentNullException("dir");
-            }
-            DirectoryInfo dirInfo = new DirectoryInfo(dir);
-            FileInfo[] files = dirInfo.GetFiles();
-            foreach (FileInfo file in files)
-            {
-                // If there is no file extension, we assume
-                // that it is a data file.
-                if (string.IsNullOrEmpty(file.Extension))
-                {
-                    ReadDatabaseFile(file, rules, zones, links);
-                }
-            }
-        }
-
-        /// <summary>
         /// Reads the database file.
         /// 
         /// See zic.txt in tzcode
@@ -82,9 +52,8 @@ namespace PublicDomain
         /// <param name="zones">The zones.</param>
         /// <param name="links">The links.</param>
         /// <exception cref="PublicDomain.TzDatabase.TzException"/>
-        public static void ReadDatabaseFile(FileInfo file, List<TzRule> rules, List<TzZone> zones, List<string[]> links)
+        public static void ReadDatabaseFile(string[] lines, List<TzRule> rules, List<TzZone> zones, List<string[]> links)
         {
-            string[] lines = System.IO.File.ReadAllLines(file.FullName);
             TzZone tempZone;
             int length = lines.Length;
             for (int i = 0; i < length; i++)

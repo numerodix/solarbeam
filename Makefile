@@ -1,16 +1,11 @@
 all:
 	mdtool build --configuration:Release
 
-png:
-	for f in icons/*.svg; do g=`echo $$f | sed "s/.svg//g"`; convert -quantize RGB -resize 20x20 $$f $$g.png; done
-	#for f in icons/*.svg; do g=`echo $$f | sed "s/.svg//g"`; inkscape $$f --export-png=$$g.png --export-width=20 --export-height=20; done
-
 zip:
 	rm -rf dist
 	mkdir -p dist/solarbeam
 	for d in `find . -type d -iname "Release"`; do cp $$d/* dist/solarbeam; done
 	rm locations.bin; ./gui -nogui; cp locations.bin dist/solarbeam
-	cp zoneinfo dist/solarbeam
 	cd dist
 	zip -j dist/solarbeam.zip dist/solarbeam/*
 	rm -rf dist/solarbeam

@@ -70,11 +70,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\zoneinfo">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="..\doc\COPYING.short" />
     <EmbeddedResource Include="..\doc\LICENSE" />
     <EmbeddedResource Include="..\images\logo.png" />
@@ -89,7 +84,7 @@
     <EmbeddedResource Include="..\images\new.png" />
     <EmbeddedResource Include="..\images\render.png" />
     <EmbeddedResource Include="..\images\reset.png" />
-	<EmbeddedResource Include="..\images\save.png" />
+    <EmbeddedResource Include="..\images\save.png" />
     <EmbeddedResource Include="..\images\time-now.png" />
   </ItemGroup>
 </Project>
