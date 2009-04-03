@@ -171,7 +171,7 @@ namespace LibSolar.Graphing
 			                                udt.Hour, 0, 0);
 			
 			int hour_inner = udt_inner.ExtractLocal().Hour;
-			int hour_outer = udt_outer.ExtractStandard().Hour;
+			int hour_outer = hour_inner;//udt_outer.ExtractStandard().Hour; // fix southern hemisphere bug
 			
 			float font_size = GetLabelFontSize();
 			string hour_inner_s = FormatHour(hour_inner);

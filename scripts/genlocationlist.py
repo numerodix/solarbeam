@@ -42,6 +42,7 @@ class Location(object):
         c = string.replace(c, "El Salvador", "ElS")
         c = string.replace(c, "Korea (North)", "NKo")
         c = string.replace(c, "Korea (South)", "SKo")
+        c = string.replace(c, "New Zealand", "NZ")
         c = string.replace(c, "South Africa", "SA")
         c = string.replace(c, "United Arab Emirates", "UAE")
         c = string.replace(c, "United Kingdom", "UK")
