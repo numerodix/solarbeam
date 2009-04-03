@@ -60,7 +60,6 @@ namespace SolarbeamGui
 				DateTime dt = new DateTime(year, month, day, hour, min, sec,
 				                           DateTimeKind.Local);
 				udt = TimezoneSource.GetUTCDate(tz_name, dt);
-				TimezoneSource.Ya(dt, tz_name);
 			} catch (ArgumentException) {
 				MarkError(ins_timedate);
 			}
