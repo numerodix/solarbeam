@@ -1,7 +1,7 @@
 // Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
 // Licensed under the GNU Public License, version 3.
 //
-// Generated with ./genlocationlist.py on on 28.3.2009
+// Generated with ./genlocationlist.py on on 3.4.2009
 
 using LibSolar.Types;
 
@@ -411,7 +411,7 @@ namespace LibSolar.Locations
 			list.Add("Atsugi (Jap)", "Asia/Tokyo",
 				new Position(PositionDirection.North, 35, 27, 0,
 					PositionDirection.East, 139, 21, 36));
-			list.Add("Auckland (New)", "Pacific/Auckland",
+			list.Add("Auckland (NZ)", "Pacific/Auckland",
 				new Position(PositionDirection.South, 36, 51, 0,
 					PositionDirection.East, 174, 45, 36));
 			list.Add("Augsburg (Ger)", "Europe/Berlin",
@@ -1209,7 +1209,7 @@ namespace LibSolar.Locations
 			list.Add("Chongqing (Chi)", "Asia/Shanghai",
 				new Position(PositionDirection.North, 29, 34, 12,
 					PositionDirection.East, 106, 34, 48));
-			list.Add("Christchurch (New)", "Pacific/Auckland",
+			list.Add("Christchurch (NZ)", "Pacific/Auckland",
 				new Position(PositionDirection.South, 43, 31, 48,
 					PositionDirection.East, 172, 38, 24));
 			list.Add("Chula Vista (USA)", "America/Los_Angeles",
@@ -3297,7 +3297,7 @@ namespace LibSolar.Locations
 			list.Add("Manta (Ecu)", "America/Guayaquil",
 				new Position(PositionDirection.South, 0, 57, 36,
 					PositionDirection.West, 80, 43, 12));
-			list.Add("Manukau (New)", "Pacific/Auckland",
+			list.Add("Manukau (NZ)", "Pacific/Auckland",
 				new Position(PositionDirection.South, 37, 0, 0,
 					PositionDirection.East, 174, 52, 48));
 			list.Add("Maoming (Chi)", "Asia/Shanghai",
@@ -3843,7 +3843,7 @@ namespace LibSolar.Locations
 			list.Add("North Las Vegas (USA)", "America/Los_Angeles",
 				new Position(PositionDirection.North, 36, 16, 12,
 					PositionDirection.West, 115, 8, 24));
-			list.Add("North Shore (New)", "Pacific/Auckland",
+			list.Add("North Shore (NZ)", "Pacific/Auckland",
 				new Position(PositionDirection.South, 36, 48, 0,
 					PositionDirection.East, 174, 45, 0));
 			list.Add("Nottingham (UK)", "Europe/London",
