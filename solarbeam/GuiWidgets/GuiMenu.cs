@@ -112,6 +112,7 @@ namespace SolarbeamGui
 					Controller.Id.MENUSAVEIMAGE_ACTION,
 					Tooltips.GetTip(Controller.Id.IMAGESAVE_ACTION),
 					"image-save.png");
+			action_saveimage.ShortcutKeys = (Keys) (Keys.Alt | Keys.I);
 			
 			actions.DropDownItems.AddRange(new ToolStripItem[] {
 				action_settimenow,
