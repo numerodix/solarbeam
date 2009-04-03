@@ -105,20 +105,6 @@ namespace PublicDomain
         }
 
         /// <summary>
-        /// Returns the absolute value of the specified TimeSpan.
-        /// </summary>
-        /// <param name="val">The val.</param>
-        /// <returns></returns>
-        public static TimeSpan AbsTimeSpan(TimeSpan val)
-        {
-            if (IsTimeSpanNegative(val))
-            {
-                val = val.Negate();
-            }
-            return val;
-        }
-
-        /// <summary>
         /// Thrown when there is an error relating to dates.
         /// </summary>
         [Serializable]
@@ -318,38 +304,6 @@ namespace PublicDomain
         {
             if (span == null) return null;
             return ToStringTimeSpan(span.Value);
-        }
-
-        /// <summary>
-        /// Trims the time span.
-        /// </summary>
-        /// <param name="span">The span.</param>
-        /// <returns></returns>
-        public static string TrimTimeSpan(string span)
-        {
-            return TrimTimeSpan(span, true);
-        }
-
-        /// <summary>
-        /// Trims the time span.
-        /// </summary>
-        /// <param name="span">The span.</param>
-        /// <param name="trimZeroMinutes">if set to <c>true</c> [trim zero minutes].</param>
-        /// <returns></returns>
-        public static string TrimTimeSpan(string span, bool trimZeroMinutes)
-        {
-            if (span != null)
-            {
-                if (span.EndsWith(":00"))
-                {
-                    span = span.Substring(0, span.Length - 3);
-                }
-                if (trimZeroMinutes && span.EndsWith(":00"))
-                {
-                    span = span.Substring(0, span.Length - 3);
-                }
-            }
-            return span;
         }
 
         /// <summary>
