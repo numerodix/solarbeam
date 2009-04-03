@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace LibSolar.Serialization
+namespace LibSolar.Util
 {
 	public class Serializer
 	{

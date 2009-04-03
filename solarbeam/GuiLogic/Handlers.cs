@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using LibSolar.Graphing;
 using LibSolar.Types;
+using LibSolar.Util;
 
 namespace SolarbeamGui
 {
@@ -160,7 +161,7 @@ namespace SolarbeamGui
 			if ((pos != null) && (date != null)) {
 				UTCDate dt = date.Value;
 				
-				string filename = FormatFilename(location, pos, dt) + ".png";
+				string filename = Formatter.FormatFilename(location, pos, dt);
 				SaveFileDialog dlg = Widgets.GetSaveFileDialog(filename,
 				                                               "Png images",
 				                                               "*.png");

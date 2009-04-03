@@ -10,8 +10,8 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 
-using LibSolar.Assemblies;
 using LibSolar.Types;
+using LibSolar.Util;
 
 namespace SolarbeamGui
 {

@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.IO;
 
 using LibSolar.Locations;
-using LibSolar.Serialization;
 using LibSolar.Types;
+using LibSolar.Util;
 
 namespace SolarbeamGui
 {

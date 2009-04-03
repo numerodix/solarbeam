@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace LibSolar.Assemblies
+namespace LibSolar.Util
 {
 	/**
 	 * Offers queries on assemblies.

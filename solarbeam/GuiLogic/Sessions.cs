@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 
-using LibSolar.Serialization;
+using LibSolar.Util;
 
 namespace SolarbeamGui
 {

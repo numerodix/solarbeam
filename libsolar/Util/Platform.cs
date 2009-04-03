@@ -3,7 +3,7 @@
 
 using System;
 
-namespace LibSolar.Platform
+namespace LibSolar.Util
 {
 	/**
 	 * Provide information about the execution platform.

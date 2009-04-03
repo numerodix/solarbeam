@@ -60,16 +60,17 @@
     <Compile Include="Graphing\Graph\Plot.cs" />
     <Compile Include="Graphing\Graph\Geometry.cs" />
     <Compile Include="Graphing\Graph\Formatter.cs" />
-    <Compile Include="Assemblies\AsmInfo.cs" />
     <Compile Include="Locations\Location.cs" />
-    <Compile Include="Platform\Platform.cs" />
     <Compile Include="Locations\LocationList.cs" />
-    <Compile Include="Serialization\Serializer.cs" />
     <Compile Include="Locations\LocationListData.cs" />
     <Compile Include="Types\Test\UTCDateTest.cs" />
     <Compile Include="Testing\Rand.cs" />
     <Compile Include="Testing\Test\RandTest.cs" />
     <Compile Include="Testing\Asserter.cs" />
+    <Compile Include="Util\AsmInfo.cs" />
+    <Compile Include="Util\Platform.cs" />
+    <Compile Include="Util\Serializer.cs" />
+    <Compile Include="Util\Formatter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

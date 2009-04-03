@@ -8,8 +8,8 @@ using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 
-using LibSolar.Assemblies;
 using LibSolar.Graphing;
+using LibSolar.Util;
 
 namespace SolarbeamGui
 {

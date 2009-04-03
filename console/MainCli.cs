@@ -9,10 +9,10 @@ using System.Reflection;
 
 using NDesk.Options;
 
-using LibSolar.Assemblies;
 using LibSolar.Graphing;
 using LibSolar.SolarOrbit;
 using LibSolar.Types;
+using LibSolar.Util;
 
 namespace SolarbeamCli
 {
@@ -167,7 +167,7 @@ namespace SolarbeamCli
 		
 		private static void GenImg(int dim, Position pos, UTCDate udt)
 		{
-			string path = "img.png";
+			string path = Formatter.FormatFilename(string.Empty, pos, udt);
 
 			// set up constants
 			Colors colors = new Colors();
