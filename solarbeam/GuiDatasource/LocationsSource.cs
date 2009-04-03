@@ -38,7 +38,9 @@ namespace SolarbeamGui
 		// serialize list in finalizer
 		~LocationsSource()
 		{
-			StoreList();
+			// unclear semantics with respect to list editing and we have save
+			// per location anyway
+			//StoreList();
 		}
 		
 		private LocationList GetStoredList()

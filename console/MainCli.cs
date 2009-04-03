@@ -144,7 +144,7 @@ namespace SolarbeamCli
 			                            lodir,
 			                            (int) los[1], (int) los[2], (int) los[3]);
 	
-			UTCDate dt = new UTCDate((int) tz[0],
+			UTCDate dt = new UTCDate((int) tz[0], null,
 			                   (int) ds[2], (int) ds[1], (int) ds[0],
 			                   (int) ts[0], (int) ts[1], (int) ts[2]);
 	
@@ -175,7 +175,7 @@ namespace SolarbeamCli
 					int month = 2;
 					int day = 1;
 	
-					UTCDate dt = new UTCDate(timezone, year, month, day, 0, 0, 0);
+					UTCDate dt = new UTCDate(timezone, null, year, month, day, 0, 0, 0);
 					dt = dt.AddSeconds(s);
 	
 					SolarPosition sp = Orbit.CalcSolarPosition(pos, dt);
@@ -205,7 +205,8 @@ namespace SolarbeamCli
 						int month = 2;
 						int day = 1;
 	
-						UTCDate dt = new UTCDate(timezone, year, month, day, hour, min, sec);
+						UTCDate dt = new UTCDate(timezone, null, 
+						                         year, month, day, hour, min, sec);
 	
 						SolarPosition sp = Orbit.CalcSolarPosition(pos, dt);
 						SolarTimes sns = Orbit.CalcSolarTimes(pos, dt);

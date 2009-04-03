@@ -41,27 +41,18 @@ namespace LibSolar.Types
 		/**
 		 * Create an instance resetting the time to UTC
 		 */
-		public UTCDate(double tz,
-		               int year, int month, int day,
-		               int hour, int min, int sec)
-		{
-			this.tz = tz;
-			this.dst = null;
-			DateTime dt = new DateTime(year, month, day, hour, min, sec,
-			                           DateTimeKind.Utc);
-			this.dt = ResolveTimezone(dt, tz);
-
-			CheckTimezone(this.tz);
-		}
-		
 		public UTCDate(double tz, DaylightTime dst,
 		               int year, int month, int day,
 		               int hour, int min, int sec)
 		{
-			UTCDate udt = new UTCDate(tz, year, month, day, hour, min, sec);
-			this.tz = udt.tz;
+			this.tz = tz;
 			this.dst = dst;
-			this.dt = ResolveDST(udt.dt, dst);
+			DateTime dt = new DateTime(year, month, day, hour, min, sec,
+			                           DateTimeKind.Utc);
+			dt = ResolveTimezone(dt, tz);
+			this.dt = ResolveDST(dt, dst);
+
+			CheckTimezone(this.tz);
 		}
 
 		private UTCDate(double tz, DaylightTime dst, DateTime dt)

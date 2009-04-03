@@ -15,16 +15,16 @@ namespace LibSolar.Graphing
 	{
 		public static void GenerateBitmap(int dim, string path)
 		{
-			// loc: Trondheim
+			// loc: Equator
 			Position pos = new Position(Position.LATITUDE_POS,
-			                            53, 26, 0,
+			                            0, 0, 0,
 			                            Position.LONGITUDE_POS,
 			                            0, 0, 0);
 			// time: Now
 			DateTime now = DateTime.Now;
-			UTCDate dt = new UTCDate(0,
-			                         2009, 3, 12, 
-			                         11, 0, 0);
+			UTCDate dt = new UTCDate(0, null,
+			                         now.Year, now.Month, now.Day,
+			                         now.Hour, now.Minute, now.Second);
 
 			// set up constants
 			Colors colors = new Colors();

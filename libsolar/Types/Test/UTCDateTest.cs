@@ -27,7 +27,7 @@ namespace LibSolar.Types.Test
 			
 			double tz = Rand.GetDouble(3, UTCDate.TIMEZONE_MIN, UTCDate.TIMEZONE_MAX);
 			
-			UTCDate udt = new UTCDate(tz, year, mon, day, hour, min, sec);
+			UTCDate udt = new UTCDate(tz, null, year, mon, day, hour, min, sec);
 			DateTime dt = new DateTime(year, mon, day, hour, min, sec);
 			
 			dt = dt.AddHours(-tz); // resolve tz offset
