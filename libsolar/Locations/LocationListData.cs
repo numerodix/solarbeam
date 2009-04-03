@@ -429,9 +429,6 @@ namespace LibSolar.Locations
 			list.Add("Avadi (Ind)", "Asia/Kolkata",
 				new Position(PositionDirection.North, 13, 7, 12,
 					PositionDirection.East, 80, 6, 36));
-			list.Add("Ba'qubah (Ira)", "Asia/Baghdad",
-				new Position(PositionDirection.North, 33, 44, 24,
-					PositionDirection.East, 44, 39, 0));
 			list.Add("Babol (Ira)", "Asia/Tehran",
 				new Position(PositionDirection.North, 36, 31, 48,
 					PositionDirection.East, 52, 42, 0));
@@ -495,12 +492,12 @@ namespace LibSolar.Locations
 			list.Add("Banda Aceh (Ind)", "Asia/Pontianak",
 				new Position(PositionDirection.North, 5, 33, 0,
 					PositionDirection.East, 95, 19, 12));
+			list.Add("Bandar Abbas (Ira)", "Asia/Tehran",
+				new Position(PositionDirection.North, 27, 15, 0,
+					PositionDirection.East, 56, 15, 0));
 			list.Add("Bandar Lampung (Ind)", "Asia/Jakarta",
 				new Position(PositionDirection.South, 5, 26, 24,
 					PositionDirection.East, 105, 16, 12));
-			list.Add("Bandar-e 'Abbas (Ira)", "Asia/Tehran",
-				new Position(PositionDirection.North, 27, 15, 0,
-					PositionDirection.East, 56, 15, 0));
 			list.Add("Bandung (Ind)", "Asia/Jakarta",
 				new Position(PositionDirection.South, 6, 54, 36,
 					PositionDirection.East, 107, 36, 0));
@@ -531,6 +528,9 @@ namespace LibSolar.Locations
 			list.Add("Baotou (Chi)", "Asia/Shanghai",
 				new Position(PositionDirection.North, 40, 36, 0,
 					PositionDirection.East, 110, 3, 0));
+			list.Add("Baqubah (Ira)", "Asia/Baghdad",
+				new Position(PositionDirection.North, 33, 44, 24,
+					PositionDirection.East, 44, 39, 0));
 			list.Add("Baranagar (Ind)", "Asia/Kolkata",
 				new Position(PositionDirection.North, 22, 38, 24,
 					PositionDirection.East, 88, 22, 12));
@@ -1377,6 +1377,9 @@ namespace LibSolar.Locations
 			list.Add("Dadiangas (Phi)", "Asia/Manila",
 				new Position(PositionDirection.North, 6, 6, 0,
 					PositionDirection.East, 125, 15, 0));
+			list.Add("Daegu (SKo)", "Asia/Seoul",
+				new Position(PositionDirection.North, 35, 52, 11,
+					PositionDirection.East, 128, 36, 0));
 			list.Add("Dahuk (Ira)", "Asia/Baghdad",
 				new Position(PositionDirection.North, 36, 51, 0,
 					PositionDirection.East, 43, 1, 12));
@@ -1515,7 +1518,7 @@ namespace LibSolar.Locations
 			list.Add("Djougou (Ben)", "Africa/Porto-Novo",
 				new Position(PositionDirection.North, 9, 42, 0,
 					PositionDirection.East, 1, 40, 48));
-			list.Add("Dniprodzerzhyns'k (Ukr)", "Europe/Kiev",
+			list.Add("Dniprodzerzhynsk (Ukr)", "Europe/Kiev",
 				new Position(PositionDirection.North, 48, 30, 0,
 					PositionDirection.East, 34, 37, 11));
 			list.Add("Dnipropetrovsk (Ukr)", "Europe/Kiev",
@@ -2322,7 +2325,7 @@ namespace LibSolar.Locations
 			list.Add("Itaquaquecetuba (Bra)", "America/Sao_Paulo",
 				new Position(PositionDirection.South, 23, 28, 12,
 					PositionDirection.West, 46, 21, 0));
-			list.Add("Ivano-Frankivs'k (Ukr)", "Europe/Kiev",
+			list.Add("Ivano-Frankivsk (Ukr)", "Europe/Kiev",
 				new Position(PositionDirection.North, 48, 55, 12,
 					PositionDirection.East, 24, 42, 36));
 			list.Add("Ivanovo (Rus)", "Europe/Moscow",
@@ -2589,7 +2592,7 @@ namespace LibSolar.Locations
 			list.Add("Karawang (Ind)", "Asia/Jakarta",
 				new Position(PositionDirection.South, 6, 18, 0,
 					PositionDirection.East, 107, 16, 48));
-			list.Add("Karbala' (Ira)", "Asia/Baghdad",
+			list.Add("Karbala (Ira)", "Asia/Baghdad",
 				new Position(PositionDirection.North, 32, 36, 36,
 					PositionDirection.East, 44, 1, 48));
 			list.Add("Karimnagar (Ind)", "Asia/Kolkata",
@@ -2688,7 +2691,7 @@ namespace LibSolar.Locations
 			list.Add("Kherson (Ukr)", "Europe/Kiev",
 				new Position(PositionDirection.North, 46, 37, 48,
 					PositionDirection.East, 32, 36, 0));
-			list.Add("Khmel'nyts'kyy (Ukr)", "Europe/Kiev",
+			list.Add("Khmelnytskyi (Ukr)", "Europe/Kiev",
 				new Position(PositionDirection.North, 49, 25, 12,
 					PositionDirection.East, 27, 0, 0));
 			list.Add("Khomeynishahr (Ira)", "Asia/Tehran",
@@ -3135,7 +3138,7 @@ namespace LibSolar.Locations
 			list.Add("Ludhiana (Ind)", "Asia/Kolkata",
 				new Position(PositionDirection.North, 30, 54, 36,
 					PositionDirection.East, 75, 50, 24));
-			list.Add("Luhans'k (Ukr)", "Europe/Kiev",
+			list.Add("Luhansk (Ukr)", "Europe/Kiev",
 				new Position(PositionDirection.North, 48, 34, 12,
 					PositionDirection.East, 39, 19, 48));
 			list.Add("Luohe (Chi)", "Asia/Shanghai",
@@ -3327,7 +3330,7 @@ namespace LibSolar.Locations
 			list.Add("Maringa (Bra)", "America/Sao_Paulo",
 				new Position(PositionDirection.South, 23, 24, 36,
 					PositionDirection.West, 51, 55, 48));
-			list.Add("Mariupol' (Ukr)", "Europe/Kiev",
+			list.Add("Mariupol (Ukr)", "Europe/Kiev",
 				new Position(PositionDirection.North, 47, 6, 0,
 					PositionDirection.East, 37, 33, 0));
 			list.Add("Maroua (Cam)", "Africa/Douala",
@@ -4851,7 +4854,7 @@ namespace LibSolar.Locations
 			list.Add("Sete Lagoas (Bra)", "America/Sao_Paulo",
 				new Position(PositionDirection.South, 19, 27, 0,
 					PositionDirection.West, 44, 15, 0));
-			list.Add("Sevastopol' (Ukr)", "Europe/Kiev",
+			list.Add("Sevastopol (Ukr)", "Europe/Kiev",
 				new Position(PositionDirection.North, 44, 36, 0,
 					PositionDirection.East, 33, 31, 48));
 			list.Add("Sevilla (Spa)", "Europe/Madrid",
@@ -4974,7 +4977,7 @@ namespace LibSolar.Locations
 			list.Add("Silhat (Ban)", "Asia/Dhaka",
 				new Position(PositionDirection.North, 24, 54, 0,
 					PositionDirection.East, 91, 52, 12));
-			list.Add("Simferopol' (Ukr)", "Europe/Kiev",
+			list.Add("Simferopol (Ukr)", "Europe/Kiev",
 				new Position(PositionDirection.North, 44, 57, 0,
 					PositionDirection.East, 34, 6, 0));
 			list.Add("Sincelejo (Col)", "America/Bogota",
@@ -5175,9 +5178,6 @@ namespace LibSolar.Locations
 			list.Add("Tacna (Per)", "America/Lima",
 				new Position(PositionDirection.South, 18, 1, 12,
 					PositionDirection.West, 70, 15, 0));
-			list.Add("Taegu (SKo)", "Asia/Seoul",
-				new Position(PositionDirection.North, 35, 52, 11,
-					PositionDirection.East, 128, 36, 0));
 			list.Add("Taejeon (SKo)", "Asia/Seoul",
 				new Position(PositionDirection.North, 36, 19, 48,
 					PositionDirection.East, 127, 25, 48));
@@ -5322,7 +5322,7 @@ namespace LibSolar.Locations
 			list.Add("Tehuacan (Mex)", "America/Mexico_City",
 				new Position(PositionDirection.North, 18, 27, 0,
 					PositionDirection.West, 97, 22, 48));
-			list.Add("Tel Aviv-Yafo (Isr)", "Asia/Tel_Aviv",
+			list.Add("Tel Aviv (Isr)", "Asia/Tel_Aviv",
 				new Position(PositionDirection.North, 32, 4, 12,
 					PositionDirection.East, 34, 46, 12));
 			list.Add("Tembisa (SA)", "Africa/Johannesburg",
@@ -5337,7 +5337,7 @@ namespace LibSolar.Locations
 			list.Add("Teresina (Bra)", "America/Fortaleza",
 				new Position(PositionDirection.South, 5, 6, 0,
 					PositionDirection.West, 42, 48, 0));
-			list.Add("Ternopil' (Ukr)", "Europe/Kiev",
+			list.Add("Ternopil (Ukr)", "Europe/Kiev",
 				new Position(PositionDirection.North, 49, 33, 0,
 					PositionDirection.East, 25, 34, 48));
 			list.Add("Terrassa (Spa)", "Europe/Madrid",
