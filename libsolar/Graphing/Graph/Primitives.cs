@@ -42,13 +42,13 @@ namespace LibSolar.Graphing
 		                                string s, int x, int y, Placement place,
 		                                int margin)
 		{
+			margin = GetMargin(margin); // set relative to grid size
+			
 			int height = font.Height;
 			int width = (int) g.MeasureString(s, font).Width;
 			using (SolidBrush br = new SolidBrush(colors.GridBg)) {
 				int prepad = width/15;
 				int postpad = width/5;
-				
-				margin = 10; // TODO
 				
 				// default setup : CENTER
 				int a = x - width/2;
@@ -57,29 +57,29 @@ namespace LibSolar.Graphing
 				int dy = height;
 
 				if (place == Placement.TOP_LEFT) {
-					a = x;
-					b = y;
+					a = x + margin;
+					b = y + margin;
 				} else if (place == Placement.TOP_RIGHT) {
-					a = x - width;
-					b = y;
+					a = x - width - margin;
+					b = y + margin;
 				} else if (place == Placement.BOTTOM_LEFT) {
-					a = x;
-					b = y - height;
+					a = x + margin;
+					b = y - height - margin;
 				} else if (place == Placement.BOTTOM_RIGHT) {
-					a = x - width;
-					b = y - height;
+					a = x - width - margin;
+					b = y - height - margin;
 				} else if (place == Placement.LEFT) {
-					a = x;
+					a = x + margin;
 					b = y - height/2;
 				} else if (place == Placement.RIGHT) {
-					a = x - width;
+					a = x - width - margin;
 					b = y - height/2;
 				} else if (place == Placement.TOP) {
 					a = x - width/2;
-					b = y;
+					b = y + margin;
 				} else if (place == Placement.BOTTOM) {
 					a = x - width/2;
-					b = y - height;
+					b = y - height - margin;
 				}
 
 				g.FillRectangle(br, a - prepad, b, dx + postpad, dy);
@@ -104,6 +104,12 @@ namespace LibSolar.Graphing
 				point = new Nullable<Point>(new Point(xx, yy));
 			}
 			return point;
+		}
+		
+		private int GetMargin(int margin)
+		{
+			double relative = (double) margin / 500.0;
+			return (int) (relative * grid.Diameter);
 		}
 		
 		private double GetResolutionStep(double space)

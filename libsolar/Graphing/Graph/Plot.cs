@@ -175,9 +175,13 @@ namespace LibSolar.Graphing
 			int hour_inner = udt_inner.ExtractLocal().Hour;
 			int hour_outer = udt_outer.ExtractLocal().Hour;
 			
+			int legend_margin = 20;
+			string legend_inner = null;
+			string legend_outer = null;
 			// we have DST
 			if (udt_inner.IsDST || udt_outer.IsDST) {
-				
+				legend_inner = udt_inner.IsDST ? "DST" : "ST";
+				legend_outer = udt_outer.IsDST ? "DST" : "ST";
 			}
 			
 			float font_size = GetLabelFontSize();
@@ -193,6 +197,12 @@ namespace LibSolar.Graphing
 					PrintBoundedString(g, font, br_txt, hour_inner_s,
 					                   pair_max.Key.Value.X, pair_max.Key.Value.Y,
 					                   place);
+					
+					if ((legend_inner != null) && (hour_inner == 12)) {
+						PrintBoundedString(g, font, br_txt, legend_inner,
+						                   graph.Origin.X, pair_max.Key.Value.Y,
+						                   place, legend_margin);
+					}
 				}
 			}
 			
@@ -206,6 +216,12 @@ namespace LibSolar.Graphing
 					PrintBoundedString(g, font, br_txt, hour_outer_s,
 					                   pair_min.Key.Value.X, pair_min.Key.Value.Y,
 					                   place);
+					
+					if ((legend_outer != null) && (hour_outer == 12)) {
+						PrintBoundedString(g, font, br_txt, legend_outer,
+						                   graph.Origin.X, pair_min.Key.Value.Y,
+						                   place, legend_margin);
+					}
 				}
 			}		
 		}
