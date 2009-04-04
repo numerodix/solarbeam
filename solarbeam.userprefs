@@ -5,7 +5,6 @@
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="True" />
           <Option id="ShowAllFiles" value="False" />
-          <Node name="solarbeam" expanded="True" selected="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">

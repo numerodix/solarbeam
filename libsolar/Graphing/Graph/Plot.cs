@@ -173,6 +173,11 @@ namespace LibSolar.Graphing
 			int hour_inner = udt_inner.ExtractLocal().Hour;
 			int hour_outer = udt_outer.ExtractLocal().Hour;
 			
+			// we have DST
+			if (udt_inner.IsDST || udt_outer.IsDST) {
+				
+			}
+			
 			float font_size = GetLabelFontSize();
 			string hour_inner_s = FormatHour(hour_inner);
 			string hour_outer_s = FormatHour(hour_outer);
