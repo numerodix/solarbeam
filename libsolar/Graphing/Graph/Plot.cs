@@ -111,9 +111,11 @@ namespace LibSolar.Graphing
 							place = Placement.LEFT;
 						}
 						
-						PrintBoundedString(g, font, color, dt_s,
-						                   point.Value.X, point.Value.Y,
-						                   place);
+						using (SolidBrush br_txt = new SolidBrush(color)) {
+							PrintBoundedString(g, font, br_txt, dt_s,
+							                   point.Value.X, point.Value.Y,
+							                   place);
+						}
 					}
 				}
 			}

@@ -28,12 +28,10 @@ namespace LibSolar.Graphing
 	 */
 	partial class Diagram
 	{
-		private void PrintBoundedString(Graphics g, Font font, Color color,
+		private void PrintBoundedString(Graphics g, Font font, Brush txtbrush,
 		                                string s, int x, int y, Placement place)
 		{
-			using (SolidBrush br_txt = new SolidBrush(color)) {
-				PrintBoundedString(g, font, br_txt, s, x, y, place);
-			}
+			PrintBoundedString(g, font, txtbrush, s, x, y, place, 0);
 		}
 		
 		/**
@@ -41,7 +39,8 @@ namespace LibSolar.Graphing
 		 * coordinate given.
 		 */
 		private void PrintBoundedString(Graphics g, Font font, Brush txtbrush,
-		                               string s, int x, int y, Placement place)
+		                                string s, int x, int y, Placement place,
+		                                int margin)
 		{
 			int height = font.Height;
 			int width = (int) g.MeasureString(s, font).Width;
@@ -49,29 +48,35 @@ namespace LibSolar.Graphing
 				int prepad = width/15;
 				int postpad = width/5;
 				
-				// default setup : TOP_LEFT
-				int a = x;
-				int b = y;
+				margin = 10; // TODO
+				
+				// default setup : CENTER
+				int a = x - width/2;
+				int b = y - height/2;
 				int dx = width;
 				int dy = height;
 
-				if (place == Placement.TOP_RIGHT) {
+				if (place == Placement.TOP_LEFT) {
+					a = x;
+					b = y;
+				} else if (place == Placement.TOP_RIGHT) {
 					a = x - width;
+					b = y;
 				} else if (place == Placement.BOTTOM_LEFT) {
+					a = x;
 					b = y - height;
 				} else if (place == Placement.BOTTOM_RIGHT) {
 					a = x - width;
 					b = y - height;
-				} else if (place == Placement.CENTER) {
-					a = x - width/2;
-					b = y - height/2;
 				} else if (place == Placement.LEFT) {
+					a = x;
 					b = y - height/2;
 				} else if (place == Placement.RIGHT) {
 					a = x - width;
 					b = y - height/2;
 				} else if (place == Placement.TOP) {
 					a = x - width/2;
+					b = y;
 				} else if (place == Placement.BOTTOM) {
 					a = x - width/2;
 					b = y - height;
