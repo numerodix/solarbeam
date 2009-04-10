@@ -821,9 +821,9 @@ if __name__ == "__main__":
     locs = killdupes(locs)
     locs = filtermissingpos(locs)
 
-    # 2000 world, 25 Norway
+    # 2000 world, 100 Norway
     final_locs = filternotcountry(locs, "Norway")[:2000]
-    nor_locs = filtercountry(locs, "Norway")[:25]
+    nor_locs = filtercountry(locs, "Norway")[:100]
     final_locs.extend(nor_locs)
     final_locs.append(getequatorloc())
 
