@@ -71,6 +71,7 @@
     <Compile Include="Util\Platform.cs" />
     <Compile Include="Util\Serializer.cs" />
     <Compile Include="Util\Formatter.cs" />
+    <Compile Include="Constants.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
