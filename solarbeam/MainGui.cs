@@ -51,7 +51,7 @@ namespace SolarbeamGui
 		
 		private static void RunMainForm()
 		{
-			Thread.CurrentThread.IsBackground = true; // cure for cancer?
+			Thread.CurrentThread.IsBackground = true; // prevent hung mainthread?
 			mainform = new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
 			Application.EnableVisualStyles();
 			
