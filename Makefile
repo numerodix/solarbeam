@@ -5,8 +5,8 @@ zip:
 	rm -rf dist
 	mkdir -p dist/solarbeam
 	for d in `find . -type d -iname "Release"`; do cp $$d/* dist/solarbeam; done
-	rm locations.bin; ./gui -nogui; cp locations.bin dist/solarbeam
-	cd dist
+	(cd dist/solarbeam ; mono solarbeam.exe -init)
+	cd ..
 	zip -j dist/solarbeam.zip dist/solarbeam/*
 	rm -rf dist/solarbeam
 

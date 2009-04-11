@@ -26,8 +26,8 @@ namespace SolarbeamGui
 			MainGui.args = args;
 			
 			if (args.Length > 0) {
-				if (args[0] == "-nogui") {
-					TimeGuiCreate();
+				if (args[0] == "-init") {
+					InitGui();
 					Environment.Exit(0);
 				} else if (args[0] == "-timeit") {
 					TimeBitmapCreate();
@@ -71,7 +71,7 @@ namespace SolarbeamGui
 			Application.Run(mainform);
 		}
 
-		private static void TimeGuiCreate()
+		private static void InitGui()
 		{
 			GuiMainForm mainform =
 				new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
