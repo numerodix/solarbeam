@@ -23,7 +23,6 @@ body {
 .menu {
 	float: left;
 	height: 100%;
-	width: 200px;
 }
 
 .menu ul li {
@@ -40,7 +39,7 @@ body {
 
 .content {
 	font-size: 120%;
-	margin-left: 200px;
+	margin-left: 230px;
 }
 
 h1 {
