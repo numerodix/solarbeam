@@ -24,7 +24,7 @@
 		As you might expect, the answers differ depending on where you are on Earth.</p>
 
 		<h2>Reading the diagram</h2>
-		<p>Suppose there is an observer somewhere on Earth. A solar diagram is then a chart of where the observer sees the sun in the sky, how high (elevation) and in what <a href="http://en.wikipedia.org/wiki/Cardinal_direction">direction</a> he has to look (azimuth).
+		<p>Suppose there is an observer somewhere on Earth. A solar diagram is then a chart of where the observer sees the sun in the sky, how high (elevation) and in what <a href="http://en.wikipedia.org/wiki/Cardinal_direction">direction</a> he has to look (<a href="http://en.wikipedia.org/wiki/Azimuth">azimuth</a>).
 		</p>
 
 		<p>This diagram shows the sun's trajectory during some particular day of the year. Along the trajectory (the red line) there are particular points of interest:
