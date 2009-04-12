@@ -185,6 +185,7 @@ class Location(object):
         uname = string.replace(uname, "Jiddah", "Jeddah")
         uname = string.replace(uname, "Karbala'", "Karbala")
         uname = string.replace(uname, "Khmel'nyts'kyy", "Khmelnytskyi")
+        uname = string.replace(uname, "Kobenhavn", "Copenhagen")
         uname = string.replace(uname, "Luhans'k", "Luhansk")
         uname = string.replace(uname, "L'viv", "Lvov")
         uname = string.replace(uname, "Mariupol'", "Mariupol")
