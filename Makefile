@@ -48,3 +48,6 @@ lines:
 	@find -iname '*.html' | xargs cat | wc -l
 	@echo -n " *   libs       :  "
 	@find -iname '*.html' | xargs cat | wc -l
+
+webup:
+	rsync -avP --delete -e ssh web/ numerodix,solarbeam@web.sourceforge.net:htdocs/
