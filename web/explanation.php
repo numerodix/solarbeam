@@ -22,6 +22,9 @@
 			<li>How different (in terms of sunlight) is a day in summer from a day in winter?</li>
 		</ul>
 		As you might expect, the answers differ depending on where you are on Earth.
+
+		<h2>Reading the diagram</h2>
+		<img src="imgs/exp_diagram.png">
 	</div>
 
 </body>
