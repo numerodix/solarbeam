@@ -1,7 +1,7 @@
 // Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
 // Licensed under the GNU Public License, version 3.
 //
-// Generated with ./genlocationlist.py on on 10.4.2009
+// Generated with ./genlocationlist.py on on 12.4.2009
 
 using LibSolar.Types;
 
@@ -1338,6 +1338,9 @@ namespace LibSolar.Locations
 			list.Add("Contagem (Bra)", "America/Sao_Paulo",
 				new Position(PositionDirection.South, 19, 54, 36,
 					PositionDirection.West, 44, 6, 0));
+			list.Add("Copenhagen (Den)", "Europe/Copenhagen",
+				new Position(PositionDirection.North, 55, 40, 12,
+					PositionDirection.East, 12, 34, 48));
 			list.Add("Cordoba (Arg)", "America/Argentina/Cordoba",
 				new Position(PositionDirection.South, 31, 24, 0,
 					PositionDirection.West, 64, 11, 24));
@@ -2856,9 +2859,6 @@ namespace LibSolar.Locations
 			list.Add("Kobe (Jap)", "Asia/Tokyo",
 				new Position(PositionDirection.North, 34, 40, 48,
 					PositionDirection.East, 135, 10, 11));
-			list.Add("Kobenhavn (Den)", "Europe/Copenhagen",
-				new Position(PositionDirection.North, 55, 40, 12,
-					PositionDirection.East, 12, 34, 48));
 			list.Add("Kochi (Ind)", "Asia/Kolkata",
 				new Position(PositionDirection.North, 10, 1, 12,
 					PositionDirection.East, 76, 13, 12));
