@@ -41,7 +41,7 @@
 		<p>A complete diagram shows not only the trajectory for a single day, but also the trajectories for certain characteristic days of the year:</p>
 		<ul>
 			<li>June 21 is the summer <a href="http://en.wikipedia.org/wiki/Solstice">solstice</a> and the longest day of the year in the <a href="http://en.wikipedia.org/wiki/Northern_hemisphere">Northern Hemisphere</a> (shortest in the Southern).</li>
-			<li>December 21 is the winter solstice and the shortest day of the year in the Northern Hemisphere.</li>
+			<li>December 21 is the winter solstice and the shortest day of the year in the Northern Hemisphere (longest in the Southern).</li>
 		</ul>
 		A number of days in between are also plotted.</p>
 
