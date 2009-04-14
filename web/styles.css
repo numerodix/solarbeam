@@ -1,0 +1,53 @@
+body {
+	background: #fff;
+
+	/* typography */
+	color: #555;
+	font-family: "Lucida Grande",Verdana,"Bitstream Vera Sans",Arial,sans-serif;
+	font-size: 62.5%;
+	line-height: 22px;
+	
+	/* center */
+	margin: 0px auto;
+	width: 800px;
+
+	/* use 100% height in child nodes */
+	height: 100%;
+}
+
+.header {
+	margin: 0px auto;
+	text-align: center;
+}
+
+.menu {
+	float: left;
+	height: 100%;
+}
+
+.menu ul li {
+	display: block;
+	font-size: 140%;
+}
+
+.menu li a {
+	color: #aaa;
+	letter-spacing: 3px;
+	font-weight: bold;
+	line-height: 30px;
+}
+
+.content {
+	font-size: 120%;
+	margin-left: 230px;
+}
+
+h1 {
+	color: #ff7642;
+	font-size: 160%;
+}
+
+h2 {
+	color: #ff7642;
+	font-size: 140%;
+}

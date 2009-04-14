@@ -29,10 +29,15 @@ namespace LibSolar.Graphing
 	{
 		private static string FormatDate(UTCDate dt)
 		{
-			DateTime date = dt.ExtractLocaltime();
+			DateTime date = dt.ExtractLocal();
 			Month month = (Month) Enum.ToObject(typeof(Month), date.Month-1);
 			string month_s = month.ToString().Substring(0, 3);
 			return string.Format("{0} {1}", month_s, date.Day);
+		}
+		
+		private static string FormatHour(int hour)
+		{
+			return hour == 0 ? "24" : hour.ToString();
 		}
 		
 		private int GetLineThickness()

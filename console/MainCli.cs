@@ -4,13 +4,15 @@
 using System;
 using System.Collections;
 using System.Diagnostics;
+using System.Drawing;
 using System.Reflection;
 
 using NDesk.Options;
 
-using LibSolar.Assemblies;
+using LibSolar.Graphing;
 using LibSolar.SolarOrbit;
 using LibSolar.Types;
+using LibSolar.Util;
 
 namespace SolarbeamCli
 {
@@ -28,6 +30,9 @@ namespace SolarbeamCli
 			string timezone = null;
 			string date = null;
 			string time = null;
+			
+			// generate image, set to negative dimensions
+			int imgsz = -1;
 	
 			// bench defaults
 			int step = 1;
@@ -44,6 +49,8 @@ namespace SolarbeamCli
 					  delegate (string v) { date = v; })
 				.Add ("tm=", "Time: hh:mm:ss",
 					  delegate (string v) { time = v; })
+				.Add ("img=", "Generate diagram image: 500",
+					  delegate (int v) { imgsz = v; })
 				.Add ("benchtime-5", "Benchmark all times with 5sec increments",
 					  delegate (string v) {
 						bench = true;
@@ -85,14 +92,14 @@ namespace SolarbeamCli
 			}
 			try
 			{
-				Calc(longitude, latitude, timezone, date, time);
+				Calc(imgsz, longitude, latitude, timezone, date, time);
 			} catch (ArgumentException e) {
 				Console.WriteLine(e.Message);
 			}
 		}
 	
-		public static void Calc(string longitude, string latitude, string timezone,
-		                        string date, string time)
+		public static void Calc(int imgsz, string longitude, string latitude, 
+		                        string timezone, string date, string time)
 		{
 			// Halt on missing arguments
 			if ( null == date ) {
@@ -144,7 +151,7 @@ namespace SolarbeamCli
 			                            lodir,
 			                            (int) los[1], (int) los[2], (int) los[3]);
 	
-			UTCDate dt = new UTCDate((int) tz[0],
+			UTCDate dt = new UTCDate((int) tz[0], null,
 			                   (int) ds[2], (int) ds[1], (int) ds[0],
 			                   (int) ts[0], (int) ts[1], (int) ts[2]);
 	
@@ -152,6 +159,29 @@ namespace SolarbeamCli
 			SolarTimes sns = Orbit.CalcSolarTimes(pos, dt);
 	
 			Printing.Print(sp, sns);
+			
+			if (imgsz > 0) {
+				GenImg(imgsz, pos, dt);
+			}
+		}
+		
+		private static void GenImg(int dim, Position pos, UTCDate udt)
+		{
+			string path = Formatter.FormatImgFilename(string.Empty, pos, udt);
+
+			// set up constants
+			Colors colors = new Colors();
+			string font_face = "Arial";
+			
+			// generate base image
+			GraphBitmap grbit = new GraphBitmap(dim, colors, font_face);
+			Bitmap bitmap_plain = grbit.RenderBaseImage(pos, udt);
+			
+			// render current day
+			Bitmap bitmap_fst = grbit.RenderCurrentDay(bitmap_plain, dim, pos, udt);
+			
+			// save
+			grbit.SaveBitmap(bitmap_fst, path);
 		}
 	
 		public static void Bench(int step, bool timebased, bool verbose)
@@ -175,7 +205,7 @@ namespace SolarbeamCli
 					int month = 2;
 					int day = 1;
 	
-					UTCDate dt = new UTCDate(timezone, year, month, day, 0, 0, 0);
+					UTCDate dt = new UTCDate(timezone, null, year, month, day, 0, 0, 0);
 					dt = dt.AddSeconds(s);
 	
 					SolarPosition sp = Orbit.CalcSolarPosition(pos, dt);
@@ -205,7 +235,8 @@ namespace SolarbeamCli
 						int month = 2;
 						int day = 1;
 	
-						UTCDate dt = new UTCDate(timezone, year, month, day, hour, min, sec);
+						UTCDate dt = new UTCDate(timezone, null, 
+						                         year, month, day, hour, min, sec);
 	
 						SolarPosition sp = Orbit.CalcSolarPosition(pos, dt);
 						SolarTimes sns = Orbit.CalcSolarTimes(pos, dt);

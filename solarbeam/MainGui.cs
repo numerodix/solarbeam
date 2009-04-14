@@ -8,8 +8,8 @@ using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 
-using LibSolar.Assemblies;
 using LibSolar.Graphing;
+using LibSolar.Util;
 
 namespace SolarbeamGui
 {
@@ -26,8 +26,8 @@ namespace SolarbeamGui
 			MainGui.args = args;
 			
 			if (args.Length > 0) {
-				if (args[0] == "-nogui") {
-					TimeGuiCreate();
+				if (args[0] == "-init") {
+					InitGui();
 					Environment.Exit(0);
 				} else if (args[0] == "-timeit") {
 					TimeBitmapCreate();
@@ -35,31 +35,29 @@ namespace SolarbeamGui
 				}
 			}
 
-			splash = new GuiSplash();
-			splashthread = new Thread(RunSplash);
-			splashthread.IsBackground = true;
-			Thread.CurrentThread.IsBackground = true; // cure for cancer?
-			splashthread.Name = "splash";
-			splashthread.Start();
-//			Console.WriteLine("main :: After splash invoke");
+			RunSplash();
 			RunMainForm();
 		}
 		
 		private static void RunSplash()
 		{
-			splash.Launch();
+			// start splash in separate thread
+			splash = new GuiSplash(Controller.AsmInfo.GetAtt("Title"));
+			splashthread = new Thread(splash.Launch);
+			splashthread.IsBackground = true;
+			splashthread.Name = "splash";
+			splashthread.Start();
 		}
 		
 		private static void RunMainForm()
 		{
+			Thread.CurrentThread.IsBackground = true; // prevent hung mainthread?
 			mainform = new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
-//			Console.WriteLine("main :: after gui create");
 			Application.EnableVisualStyles();
 			
-//			Console.WriteLine("main :: pre call expire");
+			// all done initializing, kill splash
 			splash.expired = true;
 			splashthread.Join();
-//			Console.WriteLine("main :: post call expire");
 			
 			if ((args.Length > 0) && (args[0] == "-checkhang")) {
 				mainform.Shown += delegate (object o,EventArgs a) { 
@@ -69,14 +67,14 @@ namespace SolarbeamGui
 					Environment.Exit(0); };
 			}
 
-			mainform.Activate();
+			// run message loop
 			Application.Run(mainform);
 		}
 
-		private static void TimeGuiCreate()
+		private static void InitGui()
 		{
 			GuiMainForm mainform =
-						new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
+				new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
 		}
 		
 		private static void TimeBitmapCreate()
@@ -95,7 +93,6 @@ namespace SolarbeamGui
 		public static void Quit()
 		{
 			mainform.Close();
-			Application.Exit();
 		}
 	}
 }

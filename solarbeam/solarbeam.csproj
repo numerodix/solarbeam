@@ -29,7 +29,6 @@
     <Reference Include="System" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainGui.cs" />
@@ -71,21 +70,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\zoneinfo">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="..\doc\COPYING.short" />
     <EmbeddedResource Include="..\doc\LICENSE" />
-    <EmbeddedResource Include="..\images\logo.png" />
-    <EmbeddedResource Include="..\images\app-about.png" />
-    <EmbeddedResource Include="..\images\app-exit.png" />
-    <EmbeddedResource Include="..\images\image-save.png" />
-    <EmbeddedResource Include="..\images\loc-delete.png" />
-    <EmbeddedResource Include="..\images\loc-new.png" />
-    <EmbeddedResource Include="..\images\loc-save.png" />
-    <EmbeddedResource Include="..\images\render.png" />
-    <EmbeddedResource Include="..\images\reset.png" />
+    <EmbeddedResource Include="..\bundled\solarbeam.ico" />
+    <EmbeddedResource Include="..\bundled\logo.png" />
+    <EmbeddedResource Include="..\bundled\app-about.png" />
+    <EmbeddedResource Include="..\bundled\app-exit.png" />
+    <EmbeddedResource Include="..\bundled\delete.png" />
+    <EmbeddedResource Include="..\bundled\dst-status-nodst.png" />
+    <EmbeddedResource Include="..\bundled\dst-status-standard.png" />
+    <EmbeddedResource Include="..\bundled\dst-status-daylight.png" />
+    <EmbeddedResource Include="..\bundled\image-save.png" />
+    <EmbeddedResource Include="..\bundled\open.png" />
+    <EmbeddedResource Include="..\bundled\new.png" />
+    <EmbeddedResource Include="..\bundled\render.png" />
+    <EmbeddedResource Include="..\bundled\reset.png" />
+    <EmbeddedResource Include="..\bundled\save.png" />
+    <EmbeddedResource Include="..\bundled\time-now.png" />
   </ItemGroup>
 </Project>

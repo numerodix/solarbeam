@@ -5,11 +5,18 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-using LibSolar.Types;
 using PublicDomain;
+
+using LibSolar.Types;
 
 namespace SolarbeamGui
 {
+	enum DSTStatus {
+		NoDST,
+		Standard,
+		Daylight,
+	}
+	
 	class TimezoneSource
 	{
 		private List<string> offsets;
@@ -67,13 +74,6 @@ namespace SolarbeamGui
 				zname_list.Sort();
 				this.zones.Add(offset_s, zname_list);
 			}
-			
-//			foreach (string offset in this.offsets) {
-//				Console.WriteLine("\n{0}", offset);
-//				foreach (string zone in this.zones[offset]) {
-//					Console.WriteLine("{0}", zone);
-//				}
-//			}
 		}
 
 		private string FormatTimezone(double tz)
@@ -100,19 +100,32 @@ namespace SolarbeamGui
 			}
 		}
 		
-		public UTCDate? ApplyZone(string tz_name, DateTime dt)
+		public UTCDate? GetUTCDate(string tz_name, DateTime dt)
 		{
 			try {
 				TzTimeZone zone = TzTimeZone.GetTimeZone(tz_name);
-				TzDateTime tzdt = new TzDateTime(dt, zone);
-				double offset = tzdt.UtcOffset.TotalHours;
-				DateTime dt_new = tzdt.DateTimeUtc;
-				return new UTCDate(offset,
-				                   dt_new.Year, dt_new.Month, dt_new.Day,
-				                   dt_new.Hour, dt_new.Minute, dt_new.Second);
+				double offset = zone.FindZone(dt).UtcOffset.TotalHours;
+				DaylightTime dst = zone.GetDaylightChanges(dt.Year);
+				return new UTCDate(offset, dst,
+				                   dt.Year, dt.Month, dt.Day,
+				                   dt.Hour, dt.Minute, dt.Second);
 			} catch (TypeInitializationException) {
 				return null;
 			}
+		}
+		
+		public DSTStatus GetDSTStatus(UTCDate udt)
+		{
+			DSTStatus dst_s = DSTStatus.NoDST;
+			if (udt.HasDST) {
+				switch (udt.IsDST) {
+				case true:
+					dst_s = DSTStatus.Daylight; break;
+				case false:
+					dst_s = DSTStatus.Standard; break;
+				}
+			}
+			return dst_s;
 		}
 		
 		public List<string> Offsets
@@ -121,6 +134,40 @@ namespace SolarbeamGui
 		public List<string> GetTimezones(string offset)
 		{
 			return zones[offset];
+		}
+
+		private void PrintDate(DateTime dt, string tz_name)
+		{
+			TzTimeZone zone = TzTimeZone.GetTimeZone(tz_name);
+			TzDateTime tzdt = new TzDateTime(dt, zone);
+			TzDatabase.TzZone dbzone = zone.FindZone(dt);
+			Console.WriteLine(tzdt);
+			double utc_offset = tzdt.UtcOffset.TotalHours;
+			double utc_std_offset = dbzone.UtcOffset.TotalHours;
+			Console.WriteLine("utc offset      : {0}", utc_offset);
+			Console.WriteLine("utc_std offset  : {0}", utc_std_offset);
+			Console.WriteLine("local           : {0}", tzdt.DateTimeLocal);
+			Console.WriteLine("utc             : {0}", tzdt.DateTimeUtc);
+			Console.WriteLine("dst_name        : {0}", zone.DaylightName);
+			Console.WriteLine("std_name        : {0}", zone.StandardName);
+			Console.WriteLine("is dst?         : {0}", zone.IsDaylightSavingTime(dt));
+			try {
+				DaylightTime dst = zone.GetDaylightChanges(dt.Year);
+				Console.WriteLine("dst_delta       : {0}", dst.Delta);
+				Console.WriteLine("dst_start       : {0}", dst.Start);
+				Console.WriteLine("dst_end         : {0}", dst.End);
+			} catch (NullReferenceException) {}
+			Console.WriteLine("");
+		}
+		
+		private void PrintZonelist()
+		{
+			foreach (string offset in this.offsets) {
+				Console.WriteLine("\n{0}", offset);
+				foreach (string zone in this.zones[offset]) {
+					Console.WriteLine("{0}", zone);
+				}
+			}
 		}
 	}
 }

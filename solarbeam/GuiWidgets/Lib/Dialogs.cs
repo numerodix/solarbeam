@@ -19,5 +19,15 @@ namespace SolarbeamGui
 			dlg.FileName = filename;
 			return dlg;
 		}
+		
+		public static OpenFileDialog GetOpenFileDialog(string filter_name,
+		                                               string filter_pattern)
+		{
+			OpenFileDialog dlg = new OpenFileDialog();
+			dlg.InitialDirectory = ".";
+			dlg.Filter = String.Format("{0} ({1})|{2}", filter_name,
+			                           filter_pattern, filter_pattern);
+			return dlg;
+		}
 	}
 }

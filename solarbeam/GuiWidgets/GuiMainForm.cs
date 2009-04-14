@@ -51,6 +51,7 @@ namespace SolarbeamGui
 		{
 			this.DoubleBuffered = true;
 			this.Text = form_title;
+			this.Icon = new Icon(Controller.AsmInfo.GetResource("solarbeam.ico"));
 			
 			// init datasources before instantiating widgets
 			Controller.InitSources();
@@ -74,22 +75,18 @@ namespace SolarbeamGui
 			
 			this.Closed += new EventHandler(OnQuit);
 			
-			// Hiiiiiiiiiiiideous hack to prevent being shown behind all 
-			// other windows on Windows. ffs!
-			// discarded impotent options: BringToFront(), Activate()
-			this.TopMost = true;
-			this.Load += delegate (object o,EventArgs a) { 
-				this.TopMost = false; 
+			// try to bring to front somehow
+			this.Load += delegate (object o, EventArgs a) {
+				this.Activate();
+				this.BringToFront();
 				this.Focus();
-			}; // sigh
-			//this.Shown += delegate (object o,EventArgs a) { this.TopMost = false; };
+			};
+
 		}
 			
 		private void OnQuit(object o, EventArgs a)
 		{
-			Controller.SaveSession();
-			Dispose();
-			Environment.Exit(0);
+			Controller.SaveAutoSession();
 		}
 		
 		private Control GetMainArea()
@@ -98,7 +95,7 @@ namespace SolarbeamGui
 			
 			// fill in initial form values
 			try {
-				Controller.LoadSession();
+				Controller.LoadAutoSession();
 			} catch {
 				Controller.InitForm();
 			}

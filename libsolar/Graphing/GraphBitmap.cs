@@ -28,7 +28,7 @@ namespace LibSolar.Graphing
 			this.colors = colors;
 		}
 		
-		public Bitmap RenderBaseImage(Position pos, UTCDate dt)
+		public Bitmap RenderBaseImage(Position pos, UTCDate udt)
 		{
 			bitmap = new Bitmap(dimensions, dimensions);
 			
@@ -40,27 +40,31 @@ namespace LibSolar.Graphing
 				// paint backdrop coordinate system
 				diagram.PaintBackdrop(g);
 				
-				// plot milestone dates first half of the year
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, 1, dt.Year, 1, 1);
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, 1, dt.Year, 2, 4);
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, 1, dt.Year, 3, 6);
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, 1, dt.Year, 4, 5);
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, 1, dt.Year, 5, 5);
-				diagram.PlotMilestoneDay(g, colors.YearFstHalf, pos, 1, dt.Year, 6, 4);
-		
-				// plot milestone dates second half of the year
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, 1, dt.Year, 6, 21);
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, 1, dt.Year, 7, 21);
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, 1, dt.Year, 8, 20);
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, 1, dt.Year, 9, 19);
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, 1, dt.Year, 10, 19);
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, 1, dt.Year, 11, 18);
-				diagram.PlotMilestoneDay(g, colors.YearSndHalf, pos, 1, dt.Year, 12, 21);
-		
+				// plot milestone dates
+				int[] days = new int[] {
+					 1, 1,    4, 2,    6, 3,    5, 4,    5, 5,     4, 6,
+					21, 6,   21, 7,   20, 8,   19, 9,   19, 10,   18, 11,   21, 12,
+				};
+				
+				for (int i=0, j=1; j<days.Length; i+=2, j+=2) {
+					UTCDate udt_n = udt.SetDate(days[i], days[j]);
+					
+					// first half
+					Color color = udt_n.IsDST ? colors.YearFstHalfDst : colors.YearFstHalfStd;
+					// second half
+					if (udt_n.CompareTo(udt.SetDate(5, 6)) >= 0) {
+						color = udt_n.IsDST ? colors.YearSndHalfDst : colors.YearSndHalfStd;
+					}
+					
+					diagram.PlotMilestoneDay(g, color, pos, udt_n);
+				}
+
 				// plot analemma curves
 				for (int i = 0; i < 24; i++) {
-					diagram.PlotAnalemma(g, colors.YearFstHalf, colors.YearSndHalf,
-					                     pos, dt.Timezone, dt.Year, i);
+					diagram.PlotAnalemma(g, 
+					                     colors.YearFstHalfStd, colors.YearFstHalfDst, 
+					                     colors.YearSndHalfStd, colors.YearSndHalfDst,
+					                     pos, udt.SetHour(i));
 				}
 
 				// print milestone day labels
@@ -68,8 +72,8 @@ namespace LibSolar.Graphing
 				
 				// print analemma labels
 				for (int i = 0; i < 24; i++) {
-					diagram.PrintAnalemmaLabel(g, colors.GraphFg,
-					                           pos, dt.Timezone, dt.Year, i);
+					diagram.PrintAnalemmaLabel(g, colors.GraphFg, 
+					                           pos, udt.SetHour(i));
 				}
 			}
 			
@@ -83,12 +87,11 @@ namespace LibSolar.Graphing
 		}
 		
 		public Bitmap RenderCurrentDay(Bitmap bitmap, int dim, 
-		                               Position pos, UTCDate dt)
+		                               Position pos, UTCDate udt)
 		{
 			using (Graphics g = Graphics.FromImage(bitmap)) {
-				diagram.PlotDay(g, colors.CurrentDay, pos, dt.Timezone, 
-				              dt.Year, dt.Month, dt.Day);
-				diagram.PlotSun(g, colors.CurrentDay, dimensions, pos, dt);
+				diagram.PlotDay(g, colors.CurrentDay, pos, udt);
+				diagram.PlotSun(g, colors.CurrentDay, dimensions, pos, udt);
 			}
 			return bitmap;
 		}

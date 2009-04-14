@@ -14,6 +14,14 @@ namespace SolarbeamGui
 	 */
 	partial class Widgets
 	{	
+		public static Button GetButtonImageTextAnon(Controller.Id id,
+		                                        string s, string img)
+		{
+			Button button = GetButtonImageText(id, s, img);
+			button.TabStop = false;
+			return button;
+		}
+		
 		public static Button GetButtonImageText(Controller.Id id,
 		                                        string s, string img)
 		{
@@ -68,6 +76,14 @@ namespace SolarbeamGui
 			label.Text = s;
 			label.AutoSize = true;
 			label.Anchor = AnchorStyles.Left;
+			return label;
+		}
+		
+		public static Label GetLabelImage(Controller.Id id, string img)
+		{
+			Label label = new Label();
+			label.Image = new Bitmap(Controller.AsmInfo.GetResource(img));
+			Controller.RegisterControl(id, label);	// register control
 			return label;
 		}
 		

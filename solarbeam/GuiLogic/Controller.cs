@@ -9,11 +9,9 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Serialization;
 
-using LibSolar.Assemblies;
 using LibSolar.Types;
+using LibSolar.Util;
 
 namespace SolarbeamGui
 {
@@ -25,9 +23,12 @@ namespace SolarbeamGui
 		// Identify all widgets
 		public enum Id {
 			MENUEXIT_ACTION,
+			MENUSESSIONSAVE_ACTION,
+			MENUSESSIONLOAD_ACTION,
 			MENULOCNEW_ACTION,
 			MENULOCSAVE_ACTION,
 			MENULOCDELETE_ACTION,
+			MENUTIMENOW_ACTION,
 			MENURESETFORM_ACTION,
 			MENURENDER_ACTION,
 			MENUSAVEIMAGE_ACTION,
@@ -49,9 +50,11 @@ namespace SolarbeamGui
 			DATE_DAY,
 			DATE_MONTH,
 			DATE_YEAR,
+			DATE_DSTSTATUS,
 			TIME_HOUR,
 			TIME_MINUTE,
 			TIME_SECOND,
+			TIMENOW_ACTION,
 			RESETFORM_ACTION,
 			RENDER_ACTION,
 			ELEVATION,
@@ -155,6 +158,9 @@ namespace SolarbeamGui
 			}
 		}
 
+		/**
+		 * A single point of call where all widgets get their handlers set up.
+		 */
 		public static void RegisterControl(Id id, Component control)
 		{
 			// register in registry
@@ -183,6 +189,12 @@ namespace SolarbeamGui
 				EventHandler handler = new EventHandler(ValueChange);
 				RegisterValueChange(control, handler);
 			}
+
+			// register handler for daylight time status update
+			if (ins_date.Contains(id) || (ins_position.Contains(id))) {
+				EventHandler handler = new EventHandler(UpdateDSTStatus);
+				RegisterValueChange(control, handler);
+			}
 			
 			// register updating inputs for value changes
 			if (ins_timedate.Contains(id)) {
@@ -202,7 +214,11 @@ namespace SolarbeamGui
 			// MENU ITEMS
 		
 			// File
-			if (reg_rev[button] == Id.MENUEXIT_ACTION) {
+			if (reg_rev[button] == Id.MENUSESSIONSAVE_ACTION) {
+				((ToolStripMenuItem) button).Click += new EventHandler(SaveSession);
+			} else if (reg_rev[button] == Id.MENUSESSIONLOAD_ACTION) {
+				((ToolStripMenuItem) button).Click += new EventHandler(LoadSession);
+			} else if (reg_rev[button] == Id.MENUEXIT_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(Exit);
 			// Locations
 			} else if (reg_rev[button] == Id.MENULOCNEW_ACTION) {
@@ -212,6 +228,8 @@ namespace SolarbeamGui
 			} else if (reg_rev[button] == Id.MENULOCDELETE_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(DeleteLocation);
 			// Actions
+			} else if (reg_rev[button] == Id.MENUTIMENOW_ACTION) {
+				((ToolStripMenuItem) button).Click += new EventHandler(SetTimeNow);
 			} else if (reg_rev[button] == Id.MENURESETFORM_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(ResetForm);
 			} else if (reg_rev[button] == Id.MENURENDER_ACTION) {
@@ -230,6 +248,9 @@ namespace SolarbeamGui
 				((Button) button).Click += new EventHandler(SaveLocation);
 			} else if (reg_rev[button] == Id.LOCATIONDELETE_ACTION) {
 				((Button) button).Click += new EventHandler(DeleteLocation);
+										
+			} else if (reg_rev[button] == Id.TIMENOW_ACTION) {
+				((Button) button).Click += new EventHandler(SetTimeNow);
 
 			} else if (reg_rev[button] == Id.RESETFORM_ACTION) {
 				((Button) button).Click += new EventHandler(ResetForm);
@@ -272,6 +293,7 @@ namespace SolarbeamGui
 			if (tip != null) {
 				if (control is Control) {
 					tooltips[id] = Widgets.GetToolTipInfo(Tooltips.GetTitle(id));
+					tooltips[id].StripAmpersands = true; // tips also used for menu items
 					tooltips[id].SetToolTip((Control) control, tip);
 				}
 			}

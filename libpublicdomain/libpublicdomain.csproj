@@ -37,29 +37,16 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="CharUtilities.cs" />
     <Compile Include="ConversionUtilities.cs" />
-    <Compile Include="Crc32.cs" />
-    <Compile Include="CryptographyUtilities.cs" />
     <Compile Include="DateTimeUtlities.cs" />
-    <Compile Include="GenericUtilities.cs" />
     <Compile Include="GlobalConstants.cs" />
     <Compile Include="Month.cs" />
     <Compile Include="ReadOnlyDictionary.cs" />
     <Compile Include="ReadOnlyICollection.cs" />
-    <Compile Include="RegexUtilities.cs" />
     <Compile Include="StringUtilities.cs" />
-    <Compile Include="TzConstants.cs" />
     <Compile Include="TzDatabase.cs" />
     <Compile Include="TzDateTime.cs" />
     <Compile Include="TzTimeZone.cs" />
     <Compile Include="Exceptions\BaseException.cs" />
-    <Compile Include="Exceptions\WrappedException.cs" />
-    <Compile Include="Geography\Country.cs" />
-    <Compile Include="Geography\CountryOptions.cs" />
-    <Compile Include="Geography\Region.cs" />
-    <Compile Include="Geography\RegionType.cs" />
-    <Compile Include="Standards\Iso3166.cs" />
-    <Compile Include="Standards\Iso6709.cs" />
-    <Compile Include="Standards\Iso8601.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -69,4 +56,7 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <EmbeddedResource Include="..\bundled\zoneinfo" />
+  </ItemGroup>
 </Project>

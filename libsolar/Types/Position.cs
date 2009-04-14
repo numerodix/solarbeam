@@ -35,30 +35,30 @@ namespace LibSolar.Types
 		public static PositionDirection LONGITUDE_NEG = PositionDirection.West;
 		
 		[NonSerialized]
-		public const int LATDEGS_MINVALUE = 0;
+		public const int LATDEGS_MIN = 0;
 		[NonSerialized]
-		public const int LATDEGS_MAXVALUE = 90;
+		public const int LATDEGS_MAX = 90;
 		[NonSerialized]
-		public const int LATMINS_MINVALUE = 0;
+		public const int LATMINS_MIN = 0;
 		[NonSerialized]
-		public const int LATMINS_MAXVALUE = 59;
+		public const int LATMINS_MAX = 59;
 		[NonSerialized]
-		public const int LATSECS_MINVALUE = 0;
+		public const int LATSECS_MIN = 0;
 		[NonSerialized]
-		public const int LATSECS_MAXVALUE = 59;
+		public const int LATSECS_MAX = 59;
 		
 		[NonSerialized]
-		public const int LONDEGS_MINVALUE = 0;
+		public const int LONDEGS_MIN = 0;
 		[NonSerialized]
-		public const int LONDEGS_MAXVALUE = 180;
+		public const int LONDEGS_MAX = 180;
 		[NonSerialized]
-		public const int LONMINS_MINVALUE = 0;
+		public const int LONMINS_MIN = 0;
 		[NonSerialized]
-		public const int LONMINS_MAXVALUE = 59;
+		public const int LONMINS_MAX = 59;
 		[NonSerialized]
-		public const int LONSECS_MINVALUE = 0;
+		public const int LONSECS_MIN = 0;
 		[NonSerialized]
-		public const int LONSECS_MAXVALUE = 59;
+		public const int LONSECS_MAX = 59;
 
 		private double latitude;
 		private double longitude;

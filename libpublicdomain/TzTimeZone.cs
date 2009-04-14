@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
-using System.Xml.Serialization;
+using System.Reflection;
+using System.Text;
 using System.Threading;
+using System.Xml.Serialization;
 
 namespace PublicDomain
 {
@@ -56,7 +57,6 @@ namespace PublicDomain
         private static Dictionary<string, TzZoneInfo> s_zones = new Dictionary<string, TzZoneInfo>();
         private static ReadOnlyCollection<TzZoneInfo> s_zoneList;
         private static string[] s_allZoneNames;
-        private static TzTimeZone s_currentTimeZone;
         private static ReaderWriterLock s_zonesLock = new ReaderWriterLock();
         private static object s_allZonesLock = new object();
         private static object s_zoneListLock = new object();
@@ -67,55 +67,78 @@ namespace PublicDomain
         {
 			// init timezones from bundled zoneinfo
 			InitTimeZones("zoneinfo");
-			
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-11:00")] = TzConstants.TimezonePacificMidway;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-10:00")] = TzConstants.TimezonePacificHonolulu;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-9:30")] = TzConstants.TimezonePacificMarquesas;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-9:00")] = TzConstants.TimezoneAmericaAnchorage;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-8:00")] = TzConstants.TimezoneAmericaLosAngeles;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-7:00")] = TzConstants.TimezoneAmericaDenver;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-6:00")] = TzConstants.TimezoneAmericaChicago;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-5:00")] = TzConstants.TimezoneAmericaNewYork;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-4:00")] = TzConstants.TimezoneAmericaLaPaz;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-3:30")] = TzConstants.TimezoneAmericaStJohns;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-3:00")] = TzConstants.TimezoneAmericaArgentinaBuenosAires;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-2:00")] = TzConstants.TimezoneAmericaNoronha;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("-1:00")] = TzConstants.TimezoneAtlanticAzores;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("0:00")] = TzConstants.TimezoneUtc;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("1:00")] = TzConstants.TimezoneEuropeParis;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("2:00")] = TzConstants.TimezoneEuropeAthens;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("3:00")] = TzConstants.TimezoneEuropeMoscow;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("3:30")] = TzConstants.TimezoneAsiaTehran;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("4:00")] = TzConstants.TimezoneAsiaDubai;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("4:30")] = TzConstants.TimezoneAsiaKabul;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("5:00")] = TzConstants.TimezoneAsiaKarachi;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("5:30")] = TzConstants.TimezoneAsiaCalcutta;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("6:00")] = TzConstants.TimezoneAsiaOmsk;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("6:30")] = TzConstants.TimezoneIndianCocos;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("7:00")] = TzConstants.TimezoneAsiaJakarta;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("8:00")] = TzConstants.TimezoneAsiaShanghai;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("9:00")] = TzConstants.TimezoneAsiaTokyo;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("9:30")] = TzConstants.TimezoneAustraliaDarwin;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("10:00")] = TzConstants.TimezonePacificGuam;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("10:30")] = TzConstants.TimezoneAustraliaLordHowe;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("11:00")] = TzConstants.TimezonePacificGuadalcanal;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("11:30")] = TzConstants.TimezonePacificNorfolk;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("12:00")] = TzConstants.TimezonePacificFiji;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("13:00")] = TzConstants.TimezonePacificEnderbury;
-            s_mainTimeZones[DateTimeUtlities.ConvertTimeSpanToDouble("14:00")] = TzConstants.TimezonePacificKiritimati;
-
-            // Initialize "common" time zones
-            ZoneUTC = TzTimeZone.GetTimeZone(TzConstants.TimezoneUtc);
-            ZoneUsEastern = TzTimeZone.GetTimeZone(TzConstants.TimezoneUsEastern);
-            ZoneUsCentral = TzTimeZone.GetTimeZone(TzConstants.TimezoneUsCentral);
-            ZoneUsMountain = TzTimeZone.GetTimeZone(TzConstants.TimezoneUsMountain);
-            ZoneUsPacific = TzTimeZone.GetTimeZone(TzConstants.TimezoneUsPacific);
-
-            // Get the current time zone
-            TimeZone cur = TimeZone.CurrentTimeZone;
-            TimeSpan utcOffset = cur.GetUtcOffset(DateTime.MinValue);
-            s_currentTimeZone = GetTimeZoneByOffset(utcOffset);
         }
+
+		/**
+		 * Override TzTimeZone.GetTimeZone monstrocity that adds 5-6 seconds
+		 * to static loading. Load from bundled zoneinfo distribution.
+		 */
+		public static void InitTimeZones(string file)
+		{
+			// Extract line array from bundled zoneinfo
+			
+			Assembly asm = Assembly.GetExecutingAssembly();
+			Stream stream = asm.GetManifestResourceStream(file);
+			
+			int len = (int) stream.Length; // int overflow in [1,2]gb for utf-8 stream
+			byte[] buffer = new byte[len];
+			stream.Read(buffer, 0, len);
+			
+			buffer = Encoding.Convert(Encoding.ASCII, Encoding.UTF8, buffer);
+			string s = Encoding.UTF8.GetString(buffer, 0, len);
+			string[] ss = s.Split(new char[] {'\n'}); // Python generated with unix linebreaks. obviously.
+			
+			// init datastructures for ReadDatabase call
+			List<TzDatabase.TzRule> rule_list = new List<TzDatabase.TzRule>();
+			List<TzDatabase.TzZone> zone_list = new List<TzDatabase.TzZone>();
+			List<string[]> links_list = new List<string[]>();
+
+			// Read database
+			TzDatabase.ReadDatabaseFile(ss, rule_list, zone_list, links_list);
+
+			// zone_name -> Zone mapping
+			Dictionary<string,Zone> name_zone_dict = new Dictionary<string,Zone>();
+
+			// iterate over all zones to gather all entries under common key
+			foreach (TzDatabase.TzZone zone in zone_list) {
+				string zone_name = zone.ZoneName;
+				string rule_name = zone.RuleName;
+				if (!name_zone_dict.ContainsKey(zone_name)) {
+					name_zone_dict.Add(zone_name, new Zone(zone_name));
+				}
+				name_zone_dict[zone_name].zones.Add(zone);
+
+				// iterate over all rules to see if they match this zone
+				foreach (TzDatabase.TzRule rule in rule_list) {
+					if (rule.RuleName == rule_name) {
+						name_zone_dict[zone_name].rules.Add(rule);
+					}
+				}
+			}
+
+			// instantiate all timezones
+			foreach (KeyValuePair<string,Zone> pair in name_zone_dict) {
+				string zone_name = pair.Value.zone_name;
+				List<TzDatabase.TzZone> zones = pair.Value.zones;
+				List<TzDatabase.TzRule> rules = pair.Value.rules;
+				TzTimeZone.TzZoneInfo tzzone = 
+					new TzTimeZone.TzZoneInfo(zone_name, zones, rules);
+				if (!s_zones.ContainsKey(zone_name)) {
+					s_zones.Add(zone_name, tzzone);
+				}
+				
+				// add links
+				foreach (string[] link in links_list) {
+					string from = link[1];
+					string to = link[2];
+					if ((from == zone_name) && (!s_zones.ContainsKey(to))) {
+						tzzone = new TzTimeZone.TzZoneInfo(to, zones, rules);
+						s_zones.Add(to, tzzone);
+					}
+				}
+			}
+		}
+
 
         /// <summary>
         /// 
@@ -498,7 +521,7 @@ namespace PublicDomain
 
                 if (curRuleIndex == -1)
                 {
-                    throw new Exception("Could not find rule");
+                    throw new TzException("Could not find rule");
                 }
             }
             return curRuleIndex;
@@ -762,31 +785,6 @@ namespace PublicDomain
         }
 
         /// <summary>
-        /// Gets the name of the zone. Setting the zone is
-        /// the same as finding a new zone.
-        /// </summary>
-        /// <value>The name of the zone.</value>
-        internal string ZoneName
-        {
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentNullException("ZoneName");
-                }
-                TzTimeZone newTimeZone = GetTimeZone(value);
-                if (newTimeZone != null)
-                {
-                    m_info = newTimeZone.m_info;
-                }
-                else
-                {
-                    throw new TzDatabase.TzException("Invalid time zone {0}", value);
-                }
-            }
-        }
-
-        /// <summary>
         /// Returns a <see cref="T:System.String"></see> that represents the current <see cref="T:System.Object"></see>.
         /// </summary>
         /// <returns>
@@ -895,18 +893,6 @@ namespace PublicDomain
         }
 
         /// <summary>
-        /// Gets the time zone of the current computer system.
-        /// </summary>
-        /// <value>A System.TimeZone instance representing the current, local time zone.</value>
-        public static new TzTimeZone CurrentTimeZone
-        {
-            get
-            {
-                return s_currentTimeZone;
-            }
-        }
-
-        /// <summary>
         ///     Returns a value indicating whether the specified date and time is within
         ///     the specified daylight saving time period.
         /// </summary>
@@ -965,66 +951,6 @@ namespace PublicDomain
 			}
 		}
 		
-		/**
-		 * Override TzTimeZone.GetTimeZone monstrocity that adds 5-6 seconds
-		 * to static loading. Load from bundled zoneinfo distribution.
-		 */
-		public static void InitTimeZones(string file)
-		{
-			FileInfo f = new FileInfo(file);
-			
-			// init datastructures for ReadDatabase call
-			List<TzDatabase.TzRule> rule_list = new List<TzDatabase.TzRule>();
-			List<TzDatabase.TzZone> zone_list = new List<TzDatabase.TzZone>();
-			List<string[]> links_list = new List<string[]>();
-
-			// read database files
-			TzDatabase.ReadDatabaseFile(f, rule_list, zone_list, links_list);
-
-			// zone_name -> Zone mapping
-			Dictionary<string,Zone> name_zone_dict = new Dictionary<string,Zone>();
-
-			// iterate over all zones to gather all entries under common key
-			foreach (TzDatabase.TzZone zone in zone_list) {
-				string zone_name = zone.ZoneName;
-				string rule_name = zone.RuleName;
-				if (!name_zone_dict.ContainsKey(zone_name)) {
-					name_zone_dict.Add(zone_name, new Zone(zone_name));
-				}
-				name_zone_dict[zone_name].zones.Add(zone);
-
-				// iterate over all rules to see if they match this zone
-				foreach (TzDatabase.TzRule rule in rule_list) {
-					if (rule.RuleName == rule_name) {
-						name_zone_dict[zone_name].rules.Add(rule);
-					}
-				}
-			}
-
-			// instantiate all timezones
-			foreach (KeyValuePair<string,Zone> pair in name_zone_dict) {
-				string zone_name = pair.Value.zone_name;
-				List<TzDatabase.TzZone> zones = pair.Value.zones;
-				List<TzDatabase.TzRule> rules = pair.Value.rules;
-				TzTimeZone.TzZoneInfo tzzone = 
-					new TzTimeZone.TzZoneInfo(zone_name, zones, rules);
-				if (!s_zones.ContainsKey(zone_name)) {
-					s_zones.Add(zone_name, tzzone);
-				}
-				
-				// add links
-				foreach (string[] link in links_list) {
-					string from = link[1];
-					string to = link[2];
-					if ((from == zone_name) && (!s_zones.ContainsKey(to))) {
-						tzzone = new TzTimeZone.TzZoneInfo(to, zones, rules);
-						s_zones.Add(to, tzzone);
-					}
-				}
-			}
-		}
-
-
         /// <summary>
         /// Represents a time zone, with all of its transitions and rules.
         /// </summary>
@@ -1192,7 +1118,6 @@ namespace PublicDomain
         public class TzZoneDescription
         {
             private string m_twoLetterCode;
-            private Iso6709 m_location;
             private string m_zoneName;
             private string m_comments;
 
@@ -1210,10 +1135,9 @@ namespace PublicDomain
             /// <param name="location">The location.</param>
             /// <param name="zoneName">Name of the zone.</param>
             /// <param name="comments">The comments.</param>
-            public TzZoneDescription(string twoLetterCode, Iso6709 location, string zoneName, string comments)
+            public TzZoneDescription(string twoLetterCode, string zoneName, string comments)
             {
                 m_twoLetterCode = twoLetterCode;
-                m_location = location;
                 m_zoneName = zoneName;
                 m_comments = comments;
             }
@@ -1229,16 +1153,6 @@ namespace PublicDomain
                 }
             }
 
-            /// <summary>
-            /// 
-            /// </summary>
-            public Iso6709 Location
-            {
-                get
-                {
-                    return m_location;
-                }
-            }
 
             /// <summary>
             /// 
@@ -1270,7 +1184,7 @@ namespace PublicDomain
             /// </returns>
             public override string ToString()
             {
-                return string.Format("{0}\t{1}\t{2}\t{3}", TwoLetterCode, Location, ZoneName, Comments);
+                return string.Format("{0}\t{2}\t{3}", TwoLetterCode, ZoneName, Comments);
             }
         }
     }

@@ -43,36 +43,6 @@ namespace PublicDomain
         public const string FactoryZoneName = "Factory";
 
         /// <summary>
-        /// Reads the tz database from the specific <paramref name="dir"/>.
-        /// All files without extensions are checked for relevant data. The
-        /// directory is not recursively searched. Parameters <paramref name="rules"/>,
-        /// <paramref name="zones"/>, and <paramref name="links"/> should be non-null
-        /// arrays into which the database will be added.
-        /// </summary>
-        /// <param name="dir">The dir.</param>
-        /// <param name="rules">The rules.</param>
-        /// <param name="zones">The zones.</param>
-        /// <param name="links">The links.</param>
-        public static void ReadDatabase(string dir, List<TzRule> rules, List<TzZone> zones, List<string[]> links)
-        {
-            if (dir == null)
-            {
-                throw new ArgumentNullException("dir");
-            }
-            DirectoryInfo dirInfo = new DirectoryInfo(dir);
-            FileInfo[] files = dirInfo.GetFiles();
-            foreach (FileInfo file in files)
-            {
-                // If there is no file extension, we assume
-                // that it is a data file.
-                if (string.IsNullOrEmpty(file.Extension))
-                {
-                    ReadDatabaseFile(file, rules, zones, links);
-                }
-            }
-        }
-
-        /// <summary>
         /// Reads the database file.
         /// 
         /// See zic.txt in tzcode
@@ -82,9 +52,8 @@ namespace PublicDomain
         /// <param name="zones">The zones.</param>
         /// <param name="links">The links.</param>
         /// <exception cref="PublicDomain.TzDatabase.TzException"/>
-        public static void ReadDatabaseFile(FileInfo file, List<TzRule> rules, List<TzZone> zones, List<string[]> links)
+        public static void ReadDatabaseFile(string[] lines, List<TzRule> rules, List<TzZone> zones, List<string[]> links)
         {
-            string[] lines = System.IO.File.ReadAllLines(file.FullName);
             TzZone tempZone;
             int length = lines.Length;
             for (int i = 0; i < length; i++)
@@ -142,67 +111,6 @@ namespace PublicDomain
                     }
                 }
             }
-        }
-
-        private static TzZone FindTzDataZone(List<TzZone> zones, string zoneName)
-        {
-            foreach (TzZone zone in zones)
-            {
-                if (zone.ZoneName.Equals(zoneName))
-                {
-                    return zone;
-                }
-            }
-            throw new TzParseException("Could not find LINKed zone {0}", zoneName);
-        }
-
-        /// <summary>
-        /// Parses the tz database iso3166.tab file and returns a map
-        /// which maps the ISO 3166 two letter country code to the
-        /// country name.
-        /// </summary>
-        /// <param name="iso3166TabFile">The iso3166 tab file.</param>
-        /// <returns></returns>
-        public static Dictionary<string, Iso3166> ParseIso3166Tab(string iso3166TabFile)
-        {
-            Dictionary<string, Iso3166> map = new Dictionary<string, Iso3166>();
-            string[] lines = System.IO.File.ReadAllLines(iso3166TabFile);
-            foreach (string line in lines)
-            {
-                if (!string.IsNullOrEmpty(line) && line[0] != '#')
-                {
-                    // We expect two characters for the country code,
-                    // followed by the country name
-                    Iso3166 iso = new Iso3166(line.Substring(0, 2), line.Substring(2).Trim());
-                    map[iso.TwoLetterCode] = iso;
-                }
-            }
-            return map;
-        }
-
-        /// <summary>
-        /// Parses the tz database zone.tab file into all the zone descriptions.
-        /// 
-        /// From 'Theory' file:
-        /// "The file 'zone.tab' lists the geographical locations used to name
-        /// time zone rule files.  It is intended to be an exhaustive list
-        /// of canonical names for geographic regions."
-        /// </summary>
-        /// <param name="tabFile"></param>
-        /// <returns></returns>
-        public static List<PublicDomain.TzTimeZone.TzZoneDescription> ParseZoneTab(string tabFile)
-        {
-            List<PublicDomain.TzTimeZone.TzZoneDescription> result = new List<PublicDomain.TzTimeZone.TzZoneDescription>();
-            string[] lines = System.IO.File.ReadAllLines(tabFile);
-            foreach (string line in lines)
-            {
-                if (!string.IsNullOrEmpty(line) && line[0] != '#')
-                {
-                    string[] pieces = line.Split('\t');
-                    result.Add(new PublicDomain.TzTimeZone.TzZoneDescription(pieces[0], Iso6709.Parse(pieces[1]), pieces[2], pieces.Length > 3 ? pieces[3] : null));
-                }
-            }
-            return result;
         }
 
         /// <summary>

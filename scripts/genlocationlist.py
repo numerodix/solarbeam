@@ -28,9 +28,13 @@ class Location(object):
 
         self.timezone = None # init timezone field
     def __str__(self):
-        s = "%s %s %s %s" % (self.region.ljust(25), self.country.ljust(20),
-                                          self.name.ljust(20),
-                                          self.timezone)
+        fst = str(self.name)
+        snd = str(self.country)
+        thd = str(self.region)
+        frh = str(self.pop)
+        fih = str(self.timezone)
+        s = "%s %s %s %s %s" % (fst.ljust(25), snd.ljust(20), thd.ljust(20),
+                            frh.ljust(20), fih)
         return s
     def getcountry(self):
         c = self.country
@@ -38,6 +42,7 @@ class Location(object):
         c = string.replace(c, "El Salvador", "ElS")
         c = string.replace(c, "Korea (North)", "NKo")
         c = string.replace(c, "Korea (South)", "SKo")
+        c = string.replace(c, "New Zealand", "NZ")
         c = string.replace(c, "South Africa", "SA")
         c = string.replace(c, "United Arab Emirates", "UAE")
         c = string.replace(c, "United Kingdom", "UK")
@@ -126,7 +131,7 @@ class Location(object):
         uname = string.replace(uname, unicode("ž", "utf-8"), "z")
         uname = string.replace(uname, unicode("Ẕ", "utf-8"), "Z")
 
-        # use more common names
+        # use more common names (english wikipedia as reference)
         uname = string.replace(uname, "'Adan", "Adan")
         uname = string.replace(uname, "'Ajman", "Ajman")
         uname = string.replace(uname, "'Amman", "Amman")
@@ -164,7 +169,10 @@ class Location(object):
         uname = string.replace(uname, "at-Ta'if", "Taif")
         uname = string.replace(uname, "az-Zarqa'", "Zarqa")
         uname = string.replace(uname, "az-Zawiyah", "Az Zawiyah")
+        uname = string.replace(uname, "Ba'qubah", "Baqubah")
+        uname = string.replace(uname, "Bandar-e 'Abbas", "Bandar Abbas")
         uname = string.replace(uname, "Bayrut", "Beirut")
+        uname = string.replace(uname, "Dniprodzerzhyns'k", "Dniprodzerzhynsk")
         uname = string.replace(uname, "Dnipropetrovs'k", "Dnipropetrovsk")
         uname = string.replace(uname, "Elx", "Elche")
         uname = string.replace(uname, "Fes", "Fez")
@@ -173,8 +181,14 @@ class Location(object):
         uname = string.replace(uname, "Gizeh", "Giza")
         uname = string.replace(uname, "Ha Noi", "Hanoi")
         uname = string.replace(uname, "Homjel'", "Homjel")
+        uname = string.replace(uname, "Ivano-Frankivs'k", "Ivano-Frankivsk")
         uname = string.replace(uname, "Jiddah", "Jeddah")
+        uname = string.replace(uname, "Karbala'", "Karbala")
+        uname = string.replace(uname, "Khmel'nyts'kyy", "Khmelnytskyi")
+        uname = string.replace(uname, "Kobenhavn", "Copenhagen")
+        uname = string.replace(uname, "Luhans'k", "Luhansk")
         uname = string.replace(uname, "L'viv", "Lvov")
+        uname = string.replace(uname, "Mariupol'", "Mariupol")
         uname = string.replace(uname, "Nuremberg", "Nurnberg")
         uname = string.replace(uname, "Qaragandy", "Karaganda")
         uname = string.replace(uname, "Qostanay", "Kostanay")
@@ -183,9 +197,14 @@ class Location(object):
         uname = string.replace(uname, "Porsgrunn-Skien", "Porsgrunn")
         uname = string.replace(uname, "Pyeongyang", "Pyongyang")
         uname = string.replace(uname, "s-Gravenhage", "Den Haag")
+        uname = string.replace(uname, "Sevastopol'", "Sevastopol")
+        uname = string.replace(uname, "Simferopol'", "Simferopol")
         uname = string.replace(uname, "Stavanger-Sandnes", "Stavanger")
         uname = string.replace(uname, "Taibei", "Taipei")
         uname = string.replace(uname, "Ta'izz", "Taiz")
+        uname = string.replace(uname, "Taegu", "Daegu")
+        uname = string.replace(uname, "Tel Aviv-Yafo", "Tel Aviv")
+        uname = string.replace(uname, "Ternopil'", "Ternopil")
         uname = string.replace(uname, "Ulaanbaatar", "Ulan Bator")
 
         # do this last to prevent overwriting all common prefixes
@@ -258,10 +277,12 @@ def compile(lines):
 
 def killdupes(locs):
     d = {}
+    ls = []
     for loc in locs:
         if loc.name not in d:
             d[loc.name] = loc
-    return d.values()
+            ls.append(loc)
+    return ls
 
 def filtermissingpos(locs):
     return filter(lambda x: x.lat != None and x.lon != None, locs)
@@ -317,6 +338,7 @@ zones = {
     "China": "Asia/Shanghai",
     "Colombia": "America/Bogota",
     "Congo": "Africa/Brazzaville",
+    "Costa Rica": "America/Costa_Rica",
     "Croatia": "Europe/Zagreb",
     "Cuba": "America/Havana",
     "Cyprus": "Europe/Nicosia",
@@ -440,6 +462,7 @@ zones = {
 
     # Regional
     
+    "Western Australia": "Australia/Perth",
     # Australia +9:30
     "South Australia": "Australia/Adelaide",
     # Australia +10
@@ -469,9 +492,11 @@ zones = {
     "Tucumán": "America/Argentina/Tucuman",
 
     # Brazil
+    "Tocantins": "America/Araguaina",
     "Bahia": "America/Bahia",
     "Amapá": "America/Belem",
     "Ananindeua (Bra)": "America/Belem",
+    "Pará": "America/Belem",
     "Roraima": "America/Boa_Vista",
     "Mato Grosso do Sul": "America/Campo_Grande",
     "Mato Grosso": "America/Cuiaba",
@@ -658,26 +683,39 @@ zones = {
     "Udmurtija": "Europe/Samara",
     "Alanija": "Europe/Volgograd",
     "Astrahan": "Europe/Volgograd",
+    "Kirov": "Europe/Volgograd",
     "Saratov": "Europe/Volgograd",
     "Volgograd": "Europe/Volgograd",
 
     # United States
+    "Anchorage (USA)": "America/Anchorage",
     "Alabama": "America/Chicago",
     "Illinois": "America/Chicago",
     "Indiana": "America/Chicago",
     "Kansas": "America/Chicago",
     "Louisiana": "America/Chicago",
+    "Memphis (USA)": "America/Chicago",
+    "Minnesota": "America/Chicago",
+    "Missouri": "America/Chicago",
+    "Nashville (USA)": "America/Chicago",
+    "Nebraska": "America/Chicago",
     "Oklahoma": "America/Chicago",
     "Texas": "America/Chicago",
     "Wisconsin": "America/Chicago",
     "Colorado": "America/Denver",
     "New Mexico": "America/Denver",
+    "Michigan": "America/Detroit",
     "Hawaii": "Pacific/Honolulu",
+    "Louisville (USA)": "America/Kentucky/Louisville",
     "California": "America/Los_Angeles",
     "Nevada": "America/Los_Angeles",
+    "Portland (USA)": "America/Los_Angeles",
     "Washington": "America/Los_Angeles",
+    "District of Columbia": "America/New_York",
     "Florida": "America/New_York",
+    "Kentucky": "America/New_York",
     "Maryland": "America/New_York",
+    "Massachusetts": "America/New_York",
     "New Jersey": "America/New_York",
     "New York": "America/New_York",
     "North Carolina": "America/New_York",
@@ -780,21 +818,17 @@ if __name__ == "__main__":
 
     # do some filtering
     locs = filtercat(locs, "locality")
-    locs = killdupes(locs)
     locs = sortpop(locs)
+    locs = killdupes(locs)
     locs = filtermissingpos(locs)
 
-    # 2000 world, 25 Norway
+    # 2000 world, 100 Norway
     final_locs = filternotcountry(locs, "Norway")[:2000]
-    nor_locs = filtercountry(locs, "Norway")[:25]
+    nor_locs = filtercountry(locs, "Norway")[:100]
     final_locs.extend(nor_locs)
     final_locs.append(getequatorloc())
 
     final_locs = sortname(final_locs)
 #    final_locs = sortcountry(final_locs)
-#    for loc in final_locs:
-#        codegen(loc)
-#        print loc
     print(codegen(final_locs))
-    for loc in final_locs:
-        sys.stderr.write("%s\n" % loc)
+    for loc in final_locs: sys.stderr.write("%s\n" % loc)

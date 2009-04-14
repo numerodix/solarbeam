@@ -3,6 +3,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 using LibSolar.SolarOrbit;
@@ -91,6 +92,19 @@ namespace SolarbeamGui
 			}
 			SetValue(registry[Id.SOLAR_NOON], FormatTime(st.Noon));
 			SetValue(registry[Id.DAY_LENGTH], FormatDayLength(st, sp));
+		}
+		
+		public static void SetImage(Component control, string img)
+		{
+			if (control is Label) {
+				((Label) control).Image = new Bitmap(Controller.AsmInfo.GetResource(img));
+			}
+		}
+		
+		public static void UpdateTooltip(Component control, string tip)
+		{
+			Id id = reg_rev[control];
+			tooltips[id].SetToolTip((Control) control, tip);
 		}
 	
 		public static void SetValue(Component control, object val)

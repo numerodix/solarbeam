@@ -2,6 +2,11 @@ SolarBeam is released under the GPL license, see the LICENSE file. In
 addition, the program uses a number of third party libraries under various
 licenses:
 
+* astronomy algorithms for solar position
+
+The code in libsolar/SolarOrbit/Orbit.cs is a port of the javascript code
+offered at http://www.srrb.noaa.gov/highlights/sunrise/calcdetails.html.
+
 * the program's collection of geographic locations
 
 The collection was generated using data obtained freely from
@@ -12,7 +17,7 @@ coordinates. Timezone data per location was compiled by SolarBeam.
 * zoneinfo
 
 This is timezone data generated from the zoneinfo timezone database in the
-public domain, see http://www.twinsun.com/tz/tz-link.htm.
+Public Domain, see http://www.twinsun.com/tz/tz-link.htm.
 
 * libpublicdomain
 
@@ -37,3 +42,6 @@ under its own license, see http://www.nunit.org/index.php?p=license&r=2.4.8.
 The icons used in the program are from the "oxygen" icon theme in KDE and were
 obtained freely from http://www.oxygen-icons.org/. It is released under the
 LGPL, see http://www.gnu.org/licenses/lgpl.html.
+
+Some icons have also been used from http://openclipart.org, under Public
+Domain.

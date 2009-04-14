@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.IO;
 
 using LibSolar.Locations;
-using LibSolar.Serialization;
 using LibSolar.Types;
+using LibSolar.Util;
 
 namespace SolarbeamGui
 {
@@ -14,7 +14,7 @@ namespace SolarbeamGui
 	{
 		private List<string> locations_list;
 		private LocationList list;
-		private string file = "locations.bin";
+		private string file = Formatter.LocationListFilename;
 		
 		public LocationsSource()
 		{

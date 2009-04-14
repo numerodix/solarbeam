@@ -34,10 +34,8 @@ namespace SolarbeamGui
 			Position pos = null;
 			// try to instantiate type, otherwise mark inputs as erroneous
 			try {
-				pos = new Position(ladir,
-				                   ladeg, lamin, lasec,
-				                   lodir,
-				                   lodeg, lomin, losec);
+				pos = new Position(ladir, ladeg, lamin, lasec,
+				                   lodir, lodeg, lomin, losec);
 			} catch (ArgumentException) {
 				MarkError(ins_position);
 			}
@@ -56,13 +54,12 @@ namespace SolarbeamGui
 			int min = GetInt(GetValue(registry[Id.TIME_MINUTE]));
 			int sec = GetInt(GetValue(registry[Id.TIME_SECOND]));
 			
-			DateTime? date = null;
 			UTCDate? udt = null;
 			// try to instantiate type, otherwise mark inputs as erroneous
 			try {
-				date = new DateTime(year, month, day,
-				                    hour, min, sec, DateTimeKind.Local);
-				udt = Controller.TimezoneSource.ApplyZone(tz_name, date.Value);
+				DateTime dt = new DateTime(year, month, day, hour, min, sec,
+				                           DateTimeKind.Local);
+				udt = TimezoneSource.GetUTCDate(tz_name, dt);
 			} catch (ArgumentException) {
 				MarkError(ins_timedate);
 			}

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using LibSolar.Graphing;
 using LibSolar.Types;
+using LibSolar.Util;
 
 namespace SolarbeamGui
 {
@@ -18,11 +19,45 @@ namespace SolarbeamGui
 	 */
 	partial class Controller
 	{
+		private static void SaveSession(object sender, EventArgs args)
+		{
+			string location = GetValue(registry[Id.LOCATION]);
+			Position pos = ReadPosition();
+			UTCDate? date = ReadDate();
+			
+			if ((pos != null) && (date != null)) {
+				UTCDate dt = date.Value;
+				
+				string filename = Formatter.FormatSessionFilename(location, pos, dt);
+				SaveFileDialog dlg = Widgets.GetSaveFileDialog(filename,
+				                                               Formatter.SessionFileDesc,
+				                                               Formatter.SessionFileFilter);
+				DialogResult ans = dlg.ShowDialog();
+				filename = dlg.FileName;
+				
+				if (ans == DialogResult.OK) {
+					WriteSession(filename);
+				}
+			}
+		}
+		
+		private static void LoadSession(object sender, EventArgs args)
+		{
+			OpenFileDialog dlg = Widgets.GetOpenFileDialog(Formatter.SessionFileDesc,
+			                                               Formatter.SessionFileFilter);
+			DialogResult ans = dlg.ShowDialog();
+			string filename = dlg.FileName;
+			
+			if (ans == DialogResult.OK) {
+				ReadSession(filename);
+			}
+		}
+		
 		private static void Exit(object sender, EventArgs args)
 		{
 			MainGui.Quit();
 		}
-		
+			
 		private static void NewLocation(object sender, EventArgs args)
 		{
 			ComboBox loc_control = (ComboBox) registry[Id.LOCATION];
@@ -78,6 +113,11 @@ namespace SolarbeamGui
 			// move selection to item below in the list
 			idx = Math.Max(0, idx - 1);
 			control.SelectedIndex = idx;
+		}
+		
+		private static void SetTimeNow(object sender, EventArgs args)
+		{
+			SetDateTime(DateTime.Now);
 		}
 		
 		/**
@@ -155,10 +195,10 @@ namespace SolarbeamGui
 			if ((pos != null) && (date != null)) {
 				UTCDate dt = date.Value;
 				
-				string filename = FormatFilename(location, pos, dt) + ".png";
+				string filename = Formatter.FormatImgFilename(location, pos, dt);
 				SaveFileDialog dlg = Widgets.GetSaveFileDialog(filename,
-				                                               "Png images",
-				                                               "*.png");
+				                                               Formatter.ImageFileDesc,
+				                                               Formatter.ImageFileFilter);
 				DialogResult ans = dlg.ShowDialog();
 				filename = dlg.FileName;
 			
@@ -181,6 +221,31 @@ namespace SolarbeamGui
 			GuiMainForm.aboutform.Close();
 		}
 	
+		private static void UpdateDSTStatus(object sender, EventArgs args)
+		{
+			try { // handle trigger before all controls have been registered
+				if (!validate_lock) { // don't read while validating
+					UTCDate? n_udt = ReadDate();
+					
+					if (n_udt != null) {
+						UTCDate udt = n_udt.Value;
+						DSTStatus status = TimezoneSource.GetDSTStatus(udt);
+						
+						string img = "dst-status-nodst.png";
+						switch (status) {
+						case DSTStatus.Standard:
+							img = "dst-status-standard.png"; break;
+						case DSTStatus.Daylight:
+							img = "dst-status-daylight.png"; break;
+						}
+						SetImage(registry[Id.DATE_DSTSTATUS], img);
+						
+						string tip = Tooltips.GetTipDst(status);
+						UpdateTooltip(registry[Id.DATE_DSTSTATUS], tip);
+					}
+				}
+			} catch (KeyNotFoundException) {}
+		}
 	
 		/**
 		 * Handle updates to controls that force viewport re-rendering by marking

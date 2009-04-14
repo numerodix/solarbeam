@@ -13,13 +13,17 @@ namespace SolarbeamGui
 		volatile public bool expired = false; // atomic reads/writes
 		public Label label;
 		
-		public GuiSplash()
+		public GuiSplash(string form_title)
 		{
-			InitializeComponent();
+			InitializeComponent(form_title);
 		}
 		
-		private void InitializeComponent()
+		private void InitializeComponent(string form_title)
 		{
+			this.DoubleBuffered = true; // prevent flicker on updates
+			this.Text = form_title;
+			this.Icon = new Icon(Controller.AsmInfo.GetResource("solarbeam.ico"));
+			
 			Bitmap logo = new Bitmap(Controller.AsmInfo.GetResource("logo.png"));
 			this.BackgroundImage = logo;
 			
@@ -36,32 +40,24 @@ namespace SolarbeamGui
 			label.BackColor = Color.White;
 			label.ForeColor = Color.OrangeRed;
 			this.Controls.Add(label);
-			
-			this.DoubleBuffered = true; // prevent flicker on updates
 		}
 		
 		public void Launch()
 		{
-//			Console.WriteLine("splash :: init");
 			this.Show();
+			this.Activate(); // bring to front
 			Application.DoEvents();
 			
 			while (!expired) {
-//				Console.WriteLine("splash :: >> TICK");
 				Thread.Sleep(100);
 				if (Controller.SplashQueue.Count > 0) {
 					string msg = Controller.SplashQueue.Dequeue();
-//					Console.WriteLine("splash dequeue :: {0}", msg);
 					label.Text = msg + "...";
 					Application.DoEvents();
 				}
-//				Console.WriteLine("splash :: << TICK");
 			}
 			
-//			Console.WriteLine("splash :: start close");
 			this.Close();
-			this.Dispose();
-//			Console.WriteLine("splash :: end close");
 		}
 	}
 }

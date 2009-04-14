@@ -5,8 +5,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-using LibSolar.Serialization;
 using LibSolar.Types;
+using LibSolar.Util;
 
 namespace LibSolar.Locations
 {
