@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link type="text/css" href="styles.css" rel="stylesheet"/>
-	<link rel="icon" type="image/png" href="imgs/solarbeam48.png"/>
+	<link rel="icon" type="image/png" href="imgs/favicon.png"/>
 	<title>SolarBeam</title>
 </head>
 <body>
