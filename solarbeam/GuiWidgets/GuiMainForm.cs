@@ -28,12 +28,12 @@ namespace SolarbeamGui
 		private GuiControlPanel controlpanel;
 		private GuiViewport viewport;
 		
-		public GuiMainForm(string form_title)
+		public GuiMainForm(string form_title, string icon)
 		{
 			//		this.SuspendLayout();
 			
-			InitializeComponent(form_title);
-			aboutform = new GuiAbout(form_title);
+			InitializeComponent(form_title, icon);
+			aboutform = new GuiAbout(form_title, icon);
 
 			// makes mono layout differently 1.9 <-> 2.0
 			// VS default: 6F 13F (win ok)
@@ -47,11 +47,11 @@ namespace SolarbeamGui
 	//		this.PerformLayout();
 		}
 		
-		private void InitializeComponent(string form_title)
+		private void InitializeComponent(string form_title, string icon)
 		{
 			this.DoubleBuffered = true;
 			this.Text = form_title;
-			this.Icon = new Icon(Controller.AsmInfo.GetResource("solarbeam.ico"));
+			this.Icon = new Icon(Controller.AsmInfo.GetResource(icon));
 			
 			// init datasources before instantiating widgets
 			Controller.InitSources();

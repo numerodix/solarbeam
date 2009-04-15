@@ -12,13 +12,17 @@ namespace SolarbeamGui
 {
 	sealed class GuiAbout : Form
 	{
-		public GuiAbout(string app_title)
+		public GuiAbout(string app_title, string icon)
 		{
-			InitializeComponent(app_title);
+			InitializeComponent(app_title, icon);
 		}
 		
-		public void InitializeComponent(string app_title)
+		public void InitializeComponent(string app_title, string icon)
 		{	
+			this.DoubleBuffered = true;
+			this.Text = "About " + app_title;
+			this.Icon = new Icon(Controller.AsmInfo.GetResource(icon));
+			
 			Control logo = GetLogo();
 			Control tabs = GetTabs();
 			int tabs_height = 180;
@@ -41,8 +45,6 @@ namespace SolarbeamGui
 			
 			this.Controls.Add(table);
 			
-			this.DoubleBuffered = true;
-			this.Text = "About " + app_title;
 			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 			this.StartPosition = FormStartPosition.CenterParent;
 			this.ClientSize = new Size(logo.Width + 2*3,
