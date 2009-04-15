@@ -15,7 +15,16 @@ body {
 	height: 100%;
 }
 
+img {
+	border-width: 0;
+}
+
 .header {
+	margin-left: 230px;
+	padding-top: 4px;
+}
+
+.header img {
 	margin: 0px auto;
 	text-align: center;
 }
@@ -38,8 +47,12 @@ body {
 }
 
 .content {
-	font-size: 120%;
 	margin-left: 230px;
+	font-size: 120%;
+}
+
+.content a {
+	color: #ff7642;
 }
 
 h1 {
