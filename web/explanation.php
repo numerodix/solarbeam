@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
 <head>
-	<link type="text/css" href="styles.css" rel="stylesheet">
+	<link type="text/css" href="styles.css" rel="stylesheet"/>
+	<link rel="icon" type="image/png" href="imgs/solarbeam48.png"/>
 	<title>SolarBeam</title>
 </head>
 <body>
