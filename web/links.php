@@ -14,6 +14,14 @@
 
 	<div class="content">
 		<h1>Links</h1>
+
+		<h2>SolarBeam</h2>
+		<dl>
+			<dt><a href="https://sourceforge.net/projects/solarbeam/">Sourceforge.net</a></dt>
+			<dd>SolarBeam proejct on sourceforge.net.</dd>
+		</dl>
+
+		<h2>Useful links</h2>
 		<dl>
 			<dt><a href="http://www.gaisma.com">Gaisma</a></dt>
 			<dd>Sunrise, sunset, dawn and dusk times around the world.</dd>
