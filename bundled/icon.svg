@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   width="169"
+   height="169"
+   version="1.0"
+   sodipodi:docname="solarbeam-better.svg"
+   style="display:inline"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   enable-background="new"
+   inkscape:export-filename="/alex/code/solarbeam/bundled/solarbeam-better.png"
+   inkscape:export-xdpi="798.82001"
+   inkscape:export-ydpi="798.82001">
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs5">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="6.1230318e-14 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective9" />
+    <inkscape:perspective
+       id="perspective2616"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     inkscape:window-height="926"
+     inkscape:window-width="1599"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     showgrid="false"
+     inkscape:zoom="2.4507234"
+     inkscape:cx="103.93334"
+     inkscape:cy="80.274447"
+     inkscape:window-x="57"
+     inkscape:window-y="17"
+     inkscape:current-layer="layer6"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="bg"
+     style="opacity:1;display:inline">
+    <g
+       id="g2419"
+       transform="translate(-13.722649,0.3421075)">
+      <path
+         id="path3887"
+         d="M -22.789711,-36.854465 L 219.23501,-36.854465 L 219.23501,205.17025 L -22.789711,205.17025 L -22.789711,-36.854465 z"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline" />
+      <path
+         id="path3889"
+         d="M 160.99896,84.157897 C 160.99896,118.81042 132.87518,146.9342 98.222649,146.9342 C 63.570127,146.9342 35.44634,118.81042 35.44634,84.157897 C 35.44634,49.505373 63.570127,21.381587 98.222649,21.381587 C 132.87518,21.381587 160.99896,49.505373 160.99896,84.157897 z"
+         style="fill:#ff7f00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline" />
+      <path
+         id="path3891"
+         d="M 144.57791,82.157894 C 144.57791,107.746 123.81076,128.51315 98.222649,128.51315 C 72.634544,128.51315 51.867386,107.746 51.867386,82.157894 C 51.867386,56.569789 72.634544,35.802631 98.222649,35.802631 C 123.81076,35.802631 144.57791,56.569789 144.57791,82.157894 z"
+         style="fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline" />
+      <path
+         id="path3893"
+         d="M 132.60422,84.157894 C 132.60422,103.13653 117.20128,118.53947 98.222648,118.53947 C 79.244017,118.53947 63.84107,103.13653 63.84107,84.157894 C 63.84107,65.179262 79.244017,49.776315 98.222648,49.776315 C 117.20128,49.776315 132.60422,65.179262 132.60422,84.157894 z"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline" />
+      <path
+         inkscape:export-ydpi="111.56"
+         inkscape:export-xdpi="111.56"
+         inkscape:export-filename="/alex/code/solarbeam/bundled/rect2386.png"
+         id="path3895"
+         d="M 123.02528,84.157893 C 123.02528,97.66393 111.9137,108.62536 98.222649,108.62536 C 84.531596,108.62536 73.420017,97.66393 73.420017,84.157893 C 73.420017,70.651855 84.531596,59.690433 98.222649,59.690433 C 111.9137,59.690433 123.02528,70.651855 123.02528,84.157893 z"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="red"
+     style="display:none" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="orange"
+     style="display:none" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="yellow"
+     style="opacity:1;display:none" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer8"
+     inkscape:label="white clone"
+     style="display:none">
+    <path
+       style="opacity:1;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline"
+       d="M -22.789711,-36.854465 L 219.23501,-36.854465 L 219.23501,205.17025 L -22.789711,205.17025 L -22.789711,-36.854465 z"
+       id="path3912" />
+    <path
+       style="opacity:1;fill:#ff7f00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline"
+       d="M 160.99896,84.157897 C 160.99896,118.81042 132.87518,146.9342 98.222649,146.9342 C 63.570127,146.9342 35.44634,118.81042 35.44634,84.157897 C 35.44634,49.505373 63.570127,21.381587 98.222649,21.381587 C 132.87518,21.381587 160.99896,49.505373 160.99896,84.157897 z"
+       id="path3914" />
+    <path
+       style="opacity:1;fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline"
+       d="M 144.57791,82.157894 C 144.57791,107.746 123.81076,128.51315 98.222649,128.51315 C 72.634544,128.51315 51.867386,107.746 51.867386,82.157894 C 51.867386,56.569789 72.634544,35.802631 98.222649,35.802631 C 123.81076,35.802631 144.57791,56.569789 144.57791,82.157894 z"
+       id="path3916" />
+    <path
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline"
+       d="M 132.60422,84.157894 C 132.60422,103.13653 117.20128,118.53947 98.222648,118.53947 C 79.244017,118.53947 63.84107,103.13653 63.84107,84.157894 C 63.84107,65.179262 79.244017,49.776315 98.222648,49.776315 C 117.20128,49.776315 132.60422,65.179262 132.60422,84.157894 z"
+       id="path3918" />
+    <path
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline"
+       d="M 123.02528,84.157893 C 123.02528,97.66393 111.9137,108.62536 98.222649,108.62536 C 84.531596,108.62536 73.420017,97.66393 73.420017,84.157893 C 73.420017,70.651855 84.531596,59.690433 98.222649,59.690433 C 111.9137,59.690433 123.02528,70.651855 123.02528,84.157893 z"
+       id="path3920"
+       inkscape:export-filename="/alex/code/solarbeam/bundled/rect2386.png"
+       inkscape:export-xdpi="111.56"
+       inkscape:export-ydpi="111.56" />
+    <path
+       style="fill:#dc1c20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline"
+       d="M -22.789711,-36.854465 L 219.23501,-36.854465 L 219.23501,205.17025 L -22.789711,205.17025 L -22.789711,-36.854465 z"
+       id="path3922" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline"
+       d="M 160.99896,84.157897 C 160.99896,118.81042 132.87518,146.9342 98.222649,146.9342 C 63.570127,146.9342 35.44634,118.81042 35.44634,84.157897 C 35.44634,49.505373 63.570127,21.381587 98.222649,21.381587 C 132.87518,21.381587 160.99896,49.505373 160.99896,84.157897 z"
+       id="path3924" />
+    <path
+       style="fill:#ff7f00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline"
+       d="M 144.57791,82.157894 C 144.57791,107.746 123.81076,128.51315 98.222649,128.51315 C 72.634544,128.51315 51.867386,107.746 51.867386,82.157894 C 51.867386,56.569789 72.634544,35.802631 98.222649,35.802631 C 123.81076,35.802631 144.57791,56.569789 144.57791,82.157894 z"
+       id="path3926" />
+    <path
+       style="fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline"
+       d="M 132.60422,84.157894 C 132.60422,103.13653 117.20128,118.53947 98.222648,118.53947 C 79.244017,118.53947 63.84107,103.13653 63.84107,84.157894 C 63.84107,65.179262 79.244017,49.776315 98.222648,49.776315 C 117.20128,49.776315 132.60422,65.179262 132.60422,84.157894 z"
+       id="path3928" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline"
+       d="M 123.02528,84.157893 C 123.02528,97.66393 111.9137,108.62536 98.222649,108.62536 C 84.531596,108.62536 73.420017,97.66393 73.420017,84.157893 C 73.420017,70.651855 84.531596,59.690433 98.222649,59.690433 C 111.9137,59.690433 123.02528,70.651855 123.02528,84.157893 z"
+       id="path3930"
+       inkscape:export-filename="/alex/code/solarbeam/bundled/rect2386.png"
+       inkscape:export-xdpi="111.56"
+       inkscape:export-ydpi="111.56" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="white"
+     style="display:inline">
+    <g
+       id="g2410"
+       transform="matrix(0.9890444,-0.1476183,0.1476183,0.9890444,-25.081149,15.766897)">
+      <path
+         inkscape:export-ydpi="111.56"
+         inkscape:export-xdpi="111.56"
+         id="rect2386"
+         d="M -17.71875,-36.84375 L 94.71875,75.6875 L 94.71875,-36.84375 L -17.71875,-36.84375 z M 101.71875,-36.84375 L 101.71875,75.71875 L 214.40625,-36.84375 L 101.71875,-36.84375 z M -22.78125,-31.96875 L -22.78125,80.65625 L 89.78125,80.65625 L -22.78125,-31.96875 z M 219.25,-31.75 L 106.6875,80.65625 L 219.25,80.65625 L 219.25,-31.75 z M -22.78125,87.65625 L -22.78125,200.0625 L 89.75,87.65625 L -22.78125,87.65625 z M 106.65625,87.65625 L 219.25,200.34375 L 219.25,87.65625 L 106.65625,87.65625 z M 94.71875,92.625 L -17.96875,205.15625 L 94.71875,205.15625 L 94.71875,92.625 z M 101.71875,92.625 L 101.71875,205.15625 L 214.1875,205.15625 L 101.71875,92.625 z"
+         style="fill:#dc1c20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline" />
+      <path
+         inkscape:export-ydpi="111.56"
+         inkscape:export-xdpi="111.56"
+         inkscape:export-filename="/alex/code/solarbeam/bundled/rect2386.png"
+         id="path3206"
+         d="M 94.71875,21.5 C 80.03827,22.310928 66.696958,28.140118 56.40625,37.34375 L 94.71875,75.6875 L 94.71875,21.5 z M 101.71875,21.5 L 101.71875,75.71875 L 140.09375,37.375 C 129.79859,28.154455 116.41486,22.311792 101.71875,21.5 z M 51.46875,42.3125 C 42.241677,52.609372 36.374625,65.954116 35.5625,80.65625 L 89.78125,80.65625 L 51.46875,42.3125 z M 145.03125,42.375 L 106.6875,80.65625 L 160.875,80.65625 C 160.0646,65.985667 154.22419,52.662867 145.03125,42.375 z M 35.5625,87.65625 C 36.372965,102.32834 42.211692,115.68044 51.40625,125.96875 L 89.75,87.65625 L 35.5625,87.65625 z M 106.65625,87.65625 L 145,126.03125 C 154.22052,115.73612 160.06319,102.35232 160.875,87.65625 L 106.65625,87.65625 z M 94.71875,92.625 L 56.375,130.90625 C 66.672192,140.13461 80.015447,146.00029 94.71875,146.8125 L 94.71875,92.625 z M 101.71875,92.625 L 101.71875,146.8125 C 116.39081,146.00201 129.74296,140.16329 140.03125,130.96875 L 101.71875,92.625 z"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline" />
+      <path
+         inkscape:export-ydpi="111.56"
+         inkscape:export-xdpi="111.56"
+         inkscape:export-filename="/alex/code/solarbeam/bundled/rect2386.png"
+         id="path3267"
+         d="M 94.71875,35.9375 C 84.063695,36.738028 74.403213,41.141425 66.96875,47.9375 L 94.71875,75.6875 L 94.71875,35.9375 z M 101.71875,35.9375 L 101.71875,75.71875 L 129.5,47.96875 C 122.05775,41.152661 112.39518,36.736221 101.71875,35.9375 z M 62.1875,53.03125 C 56.03657,60.629784 52.241001,70.206817 51.90625,80.65625 L 89.78125,80.65625 L 62.1875,53.03125 z M 134.3125,53.0625 L 106.6875,80.65625 L 144.53125,80.65625 C 144.19692,70.222604 140.44711,60.655489 134.3125,53.0625 z M 52.1875,87.65625 C 53.353582,97.520307 57.603151,106.4363 63.96875,113.40625 L 89.75,87.65625 L 52.1875,87.65625 z M 106.65625,87.65625 L 132.40625,113.4375 C 138.79625,106.46048 143.08123,97.543084 144.25,87.65625 L 106.65625,87.65625 z M 94.71875,92.625 L 69.09375,118.21875 C 76.202895,123.97352 85.051452,127.64868 94.71875,128.375 L 94.71875,92.625 z M 101.71875,92.625 L 101.71875,128.375 C 111.36965,127.653 120.2081,123.98508 127.3125,118.25 L 101.71875,92.625 z"
+         style="fill:#ff7f00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline" />
+      <path
+         inkscape:export-ydpi="111.56"
+         inkscape:export-xdpi="111.56"
+         inkscape:export-filename="/alex/code/solarbeam/bundled/rect2386.png"
+         id="path3270"
+         d="M 94.71875,49.96875 C 87.872065,50.66476 81.593134,53.350456 76.53125,57.46875 L 94.71875,75.6875 L 94.71875,49.96875 z M 101.71875,49.96875 L 101.71875,75.71875 L 119.9375,57.5 C 114.86208,53.359989 108.59278,50.661322 101.71875,49.96875 z M 71.5625,62.4375 C 67.428655,67.505363 64.728819,73.794233 64.03125,80.65625 L 89.78125,80.65625 L 71.5625,62.4375 z M 124.90625,62.46875 L 106.6875,80.65625 L 132.4375,80.65625 C 131.7414,73.808632 129.02549,67.530999 124.90625,62.46875 z M 64.03125,87.65625 C 64.72726,94.502937 67.412957,100.78187 71.53125,105.84375 L 89.75,87.65625 L 64.03125,87.65625 z M 106.65625,87.65625 L 124.875,105.875 C 129.00964,100.80683 131.73985,94.519056 132.4375,87.65625 L 106.65625,87.65625 z M 94.71875,92.625 L 76.5,110.8125 C 81.568168,114.94714 87.855946,117.67735 94.71875,118.375 L 94.71875,92.625 z M 101.71875,92.625 L 101.71875,118.375 C 108.57841,117.68389 114.83642,114.96916 119.90625,110.84375 L 101.71875,92.625 z"
+         style="fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline" />
+      <path
+         inkscape:export-ydpi="111.56"
+         inkscape:export-xdpi="111.56"
+         inkscape:export-filename="/alex/code/solarbeam/bundled/rect2386.png"
+         style="fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline"
+         d="M 94.81875,49.96875 C 87.972065,50.66476 81.693134,53.350456 76.63125,57.46875 L 94.81875,75.6875 L 94.81875,49.96875 z M 101.81875,49.96875 L 101.81875,75.71875 L 120.0375,57.5 C 114.96208,53.359989 108.69278,50.661322 101.81875,49.96875 z M 71.6625,62.4375 C 67.528655,67.505363 64.828819,73.794233 64.13125,80.65625 L 89.88125,80.65625 L 71.6625,62.4375 z M 125.00625,62.46875 L 106.7875,80.65625 L 132.5375,80.65625 C 131.8414,73.808632 129.12549,67.530999 125.00625,62.46875 z M 64.13125,87.65625 C 64.82726,94.502937 67.512957,100.78187 71.63125,105.84375 L 89.85,87.65625 L 64.13125,87.65625 z M 106.75625,87.65625 L 124.975,105.875 C 129.10964,100.80683 131.83985,94.519056 132.5375,87.65625 L 106.75625,87.65625 z M 94.81875,92.625 L 76.6,110.8125 C 81.668168,114.94714 87.955946,117.67735 94.81875,118.375 L 94.81875,92.625 z M 101.81875,92.625 L 101.81875,118.375 C 108.67841,117.68389 114.93642,114.96916 120.00625,110.84375 L 101.81875,92.625 z"
+         id="path4110" />
+      <path
+         inkscape:export-ydpi="111.56"
+         inkscape:export-xdpi="111.56"
+         inkscape:export-filename="/alex/code/solarbeam/bundled/rect2386.png"
+         id="path4112"
+         d="M 94.6185,50.06875 C 87.771815,50.76476 81.492884,53.450456 76.431,57.56875 L 94.6185,75.7875 L 94.6185,50.06875 z M 101.6185,50.06875 L 101.6185,75.81875 L 119.83725,57.6 C 114.76183,53.459989 108.49253,50.761322 101.6185,50.06875 z M 71.46225,62.5375 C 67.328405,67.605363 64.628569,73.894233 63.931,80.75625 L 89.681,80.75625 L 71.46225,62.5375 z M 124.806,62.56875 L 106.58725,80.75625 L 132.33725,80.75625 C 131.64115,73.908632 128.92524,67.630999 124.806,62.56875 z M 63.931,87.75625 C 64.62701,94.602937 67.312707,100.88187 71.431,105.94375 L 89.64975,87.75625 L 63.931,87.75625 z M 106.556,87.75625 L 124.77475,105.975 C 128.90939,100.90683 131.6396,94.619056 132.33725,87.75625 L 106.556,87.75625 z M 94.6185,92.725 L 76.39975,110.9125 C 81.467918,115.04714 87.755696,117.77735 94.6185,118.475 L 94.6185,92.725 z M 101.6185,92.725 L 101.6185,118.475 C 108.47816,117.78389 114.73617,115.06916 119.806,110.94375 L 101.6185,92.725 z"
+         style="fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline" />
+      <path
+         inkscape:export-ydpi="111.56"
+         inkscape:export-xdpi="111.56"
+         inkscape:export-filename="/alex/code/solarbeam/bundled/rect2386.png"
+         id="path3276"
+         d="M 123.02528,84.157893 C 123.02528,97.66393 111.9137,108.62536 98.222649,108.62536 C 84.531596,108.62536 73.420017,97.66393 73.420017,84.157893 C 73.420017,70.651855 84.531596,59.690433 98.222649,59.690433 C 111.9137,59.690433 123.02528,70.651855 123.02528,84.157893 z"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;display:inline" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="bitmap"
+     style="display:none">
+    <image
+       y="0"
+       x="0"
+       id="image2618"
+       height="169"
+       width="169"
+       sodipodi:absref="/alex/code/solarbeam/bundled/solarbeam.png"
+       xlink:href="solarbeam.png" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="top"
+     style="opacity:1;display:none">
+    <path
+       id="rect3439"
+       style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="M -109.51882,80.657898 L 305.96412,80.657898 L 305.96412,87.657898 L -109.51882,87.657898 L -109.51882,80.657898 z M -51.23555,228.48742 L 242.73413,-65.1244 L 247.68086,-60.171639 L -46.288818,233.44018 L -51.23555,228.48742 z M 101.72265,-123.58357 L 101.72265,291.89937 L 94.72265,291.89937 L 94.72265,-123.58357 L 101.72265,-123.58357 z M -46.134391,-65.273736 L 247.53153,228.64189 L 242.57968,233.58953 L -51.086241,-60.326093 L -46.134391,-65.273736 z" />
+  </g>
+</svg>
