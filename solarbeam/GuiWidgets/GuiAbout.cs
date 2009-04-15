@@ -12,16 +12,16 @@ namespace SolarbeamGui
 {
 	sealed class GuiAbout : Form
 	{
-		public GuiAbout(string app_title)
+		public GuiAbout(string app_title, string icon)
 		{
-			InitializeComponent(app_title);
+			InitializeComponent(app_title, icon);
 		}
 		
-		public void InitializeComponent(string app_title)
+		public void InitializeComponent(string app_title, string icon)
 		{	
 			this.DoubleBuffered = true;
 			this.Text = "About " + app_title;
-			this.Icon = new Icon(Controller.AsmInfo.GetResource("solarbeam.ico"));
+			this.Icon = new Icon(Controller.AsmInfo.GetResource(icon));
 			
 			Control logo = GetLogo();
 			Control tabs = GetTabs();

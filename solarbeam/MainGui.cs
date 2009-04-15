@@ -20,6 +20,8 @@ namespace SolarbeamGui
 		private static Thread splashthread;
 		private static string[] args;
 		
+		private const string icon = "solarbeam.ico";
+		
 		[STAThread]
 		public static void Main(string[] args)
 		{
@@ -42,7 +44,7 @@ namespace SolarbeamGui
 		private static void RunSplash()
 		{
 			// start splash in separate thread
-			splash = new GuiSplash(Controller.AsmInfo.GetAtt("Title"));
+			splash = new GuiSplash(Controller.AsmInfo.GetAtt("Title"), icon);
 			splashthread = new Thread(splash.Launch);
 			splashthread.IsBackground = true;
 			splashthread.Name = "splash";
@@ -52,7 +54,7 @@ namespace SolarbeamGui
 		private static void RunMainForm()
 		{
 			Thread.CurrentThread.IsBackground = true; // prevent hung mainthread?
-			mainform = new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
+			mainform = new GuiMainForm(Controller.AsmInfo.GetAtt("Title"), icon);
 			Application.EnableVisualStyles();
 			
 			// all done initializing, kill splash
@@ -74,7 +76,7 @@ namespace SolarbeamGui
 		private static void InitGui()
 		{
 			GuiMainForm mainform =
-				new GuiMainForm(Controller.AsmInfo.GetAtt("Title"));
+				new GuiMainForm(Controller.AsmInfo.GetAtt("Title"), icon);
 		}
 		
 		private static void TimeBitmapCreate()
