@@ -29,8 +29,8 @@
 
 		<p>This diagram shows the sun's trajectory during some particular day of the year. Along the trajectory (the red line) there are particular points of interest:
 		<ul>
-			<li>The sun rises in the East. This is shown in the diagram by the fact that the angle of elevation exceeds 0°.</li>
-			<li>The sun sets in the West. This means the angle of elevation drops below 0°.</li>
+			<li>The sun rises in the East. This is shown in the diagram by the fact that the angle of elevation exceeds 0&deg;.</li>
+			<li>The sun sets in the West. This means the angle of elevation drops below 0&deg;.</li>
 			<li>The highest elevation of the sun in a day is called the <a href="http://en.wikipedia.org/wiki/Noon#Solar_noon">solar noon</a>.</li>
 		</ul>
 		</p>
@@ -51,7 +51,7 @@
 		<img src="imgs/exp_copenhagen.png">
 		<p>In the case of Copenhagen we can see that summer days and winter days differ dramatically in the amount of sunlight (17 hours vs 7 hours at the most). Moreover, the sun reaches a much higher elevation in summer than it does in winter.</p>
 
-		<p>The selected point (the red dot) is the solar noon for that particular day (which happens to be March 13).</p>
+		<p>The selected point (the red dot) is 11:00 standard time (12:00 daylight saving time) on October 3.</p>
 	</div>
 
 </body>

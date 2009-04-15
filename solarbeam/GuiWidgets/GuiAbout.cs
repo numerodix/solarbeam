@@ -19,6 +19,10 @@ namespace SolarbeamGui
 		
 		public void InitializeComponent(string app_title)
 		{	
+			this.DoubleBuffered = true;
+			this.Text = "About " + app_title;
+			this.Icon = new Icon(Controller.AsmInfo.GetResource("solarbeam.ico"));
+			
 			Control logo = GetLogo();
 			Control tabs = GetTabs();
 			int tabs_height = 180;
@@ -41,8 +45,6 @@ namespace SolarbeamGui
 			
 			this.Controls.Add(table);
 			
-			this.DoubleBuffered = true;
-			this.Text = "About " + app_title;
 			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 			this.StartPosition = FormStartPosition.CenterParent;
 			this.ClientSize = new Size(logo.Width + 2*3,

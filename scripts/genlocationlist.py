@@ -287,8 +287,8 @@ def killdupes(locs):
 def filtermissingpos(locs):
     return filter(lambda x: x.lat != None and x.lon != None, locs)
 
-def filtercat(locs, cat):
-    return filter(lambda x: x.cat == cat, locs)
+def filtercat(locs, cats):
+    return filter(lambda x: x.cat in cats, locs)
 
 def filtercountry(locs, country):
     return filter(lambda x: x.country == country, locs)
@@ -817,7 +817,7 @@ if __name__ == "__main__":
     locs = compile(lines)
 
     # do some filtering
-    locs = filtercat(locs, "locality")
+    locs = filtercat(locs, ["locality"])
     locs = sortpop(locs)
     locs = killdupes(locs)
     locs = filtermissingpos(locs)
@@ -828,7 +828,8 @@ if __name__ == "__main__":
     final_locs.extend(nor_locs)
     final_locs.append(getequatorloc())
 
+    for loc in final_locs: sys.stderr.write("%s\n" % loc)
     final_locs = sortname(final_locs)
 #    final_locs = sortcountry(final_locs)
     print(codegen(final_locs))
-    for loc in final_locs: sys.stderr.write("%s\n" % loc)
+#    for loc in final_locs: sys.stderr.write("%s\n" % loc)
