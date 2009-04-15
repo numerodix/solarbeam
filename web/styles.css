@@ -11,6 +11,8 @@ body {
 	margin: 0px auto;
 	width: 800px;
 
+	padding: 5px 0 5px 0;
+
 	/* use 100% height in child nodes */
 	height: 100%;
 }
@@ -21,7 +23,6 @@ img {
 
 .header {
 	margin-left: 230px;
-	padding-top: 4px;
 }
 
 .header img {

@@ -14,7 +14,7 @@
 
 	<div class="content">
 		<h1>Home</h1>
-		<p>SolarBeam is an application for drawing solar diagrams. That is to say a diagram that shows the position of the sun at a given time. For more, read the <a href="explanation.php">explanation</a>.</p>
+		<p>SolarBeam is an application for drawing solar diagrams. That is to say a diagram that shows the position of the sun at a given time. For a description, read the <a href="explanation.php">explanation</a>.</p>
 
 		<h2>Features</h2>
 		<ul>
@@ -26,6 +26,13 @@
 			<li>SolarBeam is <a href="http://www.gnu.org/philosophy/free-sw.html">Free Software</a>. That is, you can freely modify it, improve it etc.</li>
 			<li>Runs on any major operating system with .NET/Mono.</li>
 		</ul>
+
+		<h2>About</h2>
+		<p>SolarBeam is written by Martin Matusiak &lt;numerodix@gmail.com&gt;.</p>
+
+		<p> This application was developed in cooperation with the Norwegian University of Science and Technology (NTNU), Norway, and sponsored by The Research Council of Norway.</p>
+
+		<p>Coordinator: Professor Barbara Matusiak, <a href="http://www.ntnu.no/bff/english">Department of Architectural Design, Form and Colour Studies</a>, NTNU.</p>
 	</div>
 
 </body>

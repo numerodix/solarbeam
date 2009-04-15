@@ -21,6 +21,11 @@
 		<p>On a Windows system, .NET is most likely already installed (comes preinstalled on Windows Vista), but if not you can download it <a href="http://www.microsoft.com/NET/">here</a>.</p>
 
 		<p>If you are not running Windows (or if you prefer Mono), Mono runs on every major operating system. You can download it <a href="http://www.go-mono.com/mono-downloads/download.html">here</a>.</p>
+
+		<h2>Source code</h2>
+		<p>Are you a developer? Source code is to be had from the git repo at:</p>
+		<blockquote>git://solarbeam.git.sourceforge.net/gitroot/solarbeam</blockquote>
+		<p>SolarBeam is written in C&#35;. You can find some code metrics on <a href="https://www.ohloh.net/p/solarbeam">ohloh</a>.</p>
 	</div>
 
 </body>
