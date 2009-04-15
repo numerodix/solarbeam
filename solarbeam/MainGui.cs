@@ -20,7 +20,7 @@ namespace SolarbeamGui
 		private static Thread splashthread;
 		private static string[] args;
 		
-		private const string icon = "solarbeam.ico";
+		private const string icon = "icon.ico";
 		
 		[STAThread]
 		public static void Main(string[] args)
