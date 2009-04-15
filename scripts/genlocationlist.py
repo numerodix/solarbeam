@@ -169,6 +169,7 @@ class Location(object):
         uname = string.replace(uname, "at-Ta'if", "Taif")
         uname = string.replace(uname, "az-Zarqa'", "Zarqa")
         uname = string.replace(uname, "az-Zawiyah", "Az Zawiyah")
+        uname = string.replace(uname, "Aomen", "Macau")
         uname = string.replace(uname, "Ba'qubah", "Baqubah")
         uname = string.replace(uname, "Bandar-e 'Abbas", "Bandar Abbas")
         uname = string.replace(uname, "Bayrut", "Beirut")
@@ -336,6 +337,8 @@ zones = {
     "Chad": "Africa/Ndjamena",
     "Chile": "America/Santiago",
     "China": "Asia/Shanghai",
+    "Aomen": "Asia/Macau",
+    "Hongkong": "Asia/Hong_Kong",
     "Colombia": "America/Bogota",
     "Congo": "Africa/Brazzaville",
     "Costa Rica": "America/Costa_Rica",

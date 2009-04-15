@@ -1,7 +1,7 @@
 // Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
 // Licensed under the GNU Public License, version 3.
 //
-// Generated with ./genlocationlist.py on on 12.4.2009
+// Generated with ./genlocationlist.py on on 15.4.2009
 
 using LibSolar.Types;
 
@@ -315,9 +315,6 @@ namespace LibSolar.Locations
 			list.Add("Anyang (SKo)", "Asia/Seoul",
 				new Position(PositionDirection.North, 37, 23, 24,
 					PositionDirection.East, 126, 55, 12));
-			list.Add("Aomen (Chi)", "Asia/Shanghai",
-				new Position(PositionDirection.North, 22, 16, 12,
-					PositionDirection.East, 113, 33, 36));
 			list.Add("Aomori (Jap)", "Asia/Tokyo",
 				new Position(PositionDirection.North, 40, 49, 48,
 					PositionDirection.East, 140, 44, 24));
@@ -1416,7 +1413,7 @@ namespace LibSolar.Locations
 			list.Add("Dahuk (Ira)", "Asia/Baghdad",
 				new Position(PositionDirection.North, 36, 51, 0,
 					PositionDirection.East, 43, 1, 12));
-			list.Add("Daipo (Chi)", "Asia/Shanghai",
+			list.Add("Daipo (Chi)", "Asia/Hong_Kong",
 				new Position(PositionDirection.North, 22, 27, 0,
 					PositionDirection.East, 114, 9, 36));
 			list.Add("Dakar (Sen)", "Africa/Dakar",
@@ -2547,7 +2544,7 @@ namespace LibSolar.Locations
 			list.Add("Jiujiang (Chi)", "Asia/Shanghai",
 				new Position(PositionDirection.North, 29, 43, 48,
 					PositionDirection.East, 115, 58, 48));
-			list.Add("Jiulong (Chi)", "Asia/Shanghai",
+			list.Add("Jiulong (Chi)", "Asia/Hong_Kong",
 				new Position(PositionDirection.North, 22, 19, 12,
 					PositionDirection.East, 114, 10, 12));
 			list.Add("Jixi (Chi)", "Asia/Shanghai",
@@ -3297,6 +3294,9 @@ namespace LibSolar.Locations
 			list.Add("Macapa (Bra)", "America/Belem",
 				new Position(PositionDirection.North, 0, 2, 24,
 					PositionDirection.West, 51, 3, 0));
+			list.Add("Macau (Chi)", "Asia/Macau",
+				new Position(PositionDirection.North, 22, 16, 12,
+					PositionDirection.East, 113, 33, 36));
 			list.Add("Maceio (Bra)", "America/Maceio",
 				new Position(PositionDirection.South, 9, 39, 0,
 					PositionDirection.West, 35, 45, 0));
@@ -4518,7 +4518,7 @@ namespace LibSolar.Locations
 			list.Add("Qom (Ira)", "Asia/Tehran",
 				new Position(PositionDirection.North, 34, 39, 0,
 					PositionDirection.East, 50, 57, 0));
-			list.Add("Quanwan (Chi)", "Asia/Shanghai",
+			list.Add("Quanwan (Chi)", "Asia/Hong_Kong",
 				new Position(PositionDirection.North, 22, 22, 12,
 					PositionDirection.East, 114, 6, 36));
 			list.Add("Quebec (Can)", "America/Montreal",
@@ -5076,7 +5076,7 @@ namespace LibSolar.Locations
 			list.Add("Shashi (Chi)", "Asia/Shanghai",
 				new Position(PositionDirection.North, 30, 19, 12,
 					PositionDirection.East, 112, 13, 48));
-			list.Add("Shatian (Chi)", "Asia/Shanghai",
+			list.Add("Shatian (Chi)", "Asia/Hong_Kong",
 				new Position(PositionDirection.North, 22, 22, 48,
 					PositionDirection.East, 114, 11, 24));
 			list.Add("Sheffield (UK)", "Europe/London",
@@ -5109,7 +5109,7 @@ namespace LibSolar.Locations
 			list.Add("Shimonoseki (Jap)", "Asia/Tokyo",
 				new Position(PositionDirection.North, 33, 57, 36,
 					PositionDirection.East, 130, 56, 24));
-			list.Add("Shiongshui (Chi)", "Asia/Shanghai",
+			list.Add("Shiongshui (Chi)", "Asia/Hong_Kong",
 				new Position(PositionDirection.North, 22, 31, 12,
 					PositionDirection.East, 114, 7, 12));
 			list.Add("Shiraz (Ira)", "Asia/Tehran",
@@ -6066,7 +6066,7 @@ namespace LibSolar.Locations
 			list.Add("Xiangfan (Chi)", "Asia/Shanghai",
 				new Position(PositionDirection.North, 32, 1, 12,
 					PositionDirection.East, 112, 7, 48));
-			list.Add("Xianggangdao (Chi)", "Asia/Shanghai",
+			list.Add("Xianggangdao (Chi)", "Asia/Hong_Kong",
 				new Position(PositionDirection.North, 22, 16, 12,
 					PositionDirection.East, 114, 8, 24));
 			list.Add("Xiangtan (Chi)", "Asia/Shanghai",
@@ -6081,7 +6081,7 @@ namespace LibSolar.Locations
 			list.Add("Xico (Mex)", "America/Mexico_City",
 				new Position(PositionDirection.North, 19, 16, 12,
 					PositionDirection.West, 98, 56, 24));
-			list.Add("Xigong (Chi)", "Asia/Shanghai",
+			list.Add("Xigong (Chi)", "Asia/Hong_Kong",
 				new Position(PositionDirection.North, 22, 19, 48,
 					PositionDirection.East, 114, 15, 0));
 			list.Add("Xindian (Tai)", "Asia/Taipei",
@@ -6210,7 +6210,7 @@ namespace LibSolar.Locations
 			list.Add("Yokosuka (Jap)", "Asia/Tokyo",
 				new Position(PositionDirection.North, 35, 16, 12,
 					PositionDirection.East, 139, 40, 11));
-			list.Add("Yuanlong (Chi)", "Asia/Shanghai",
+			list.Add("Yuanlong (Chi)", "Asia/Hong_Kong",
 				new Position(PositionDirection.North, 22, 26, 24,
 					PositionDirection.East, 114, 1, 12));
 			list.Add("Yuci (Chi)", "Asia/Shanghai",
@@ -6294,7 +6294,7 @@ namespace LibSolar.Locations
 			list.Add("Zhumadian (Chi)", "Asia/Shanghai",
 				new Position(PositionDirection.North, 32, 58, 12,
 					PositionDirection.East, 114, 3, 0));
-			list.Add("Zhunmen (Chi)", "Asia/Shanghai",
+			list.Add("Zhunmen (Chi)", "Asia/Hong_Kong",
 				new Position(PositionDirection.North, 22, 24, 36,
 					PositionDirection.East, 113, 58, 48));
 			list.Add("Zhuzhou (Chi)", "Asia/Shanghai",
