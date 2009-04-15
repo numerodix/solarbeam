@@ -17,7 +17,8 @@
    version="1.0"
    sodipodi:docname="solarbeam.svg"
    style="display:inline"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   enable-background="new">
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -34,14 +35,14 @@
     <inkscape:perspective
        sodipodi:type="inkscape:persp3d"
        inkscape:vp_x="0 : 526.18109 : 1"
-       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_y="6.1230318e-14 : 1000 : 0"
        inkscape:vp_z="744.09448 : 526.18109 : 1"
        inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
        id="perspective9" />
   </defs>
   <sodipodi:namedview
      inkscape:window-height="720"
-     inkscape:window-width="1206"
+     inkscape:window-width="1082"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      guidetolerance="10.0"
@@ -52,16 +53,111 @@
      pagecolor="#ffffff"
      id="base"
      showgrid="false"
-     inkscape:zoom="2.9230769"
-     inkscape:cx="102.70388"
-     inkscape:cy="79.048286"
-     inkscape:window-x="42"
-     inkscape:window-y="35"
-     inkscape:current-layer="layer1" />
+     inkscape:zoom="2.9146805"
+     inkscape:cx="76.703947"
+     inkscape:cy="84.743421"
+     inkscape:window-x="190"
+     inkscape:window-y="19"
+     inkscape:current-layer="layer3"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="bg"
+     style="opacity:1;display:inline"
+     sodipodi:insensitive="true">
+    <rect
+       style="opacity:1;fill:#dc1c20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect2386"
+       width="169.28947"
+       height="169.28947"
+       x="0.19736682"
+       y="-0.48684281" />
+    <rect
+       style="opacity:0;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3281"
+       width="71.842102"
+       height="20.868422"
+       x="-16.078947"
+       y="61.578949" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="red"
+     style="display:inline">
+    <path
+       sodipodi:type="arc"
+       style="opacity:1;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path3206"
+       sodipodi:cx="98.355263"
+       sodipodi:cy="103.14474"
+       sodipodi:rx="54.223682"
+       sodipodi:ry="54.223682"
+       d="M 152.57895,103.14474 A 54.223682,54.223682 0 1 1 44.13158,103.14474 A 54.223682,54.223682 0 1 1 152.57895,103.14474 z"
+       transform="matrix(1.1577286,0,0,1.1577286,-28.802923,-34.347833)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="orange"
+     style="display:inline">
+    <path
+       sodipodi:type="arc"
+       style="opacity:1;fill:#ff7f00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path3267"
+       sodipodi:cx="85.013161"
+       sodipodi:cy="84.671051"
+       sodipodi:rx="46.355263"
+       sodipodi:ry="46.355263"
+       d="M 131.36842,84.671051 A 46.355263,46.355263 0 1 1 38.657898,84.671051 A 46.355263,46.355263 0 1 1 131.36842,84.671051 z"
+       transform="translate(-0.3421053,0.3421053)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="yellow"
+     style="opacity:1;display:inline">
+    <path
+       sodipodi:type="arc"
+       style="opacity:1;fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path3270"
+       sodipodi:cx="92.539474"
+       sodipodi:cy="88.092102"
+       sodipodi:rx="37.11842"
+       sodipodi:ry="37.11842"
+       d="M 129.65789,88.092102 A 37.11842,37.11842 0 1 1 55.421055,88.092102 A 37.11842,37.11842 0 1 1 129.65789,88.092102 z"
+       transform="matrix(0.9262673,0,0,0.9262673,-1.0452338,3.4163231)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="white"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <path
+       sodipodi:type="arc"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;display:inline"
+       id="path3276"
+       sodipodi:cx="93.394737"
+       sodipodi:cy="93.052635"
+       sodipodi:rx="18.81579"
+       sodipodi:ry="18.81579"
+       d="M 112.21053,93.052635 A 18.81579,18.81579 0 1 1 74.578947,93.052635 A 18.81579,18.81579 0 1 1 112.21053,93.052635 z"
+       transform="matrix(1.3181818,0,0,1.3003685,-38.098086,-35.982623)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="top"
+     style="opacity:1;display:inline" />
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="bitmap">
+     inkscape:label="bitmap"
+     style="display:none"
+     sodipodi:insensitive="true">
     <image
        style="display:inline"
        xlink:href="bundled/solarbeam.png"
@@ -71,18 +167,5 @@
        id="image11"
        x="0"
        y="0" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer1"
-     inkscape:label="bg"
-     style="display:inline">
-    <rect
-       style="opacity:1;fill:#dc1c20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect2386"
-       width="169.28947"
-       height="169.28947"
-       x="0.19736682"
-       y="-0.48684281" />
   </g>
 </svg>
