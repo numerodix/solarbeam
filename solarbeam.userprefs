@@ -1,20 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="solarbeam/GuiWidgets/GuiAbout.cs" ctype="Workbench">
-    <Files>
-      <File FileName="solarbeam/GuiWidgets/GuiMainForm.cs" Line="50" Column="46" />
-      <File FileName="solarbeam/GuiWidgets/GuiSplash.cs" Line="25" Column="60" />
-      <File FileName="solarbeam/GuiWidgets/GuiAbout.cs" Line="102" Column="44" />
-      <File FileName="solarbeam/MainGui.cs" Line="21" Column="14" />
-    </Files>
+  <MonoDevelop.Ide.Workbench ctype="Workbench">
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="True" />
           <Option id="ShowAllFiles" value="False" />
+          <Node name="libsolar" expanded="True">
+            <Node name="Constants.cs" selected="True" />
+          </Node>
           <Node name="solarbeam" expanded="True">
-            <Node name="GuiWidgets" expanded="True">
-              <Node name="GuiAbout.cs" selected="True" />
-            </Node>
+            <Node name="GuiLogic" expanded="True" />
+            <Node name="GuiWidgets" expanded="True" />
           </Node>
         </State>
       </Pad>
