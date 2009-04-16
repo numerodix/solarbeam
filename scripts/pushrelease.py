@@ -75,6 +75,8 @@ def printhelp(full=False):
     ss = []
     if full:
         ss.append("Usage:  %s <tag name>\n" % sys.argv[0])
+        ss.append("Tag commit:")
+        ss.append(" * run scripts/tag.py\n")
         ss.append("Working order:")
         ss.append(" * clone git repo in /tmp")
         ss.append(" * checkout selected tag name")
