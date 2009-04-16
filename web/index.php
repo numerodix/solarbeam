@@ -16,7 +16,7 @@
 	<div class="content">
 		<h1>Home</h1>
 		<p>
-		<a href="imgs/ss/linux.png">
+		<a href="screenshots.php">
 			<img src="imgs/ss/linux_t.png" alt="screenshot" style="float: right; padding-left: 10px;"/>
 		</a>
 		SolarBeam is an application for drawing solar diagrams. That is to say a diagram that shows the position of the sun at a given time. For a description, read the <a href="explanation.php">explanation</a>.</p>
