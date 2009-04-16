@@ -20,9 +20,9 @@ namespace LibSolar.SolarOrbit
 	 */
 	public class Orbit
 	{
-		public double ASTRONOMICAL_TWIGHLIGHT = -18.0; /**< elevation angle (deg) */
-		public double NAUTICAL_TWIGHLIGHT = -12.0; /**< elevation angle (deg) */
-		public double CIVIL_TWIGHLIGHT = -6.0; /**< elevation angle (deg) */
+		public const double ASTRONOMICAL_TWIGHLIGHT = -18.0; /**< elevation angle (deg) */
+		public const double NAUTICAL_TWIGHLIGHT = -12.0; /**< elevation angle (deg) */
+		public const double CIVIL_TWIGHLIGHT = -6.0; /**< elevation angle (deg) */
 
 		/**
 		 * Calculate the geometric mean longitude of the Sun.
@@ -34,12 +34,10 @@ namespace LibSolar.SolarOrbit
 			double l0 = 280.46646 + jc
 				* (36000.76983 + 0.0003032 * jc);
 
-			while (l0 > 360.0)
-			{
+			while (l0 > 360.0) {
 				l0 -= 360.0;
 			}
-			while (l0 < 0.0)
-			{
+			while (l0 < 0.0) {
 				l0 += 360.0;
 			}
 
@@ -206,8 +204,7 @@ namespace LibSolar.SolarOrbit
 			double solarTimeFix = eqtime - 4.0 * lon;
 			double trueSolarTime = hour * 60.0 + min + sec/60.0 + solarTimeFix;
 
-			while (trueSolarTime > 1440)
-			{
+			while (trueSolarTime > 1440) {
 				trueSolarTime -= 1440;
 			}
 			return trueSolarTime;
@@ -224,8 +221,7 @@ namespace LibSolar.SolarOrbit
 		{
 			double tst = CalcTrueSolarTime(eqtime, lon, hour, min, sec);
 			double hourAngle = tst / 4.0 - 180.0;
-			if (hourAngle < -180)
-			{
+			if (hourAngle < -180) {
 				hourAngle += 360;
 			}
 			return hourAngle;
@@ -248,16 +244,14 @@ namespace LibSolar.SolarOrbit
 									/ ( Math.Cos(lat_rad) * Math.Cos(decl_rad) )
 									- Math.Tan(lat_rad) * Math.Tan(decl_rad) ) );
 
-			if ( Double.IsNaN(hour_ang) )
-			{
+			if ( Double.IsNaN(hour_ang) ) {
 				throw new ArgumentException(
 					string.Format(
 						"Latitude `{0}` and declination `{1}` produces hour angle `{2}`",
 						lat, decl, hour_ang));
 			}
 
-			if (rise)
-			{
+			if (rise) {
 				return hour_ang;
 			} else {
 				return -hour_ang;
@@ -279,11 +273,9 @@ namespace LibSolar.SolarOrbit
 				+ Math.Cos( Coordinate.DegToRad(lat) )
 				* Math.Cos( Coordinate.DegToRad(decl) )
 				* Math.Cos( Coordinate.DegToRad(ha) );
-			if (csz > 1.0)
-			{
+			if (csz > 1.0) {
 				csz = 1.0;
-			} else if (csz < -1.0)
-			{
+			} else if (csz < -1.0) {
 				csz = -1.0;
 			}
 			double zenith = Coordinate.RadToDeg( Math.Acos(csz) );
@@ -422,8 +414,7 @@ namespace LibSolar.SolarOrbit
 			double decl = CalcSunDeclination(jc_noon);
 
 			double hour_ang;
-			if (rise)
-			{
+			if (rise) {
 				hour_ang = CalcHourAngleAtSunriseSunset(true, lat, decl);
 			} else {
 				hour_ang = CalcHourAngleAtSunriseSunset(false, lat, decl);
@@ -440,8 +431,7 @@ namespace LibSolar.SolarOrbit
 			double new_decl = CalcSunDeclination(new_jc_noon);
 
 			double new_hour_ang;
-			if (rise)
-			{
+			if (rise) {
 				new_hour_ang = CalcHourAngleAtSunriseSunset(true, lat, new_decl);
 			} else {
 				new_hour_ang = CalcHourAngleAtSunriseSunset(false, lat, new_decl);

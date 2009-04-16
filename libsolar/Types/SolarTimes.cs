@@ -20,8 +20,8 @@ namespace LibSolar.Types
 		private UTCDate? sunset;
 
 		public SolarTimes(Position pos, UTCDate dt, 
-								 double jc, double eqtime, double decl, 
-								 UTCDate? sunrise, UTCDate noon, UTCDate? sunset)
+		                  double jc, double eqtime, double decl, 
+		                  UTCDate? sunrise, UTCDate noon, UTCDate? sunset)
 		{
 			this.pos = pos;
 			this.dt = dt;

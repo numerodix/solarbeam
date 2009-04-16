@@ -21,7 +21,7 @@ namespace SolarbeamGui
 			string s_std = string.Format("{0:HH:mm}", dt_std);
 			string s_utc = string.Format("{0:HH:mm}", dt_utc);
 			string s = string.Format("{0} -- {1} ST -- {2} UTC", s_loc, s_std, s_utc);
-			return s;
+			return s_loc;
 		}
 	
 		private static string FormatDayLength(SolarTimes st, SolarPosition sp)

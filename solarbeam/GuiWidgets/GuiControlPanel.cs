@@ -23,7 +23,7 @@ namespace SolarbeamGui
 		private const int FORM_MARGIN = 16;
 		
 		private const int INPUTS_COUNT = 6;
-		private const int OUTPUTS_COUNT = 6;
+		private const int OUTPUTS_COUNT = 5;
 		private const int IMAGESAVE_COUNT = 1;
 		
 		private const int INPUTS_HEIGHT = GROUPBOX_HEIGHT + INPUTS_COUNT * FORM_ROW_HEIGHT + 2*FORM_PADDING;
@@ -248,13 +248,6 @@ namespace SolarbeamGui
 					Widgets.GetTextBox(Controller.Id.AZIMUTH, "212.6669")},
 					new float[] {19F, 2F, 25F});
 	
-			Control rise = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabel("Sunrise"),
-					Widgets.GetLabel(":"),
-					Widgets.GetTextBox(Controller.Id.SUNRISE, "06:09")},
-					new float[] {19F, 2F, 25F});
-	
 			Control noon = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabel("Solar noon"),
@@ -262,26 +255,25 @@ namespace SolarbeamGui
 					Widgets.GetTextBox(Controller.Id.SOLAR_NOON, "12:12")},
 					new float[] {19F, 2F, 25F});    
 	
-			Control sset = Widgets.GetLaidOut(
+			Control rise = Widgets.GetLaidOut(
 					new Control[] {
-					Widgets.GetLabel("Sunset"),
+					Widgets.GetLabel("Sunrise/Sunset"),
 					Widgets.GetLabel(":"),
-					Widgets.GetTextBox(Controller.Id.SUNSET, "18:15")},
+					Widgets.GetTextBox(Controller.Id.SUNRISESUNSET, "06:09")},
 					new float[] {19F, 2F, 25F});
 	
-			Control dlen = Widgets.GetLaidOut(
+			Control sset = Widgets.GetLaidOut(
 					new Control[] {
-					Widgets.GetLabel("Day length"),
+					Widgets.GetLabel("Dawn/Dusk"),
 					Widgets.GetLabel(":"),
-					Widgets.GetTextBox(Controller.Id.DAY_LENGTH, "12h 0m")},
-					new float[] {19F, 2F, 25F}); 
+					Widgets.GetTextBox(Controller.Id.DAWNDUSK, "18:15")},
+					new float[] {19F, 2F, 25F});
 	
 			layout.Controls.Add(el, 0, 0);
 			layout.Controls.Add(az, 0, 1);
-			layout.Controls.Add(rise, 0, 2);
-			layout.Controls.Add(noon, 0, 3);
+			layout.Controls.Add(noon, 0, 2);
+			layout.Controls.Add(rise, 0, 3);
 			layout.Controls.Add(sset, 0, 4);
-			layout.Controls.Add(dlen, 0, 5);
 	
 			return layout;
 		}

@@ -80,18 +80,34 @@ namespace SolarbeamGui
 			SetValue(registry[Id.ELEVATION], FormatAngle(sp.Elevation));
 			SetValue(registry[Id.AZIMUTH], FormatAngle(sp.Azimuth));
 			
+			SetValue(registry[Id.SOLAR_NOON], FormatTime(st.Noon));
+			
+			string sunrise = "##:##";
+			string sunset = "##:##";
+			string daylength = FormatDayLength(st, sp);
 			if (st.Sunrise.HasValue) {
-				SetValue(registry[Id.SUNRISE], FormatTime(st.Sunrise.Value));
-			} else {
-				SetValue(registry[Id.SUNRISE], "none");
+				sunrise = FormatTime(st.Sunrise.Value);
 			}
 			if (st.Sunset.HasValue) {
-				SetValue(registry[Id.SUNSET], FormatTime(st.Sunset.Value));
-			} else {
-				SetValue(registry[Id.SUNSET], "none");
+				sunset = FormatTime(st.Sunset.Value);
 			}
-			SetValue(registry[Id.SOLAR_NOON], FormatTime(st.Noon));
-			SetValue(registry[Id.DAY_LENGTH], FormatDayLength(st, sp));
+			string riseset = string.Format("{0} - {1}  ({2})",
+			                               sunrise, sunset, daylength);
+			SetValue(registry[Id.SUNRISESUNSET], riseset);
+			
+			SolarTimes st2 = PointFinder.FindDawnDusk(pos, dt);
+			string dawn = "##:##";
+			string dusk = "##:##";
+			string daylength2 = FormatDayLength(st2, sp);
+			if (st2.Sunrise.HasValue) {
+				dawn = FormatTime(st2.Sunrise.Value);
+			}
+			if (st2.Sunset.HasValue) {
+				dusk = FormatTime(st2.Sunset.Value);
+			}
+			string dawndusk = string.Format("{0} - {1}  ({2})",
+			                               dawn, dusk, daylength2);
+			SetValue(registry[Id.DAWNDUSK], dawndusk);
 		}
 		
 		public static void SetImage(Component control, string img)
