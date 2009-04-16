@@ -31,7 +31,6 @@ def git_commit(version):
     args = ["git", "commit", "-a", "-m'set version %s'" % version]
     (code, out) = invoke(os.getcwd(), args)
     print(out)
-    if code > 0: sys.exit(1)
 
 def set_version(version):
     s = open(CONSTANTS_FILE, 'r').read()
