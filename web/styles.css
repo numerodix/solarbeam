@@ -78,7 +78,7 @@ h2 {
 .releasecontent {
 	border: 1px dashed #ccc;
 	background-color: #fafafa;
-	padding: 0 5px 0 5px;
+	padding: 5px 10px 5px 10px;
 }
 
 .releasecontent img {
@@ -90,5 +90,5 @@ h2 {
 }
 
 .releasecontent .download {
-	padding-top: 5px;
+	padding-top: 10px;
 }
