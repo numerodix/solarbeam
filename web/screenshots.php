@@ -53,6 +53,16 @@
 			</div>
 		</td>
 		</tr>
+		<tr>
+		<td>
+			<a href="imgs/ss/console.png">
+				<img src="imgs/ss/console_t.png" alt="console"/>
+			</a>
+			<div class="caption">
+				Command line client
+			</div>
+		</td>
+		</tr>
 		</table>
 	</div>
 
