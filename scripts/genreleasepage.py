@@ -65,7 +65,10 @@ def parse_releases():
     return releases
 
 def write_releases(releases):
-    ss = ['<? // generated with %s ?>\n' % sys.argv[0]]
+    t = time.localtime()
+    t_s = "%s.%s.%s" % (t.tm_mday, t.tm_mon, t.tm_year)
+
+    ss = ['<? // generated with %s on %s ?>\n' % (sys.argv[0], t_s)]
     for (i, rel) in enumerate(releases):
         ss.append('<div class="releasetitle">')
         ss.append('\t<a href="javascript:Collapse(\'release-%s\')">' % rel.version)
