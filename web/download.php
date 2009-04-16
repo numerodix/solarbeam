@@ -15,6 +15,7 @@
 
 	<div class="content">
 		<h1>Download</h1>
+		SolarBeam is released under the <a href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a>.
 
 		<h2>Releases</h2>
 			<div style="margin-top:-10px;">
