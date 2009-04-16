@@ -92,3 +92,11 @@ h2 {
 .releasecontent .download {
 	padding-top: 10px;
 }
+
+table tr td {
+	padding: 5px;
+}
+
+.caption {
+	text-align: center;
+}
