@@ -40,16 +40,18 @@ lines:
 	@find -iname '*.py' | xargs cat | wc -l
 	@echo -n " * Perl         :  "
 	@find -iname '*.pl' | xargs cat | wc -l
-	@echo -n " * Javascript   :  "
-	@find -iname '*.js' | xargs cat | wc -l
-	@echo -n " *   libs       :  "
-	@find -iname '*.js' | xargs cat | wc -l
+	@echo -n " * PHP          :  "
+	@find -iname '*.php' | xargs cat | wc -l
 	@echo -n " * HTML         :  "
 	@find -iname '*.html' | xargs cat | wc -l
 	@echo -n " *   libs       :  "
 	@find -iname '*.html' | xargs cat | wc -l
-	@echo -n " * PHP          :  "
-	@find -iname '*.php' | xargs cat | wc -l
+	@echo -n " * Javascript   :  "
+	@find -iname '*.js' | xargs cat | wc -l
+	@echo -n " *   original   :  "
+	@find web -iname '*.js' | xargs cat | wc -l
+	@echo -n " *   libs       :  "
+	@find ref -iname '*.js' | xargs cat | wc -l
 	@echo -n " * CSS          :  "
 	@find -iname '*.css' | xargs cat | wc -l
 
