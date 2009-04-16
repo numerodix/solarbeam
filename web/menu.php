@@ -9,7 +9,7 @@
 
 	<div style="padding-top: 20px; padding-left: 40px;">
 		<a href="http://sourceforge.net/">
-			<img src="http://sflogo.sourceforge.net/sflogo.php?group_id=256171&type=1"/>
+			<img src="http://sflogo.sourceforge.net/sflogo.php?group_id=256171&amp;type=1" alt="sf logo"/>
 		</a>
 	</div>
 </div>

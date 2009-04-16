@@ -65,3 +65,26 @@ h2 {
 	color: #ff7642;
 	font-size: 140%;
 }
+
+.releasetitle {
+	padding-top: 6px;
+	padding-bottom: 4px;
+}
+
+.releasetitle img {
+	margin-bottom: -3px;
+}
+
+.releasecontent {
+	border: 1px dashed #ccc;
+	background-color: #fafafa;
+	padding: 0 5px 0 5px;
+}
+
+.releasecontent img {
+	margin-bottom: -3px;
+}
+
+.releasecontent ul, .releasecontent p {
+	margin: 0px;
+}
