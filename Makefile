@@ -4,6 +4,7 @@ all:
 zip:
 	rm -rf dist
 	mkdir -p dist/solarbeam
+	make
 	for d in `find . -type d -iname "Release"`; do cp $$d/* dist/solarbeam; done
 	(cd dist/solarbeam ; mono solarbeam.exe -init)
 	cd ..
