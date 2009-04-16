@@ -2,6 +2,9 @@
 #
 # Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
 # Licensed under the GNU Public License, version 3.
+#
+# Runs sample testing on solarbeam vs reference code, yielding mean, max and
+# standard deviation.
 
 import math
 import os
