@@ -96,7 +96,7 @@ def write_releases(releases):
                 ss.append('\t\t\t<li>%s</li>' % f)
             ss.append('\t\t</ul>')
         ss.append('\t\t<p class="download">')
-        ss.append('\t\t\t<a href="http://downloads.sourceforge.net/%s/%s-%s.tar.gz">'
+        ss.append('\t\t\t<a href="http://downloads.sourceforge.net/%s/%s-%s.zip">'
                    % (UNIXTITLE, UNIXTITLE, rel.version))
         ss.append('\t\t\t\t<img src="imgs/download.png" alt="download"/>')
         ss.append('\t\t\t\tDownload')

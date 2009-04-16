@@ -25,7 +25,7 @@ namespace SolarbeamGui
 			
 			Control logo = GetLogo();
 			Control tabs = GetTabs();
-			int tabs_height = 180;
+			int tabs_height = 202;
 			
 			Button close_btn = Widgets.GetButtonImageText(
 				Controller.Id.ABOUTCLOSE_ACTION,
@@ -103,6 +103,8 @@ namespace SolarbeamGui
 			                  "platform",
 			                  Platform.GetPlatform() + "}");
 			s += Controller.AsmInfo.GetAtt("Description") + "\n\n";
+			
+			s += "http://solarbeam.sourceforge.net\n\n";
 			
 			s += Controller.AsmInfo.GetAtt("Copyright") + "\n\n";
 			
