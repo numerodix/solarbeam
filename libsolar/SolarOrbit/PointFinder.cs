@@ -18,11 +18,12 @@ namespace LibSolar.SolarOrbit
 			dawn_s = st.Sunrise;
 			dusk_s = st.Sunset;
 			
-			UTCDate lower = st.Noon.AtStartOfUTCDay();
-			UTCDate upper = lower.AddDays(1);
+			// set wide bounds
+			UTCDate lower = st.Noon.AtStartOfUTCDay().AddDays(-1);
+			UTCDate upper = lower.AddDays(3);
 			
-			dawn_s = FindPoint(pos, dawn_s, lower, Orbit.CIVIL_TWIGHLIGHT, -30.0);
-			dusk_s = FindPoint(pos, dusk_s, upper, Orbit.CIVIL_TWIGHLIGHT, 30.0);
+			dawn_s = FindPoint(pos, dawn_s, lower, Orbit.CIVIL_TWIGHLIGHT, -5.0);
+			dusk_s = FindPoint(pos, dusk_s, upper, Orbit.CIVIL_TWIGHLIGHT, 5.0);
 
 			return new SolarTimes(pos, udt, 0, 0, 0, dawn_s, st.Noon, dusk_s);
 		}
