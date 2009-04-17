@@ -12,96 +12,54 @@ namespace LibSolar.SolarOrbit
 	{
 		public static SolarTimes FindDawnDusk(Position pos, UTCDate udt)
 		{
+			UTCDate? dawn_s, dusk_s;
 			SolarTimes st = Orbit.CalcSolarTimes(pos, udt);
+			
+			dawn_s = st.Sunrise;
+			dusk_s = st.Sunset;
+			
 			UTCDate lower = st.Noon.AtStartOfUTCDay();
 			UTCDate upper = lower.AddDays(1);
 			
-			List<UTCDate> times = FindPoint(Orbit.CIVIL_TWIGHLIGHT, 0.01,
-			                                pos, lower, upper);
-			
-			UTCDate? udt_dawn = null;
-			UTCDate? udt_dusk = null;
-			foreach (UTCDate i in times) {
-				if (i < st.Noon)
-					udt_dawn = i;
-				if (i > st.Noon)
-					udt_dusk = i;
-			}
-			return new SolarTimes(pos, udt, 0, 0, 0, udt_dawn, st.Noon, udt_dusk);
+			dawn_s = FindPoint(pos, dawn_s, lower, Orbit.CIVIL_TWIGHLIGHT, -30.0);
+			dusk_s = FindPoint(pos, dusk_s, upper, Orbit.CIVIL_TWIGHLIGHT, 30.0);
+
+			return new SolarTimes(pos, udt, 0, 0, 0, dawn_s, st.Noon, dusk_s);
 		}
 		
-		private static List<UTCDate> FindPoint(double target, double slack,
-		                                       Position pos,
-		                                       UTCDate lower, UTCDate upper)
+		private static UTCDate? FindPoint(Position pos, 
+		                                  UTCDate? nudt, UTCDate bound, 
+		                                  double target, double inc)
 		{
-			double low = Compute(pos, lower);
-			double high = Compute(pos, upper);
-			
-			// always keep low to lower bound for less-than comparisons
-			if (low > high) {
-				double t = high;
-				UTCDate ut = upper;
+			if (nudt != null) {
+				UTCDate udt_s = nudt.Value;
 				
-				high = low;
-				upper = lower;
-				
-				low = t;
-				lower = ut;
+				UTCDate udt = udt_s;
+				while (WithinBound(bound, udt, inc)) {
+					udt = udt.AddSeconds(inc);
+					
+					if (Math.Abs(Compute(pos, udt) - target) < 0.01)
+						return udt;
+				}
 			}
-			
-			// target is outside range, exit
-			if (target < low) return new List<UTCDate>();
-			
-			// target is within slack, return
-			if (Math.Abs(low - target) < slack) return list(lower);
-			if (Math.Abs(high - target) < slack) return list(upper);
-			
-			// find middle
-			UTCDate middle = GetMidpoint(lower, upper);
-			double mid = Compute(pos, middle);
-			
-			// middle is on the curve between bounds
-			if ((low <= mid) && (mid <= high)) {
-				if (target < mid)
-					return FindPoint(target, slack, pos, lower, middle);
-				else
-					return FindPoint(target, slack, pos, middle, upper);
-				
-			// middle is a local maximum/minimum
-			} else {
-				List<UTCDate> left = FindPoint(target, slack, pos, lower, middle);
-				List<UTCDate> right = FindPoint(target, slack, pos, middle, upper);
-				return join(left, right);
-			}
-			
 			return null;
+		}
+		
+		private static bool WithinBound(UTCDate bound, UTCDate cur, double inc)
+		{
+			bool within = false;
+			if (inc > 0) {
+				within = cur <= bound;
+			} else {
+				within = bound <= cur;
+			}
+			return within;
 		}
 		
 		private static double Compute(Position pos, UTCDate udt)
 		{
 			SolarPosition sp = Orbit.CalcSolarPosition(pos, udt);
 			return sp.Elevation;
-		}
-		
-		private static UTCDate GetMidpoint(UTCDate lower, UTCDate upper)
-		{
-			double half = (upper - lower).TotalSeconds / 2;
-			return lower.AddSeconds(half);
-		}
-		
-		private static List<UTCDate> list(UTCDate udt)
-		{
-			List<UTCDate> lst = new List<UTCDate>();
-			lst.Add(udt);
-			return lst;
-		}
-				
-		private static List<UTCDate> join(List<UTCDate> left, List<UTCDate> right)
-		{
-			foreach (UTCDate item in right) {
-				left.Add(item);
-			}
-			return left;
 		}
 	}
 }
