@@ -74,10 +74,10 @@ namespace LibSolar.SolarOrbit
 		private static bool IsBetween(double point, double lower, double upper)
 		{
 			bool between = false;
-			if (upper.CompareTo(lower) >= 0) {
-				between = ((lower.CompareTo(point) <= 0) && (upper.CompareTo(point) >= 0));
-			} else {
-				between = ((upper.CompareTo(point) <= 0) && (lower.CompareTo(point) >= 0));
+			if (upper >= lower) {
+				between = (lower <= point) && (point <= upper);
+			} else if (lower > upper) {
+				between = (upper <= point) && (point <= lower); 
 			}
 			return between;
 		}
