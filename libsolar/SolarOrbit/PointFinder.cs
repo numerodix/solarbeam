@@ -45,10 +45,11 @@ namespace LibSolar.SolarOrbit
 					
 					delta_p = delta;
 					delta = Math.Abs(Compute(pos, udt) - target);
-					inc = (inc > 0 ? 1 : -1) * Math.Max(3, (delta * 10));
+					inc = (inc > 0 ? 1 : -1) * Math.Max(3, (delta * 150));
 					
-					if (delta < 0.01)
+					if (delta < 0.01) {
 						return udt;
+					}
 				}
 			}
 			return null;
