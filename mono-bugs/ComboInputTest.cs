@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 class ComboInputTest
@@ -26,6 +27,12 @@ class ComboInputTest
 		return combo;
 	}
 
+	public static TextBox GetTextBox()
+	{
+		TextBox textbox = new TextBox();
+		return textbox;
+	}
+
 	[STAThread]
 	public static void Main()
 	{
@@ -37,15 +44,24 @@ class ComboInputTest
 			}
 		}
 
-		Control combo = GetComboBoxInputable(items);
+		ComboBox combo = GetComboBoxInputable(items);
+		Control text = GetTextBox();
+		text.Location = new Point(140, 0);
 		form.Controls.Add(combo);
+		form.Controls.Add(text);
+
+		Console.WriteLine("start");
+		combo.SelectedValueChanged += delegate (object obj, EventArgs args) {
+			Console.WriteLine(combo.SelectedText);
+			text.Text = combo.SelectedText;
+		};
 
 		Application.Run(form);
 	}
 }
 
 /*
- * gmcs -r:System.Windows.Forms ComboInputTest.cs
+ * gmcs -r:System.Windows.Forms -r:System.Drawing ComboInputTest.cs
  *
  * When you start typing in the box without clicking the pull down menu
  * that shows all the items, there is a small popup box that appears
