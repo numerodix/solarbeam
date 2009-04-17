@@ -15,22 +15,24 @@ namespace LibSolar.Graphing
 	public class GraphBitmap
 	{
 		private int dimensions;
+		private int captionheight;
 		private string font_face;
 		private Colors colors;
 		
 		private Bitmap bitmap;
 		private Diagram diagram;
 		
-		public GraphBitmap(int dim, Colors colors, string font_face)
+		public GraphBitmap(bool caption, int dim, Colors colors, string font_face)
 		{
 			this.dimensions = dim;
+			this.captionheight = caption ? (int) (dim * Math.Sqrt(2) - dim) : 0;
 			this.font_face = font_face;
 			this.colors = colors;
 		}
 		
 		public Bitmap RenderBaseImage(Position pos, UTCDate udt)
 		{
-			bitmap = new Bitmap(dimensions, dimensions);
+			bitmap = new Bitmap(dimensions, dimensions+captionheight);
 			
 			diagram = new Diagram(0, 0, dimensions, dimensions,
 			                      colors, font_face);

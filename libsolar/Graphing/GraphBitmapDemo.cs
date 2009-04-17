@@ -31,7 +31,7 @@ namespace LibSolar.Graphing
 			string font_face = "Arial";
 			
 			// generate base image
-			GraphBitmap grbit = new GraphBitmap(dim, colors, font_face);
+			GraphBitmap grbit = new GraphBitmap(true, dim, colors, font_face);
 			Bitmap bitmap_plain = grbit.RenderBaseImage(pos, udt);
 			
 			// render current day

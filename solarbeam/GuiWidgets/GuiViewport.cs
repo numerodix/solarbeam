@@ -128,7 +128,7 @@ namespace SolarbeamGui
 		private Bitmap GenerateBaseImageBitmap()
 		{
 			int dim = GetCanvasDimensions();
-			this.graphbitmap = new GraphBitmap(dim, colors, font_face);
+			this.graphbitmap = new GraphBitmap(false, dim, colors, font_face);
 			return graphbitmap.RenderBaseImage(position, date.Value);
 		}
 		

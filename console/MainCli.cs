@@ -174,7 +174,7 @@ namespace SolarbeamCli
 			string font_face = "Arial";
 			
 			// generate base image
-			GraphBitmap grbit = new GraphBitmap(dim, colors, font_face);
+			GraphBitmap grbit = new GraphBitmap(false, dim, colors, font_face);
 			Bitmap bitmap_plain = grbit.RenderBaseImage(pos, udt);
 			
 			// render current day

@@ -203,7 +203,7 @@ namespace SolarbeamGui
 				filename = dlg.FileName;
 			
 				if (ans == DialogResult.OK) {
-					GraphBitmap grbit = new GraphBitmap(dim, colors, font_face);
+					GraphBitmap grbit = new GraphBitmap(true, dim, colors, font_face);
 					Bitmap bitmap_plain = grbit.RenderBaseImage(pos, dt);
 					Bitmap bitmap_final = grbit.RenderCurrentDay(bitmap_plain, dim, pos, dt);
 					grbit.SaveBitmap(bitmap_final, filename);
