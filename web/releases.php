@@ -1,10 +1,10 @@
-		<? // generated with scripts/genreleasepage.py on 16.4.2009 ?>
+		<? // generated with scripts/genreleasepage.py on 17.4.2009 ?>
 
 		<div class="releasetitle">
 			<a href="javascript:Collapse('release-0.5')">
 				<img src="imgs/collapse.png" alt="collapse"/>
 				SolarBeam 0.5
-			</a> - 16.04.2009
+			</a> - 17.04.2009
 		</div>
 		<div id="release-0.5">
 			<div class="releasecontent">
