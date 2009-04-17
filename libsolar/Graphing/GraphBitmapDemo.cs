@@ -35,10 +35,13 @@ namespace LibSolar.Graphing
 			Bitmap bitmap_plain = grbit.RenderBaseImage(pos, udt);
 			
 			// render current day
-			Bitmap bitmap_fst = grbit.RenderCurrentDay(bitmap_plain, dim, pos, udt);
+			Bitmap bitmap = grbit.RenderCurrentDay(bitmap_plain, dim, pos, udt);
+			
+			// render caption
+			bitmap = grbit.RenderCaption(pos, udt);
 			
 			// save
-			grbit.SaveBitmap(bitmap_fst, path);
+			grbit.SaveBitmap(bitmap, path);
 		}
 	}
 }

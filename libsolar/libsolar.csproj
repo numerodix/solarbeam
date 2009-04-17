@@ -73,6 +73,8 @@
     <Compile Include="Util\Formatter.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="SolarOrbit\PointFinder.cs" />
+    <Compile Include="Graphing\Types\Caption.cs" />
+    <Compile Include="Graphing\Graph\Captioning.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
