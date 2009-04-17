@@ -64,7 +64,7 @@ namespace LibSolar.Graphing
 						double el = Math.Abs(sp.Elevation);
 						
 						// first half of the year
-						if (udt_lower.CompareTo(dt_midyear) == -1) {
+						if (udt_lower < dt_midyear) {
 							// make sure we keep to the left of the graph
 							if (point.Value.X < graph.Origin.X) {
 								if (el_min > el) {
@@ -75,7 +75,7 @@ namespace LibSolar.Graphing
 						}
 						
 						// second half of the year
-						if (udt_lower.CompareTo(dt_midyear) >= 0) {
+						if (udt_lower >= dt_midyear) {
 							// make sure we keep to the right of the graph
 							if (point.Value.X >= graph.Origin.X) {
 								if (el_min > el) {

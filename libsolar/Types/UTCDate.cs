@@ -275,11 +275,39 @@ namespace LibSolar.Types
 			return new UTCDate(tz, dst, new_dt);
 		}
 		
-		public int CompareTo(UTCDate dt)
+		// ##########################################################
+		// ### Operators
+		// ##########################################################
+		
+		public static TimeSpan operator -(UTCDate a, UTCDate b)
 		{
-			return this.ExtractUTC().CompareTo(dt.ExtractUTC());
+			return a.ExtractUTC() - b.ExtractUTC();
+		}
+		
+		public static bool operator <(UTCDate a, UTCDate b)
+		{
+			return a.ExtractUTC() < b.ExtractUTC();
+		}
+		
+		public static bool operator <=(UTCDate a, UTCDate b)
+		{
+			return a.ExtractUTC() <= b.ExtractUTC();
+		}
+		
+		public static bool operator >(UTCDate a, UTCDate b)
+		{
+			return a.ExtractUTC() > b.ExtractUTC();
+		}
+		
+		public static bool operator >=(UTCDate a, UTCDate b)
+		{
+			return a.ExtractUTC() >= b.ExtractUTC();
 		}
 
+		// ##########################################################
+		// ### Properties
+		// ##########################################################
+		
 		public double Timezone
 		{ get { return tz; } }
 

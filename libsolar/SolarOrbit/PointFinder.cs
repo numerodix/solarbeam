@@ -22,9 +22,9 @@ namespace LibSolar.SolarOrbit
 			UTCDate? udt_dawn = null;
 			UTCDate? udt_dusk = null;
 			foreach (UTCDate i in times) {
-				if (i.CompareTo(st.Noon) == -1)
+				if (i < st.Noon)
 					udt_dawn = i;
-				if (i.CompareTo(st.Noon) == 1)
+				if (i > st.Noon)
 					udt_dusk = i;
 			}
 			return new SolarTimes(pos, udt, 0, 0, 0, udt_dawn, st.Noon, udt_dusk);
@@ -84,7 +84,7 @@ namespace LibSolar.SolarOrbit
 		
 		private static UTCDate GetMidpoint(UTCDate lower, UTCDate upper)
 		{
-			double half = (upper.ExtractUTC() - lower.ExtractUTC()).TotalSeconds / 2;
+			double half = (upper - lower).TotalSeconds / 2;
 			return lower.AddSeconds(half);
 		}
 		
