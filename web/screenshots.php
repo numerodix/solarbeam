@@ -49,7 +49,7 @@
 				<img src="imgs/ss/mac_t.png" alt="mac"/>
 			</a>
 			<div class="caption">
-				OS X
+				Mac OS X
 			</div>
 		</td>
 		</tr>
