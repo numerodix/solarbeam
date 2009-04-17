@@ -37,25 +37,37 @@ namespace LibSolar.SolarOrbit
 			double low = Compute(pos, lower);
 			double high = Compute(pos, upper);
 			
+			// target is outside range, exit
 			if ((target < low) || (target > high)) return new List<UTCDate>();
 			
+			// target is within slack, return
 			if (Math.Abs(low - target) < slack) return list(lower);
 			if (Math.Abs(high - target) < slack) return list(upper);
 			
+			// always keep low to lower bound for less-than comparisons
+			if (low > high) {
+				double t = high;
+				UTCDate ut = upper;
+				
+				high = low;
+				upper = lower;
+				
+				low = t;
+				lower = ut;
+			}
+			
+			// find middle
 			UTCDate middle = GetMidpoint(lower, upper);
 			double mid = Compute(pos, middle);
-			if (IsBetween(mid, low, high)) {
-				if (low <= high) {
-					if (target < mid)
-						return FindPoint(target, slack, pos, lower, middle);
-					else
-						return FindPoint(target, slack, pos, middle, upper);
-				} else {
-					if (target > mid)
-						return FindPoint(target, slack, pos, middle, lower);
-					else
-						return FindPoint(target, slack, pos, upper, middle);
-				}
+			
+			// middle is on the curve between bounds
+			if ((low <= mid) && (mid <= high)) {
+				if (target < mid)
+					return FindPoint(target, slack, pos, lower, middle);
+				else
+					return FindPoint(target, slack, pos, middle, upper);
+				
+			// middle is a local maximum/minimum
 			} else {
 				List<UTCDate> left = FindPoint(target, slack, pos, lower, middle);
 				List<UTCDate> right = FindPoint(target, slack, pos, middle, upper);
@@ -69,17 +81,6 @@ namespace LibSolar.SolarOrbit
 		{
 			SolarPosition sp = Orbit.CalcSolarPosition(pos, udt);
 			return sp.Elevation;
-		}
-		
-		private static bool IsBetween(double point, double lower, double upper)
-		{
-			bool between = false;
-			if (upper >= lower) {
-				between = (lower <= point) && (point <= upper);
-			} else if (lower > upper) {
-				between = (upper <= point) && (point <= lower); 
-			}
-			return between;
 		}
 		
 		private static UTCDate GetMidpoint(UTCDate lower, UTCDate upper)
