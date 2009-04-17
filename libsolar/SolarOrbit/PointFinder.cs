@@ -8,6 +8,9 @@ using LibSolar.Types;
 
 namespace LibSolar.SolarOrbit
 {
+	/**
+	 * Find characteristic (elevation) points on the curve.
+	 */
 	public class PointFinder
 	{
 		public static SolarTimes FindDawnDusk(Position pos, UTCDate udt)
