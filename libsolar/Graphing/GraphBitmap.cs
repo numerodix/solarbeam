@@ -52,7 +52,7 @@ namespace LibSolar.Graphing
 					// first half
 					Color color = udt_n.IsDST ? colors.YearFstHalfDst : colors.YearFstHalfStd;
 					// second half
-					if (udt_n.CompareTo(udt.SetDate(5, 6)) >= 0) {
+					if (udt_n >= udt.SetDate(5, 6)) {
 						color = udt_n.IsDST ? colors.YearSndHalfDst : colors.YearSndHalfStd;
 					}
 					

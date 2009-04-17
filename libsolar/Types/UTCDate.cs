@@ -275,11 +275,6 @@ namespace LibSolar.Types
 			return new UTCDate(tz, dst, new_dt);
 		}
 		
-		public int CompareTo(UTCDate dt)
-		{
-			return this.ExtractUTC().CompareTo(dt.ExtractUTC());
-		}
-		
 		// ##########################################################
 		// ### Operators
 		// ##########################################################
