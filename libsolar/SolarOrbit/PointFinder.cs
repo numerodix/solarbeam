@@ -35,11 +35,18 @@ namespace LibSolar.SolarOrbit
 			if (nudt != null) {
 				UTCDate udt_s = nudt.Value;
 				
+				// invariant delta < delta_p ensures convergence
+				double delta_p = double.MaxValue;
+				double delta = delta_p / 2;
+				
 				UTCDate udt = udt_s;
-				while (WithinBound(bound, udt, inc)) {
+				while (WithinBound(bound, udt, inc) && (delta < delta_p)) {
 					udt = udt.AddSeconds(inc);
 					
-					if (Math.Abs(Compute(pos, udt) - target) < 0.01)
+					delta_p = delta;
+					delta = Math.Abs(Compute(pos, udt) - target);
+					
+					if (delta < 0.01)
 						return udt;
 				}
 			}
