@@ -279,7 +279,40 @@ namespace LibSolar.Types
 		{
 			return this.ExtractUTC().CompareTo(dt.ExtractUTC());
 		}
+		
+		// ##########################################################
+		// ### Operators
+		// ##########################################################
+		
+		public static TimeSpan operator -(UTCDate a, UTCDate b)
+		{
+			return a.ExtractUTC() - b.ExtractUTC();
+		}
+		
+		public static bool operator <(UTCDate a, UTCDate b)
+		{
+			return a.ExtractUTC() < b.ExtractUTC();
+		}
+		
+		public static bool operator <=(UTCDate a, UTCDate b)
+		{
+			return a.ExtractUTC() <= b.ExtractUTC();
+		}
+		
+		public static bool operator >(UTCDate a, UTCDate b)
+		{
+			return a.ExtractUTC() > b.ExtractUTC();
+		}
+		
+		public static bool operator >=(UTCDate a, UTCDate b)
+		{
+			return a.ExtractUTC() >= b.ExtractUTC();
+		}
 
+		// ##########################################################
+		// ### Properties
+		// ##########################################################
+		
 		public double Timezone
 		{ get { return tz; } }
 
