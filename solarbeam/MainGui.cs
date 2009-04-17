@@ -84,7 +84,7 @@ namespace SolarbeamGui
 			Stopwatch watch = new Stopwatch();
 			watch.Start();
 			
-			GraphBitmapDemo.GenerateBitmap(5000, "img.png");
+			GraphBitmapDemo.GenerateBitmap(500, "img.png");
 	
 			watch.Stop();
 			Console.WriteLine("Elapsed: {0}",watch.Elapsed);
