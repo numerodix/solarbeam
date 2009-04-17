@@ -22,8 +22,8 @@ namespace LibSolar.SolarOrbit
 			UTCDate lower = st.Noon.AtStartOfUTCDay().AddDays(-1);
 			UTCDate upper = lower.AddDays(3);
 			
-			dawn_s = FindPoint(pos, dawn_s, lower, Orbit.CIVIL_TWIGHLIGHT, -5.0);
-			dusk_s = FindPoint(pos, dusk_s, upper, Orbit.CIVIL_TWIGHLIGHT, 5.0);
+			dawn_s = FindPoint(pos, dawn_s, lower, Orbit.CIVIL_TWIGHLIGHT, -1);
+			dusk_s = FindPoint(pos, dusk_s, upper, Orbit.CIVIL_TWIGHLIGHT, 1);
 
 			return new SolarTimes(pos, udt, 0, 0, 0, dawn_s, st.Noon, dusk_s);
 		}
@@ -45,6 +45,7 @@ namespace LibSolar.SolarOrbit
 					
 					delta_p = delta;
 					delta = Math.Abs(Compute(pos, udt) - target);
+					inc = (inc > 0 ? 1 : -1) * Math.Max(3, (delta * 10));
 					
 					if (delta < 0.01)
 						return udt;
