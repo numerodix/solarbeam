@@ -37,13 +37,6 @@ namespace LibSolar.SolarOrbit
 			double low = Compute(pos, lower);
 			double high = Compute(pos, upper);
 			
-			// target is outside range, exit
-			if ((target < low) || (target > high)) return new List<UTCDate>();
-			
-			// target is within slack, return
-			if (Math.Abs(low - target) < slack) return list(lower);
-			if (Math.Abs(high - target) < slack) return list(upper);
-			
 			// always keep low to lower bound for less-than comparisons
 			if (low > high) {
 				double t = high;
@@ -55,6 +48,13 @@ namespace LibSolar.SolarOrbit
 				low = t;
 				lower = ut;
 			}
+			
+			// target is outside range, exit
+			if (target < low) return new List<UTCDate>();
+			
+			// target is within slack, return
+			if (Math.Abs(low - target) < slack) return list(lower);
+			if (Math.Abs(high - target) < slack) return list(upper);
 			
 			// find middle
 			UTCDate middle = GetMidpoint(lower, upper);
