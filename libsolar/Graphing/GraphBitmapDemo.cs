@@ -16,13 +16,13 @@ namespace LibSolar.Graphing
 	{
 		public static void GenerateBitmap(int dim, string path)
 		{
-			string loc = "South Pole";
+			string loc = "Equator";
 			
 			// loc: Equator
-			Position pos = new Position(Position.LATITUDE_NEG,
-			                            89, 59, 59,
+			Position pos = new Position(Position.LATITUDE_POS,
+			                            0, 0, 0,
 			                            Position.LONGITUDE_POS,
-			                            179, 59, 59);
+			                            0, 0, 0);
 			// time: Now
 			DateTime dt = DateTime.Now;
 			UTCDate udt = new UTCDate(0, null,

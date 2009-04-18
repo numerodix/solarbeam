@@ -60,6 +60,17 @@ namespace LibSolar.Graphing
 			return string.Format("time: {0}{1}", udt.PrintTime(), dst_s);
 		}
 		
+		private static string FormatTime(UTCDate? udt)
+		{
+			string tm_s = "-----";
+			if (udt != null) {
+				DateTime dt_local = udt.Value.ExtractLocal();
+				string fmt = "HH':'mm";
+				tm_s = dt_local.ToString(fmt);
+			}
+			return tm_s;
+		}
+		
 		private static string FormatDiagramDate(UTCDate dt)
 		{
 			DateTime date = dt.ExtractLocal();
