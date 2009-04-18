@@ -19,13 +19,19 @@ namespace LibSolar.Graphing
 			using (SolidBrush brush = new SolidBrush(colors.GraphFg)) {
 				PaintCaptionBackground(g, caption);
 				
-				int x1 = caption.Dx / 20;
+				int dxx = caption.Dx / 20;
 				
 				List<string> stack = new List<string>();
 				stack.Add(ci.Location);
 				stack.Add(FormatPosition(ci.Position));
-				stack.Add(FormatTimezone(ci.Timezone, ci.DST));
-				PrintLocation(g, brush, caption, caption.A+x1, caption.B, stack);
+				stack.Add(FormatTimezone(ci.Timezone, ci.Timezone+ci.DST));
+				PrintLocation(g, brush, caption, caption.A+dxx, caption.B, stack);
+				
+				stack = new List<string>();
+				stack.Add(string.Empty);
+				stack.Add(FormatCaptionDate(ci.Date));
+				stack.Add(FormatCaptionTime(ci.Date, ci));
+				PrintLocation(g, brush, caption, (caption.Dx/2)+dxx*2, caption.B, stack);
 			}
 		}
 		
@@ -39,7 +45,7 @@ namespace LibSolar.Graphing
 		private void PrintLocation(Graphics g, SolidBrush br, Caption caption,
 		                           int a, int b, List<string> stack)
 		{
-			float font_size = GetLabelFontSize();
+			float font_size = GetLabelFontSize()+1;
 			using (Font font = new Font(font_face, font_size, GraphicsUnit.Pixel)) {
 				int height = font.Height;
 				for (int i=0; i<stack.Count; i++) {

@@ -333,7 +333,7 @@ namespace LibSolar.Types
 		{ get { return dt.Second; } }
 
 		// ##########################################################
-		// ### Helpers
+		// ### Printers
 		// ##########################################################
 		
 		public string Print()
@@ -343,6 +343,20 @@ namespace LibSolar.Types
 			string fmt = "HH':'mm':'ss' 'dd'.'MM'.'yyyy";
 			return string.Format("{0}  [{1} UTC]",
 								 dt_local.ToString(fmt), dt_utc.ToString(fmt));
+		}
+		
+		public string PrintDate()
+		{
+			DateTime dt_local = ExtractLocal();
+			string fmt = "dd'.'MM'.'yyyy";
+			return dt_local.ToString(fmt);
+		}
+		
+		public string PrintTime()
+		{
+			DateTime dt_local = ExtractLocal();
+			string fmt = "HH':'mm':'ss";
+			return dt_local.ToString(fmt);
 		}
 
 		public string PrintTimezone()
@@ -357,8 +371,8 @@ namespace LibSolar.Types
 		
 		public static string PrintPretty(double hours)
 		{
-			int hours_i = (int) Math.Floor(hours);
-			int mins_i = (int) Math.Floor(hours*60 - hours_i);
+			int hours_i = (int) Math.Floor(Math.Abs(hours));
+			int mins_i = (int) Math.Floor(Math.Abs(hours)*60 - hours_i*60);
 			string mins_s = string.Format(":{0:00}", mins_i);
 			mins_s = mins_i > 0 ? mins_s : string.Empty;
 			string sign = hours >= 0 ? "+" : "-";

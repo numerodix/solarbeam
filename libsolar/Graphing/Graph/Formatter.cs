@@ -31,7 +31,7 @@ namespace LibSolar.Graphing
 		{
 			string lat = pos.LatitudeDegree.Print();
 			string lon = pos.LongitudeDegree.Print();
-			string s = string.Format("coordinates: {0} {1}", lat, lon);
+			string s = string.Format("coordinates: {0}  {1}", lat, lon);
 			return s;
 		}
 		
@@ -39,14 +39,28 @@ namespace LibSolar.Graphing
 		{
 			string dst_s = UTCDate.PrintPretty(dst);
 			string dst_fmt = string.Format(" standard, {0} daylight", dst_s);
-			dst_fmt = dst != 0 ? dst_fmt : string.Empty;
+			dst_fmt = tz != dst ? dst_fmt : string.Empty;
 			string s = string.Format("timezone: {0}{1}",
 			                         UTCDate.PrintPretty(tz),
 			                         dst_fmt);
 			return s;
 		}
 		
-		private static string FormatDate(UTCDate dt)
+		private static string FormatCaptionDate(UTCDate udt)
+		{
+			return string.Format("date: {0}", udt.PrintDate());
+		}
+		
+		private static string FormatCaptionTime(UTCDate udt, CaptionInfo ci)
+		{
+			string dst_s = string.Empty;
+			if (udt.HasDST) {
+				dst_s = udt.IsDST ? " daylight" : " standard";
+			}
+			return string.Format("time: {0}{1}", udt.PrintTime(), dst_s);
+		}
+		
+		private static string FormatDiagramDate(UTCDate dt)
 		{
 			DateTime date = dt.ExtractLocal();
 			Month month = (Month) Enum.ToObject(typeof(Month), date.Month-1);

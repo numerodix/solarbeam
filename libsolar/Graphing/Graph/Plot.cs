@@ -104,7 +104,7 @@ namespace LibSolar.Graphing
 					Point? point = inner.Value;
 					
 					if (point != null) {
-						string dt_s = FormatDate(pair.Key);
+						string dt_s = FormatDiagramDate(pair.Key);
 
 						Placement place = Placement.RIGHT;
 						if (point.Value.X > graph.Origin.X) {

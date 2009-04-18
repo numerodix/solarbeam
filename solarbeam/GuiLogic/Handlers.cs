@@ -204,9 +204,10 @@ namespace SolarbeamGui
 			
 				if (ans == DialogResult.OK) {
 					GraphBitmap grbit = new GraphBitmap(true, dim, colors, font_face);
-					Bitmap bitmap_plain = grbit.RenderBaseImage(pos, dt);
-					Bitmap bitmap_final = grbit.RenderCurrentDay(bitmap_plain, dim, pos, dt);
-					grbit.SaveBitmap(bitmap_final, filename);
+					Bitmap bitmap = grbit.RenderBaseImage(pos, dt);
+					bitmap = grbit.RenderCurrentDay(bitmap, dim, pos, dt);
+					bitmap = grbit.RenderCaption(new CaptionInfo(location, pos, dt));
+					grbit.SaveBitmap(bitmap, filename);
 				}
 			}
 		}
