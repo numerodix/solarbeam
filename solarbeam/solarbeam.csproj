@@ -39,7 +39,6 @@
     <Compile Include="GuiLogic\Controller.cs" />
     <Compile Include="GuiLogic\Handlers.cs" />
     <Compile Include="GuiLogic\Validator.cs" />
-    <Compile Include="GuiLogic\Formatter.cs" />
     <Compile Include="GuiLogic\Reader.cs" />
     <Compile Include="GuiLogic\Writer.cs" />
     <Compile Include="GuiLogic\Marker.cs" />

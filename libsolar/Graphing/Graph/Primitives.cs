@@ -117,5 +117,14 @@ namespace LibSolar.Graphing
 			return ( space / (double) grid.Diameter ) / 2;
 		}
 		
+		private int GetLineThickness()
+		{
+			return Math.Max(1, (int) ((double) grid.Diameter / 450.0));
+		}
+		
+		private float GetLabelFontSize()
+		{
+			return (float) Math.Max(1.0, (double) graph.Delta * 8.0/20.0);
+		}
 	}
 }

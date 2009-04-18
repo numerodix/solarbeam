@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.IO;
 
+using LibSolar.Formatting;
 using LibSolar.Locations;
 using LibSolar.Types;
 using LibSolar.Util;

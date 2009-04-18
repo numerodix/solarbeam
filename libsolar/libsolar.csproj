@@ -59,7 +59,6 @@
     <Compile Include="Graphing\Graph\Primitives.cs" />
     <Compile Include="Graphing\Graph\Plot.cs" />
     <Compile Include="Graphing\Graph\Geometry.cs" />
-    <Compile Include="Graphing\Graph\Formatter.cs" />
     <Compile Include="Locations\Location.cs" />
     <Compile Include="Locations\LocationList.cs" />
     <Compile Include="Locations\LocationListData.cs" />
@@ -70,12 +69,16 @@
     <Compile Include="Util\AsmInfo.cs" />
     <Compile Include="Util\Platform.cs" />
     <Compile Include="Util\Serializer.cs" />
-    <Compile Include="Util\Formatter.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="SolarOrbit\PointFinder.cs" />
     <Compile Include="Graphing\Types\Caption.cs" />
     <Compile Include="Graphing\Graph\Captioning.cs" />
-    <Compile Include="Graphing\Types\CaptionInfo.cs" />
+    <Compile Include="Formatting\Formatter.cs" />
+    <Compile Include="Types\CaptionInfo.cs" />
+    <Compile Include="Formatting\Primitives.cs" />
+    <Compile Include="Formatting\Caption.cs" />
+    <Compile Include="Formatting\Diagram.cs" />
+    <Compile Include="Formatting\Filenames.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

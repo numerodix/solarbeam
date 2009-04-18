@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
+using LibSolar.Formatting;
 using LibSolar.Types;
 using LibSolar.Util;
 

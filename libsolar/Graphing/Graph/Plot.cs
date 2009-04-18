@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 
+using LibSolar.Formatting;
 using LibSolar.SolarOrbit;
 using LibSolar.Types;
 
@@ -104,7 +105,7 @@ namespace LibSolar.Graphing
 					Point? point = inner.Value;
 					
 					if (point != null) {
-						string dt_s = FormatDiagramDate(pair.Key);
+						string dt_s = Formatter.FormatDiagramDate(pair.Key);
 
 						Placement place = Placement.RIGHT;
 						if (point.Value.X > graph.Origin.X) {
@@ -185,8 +186,8 @@ namespace LibSolar.Graphing
 			}
 			
 			float font_size = GetLabelFontSize();
-			string hour_inner_s = FormatHour(hour_inner);
-			string hour_outer_s = FormatHour(hour_outer);
+			string hour_inner_s = Formatter.FormatHour(hour_inner);
+			string hour_outer_s = Formatter.FormatHour(hour_outer);
 			
 			KeyValuePair<Point?,double?> pair_max =
 				FindPointSlopeAtHour(pos, udt_inner);

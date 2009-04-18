@@ -9,6 +9,7 @@ using System.Reflection;
 
 using NDesk.Options;
 
+using LibSolar.Formatting;
 using LibSolar.Graphing;
 using LibSolar.SolarOrbit;
 using LibSolar.Types;

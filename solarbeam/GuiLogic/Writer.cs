@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
+using LibSolar.Formatting;
 using LibSolar.SolarOrbit;
 using LibSolar.Types;
 
@@ -77,19 +78,19 @@ namespace SolarbeamGui
 			SolarPosition sp = Orbit.CalcSolarPosition(pos, dt);
 			SolarTimes st_ss = Orbit.CalcSolarTimes(pos, dt);
 			
-			SetValue(registry[Id.ELEVATION], FormatAngle(sp.Elevation));
-			SetValue(registry[Id.AZIMUTH], FormatAngle(sp.Azimuth));
+			SetValue(registry[Id.ELEVATION], Formatter.FormatAngle(sp.Elevation));
+			SetValue(registry[Id.AZIMUTH], Formatter.FormatAngle(sp.Azimuth));
 			
-			SetValue(registry[Id.SOLAR_NOON], FormatTime(st_ss.Noon));
+			SetValue(registry[Id.SOLAR_NOON], Formatter.FormatTime(st_ss.Noon));
 			
 			string sunrise = "##:##";
 			string sunset = "##:##";
-			string daylength = FormatDayLength(st_ss, sp);
+			string daylength = Formatter.FormatDayLength(st_ss, sp);
 			if (st_ss.Sunrise.HasValue) {
-				sunrise = FormatTime(st_ss.Sunrise.Value);
+				sunrise = Formatter.FormatTime(st_ss.Sunrise.Value);
 			}
 			if (st_ss.Sunset.HasValue) {
-				sunset = FormatTime(st_ss.Sunset.Value);
+				sunset = Formatter.FormatTime(st_ss.Sunset.Value);
 			}
 			string riseset = string.Format("{0} - {1}  ({2})",
 			                               sunrise, sunset, daylength);
@@ -98,12 +99,12 @@ namespace SolarbeamGui
 			SolarTimes st_dd = PointFinder.FindDawnDusk(pos, dt);
 			string dawn = "##:##";
 			string dusk = "##:##";
-			string daylength2 = FormatDayLength(st_dd, sp);
+			string daylength2 = Formatter.FormatDayLength(st_dd, sp);
 			if (st_dd.Sunrise.HasValue) {
-				dawn = FormatTime(st_dd.Sunrise.Value);
+				dawn = Formatter.FormatTime(st_dd.Sunrise.Value);
 			}
 			if (st_dd.Sunset.HasValue) {
-				dusk = FormatTime(st_dd.Sunset.Value);
+				dusk = Formatter.FormatTime(st_dd.Sunset.Value);
 			}
 			string dawndusk = string.Format("{0} - {1}  ({2})",
 			                               dawn, dusk, daylength2);

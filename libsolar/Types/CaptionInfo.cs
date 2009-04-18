@@ -6,7 +6,7 @@ using System;
 using LibSolar.SolarOrbit;
 using LibSolar.Types;
 
-namespace LibSolar.Graphing
+namespace LibSolar.Types
 {
 	/**
 	 * Stores the info used in caption printing.

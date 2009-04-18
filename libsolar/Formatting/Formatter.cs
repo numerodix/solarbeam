@@ -5,26 +5,14 @@ using System;
 
 using LibSolar.Types;
 
-namespace SolarbeamGui
+namespace LibSolar.Formatting
 {
 	/**
-	 * Format values for display in gui.
+	 * String formatting functions.
 	 */
-	partial class Controller
+	public partial class Formatter
 	{
-		private static string FormatTime(UTCDate udt)
-		{
-			DateTime dt_loc = udt.ExtractLocal();
-			DateTime dt_std = udt.ExtractStandard();
-			DateTime dt_utc = udt.ExtractUTC();
-			string s_loc = string.Format("{0:HH:mm}", dt_loc);
-			string s_std = string.Format("{0:HH:mm}", dt_std);
-			string s_utc = string.Format("{0:HH:mm}", dt_utc);
-			string s = string.Format("{0} -- {1} ST -- {2} UTC", s_loc, s_std, s_utc);
-			return s_loc;
-		}
-	
-		private static string FormatDayLength(SolarTimes st, SolarPosition sp)
+		public static string FormatDayLength(SolarTimes st, SolarPosition sp)
 		{
 			DateTime? begin = null, end = null;
 			if (st.Sunrise != null) {
@@ -50,10 +38,6 @@ namespace SolarbeamGui
 			}
 			return string.Format("{0}h {1}m", h, m);
 		}
-	
-		private static string FormatAngle(double ang)
-		{
-			return string.Format("{0:0.00}°", ang);
-		}
+
 	}
 }

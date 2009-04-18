@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
+using LibSolar.Formatting;
 using LibSolar.Graphing;
 using LibSolar.Types;
 using LibSolar.Util;

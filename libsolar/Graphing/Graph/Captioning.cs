@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 
+using LibSolar.Formatting;
 using LibSolar.SolarOrbit;
+using LibSolar.Types;
 
 namespace LibSolar.Graphing
 {	
@@ -27,31 +29,33 @@ namespace LibSolar.Graphing
 					
 					List<string> stack = new List<string>();
 					stack.Add(ci.Location);
-					stack.Add(FormatPosition(ci.Position));
-					stack.Add(FormatTimezone(ci.Timezone, ci.Timezone+ci.DST));
+					stack.Add(Formatter.FormatCaptionPosition(ci.Position));
+					stack.Add(Formatter.FormatCaptionTimezone(ci.Timezone, ci.Timezone+ci.DST));
 					PrintVertically(g, brush, font, caption, caption.A+dxx, caption.B, stack);
 					
 					stack = new List<string>();
 					stack.Add(string.Empty);
-					stack.Add(FormatCaptionDate(ci.Date));
-					stack.Add(FormatCaptionTime(ci.Date, ci));
+					stack.Add(Formatter.FormatCaptionDate(ci.Date));
+					stack.Add(Formatter.FormatCaptionTime(ci.Date, ci));
 					PrintVertically(g, brush, font, caption, (caption.Dx/2)+dxx*3, caption.B, stack);
 					
 					int h_ang = (int) (4.5 * (double) height);
 					
 					stack = new List<string>();
-					stack.Add(string.Format("sun elevation: {0:0.00}°", ci.Elevation));
-					stack.Add(string.Format("sun azimuth: {0:0.00}°", ci.Azimuth));
+					stack.Add(string.Format("sun elevation: {0}",
+					                        Formatter.FormatAngle(ci.Elevation)));
+					stack.Add(string.Format("sun azimuth: {0}",
+					                        Formatter.FormatAngle(ci.Azimuth)));
 					PrintHorizontally(g, brush, font, caption, caption.B+h_ang, stack);
 					
 					int h_tm = (int) (7 * (double) height);
 					
 					stack = new List<string>();
-					stack.Add(FormatTime(ci.Dawn));
-					stack.Add(FormatTime(ci.Sunrise));
-					stack.Add(FormatTime(ci.Noon));
-					stack.Add(FormatTime(ci.Sunset));
-					stack.Add(FormatTime(ci.Dusk));
+					stack.Add(Formatter.FormatTime(ci.Dawn));
+					stack.Add(Formatter.FormatTime(ci.Sunrise));
+					stack.Add(Formatter.FormatTime(ci.Noon));
+					stack.Add(Formatter.FormatTime(ci.Sunset));
+					stack.Add(Formatter.FormatTime(ci.Dusk));
 					PrintHorizontally(g, brush, font, caption, caption.B+h_tm, stack);
 					
 					stack = new List<string>();

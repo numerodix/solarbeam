@@ -5,9 +5,9 @@ using System;
 
 using LibSolar.Types;
 
-namespace LibSolar.Util
+namespace LibSolar.Formatting
 {
-	public class Formatter
+	public partial class Formatter
 	{
 		public const string SessionFileExtension = ".solarbeam";
 		public const string SessionFileFilter = "*" + SessionFileExtension;
