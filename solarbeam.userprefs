@@ -1,19 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="libsolar/Graphing/Graph/Captioning.cs" ctype="Workbench">
-    <Files>
-      <File FileName="libsolar/Graphing/Types/CaptionInfo.cs" Line="50" Column="26" />
-      <File FileName="libsolar/Graphing/GraphBitmapDemo.cs" Line="44" Column="52" />
-      <File FileName="libsolar/Graphing/GraphBitmap.cs" Line="115" Column="2" />
-      <File FileName="libsolar/Graphing/Graph/Captioning.cs" Line="23" Column="26" />
-      <File FileName="libsolar/Graphing/Graph/Formatter.cs" Line="30" Column="39" />
-      <File FileName="libsolar/Graphing/Graph/Backdrop.cs" Line="107" Column="62" />
-      <File FileName="libsolar/Graphing/Graph/Primitives.cs" Line="31" Column="3" />
-    </Files>
+  <MonoDevelop.Ide.Workbench ctype="Workbench">
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="True" />
           <Option id="ShowAllFiles" value="False" />
+          <Node name="libsolar" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
