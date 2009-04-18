@@ -203,7 +203,8 @@ namespace SolarbeamGui
 				filename = dlg.FileName;
 			
 				if (ans == DialogResult.OK) {
-					GraphBitmap grbit = new GraphBitmap(true, dim, colors, font_face);
+					bool caption = GetBool(GetValue(registry[Id.IMAGE_CAPTIONTOGGLE]));
+					GraphBitmap grbit = new GraphBitmap(caption, dim, colors, font_face);
 					Bitmap bitmap = grbit.RenderBaseImage(pos, dt);
 					bitmap = grbit.RenderCurrentDay(bitmap, dim, pos, dt);
 					bitmap = grbit.RenderCaption(new CaptionInfo(location, pos, dt));

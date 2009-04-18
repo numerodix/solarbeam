@@ -229,5 +229,10 @@ namespace SolarbeamGui
 		{
 			return Convert.ToInt32(s);
 		}
+		
+		private static bool GetBool(object s)
+		{
+			return Convert.ToBoolean(s);
+		}
 	}
 }

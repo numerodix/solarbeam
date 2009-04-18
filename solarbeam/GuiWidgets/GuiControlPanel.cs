@@ -24,7 +24,7 @@ namespace SolarbeamGui
 		
 		private const int INPUTS_COUNT = 6;
 		private const int OUTPUTS_COUNT = 5;
-		private const int IMAGESAVE_COUNT = 1;
+		private const int IMAGESAVE_COUNT = 2;
 		
 		private const int INPUTS_HEIGHT = GROUPBOX_HEIGHT + INPUTS_COUNT * FORM_ROW_HEIGHT + 2*FORM_PADDING;
 		private const int BUTTONS_HEIGHT = 30;
@@ -280,19 +280,41 @@ namespace SolarbeamGui
 
 		private Control GetImageSave()
 		{
+			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(IMAGESAVE_COUNT, 1,
+				                                                  FORM_MARGIN, FORM_PADDING);
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+	
+			for (int i = 0; i < IMAGESAVE_COUNT; i++) {
+				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
+			}
+				
 			Control btns = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetLabel(String.Empty), //layout buffer
-					Widgets.GetNumericUpDown(Controller.Id.IMAGE_SIZE,
-					                         300,
-					                         10000),
+					Widgets.GetNumericUpDown(
+						Controller.Id.IMAGE_SIZE,
+						300,
+						10000),
 					Widgets.GetLabel("pixels"),
 					Widgets.GetButtonImageText(Controller.Id.IMAGESAVE_ACTION,
 				                           "Save", "image-save.png"),
 					Widgets.GetLabel(String.Empty)},
 				new float[] {20F, 20F, 15F, 30F, 20F});
+
+			Control check = Widgets.GetLaidOut(
+				new Control[] {
+					Widgets.GetLabel(String.Empty), //layout buffer
+					Widgets.GetCheckBox(
+						Controller.Id.IMAGE_CAPTIONTOGGLE,
+						"Print caption below diagram",
+						true),
+					Widgets.GetLabel(String.Empty)},
+				new float[] {20F, 64F, 20F});
 	
-			return btns;
+			layout.Controls.Add(btns, 0, 0);
+			layout.Controls.Add(check, 0, 1);
+				
+			return layout;
 		}
 	}
 }

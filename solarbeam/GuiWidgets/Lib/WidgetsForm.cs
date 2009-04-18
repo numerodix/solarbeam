@@ -47,6 +47,16 @@ namespace SolarbeamGui
 			return button;
 		}
 		
+		public static CheckBox GetCheckBox(Controller.Id id, string caption,
+		                                   bool val)
+		{
+			CheckBox check = new CheckBox();
+			check.Text = caption;
+			check.Checked = val;
+			Controller.RegisterControl(id, check);	// register control
+			return check;
+		}
+		
 		public static ComboBox GetComboBox(Controller.Id id, List<string> ss)
 		{
 			ComboBox combo = new ComboBox();

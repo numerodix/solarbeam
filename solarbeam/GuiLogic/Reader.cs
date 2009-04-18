@@ -70,7 +70,9 @@ namespace SolarbeamGui
 		private static string GetValue(Component control)
 		{
 			string val = null;
-			if (control is ComboBox) {
+			if (control is CheckBox) {
+				val = ((CheckBox) control).Checked.ToString();
+			} else if (control is ComboBox) {
 				val = ((ComboBox) control).Text;
 			} else if (control is NumericUpDown) {
 				val = ((NumericUpDown) control).Value.ToString();

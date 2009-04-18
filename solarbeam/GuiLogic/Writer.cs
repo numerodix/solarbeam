@@ -125,7 +125,9 @@ namespace SolarbeamGui
 	
 		public static void SetValue(Component control, object val)
 		{
-			if (control is ComboBox) {
+			if (control is CheckBox) {
+				((CheckBox) control).Checked = GetBool(val);
+			} else if (control is ComboBox) {
 				((ComboBox) control).Text = (string) val;
 			} else if (control is NumericUpDown) {
 				((NumericUpDown) control).Value = GetInt(val);
