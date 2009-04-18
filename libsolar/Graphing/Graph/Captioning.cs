@@ -25,13 +25,13 @@ namespace LibSolar.Graphing
 				stack.Add(ci.Location);
 				stack.Add(FormatPosition(ci.Position));
 				stack.Add(FormatTimezone(ci.Timezone, ci.Timezone+ci.DST));
-				PrintLocation(g, brush, caption, caption.A+dxx, caption.B, stack);
+				PrintVertically(g, brush, caption, caption.A+dxx, caption.B, stack);
 				
 				stack = new List<string>();
 				stack.Add(string.Empty);
 				stack.Add(FormatCaptionDate(ci.Date));
 				stack.Add(FormatCaptionTime(ci.Date, ci));
-				PrintLocation(g, brush, caption, (caption.Dx/2)+dxx*2, caption.B, stack);
+				PrintVertically(g, brush, caption, (caption.Dx/2)+dxx*2, caption.B, stack);
 			}
 		}
 		
@@ -42,7 +42,7 @@ namespace LibSolar.Graphing
 			}
 		}
 		
-		private void PrintLocation(Graphics g, SolidBrush br, Caption caption,
+		private void PrintVertically(Graphics g, SolidBrush br, Caption caption,
 		                           int a, int b, List<string> stack)
 		{
 			float font_size = GetLabelFontSize()+1;
