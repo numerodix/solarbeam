@@ -354,5 +354,15 @@ namespace LibSolar.Types
 			double val = Math.Abs(tz);
 			return string.Format("{0}{1}", sign, val);
 		}
+		
+		public static string PrintPretty(double hours)
+		{
+			int hours_i = (int) Math.Floor(hours);
+			int mins_i = (int) Math.Floor(hours*60 - hours_i);
+			string mins_s = string.Format(":{0:00}", mins_i);
+			mins_s = mins_i > 0 ? mins_s : string.Empty;
+			string sign = hours >= 0 ? "+" : "-";
+			return string.Format("UTC{0}{1}{2}", sign, hours_i, mins_s);
+		}
 	}
 }

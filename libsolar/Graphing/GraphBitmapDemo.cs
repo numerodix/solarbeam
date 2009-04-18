@@ -4,6 +4,7 @@
 using System;
 using System.Drawing;
 
+using LibSolar.SolarOrbit;
 using LibSolar.Types;
 
 namespace LibSolar.Graphing
@@ -15,11 +16,13 @@ namespace LibSolar.Graphing
 	{
 		public static void GenerateBitmap(int dim, string path)
 		{
+			string loc = "South Pole";
+			
 			// loc: Equator
-			Position pos = new Position(Position.LATITUDE_POS,
-			                            0, 0, 0,
+			Position pos = new Position(Position.LATITUDE_NEG,
+			                            89, 59, 59,
 			                            Position.LONGITUDE_POS,
-			                            0, 0, 0);
+			                            179, 59, 59);
 			// time: Now
 			DateTime dt = DateTime.Now;
 			UTCDate udt = new UTCDate(0, null,
@@ -38,7 +41,8 @@ namespace LibSolar.Graphing
 			Bitmap bitmap = grbit.RenderCurrentDay(bitmap_plain, dim, pos, udt);
 			
 			// render caption
-			bitmap = grbit.RenderCaption(pos, udt);
+			CaptionInfo ci = new CaptionInfo(loc, pos, udt);
+			bitmap = grbit.RenderCaption(ci);
 			
 			// save
 			grbit.SaveBitmap(bitmap, path);

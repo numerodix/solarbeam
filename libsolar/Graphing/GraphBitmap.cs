@@ -97,12 +97,12 @@ namespace LibSolar.Graphing
 			return bitmap;
 		}
 		
-		public Bitmap RenderCaption(Position pos, UTCDate udt)
+		public Bitmap RenderCaption(CaptionInfo ci)
 		{
 			using (Graphics g = Graphics.FromImage(bitmap)) {
 				Caption caption = new Caption(0, dimensions,
 				                              dimensions, dimensions+captionheight);
-				diagram.PrintCaption(g, caption);
+				diagram.PrintCaption(g, caption, ci);
 			}
 			return bitmap;
 		}

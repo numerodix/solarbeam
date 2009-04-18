@@ -75,6 +75,7 @@
     <Compile Include="SolarOrbit\PointFinder.cs" />
     <Compile Include="Graphing\Types\Caption.cs" />
     <Compile Include="Graphing\Graph\Captioning.cs" />
+    <Compile Include="Graphing\Types\CaptionInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

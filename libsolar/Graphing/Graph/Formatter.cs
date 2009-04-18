@@ -27,6 +27,25 @@ namespace LibSolar.Graphing
 	 */
 	partial class Diagram
 	{
+		private static string FormatPosition(Position pos)
+		{
+			string lat = pos.LatitudeDegree.Print();
+			string lon = pos.LongitudeDegree.Print();
+			string s = string.Format("coordinates: {0} {1}", lat, lon);
+			return s;
+		}
+		
+		private static string FormatTimezone(double tz, double dst)
+		{
+			string dst_s = UTCDate.PrintPretty(dst);
+			string dst_fmt = string.Format(" standard, {0} daylight", dst_s);
+			dst_fmt = dst != 0 ? dst_fmt : string.Empty;
+			string s = string.Format("timezone: {0}{1}",
+			                         UTCDate.PrintPretty(tz),
+			                         dst_fmt);
+			return s;
+		}
+		
 		private static string FormatDate(UTCDate dt)
 		{
 			DateTime date = dt.ExtractLocal();
