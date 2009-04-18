@@ -62,6 +62,14 @@
 				Command line client
 			</div>
 		</td>
+		<td>
+			<a href="imgs/ss/diagram.png">
+				<img src="imgs/ss/diagram_t.png" alt="diagram"/>
+			</a>
+			<div class="caption">
+				A diagram saved to an image
+			</div>
+		</td>
 		</tr>
 		</table>
 	</div>
