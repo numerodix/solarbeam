@@ -37,6 +37,15 @@ namespace LibSolar.Graphing
 					stack.Add(FormatCaptionTime(ci.Date, ci));
 					PrintVertically(g, brush, font, caption, (caption.Dx/2)+dxx*3, caption.B, stack);
 					
+					int h_ang = 3*height;
+					
+					stack = new List<string>();
+					stack.Add(FormatTime(ci.Dawn));
+					stack.Add(FormatTime(ci.Sunrise));
+					stack.Add(FormatTime(ci.Noon));
+					stack.Add(FormatTime(ci.Sunset));
+					stack.Add(FormatTime(ci.Dusk));
+					PrintHorizontally(g, brush, font, caption, caption.B+h_ang, stack);
 					
 					int h_tm = 5*height;
 					
