@@ -181,8 +181,8 @@ namespace LibSolar.Graphing
 			string legend_outer = null;
 			// we have DST
 			if (udt_inner.IsDST || udt_outer.IsDST) {
-				legend_inner = udt_inner.IsDST ? "DST" : "ST";
-				legend_outer = udt_outer.IsDST ? "DST" : "ST";
+				legend_inner = udt_inner.IsDST ? "daylight" : "standard";
+				legend_outer = udt_outer.IsDST ? "daylight" : "standard";
 			}
 			
 			float font_size = GetLabelFontSize();
@@ -191,7 +191,7 @@ namespace LibSolar.Graphing
 			
 			KeyValuePair<Point?,double?> pair_max =
 				FindPointSlopeAtHour(pos, udt_inner);
-			if (pair_max.Key != null) {
+			if ((pair_max.Key != null) && (pair_max.Value != null)) {
 				Placement place = SlopeToPlacement(pair_max.Value.Value, pos);
 				using (SolidBrush br_txt = new SolidBrush(color))
 				using (Font font = new Font(font_face, font_size, GraphicsUnit.Pixel)) {
@@ -201,7 +201,8 @@ namespace LibSolar.Graphing
 					
 					if ((legend_inner != null) && (hour_inner == 12)) {
 						PrintBoundedString(g, font, br_txt, legend_inner,
-						                   graph.Origin.X, pair_max.Key.Value.Y,
+						                   graph.Origin.X + (int) (1.3 * (double) graph.Delta),
+						                   pair_max.Key.Value.Y,
 						                   place, legend_margin);
 					}
 				}
@@ -209,7 +210,7 @@ namespace LibSolar.Graphing
 			
 			KeyValuePair<Point?,double?> pair_min = 
 				FindPointSlopeAtHour(pos, udt_outer);
-			if (pair_min.Key != null) {
+			if ((pair_min.Key != null) && (pair_min.Value != null)) {
 				Placement place = 
 					SlopeToPlacement( (pair_min.Value.Value + 180.0) % 360.0, pos);
 				using (SolidBrush br_txt = new SolidBrush(color))
@@ -220,7 +221,8 @@ namespace LibSolar.Graphing
 					
 					if ((legend_outer != null) && (hour_outer == 12)) {
 						PrintBoundedString(g, font, br_txt, legend_outer,
-						                   graph.Origin.X, pair_min.Key.Value.Y,
+						                   graph.Origin.X + (int) (1.3 * (double) graph.Delta),
+						                   pair_min.Key.Value.Y,
 						                   place, legend_margin);
 					}
 				}
