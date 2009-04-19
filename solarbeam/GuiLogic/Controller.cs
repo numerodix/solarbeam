@@ -65,7 +65,7 @@ namespace SolarbeamGui
 			IMAGE_SIZE,
 			IMAGE_CAPTIONTOGGLE,
 			IMAGESAVE_ACTION,
-			VIEWPORT,
+			DIAGRAM,
 
 			ABOUTCLOSE_ACTION,
 		}
@@ -198,7 +198,7 @@ namespace SolarbeamGui
 			
 			// register updating inputs for value changes
 			if (ins_timedate.Contains(id)) {
-				EventHandler handler = new EventHandler(UpdateViewport);
+				EventHandler handler = new EventHandler(UpdateDiagram);
 				RegisterValueChange(control, handler);
 			}
 		
@@ -233,7 +233,7 @@ namespace SolarbeamGui
 			} else if (reg_rev[button] == Id.MENURESETFORM_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(ResetForm);
 			} else if (reg_rev[button] == Id.MENURENDER_ACTION) {
-				((ToolStripMenuItem) button).Click += new EventHandler(RenderViewport);
+				((ToolStripMenuItem) button).Click += new EventHandler(RenderDiagram);
 			} else if (reg_rev[button] == Id.MENUSAVEIMAGE_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(SaveImage);
 			// Help
@@ -255,7 +255,7 @@ namespace SolarbeamGui
 			} else if (reg_rev[button] == Id.RESETFORM_ACTION) {
 				((Button) button).Click += new EventHandler(ResetForm);
 			} else if (reg_rev[button] == Id.RENDER_ACTION) {
-				((Button) button).Click += new EventHandler(RenderViewport);
+				((Button) button).Click += new EventHandler(RenderDiagram);
 
 			} else if (reg_rev[button] == Id.IMAGESAVE_ACTION) {
 				((Button) button).Click += new EventHandler(SaveImage);

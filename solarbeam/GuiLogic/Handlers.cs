@@ -122,7 +122,7 @@ namespace SolarbeamGui
 		}
 		
 		/**
-		 * Clear updates to controls that force viewport re-rendering.
+		 * Clear updates to controls that force diagram re-rendering.
 		 */
 		private static void ResetForm(object sender, EventArgs args)
 		{
@@ -140,9 +140,9 @@ namespace SolarbeamGui
 		}
 		
 		/**
-		 * Viewport forced to re-render.
+		 * Diagram forced to re-render.
 		 */
-		public static void RenderViewport(object sender, EventArgs args)
+		public static void RenderDiagram(object sender, EventArgs args)
 		{
 			Position pos = ReadPosition();
 			UTCDate? dt = ReadDate();
@@ -157,15 +157,15 @@ namespace SolarbeamGui
 					cache[id] = GetValue(control);
 				}
 	
-				((GuiViewport) registry[Id.VIEWPORT]).ReRender(pos, dt.Value);
+				((GuiDiagram) registry[Id.DIAGRAM]).ReRender(pos, dt.Value);
 				SetOutputs(pos, dt.Value);
 			}
 		}
 		
 		/**
-		 * Viewport is updated with current day plot, existing rendering used.
+		 * Diagram is updated with current day plot, existing rendering used.
 		 */
-		private static void UpdateViewport(object sender, EventArgs args)
+		private static void UpdateDiagram(object sender, EventArgs args)
 		{
 			// value changes will occur during control initialization, sometimes 
 			// before all controls have been registered. ignore this early case
@@ -177,7 +177,7 @@ namespace SolarbeamGui
 					UTCDate? dt = ReadDate();
 	
 					if ((pos != null) && (dt != null )) {
-						((GuiViewport) registry[Id.VIEWPORT]).Update(dt.Value);
+						((GuiDiagram) registry[Id.DIAGRAM]).Update(dt.Value);
 						SetOutputs(pos, dt.Value);
 					}
 				}
@@ -190,8 +190,8 @@ namespace SolarbeamGui
 			string location = GetValue(registry[Id.LOCATION]);
 			Position pos = ReadPosition();
 			UTCDate? date = ReadDate();
-			Colors colors = GuiViewport.colors;
-			string font_face = GuiViewport.font_face;
+			Colors colors = GuiDiagram.colors;
+			string font_face = GuiDiagram.font_face;
 			
 			if ((pos != null) && (date != null)) {
 				UTCDate dt = date.Value;
@@ -251,7 +251,7 @@ namespace SolarbeamGui
 		}
 	
 		/**
-		 * Handle updates to controls that force viewport re-rendering by marking
+		 * Handle updates to controls that force diagram re-rendering by marking
 		 * the control as having changed.
 		 */
 		private static void ValueChange(object sender, EventArgs args)

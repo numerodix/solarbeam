@@ -17,8 +17,8 @@ namespace SolarbeamGui
 	sealed class GuiMainForm : Form
 	{	
 		private const int BORDER = 0;
-		private const int VIEWPORT_DIM_X = GuiViewport.IDEAL_DIM_X;
-		private const int VIEWPORT_DIM_Y = GuiViewport.IDEAL_DIM_Y;
+		private const int DIAGRAM_DIM_X = GuiDiagram.IDEAL_DIM_X;
+		private const int DIAGRAM_DIM_Y = GuiDiagram.IDEAL_DIM_Y;
 		
 		// make about form accessible to logic
 		public static GuiAbout aboutform;
@@ -26,7 +26,7 @@ namespace SolarbeamGui
 		// my widgets
 		private GuiMenu menu;
 		private GuiControlPanel controlpanel;
-		private GuiViewport viewport;
+		private GuiDiagram diagram;
 		
 		public GuiMainForm(string form_title, string icon)
 		{
@@ -100,28 +100,28 @@ namespace SolarbeamGui
 				Controller.InitForm();
 			}
 			
-			this.viewport = new GuiViewport(this);
+			this.diagram = new GuiDiagram(this);
 		
 			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(1, 2, 0, BORDER);
 			
 			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute,
 			                                        GuiControlPanel.WIDTH));
 			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute,
-			                                        VIEWPORT_DIM_X));
+			                                        DIAGRAM_DIM_X));
 			
 			layout.Controls.Add(controlpanel, 0, 0);
-			layout.Controls.Add(viewport, 1, 0);
+			layout.Controls.Add(diagram, 1, 0);
 			
 			// initial rendering
-			Controller.RenderViewport(null, null);
+			Controller.RenderDiagram(null, null);
 			
 			return layout;
 		}
 		
 		private Size GetFormSize()
 		{
-			int width = VIEWPORT_DIM_X + GuiControlPanel.WIDTH;
-			int height = Math.Max(VIEWPORT_DIM_Y, GuiControlPanel.HEIGHT)
+			int width = DIAGRAM_DIM_X + GuiControlPanel.WIDTH;
+			int height = Math.Max(DIAGRAM_DIM_Y, GuiControlPanel.HEIGHT)
 				+ this.menu.Height;
 			return new Size(width, height);
 		}

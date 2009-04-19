@@ -35,7 +35,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="GuiWidgets\GuiMainForm.cs" />
     <Compile Include="GuiWidgets\GuiControlPanel.cs" />
-    <Compile Include="GuiWidgets\GuiViewport.cs" />
+    <Compile Include="GuiWidgets\GuiDiagram.cs" />
     <Compile Include="GuiLogic\Controller.cs" />
     <Compile Include="GuiLogic\Handlers.cs" />
     <Compile Include="GuiLogic\Validator.cs" />

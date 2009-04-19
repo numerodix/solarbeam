@@ -14,7 +14,7 @@ namespace SolarbeamGui
 	/**
 	 * Represents diagram viewport as widget.
 	 */
-	sealed class GuiViewport : Control
+	sealed class GuiDiagram : Control
 	{
 		public const int IDEAL_DIM_X = 569;
 		public const int IDEAL_DIM_Y = 526;
@@ -35,7 +35,7 @@ namespace SolarbeamGui
 		private BufferedGraphicsContext buffercontext;
 		
 		
-		public GuiViewport(GuiMainForm gui)
+		public GuiDiagram(GuiMainForm gui)
 		{
 			this.gui = gui;
 			InitializeComponent();
@@ -43,7 +43,7 @@ namespace SolarbeamGui
 		
 		private void InitializeComponent()
 		{
-			Controller.RegisterControl(Controller.Id.VIEWPORT, this);	// register control
+			Controller.RegisterControl(Controller.Id.DIAGRAM, this);	// register control
 			
 			this.Dock = DockStyle.Fill;
 			this.BackColor = colors.GridBg;
