@@ -27,8 +27,8 @@ namespace SolarbeamGui
 		private Position position;
 		private UTCDate? date;
 		private GraphBitmap graphbitmap;
-		private Bitmap bitmape_base;
-		private Bitmap bitmape_final;
+		private Bitmap bitmap_base;
+		private Bitmap bitmap_final;
 		
 		GuiMainForm gui;
 		
@@ -59,7 +59,7 @@ namespace SolarbeamGui
 		{
 			this.date = date;
 			
-			this.bitmape_final = null;
+			this.bitmap_final = null;
 			RePaint();
 		}
 		
@@ -68,8 +68,8 @@ namespace SolarbeamGui
 			this.position = pos;
 			this.date = date;
 			
-			this.bitmape_base = null;
-			this.bitmape_final = null;
+			this.bitmap_base = null;
+			this.bitmap_final = null;
 			RePaint();
 		}
 		
@@ -80,24 +80,24 @@ namespace SolarbeamGui
 				int dim = GetCanvasDimensions();
 				
 				// bitmap exists, wrong dimensions
-				if ((this.bitmape_final != null)
-				    && ((this.bitmape_final.Width != dim)
-				        || (this.bitmape_final.Height != dim)))
+				if ((this.bitmap_final != null)
+				    && ((this.bitmap_final.Width != dim)
+				        || (this.bitmap_final.Height != dim)))
 				{
-					this.bitmape_base = GenerateBaseImageBitmap();
-					this.bitmape_final = GenerateFinalizedBitmap();
+					this.bitmap_base = GenerateBaseImageBitmap();
+					this.bitmap_final = GenerateFinalizedBitmap();
 					
 				// bitmap is null
-				} else if (this.bitmape_final == null)	{
-					if (this.bitmape_base == null)
+				} else if (this.bitmap_final == null)	{
+					if (this.bitmap_base == null)
 					{
-						this.bitmape_base = GenerateBaseImageBitmap();
+						this.bitmap_base = GenerateBaseImageBitmap();
 					}
-					this.bitmape_final = GenerateFinalizedBitmap();
+					this.bitmap_final = GenerateFinalizedBitmap();
 				}
 				
 				// render
-				RenderBitmap(this.bitmape_final);
+				RenderBitmap(this.bitmap_final);
 			}
 		}
 		
