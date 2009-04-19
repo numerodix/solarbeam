@@ -75,8 +75,8 @@ namespace SolarbeamGui
 		
 		private void RePaint()
 		{
-			if ((position != null) && (date != null))
-			{
+//			if ((position != null) && (date != null))
+//			{
 				int dim = GetCanvasDimensions();
 				
 				// bitmap exists, wrong dimensions
@@ -98,7 +98,7 @@ namespace SolarbeamGui
 				
 				// render
 				RenderBitmap(this.bitmape_final);
-			}
+//			}
 		}
 		
 		private void RenderBitmap(Bitmap bitmap)

@@ -184,6 +184,28 @@ namespace SolarbeamGui
 			} catch (KeyNotFoundException) {}
 		}
 		
+		/**
+		 * Map is updated with current day plot, existing rendering used.
+		 */
+		public static void UpdateMap(object sender, EventArgs args)
+		{
+			// value changes will occur during control initialization, sometimes 
+			// before all controls have been registered. ignore this early case
+			try {
+				// don't update while validating, input may be partial
+				if (!validate_lock)
+				{
+					Position pos = ReadPosition();
+					UTCDate? dt = ReadDate();
+	
+					if ((pos != null) && (dt != null )) {
+						((GuiMap) registry[Id.MAP]).Update(dt.Value);
+						SetOutputs(pos, dt.Value);
+					}
+				}
+			} catch (KeyNotFoundException) {}
+		}
+		
 		private static void SaveImage(object sender, EventArgs args)
 		{
 			int dim = GetInt(GetValue(registry[Id.IMAGE_SIZE]));

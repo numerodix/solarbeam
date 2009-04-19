@@ -120,6 +120,7 @@ namespace SolarbeamGui
 			
 			// initial rendering
 			Controller.RenderDiagram(null, null);
+			Controller.UpdateMap(null, null);
 			
 			return layout;
 		}
