@@ -32,6 +32,11 @@ This is the NDesk Options command line option parser, see
 http://www.ndesk.org/Options. It is released under the MIT/X11 license, see
 http://www.opensource.org/licenses/mit-license.php.
 
+* ICSharpCode.SharpZipLib.dll
+
+This is the SharpZipLib library, stripped of everything unrelated to gunzip.
+It is released under the GPL license.
+
 * nunit.framework.dll
 
 This is the NUnit testing framework, see http://www.nunit.org. It is released
