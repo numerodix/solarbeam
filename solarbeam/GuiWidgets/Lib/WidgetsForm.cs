@@ -128,10 +128,19 @@ namespace SolarbeamGui
 			return txt;
 		}
 		
-		public static TabControl GetTabControl()
+		public static TabControl GetTabControl(Control[] controls,
+		                                       string[] labels)
 		{
 			TabControl tabs = new TabControl();
 			tabs.Dock = DockStyle.Fill;
+			
+			for (int i=0; i<controls.Length; i++) {
+				TabPage tab = new TabPage();
+				tab.Dock = DockStyle.Fill;
+				tab.Text = labels[i];
+				tab.Controls.Add(controls[i]);
+				tabs.Controls.Add(tab);
+			}
 			
 			// give me focus when mouse hovers, so that MouseWheel fires
 			tabs.MouseEnter += delegate (object sender, EventArgs args) {

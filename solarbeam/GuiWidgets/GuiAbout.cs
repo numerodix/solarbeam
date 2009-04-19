@@ -77,21 +77,25 @@ namespace SolarbeamGui
 		
 		private Control GetTabs()
 		{
-			TabControl tabs = Widgets.GetTabControl();
-			
-			tabs.Controls.Add(GetAbout());
-			tabs.Controls.Add(GetLibs());
-			tabs.Controls.Add(GetLicense());
+			Control about = GetAbout();
+			Control libs = GetLibs();
+			Control lic = GetLicense();
+		
+			TabControl tabs = Widgets.GetTabControl(
+				new Control[] {
+					about,
+					libs,
+					lic},
+				new string[] {
+					"About",
+					"Libraries",
+					"License"});
 			
 			return tabs;
 		}
 		
-		private TabPage GetAbout()
+		private Control GetAbout()
 		{
-			TabPage tab = new TabPage();
-			tab.Dock = DockStyle.Fill;
-			tab.Text = "About";
-			
 			string s;
 			
 			s = String.Format("{0} {1}  {2}: {3}, {4}: {5}\n",
@@ -114,31 +118,19 @@ namespace SolarbeamGui
 			s += "Coordinator: Professor Barbara Matusiak,";
 			s += " Department of Architectural Design, Form and Colour Studies, NTNU";
 
-			RichTextBox txt = Widgets.GetRichTextBox(s);
-			tab.Controls.Add(txt);
-			return tab;
+			return Widgets.GetRichTextBox(s);
 		}
 		
-		private TabPage GetLibs()
+		private Control GetLibs()
 		{
-			TabPage tab = new TabPage();
-			tab.Dock = DockStyle.Fill;
-			tab.Text = "Libraries";
-			RichTextBox txt = Widgets.GetRichTextBox(
+			return Widgets.GetRichTextBox(
 					Controller.AsmInfo.GetString("COPYING.short"));
-			tab.Controls.Add(txt);
-			return tab;
 		}
 		
-		private TabPage GetLicense()
+		private Control GetLicense()
 		{
-			TabPage tab = new TabPage();
-			tab.Dock = DockStyle.Fill;
-			tab.Text = "License";
-			RichTextBox txt = Widgets.GetRichTextBox(
+			return Widgets.GetRichTextBox(
 					Controller.AsmInfo.GetString("LICENSE"));
-			tab.Controls.Add(txt);
-			return tab;
 		}
 	}
 }
