@@ -62,39 +62,32 @@ namespace LibSolar.Util
 		{
 			GZipInputStream zipstream = new GZipInputStream(stream);
 			Stream unzipstream = new MemoryStream();
-
-			byte[] buf = new byte[2000];
-			int cur = 0;
-			while (true) {
-				int len = zipstream.Read(buf, cur, buf.Length);
-				if (len > 0) {
-					unzipstream.Write(buf, cur, buf.Length);
-				} else {
-					break;
-				}
-			}
-			
-
-			cur = 0;
-			while (true) {
-				int len = unzipstream.Read(buf, cur, buf.Length);
-				if (len > 0) {
-					Console.WriteLine(System.Text.Encoding.ASCII.GetChars(buf));
-				} else {
-					break;
-				}
-			}
-			
+			Copy(zipstream, unzipstream);
 			return unzipstream;
 		}
 	
 		public Stream GetResource(string name)
 		{
 			Stream stream = asm.GetManifestResourceStream(name);
-			if (name == "COPYING.short.gz") {
+			if (name.EndsWith(".gz")) {
 				stream = Unzip(stream);
 			}
 			return stream;
+		}
+		
+		private void Copy(Stream source, Stream target)
+		{
+			byte[] buf = new byte[2048];
+			int cur = 0;
+			int len = 0;
+			while (true) {
+				len = source.Read(buf, cur, buf.Length);
+				if (len > 0)
+					target.Write(buf, cur, buf.Length);
+				else
+					break;
+			}
+			target.Seek(0, SeekOrigin.Begin);
 		}
 	}
 }
