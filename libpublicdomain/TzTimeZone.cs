@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading;
 using System.Xml.Serialization;
 
+using ICSharpCode.SharpZipLib.GZip;
+
 namespace PublicDomain
 {
     /// <summary>
@@ -68,6 +70,29 @@ namespace PublicDomain
 			// init timezones from bundled zoneinfo
 			InitTimeZones("zoneinfo");
         }
+		
+		private static void Copy(Stream source, Stream target)
+		{
+			byte[] buf = new byte[1]; // larger sizes seem to corrupt stream
+			int cur = 0;
+			int len = 0;
+			while (true) {
+				len = source.Read(buf, cur, buf.Length);
+				if (len > 0)
+					target.Write(buf, cur, buf.Length);
+				else
+					break;
+			}
+			target.Seek(0, SeekOrigin.Begin);
+		}
+		
+		public static Stream Unzip(Stream stream)
+		{
+			GZipInputStream zipstream = new GZipInputStream(stream);
+			Stream unzipstream = new MemoryStream();
+			Copy(zipstream, unzipstream);
+			return unzipstream;
+		}
 
 		/**
 		 * Override TzTimeZone.GetTimeZone monstrocity that adds 5-6 seconds
@@ -78,7 +103,7 @@ namespace PublicDomain
 			// Extract line array from bundled zoneinfo
 			
 			Assembly asm = Assembly.GetExecutingAssembly();
-			Stream stream = asm.GetManifestResourceStream(file);
+			Stream stream = Unzip(asm.GetManifestResourceStream(file + ".gz"));
 			
 			int len = (int) stream.Length; // int overflow in [1,2]gb for utf-8 stream
 			byte[] buffer = new byte[len];

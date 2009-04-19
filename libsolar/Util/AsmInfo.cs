@@ -58,14 +58,6 @@ namespace LibSolar.Util
 			return s;
 		}
 		
-		public Stream Unzip(Stream stream)
-		{
-			GZipInputStream zipstream = new GZipInputStream(stream);
-			Stream unzipstream = new MemoryStream();
-			Copy(zipstream, unzipstream);
-			return unzipstream;
-		}
-	
 		public Stream GetResource(string name)
 		{
 			Stream stream = asm.GetManifestResourceStream(name);
@@ -76,7 +68,15 @@ namespace LibSolar.Util
 			return stream;
 		}
 		
-		private void Copy(Stream source, Stream target)
+		private static Stream Unzip(Stream stream)
+		{
+			GZipInputStream zipstream = new GZipInputStream(stream);
+			Stream unzipstream = new MemoryStream();
+			Copy(zipstream, unzipstream);
+			return unzipstream;
+		}
+	
+		private static void Copy(Stream source, Stream target)
 		{
 			byte[] buf = new byte[2048];
 			int cur = 0;
