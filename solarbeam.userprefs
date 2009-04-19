@@ -1,10 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="libsolar/Util/AsmInfo.cs" ctype="Workbench">
+    <Files>
+      <File FileName="libsolar/Util/AsmInfo.cs" Line="76" Column="4" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="True" />
           <Option id="ShowAllFiles" value="False" />
+          <Node name="libsolar" expanded="True">
+            <Node name="Util" expanded="True">
+              <Node name="AsmInfo.cs" selected="True" />
+            </Node>
+          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">

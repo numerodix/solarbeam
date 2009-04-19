@@ -5,7 +5,6 @@ using System;
 using System.IO;
 using System.Reflection;
 
-using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.GZip;
 
 namespace LibSolar.Util

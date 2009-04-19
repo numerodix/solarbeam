@@ -69,20 +69,20 @@
   <ItemGroup>
     <EmbeddedResource Include="..\doc\COPYING.short" />
     <EmbeddedResource Include="..\doc\LICENSE.gz" />
-    <EmbeddedResource Include="..\bundled\icon.ico.gz" />
-    <EmbeddedResource Include="..\bundled\logo.png.gz" />
-    <EmbeddedResource Include="..\bundled\app-about.png.gz" />
-    <EmbeddedResource Include="..\bundled\app-exit.png.gz" />
-    <EmbeddedResource Include="..\bundled\delete.png.gz" />
-    <EmbeddedResource Include="..\bundled\dst-status-nodst.png.gz" />
-    <EmbeddedResource Include="..\bundled\dst-status-standard.png.gz" />
-    <EmbeddedResource Include="..\bundled\dst-status-daylight.png.gz" />
-    <EmbeddedResource Include="..\bundled\image-save.png.gz" />
-    <EmbeddedResource Include="..\bundled\open.png.gz" />
-    <EmbeddedResource Include="..\bundled\new.png.gz" />
-    <EmbeddedResource Include="..\bundled\render.png.gz" />
-    <EmbeddedResource Include="..\bundled\reset.png.gz" />
-    <EmbeddedResource Include="..\bundled\save.png.gz" />
-    <EmbeddedResource Include="..\bundled\time-now.png.gz" />
+    <EmbeddedResource Include="..\bundled\icon.ico" />
+    <EmbeddedResource Include="..\bundled\logo.png" />
+    <EmbeddedResource Include="..\bundled\app-about.png" />
+    <EmbeddedResource Include="..\bundled\app-exit.png" />
+    <EmbeddedResource Include="..\bundled\delete.png" />
+    <EmbeddedResource Include="..\bundled\dst-status-nodst.png" />
+    <EmbeddedResource Include="..\bundled\dst-status-standard.png" />
+    <EmbeddedResource Include="..\bundled\dst-status-daylight.png" />
+    <EmbeddedResource Include="..\bundled\image-save.png" />
+    <EmbeddedResource Include="..\bundled\open.png" />
+    <EmbeddedResource Include="..\bundled\new.png" />
+    <EmbeddedResource Include="..\bundled\render.png" />
+    <EmbeddedResource Include="..\bundled\reset.png" />
+    <EmbeddedResource Include="..\bundled\save.png" />
+    <EmbeddedResource Include="..\bundled\time-now.png" />
   </ItemGroup>
 </Project>
