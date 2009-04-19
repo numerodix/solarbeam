@@ -100,7 +100,13 @@ namespace SolarbeamGui
 				Controller.InitForm();
 			}
 			
-			this.diagram = new GuiDiagram(this);
+			Control tabcontrol = Widgets.GetTabControl(
+				new Control[] {
+					new GuiDiagram(this),
+					new GuiMap(this)},
+				new string[] {
+					"Diagram",
+					"Map"});
 		
 			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(1, 2, 0, BORDER);
 			
@@ -110,7 +116,7 @@ namespace SolarbeamGui
 			                                        DIAGRAM_DIM_X));
 			
 			layout.Controls.Add(controlpanel, 0, 0);
-			layout.Controls.Add(diagram, 1, 0);
+			layout.Controls.Add(tabcontrol, 1, 0);
 			
 			// initial rendering
 			Controller.RenderDiagram(null, null);
@@ -130,9 +136,11 @@ namespace SolarbeamGui
 		{
 			return new Size(this.ClientSize.Width
 			                - GuiControlPanel.WIDTH
+			                - 6 // tabcontrol
 			                - BORDER*2,
 			                this.ClientSize.Height
 			                - this.menu.Height
+			                - 26 // tabcontrol
 			                - BORDER*2);
 		}
 	}

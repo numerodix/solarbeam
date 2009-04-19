@@ -43,7 +43,7 @@ namespace SolarbeamGui
 		
 		private void InitializeComponent()
 		{
-			Controller.RegisterControl(Controller.Id.DIAGRAM, this);	// register control
+			Controller.RegisterControl(Controller.Id.MAP, this);	// register control
 			
 			this.Dock = DockStyle.Fill;
 			this.BackColor = colors.GridBg;

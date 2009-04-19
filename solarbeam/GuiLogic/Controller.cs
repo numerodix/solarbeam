@@ -66,6 +66,7 @@ namespace SolarbeamGui
 			IMAGE_CAPTIONTOGGLE,
 			IMAGESAVE_ACTION,
 			DIAGRAM,
+			MAP,
 
 			ABOUTCLOSE_ACTION,
 		}
