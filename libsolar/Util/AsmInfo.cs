@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
+using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.GZip;
 
 namespace LibSolar.Util
@@ -60,15 +61,29 @@ namespace LibSolar.Util
 		public Stream Unzip(Stream stream)
 		{
 			GZipInputStream zipstream = new GZipInputStream(stream);
-			
-			byte[] bts = new byte[(int) zipstream.Length];
-			int unziplen = zipstream.Read(bts, 0, bts.Length);
-			for (int i=0; i<bts.Length; i++) {
-				Console.Write(bts[i]);
+			Stream unzipstream = new MemoryStream();
+
+			byte[] buf = new byte[2000];
+			int cur = 0;
+			while (true) {
+				int len = zipstream.Read(buf, cur, buf.Length);
+				if (len > 0) {
+					unzipstream.Write(buf, cur, buf.Length);
+				} else {
+					break;
+				}
 			}
 			
-			Stream unzipstream = new MemoryStream();
-			unzipstream.Write(bts, 0, unziplen);
+
+			cur = 0;
+			while (true) {
+				int len = unzipstream.Read(buf, cur, buf.Length);
+				if (len > 0) {
+					Console.WriteLine(System.Text.Encoding.ASCII.GetChars(buf));
+				} else {
+					break;
+				}
+			}
 			
 			return unzipstream;
 		}
