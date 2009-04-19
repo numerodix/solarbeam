@@ -30,7 +30,7 @@ namespace SolarbeamGui
 		
 		public GuiMainForm(string form_title, string icon)
 		{
-			//		this.SuspendLayout();
+//			this.SuspendLayout();
 			
 			InitializeComponent(form_title, icon);
 			aboutform = new GuiAbout(form_title, icon);
@@ -43,8 +43,8 @@ namespace SolarbeamGui
 			
 			this.AutoScaleMode = AutoScaleMode.Font;
 			this.ClientSize = GetFormSize();
-	//		this.ResumeLayout(false);
-	//		this.PerformLayout();
+//			this.ResumeLayout(false);
+//			this.PerformLayout();
 		}
 		
 		private void InitializeComponent(string form_title, string icon)
