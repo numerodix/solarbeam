@@ -11,7 +11,7 @@ using LibSolar.Util;
 
 namespace SolarbeamGui
 {
-	class LocationsSource
+	sealed class LocationsSource
 	{
 		private List<string> locations_list;
 		private LocationList list;

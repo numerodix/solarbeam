@@ -22,7 +22,7 @@ namespace SolarbeamGui
 		private const int BORDER = 5;
 	
 		public static readonly Colors colors = new Colors();
-		public static readonly string font_face = "Arial";
+		public const string font_face = "Arial";
 		
 		private Position position;
 		private UTCDate? date;

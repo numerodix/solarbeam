@@ -8,7 +8,7 @@ using LibSolar.Types;
 
 namespace SolarbeamGui
 {
-	class PositionSource
+	sealed class PositionSource
 	{
 		private List<string> dirs_latitude;
 		private List<string> dirs_longitude;

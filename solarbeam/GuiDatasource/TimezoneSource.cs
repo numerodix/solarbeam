@@ -17,7 +17,7 @@ namespace SolarbeamGui
 		Daylight,
 	}
 	
-	class TimezoneSource
+	sealed class TimezoneSource
 	{
 		private List<string> offsets;
 		private Dictionary<string,List<string>> zones;
@@ -157,7 +157,7 @@ namespace SolarbeamGui
 				Console.WriteLine("dst_start       : {0}", dst.Start);
 				Console.WriteLine("dst_end         : {0}", dst.End);
 			} catch (NullReferenceException) {}
-			Console.WriteLine("");
+			Console.WriteLine(string.Empty);
 		}
 		
 		private void PrintZonelist()

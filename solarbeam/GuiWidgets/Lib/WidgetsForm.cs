@@ -12,7 +12,7 @@ namespace SolarbeamGui
 	/**
 	 * Provide initialization of form widgets.
 	 */
-	partial class Widgets
+	static partial class Widgets
 	{	
 		public static Button GetButtonImageTextAnon(Controller.Id id,
 		                                        string s, string img)
@@ -132,6 +132,7 @@ namespace SolarbeamGui
 		{
 			TextBox textbox = new TextBox();
 			textbox.ReadOnly = true;
+			textbox.Text = s;
 			textbox.Anchor = AnchorStyles.Left;
 			textbox.BorderStyle = BorderStyle.None;
 			Controller.RegisterControl(id, textbox);	// register control
