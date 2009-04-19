@@ -126,7 +126,7 @@ namespace SolarbeamGui
 			tab.Dock = DockStyle.Fill;
 			tab.Text = "Libraries";
 			RichTextBox txt = Widgets.GetRichTextBox(
-					Controller.AsmInfo.GetString("COPYING.short"));
+					Controller.AsmInfo.GetString("COPYING.short.gz"));
 			tab.Controls.Add(txt);
 			return tab;
 		}

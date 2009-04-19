@@ -5,6 +5,8 @@ using System;
 using System.IO;
 using System.Reflection;
 
+using ICSharpCode.SharpZipLib.GZip;
+
 namespace LibSolar.Util
 {
 	/**
@@ -45,11 +47,6 @@ namespace LibSolar.Util
 			
 			return att_val;
 		}
-	
-		public Stream GetResource(string name)
-		{
-			return asm.GetManifestResourceStream(name);
-		}
 		
 		public string GetString(string name)
 		{
@@ -58,6 +55,31 @@ namespace LibSolar.Util
 			stream.Read(bts, 0, bts.Length);
 			string s = System.Text.Encoding.ASCII.GetString(bts).Trim();
 			return s;
+		}
+		
+		public Stream Unzip(Stream stream)
+		{
+			GZipInputStream zipstream = new GZipInputStream(stream);
+			
+			byte[] bts = new byte[(int) zipstream.Length];
+			int unziplen = zipstream.Read(bts, 0, bts.Length);
+			for (int i=0; i<bts.Length; i++) {
+				Console.Write(bts[i]);
+			}
+			
+			Stream unzipstream = new MemoryStream();
+			unzipstream.Write(bts, 0, unziplen);
+			
+			return unzipstream;
+		}
+	
+		public Stream GetResource(string name)
+		{
+			Stream stream = asm.GetManifestResourceStream(name);
+			if (name == "COPYING.short.gz") {
+				stream = Unzip(stream);
+			}
+			return stream;
 		}
 	}
 }

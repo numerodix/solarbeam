@@ -67,7 +67,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\doc\COPYING.short" />
+    <EmbeddedResource Include="..\doc\COPYING.short.gz" />
     <EmbeddedResource Include="..\doc\LICENSE" />
     <EmbeddedResource Include="..\bundled\icon.ico" />
     <EmbeddedResource Include="..\bundled\logo.png" />
