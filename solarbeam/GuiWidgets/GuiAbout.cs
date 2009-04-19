@@ -77,8 +77,7 @@ namespace SolarbeamGui
 		
 		private Control GetTabs()
 		{
-			TabControl tabs = new TabControl();
-			tabs.Dock = DockStyle.Fill;
+			TabControl tabs = Widgets.GetTabControl();
 			
 			tabs.Controls.Add(GetAbout());
 			tabs.Controls.Add(GetLibs());

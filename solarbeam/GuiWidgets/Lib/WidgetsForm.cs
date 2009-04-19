@@ -128,6 +128,26 @@ namespace SolarbeamGui
 			return txt;
 		}
 		
+		public static TabControl GetTabControl()
+		{
+			TabControl tabs = new TabControl();
+			tabs.Dock = DockStyle.Fill;
+			
+			// cycle tabs on mouse wheel
+			tabs.MouseWheel += delegate (object sender, MouseEventArgs args) {
+				int len = tabs.TabCount;
+				int idx = tabs.SelectedIndex;
+				
+				int inc = args.Delta > 0 ? -1 : 1;
+				idx = (idx + inc) % len;
+				idx = idx < 0 ? len + idx : idx;
+				
+				tabs.SelectedIndex = idx;
+			};
+			
+			return tabs;
+		}
+		
 		public static TextBox GetTextBox(Controller.Id id, string s)
 		{
 			TextBox textbox = new TextBox();
