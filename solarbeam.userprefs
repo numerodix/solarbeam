@@ -8,11 +8,6 @@
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="True" />
           <Option id="ShowAllFiles" value="False" />
-          <Node name="libsolar" expanded="True">
-            <Node name="Util" expanded="True">
-              <Node name="AsmInfo.cs" selected="True" />
-            </Node>
-          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">
