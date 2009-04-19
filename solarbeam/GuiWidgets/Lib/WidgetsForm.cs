@@ -133,6 +133,11 @@ namespace SolarbeamGui
 			TabControl tabs = new TabControl();
 			tabs.Dock = DockStyle.Fill;
 			
+			// give me focus when mouse hovers, so that MouseWheel fires
+			tabs.MouseEnter += delegate (object sender, EventArgs args) {
+				tabs.Focus();
+			};
+			
 			// cycle tabs on mouse wheel
 			tabs.MouseWheel += delegate (object sender, MouseEventArgs args) {
 				int len = tabs.TabCount;
