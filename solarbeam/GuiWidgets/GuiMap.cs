@@ -127,16 +127,18 @@ namespace SolarbeamGui
 		
 		private Bitmap GenerateBaseImageBitmap()
 		{
-			int dim = GetCanvasDimensions();
-			this.graphbitmap = new GraphBitmap(false, dim, colors, font_face);
-			return graphbitmap.RenderBaseImage(position, date.Value);
+			return new Bitmap(Controller.AsmInfo.GetResource("worldmap.png"));
+//			int dim = GetCanvasDimensions();
+//			this.graphbitmap = new GraphBitmap(false, dim, colors, font_face);
+//			return graphbitmap.RenderBaseImage(position, date.Value);
 		}
 		
 		private Bitmap GenerateFinalizedBitmap()
 		{
-			int dim = GetCanvasDimensions();
-			return graphbitmap.RenderCurrentDayCloned(dim, 
-			                                          position, date.Value);
+			return this.bitmape_base;
+//			int dim = GetCanvasDimensions();
+//			return graphbitmap.RenderCurrentDayCloned(dim, 
+//			                                          position, date.Value);
 		}
 		
 		private int GetCanvasDimensions()
