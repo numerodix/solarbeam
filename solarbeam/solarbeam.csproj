@@ -54,6 +54,7 @@
     <Compile Include="GuiWidgets\Lib\Dialogs.cs" />
     <Compile Include="GuiWidgets\Lib\WidgetsMenu.cs" />
     <Compile Include="GuiWidgets\GuiAbout.cs" />
+    <Compile Include="GuiWidgets\GuiMap.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -84,5 +85,6 @@
     <EmbeddedResource Include="..\bundled\reset.png" />
     <EmbeddedResource Include="..\bundled\save.png" />
     <EmbeddedResource Include="..\bundled\time-now.png" />
+    <EmbeddedResource Include="..\bundled\worldmap.png" />
   </ItemGroup>
 </Project>
