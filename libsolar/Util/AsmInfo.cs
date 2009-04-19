@@ -69,7 +69,8 @@ namespace LibSolar.Util
 		public Stream GetResource(string name)
 		{
 			Stream stream = asm.GetManifestResourceStream(name);
-			if (name.EndsWith(".gz")) {
+			if (stream == null) {
+				stream = asm.GetManifestResourceStream(name + ".gz");
 				stream = Unzip(stream);
 			}
 			return stream;
