@@ -44,28 +44,17 @@ namespace LibSolar.Mapping
 		public void PlotPositionCursor(Graphics g, 
 		                               string location, Position pos, Point point)
 		{
-			// draw cursor
-			int line = Math.Max(1, GetLineThickness());
-			float font_size = GetCursorFontSize();
-			int len = (int) (font_size * 3.5);
-			using (SolidBrush brush = new SolidBrush(colors.Cursor))
-			using (Pen pen = new Pen(brush)) {
-				g.DrawLine(pen,
-				           new Point(point.X-len, point.Y),
-				           new Point(point.X+len, point.Y));
-				g.DrawLine(pen,
-				           new Point(point.X, point.Y-len),
-				           new Point(point.X, point.Y+len));
-			}
+			DrawCursor(g, point);
 			
 			// print strings
+			float font_size = GetCursorFontSize();
 			using (SolidBrush brush = new SolidBrush(colors.Text))
 			using (Font font = new Font(font_face, font_size, GraphicsUnit.Pixel)) {
 				
 				List<string> stack = new List<string>();
 				stack.Add(pos.LongitudeDegree.Print());
 				stack.Add(pos.LatitudeDegree.Print());
-				if (location != null) stack.Add(location);
+				if ((location != null) && (location != string.Empty)) stack.Add(location);
 				
 				// find longest string
 				int longest = 0;
@@ -79,11 +68,13 @@ namespace LibSolar.Mapping
 				
 				int a = point.X;
 				int b = point.Y;
+				int db = (int) font_size * stack.Count;
 				// string won't fit, switch orientation
-				if (point.X + longest > map.X) {
+				if (((point.X + longest > map.X) || (point.X - longest < map.A))
+				    || ((point.Y + db > map.Y) || (point.Y - db < map.B))) {
 					d *= -1;
 					a -= longest;
-					b += (int) font_size * 3;
+					b += db;
 				}
 				
 				// print
@@ -94,6 +85,22 @@ namespace LibSolar.Mapping
 					             a + d,
 					             b - d - font_size*i);
 				}
+			}
+		}
+		
+		private void DrawCursor(Graphics g, Point point)
+		{
+			int line = Math.Max(1, GetLineThickness());
+			float font_size = GetCursorFontSize();
+			int len = (int) (font_size * 3.5);
+			using (SolidBrush brush = new SolidBrush(colors.Cursor))
+			using (Pen pen = new Pen(brush)) {
+				g.DrawLine(pen,
+				           new Point(point.X-len, point.Y),
+				           new Point(point.X+len, point.Y));
+				g.DrawLine(pen,
+				           new Point(point.X, point.Y-len),
+				           new Point(point.X, point.Y+len));
 			}
 		}
 		
