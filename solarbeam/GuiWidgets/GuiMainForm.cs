@@ -137,11 +137,11 @@ namespace SolarbeamGui
 		{
 			return new Size(this.ClientSize.Width
 			                - GuiControlPanel.WIDTH
-			                - 6 // tabcontrol
+			                - 10 // tabcontrol
 			                - BORDER*2,
 			                this.ClientSize.Height
 			                - this.menu.Height
-			                - 26 // tabcontrol
+			                - 30 // tabcontrol
 			                - BORDER*2);
 		}
 	}

@@ -16,7 +16,7 @@ namespace SolarbeamGui
 	 */
 	sealed class GuiMap : Control
 	{
-		private const int BORDER = 5;
+		private const int BORDER = 2;
 	
 		public const string font_face = "Arial";
 		
