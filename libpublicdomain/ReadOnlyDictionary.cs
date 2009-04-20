@@ -37,16 +37,6 @@ namespace PublicDomain
         }
 
         /// <summary>
-        /// Returns a read only dictionary.
-        /// </summary>
-        /// <param name="dictionaryToWrap">The dictionary to wrap.</param>
-        /// <returns></returns>
-        public static ReadOnlyDictionary<TKey, TValue> AsReadOnly(IDictionary<TKey, TValue> dictionaryToWrap)
-        {
-            return new ReadOnlyDictionary<TKey, TValue>(dictionaryToWrap);
-        }
-
-        /// <summary>
         /// Add does not change a read only Dictionary
         /// </summary>
         /// <param name="key">The object to use as the key of the element to add.</param>
