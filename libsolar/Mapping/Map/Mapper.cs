@@ -34,8 +34,9 @@ namespace LibSolar.Mapping
 		public void PlotPosition(Graphics g, Position pos)
 		{
 			Point point = FindMapPoint(pos);
+			int rad = 2;
 			using (SolidBrush brush = new SolidBrush(Color.Red)) {
-				g.FillEllipse(brush, point.X - 2, point.Y - 2, 4, 4);
+				g.FillEllipse(brush, point.X - rad, point.Y - rad, rad*2, rad*2);
 			}
 		}
 		
