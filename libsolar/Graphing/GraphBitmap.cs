@@ -16,6 +16,7 @@ namespace LibSolar.Graphing
 	public class GraphBitmap
 	{
 		private int dimensions;
+		private int titleheight;
 		private int captionheight;
 		private string font_face;
 		private Colors colors;
@@ -26,16 +27,17 @@ namespace LibSolar.Graphing
 		public GraphBitmap(bool caption, int dim, Colors colors, string font_face)
 		{
 			this.dimensions = dim;
-			this.captionheight = caption ? (int) (1.34 * (double) dim - dim) : 0;
+			this.titleheight = caption ? (int) (.07 * (double) dim) : 0;
+			this.captionheight = caption ? (int) (.34 * (double) dim) : 0;
 			this.font_face = font_face;
 			this.colors = colors;
 		}
 		
 		public Bitmap RenderBaseImage(Position pos, UTCDate udt)
 		{
-			bitmap = new Bitmap(dimensions, dimensions+captionheight);
+			bitmap = new Bitmap(dimensions, titleheight+dimensions+captionheight);
 			
-			diagram = new Diagram(0, 0, dimensions, dimensions,
+			diagram = new Diagram(0, titleheight, dimensions, titleheight+dimensions,
 			                      colors, font_face);
 			
 			using (Graphics g = Graphics.FromImage(bitmap)) {
@@ -101,9 +103,10 @@ namespace LibSolar.Graphing
 		public Bitmap RenderCaption(CaptionInfo ci)
 		{
 			using (Graphics g = Graphics.FromImage(bitmap)) {
-				Caption caption = new Caption(0, dimensions,
-				                              dimensions, dimensions+captionheight);
+				Caption caption = new Caption(0, dimensions+titleheight,
+				                              dimensions, dimensions+titleheight+captionheight);
 				diagram.PrintCaption(g, caption, ci);
+				diagram.PrintTitle(g, 0, 0, dimensions, titleheight);
 			}
 			return bitmap;
 		}

@@ -17,6 +17,20 @@ namespace LibSolar.Graphing
 	 */
 	partial class Diagram
 	{
+		public void PrintTitle(Graphics g, int a, int b, int x, int y)
+		{
+			float font_size = GetLabelFontSize() * 1.9F;
+			using (SolidBrush br = new SolidBrush(colors.GridBg)) {
+				g.FillRectangle(br, a, b, x-a, y-b);
+			}
+			using (SolidBrush br = new SolidBrush(colors.GraphFg))
+			using (Font font = new Font(font_face, font_size, GraphicsUnit.Pixel)) {
+				PrintBoundedString(g, font, br, "Solar diagram",
+				                   (x-a) / 2, (y-b) / 2,
+				                   Placement.CENTER);
+			}
+		}
+		
 		public void PrintCaption(Graphics g, Caption caption, CaptionInfo ci)
 		{
 			using (SolidBrush brush = new SolidBrush(colors.GraphFg)) {
@@ -24,7 +38,7 @@ namespace LibSolar.Graphing
 				
 				int dxx = GetInc(caption);
 				
-				float font_size = GetLabelFontSize()+1;
+				float font_size = GetLabelFontSize() * 1.1F;
 				using (Font font = new Font(font_face, font_size, GraphicsUnit.Pixel)) {
 					int height = font.Height;
 					

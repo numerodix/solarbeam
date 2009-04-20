@@ -34,7 +34,7 @@ namespace LibSolar.Mapping
 		public void PlotPosition(Graphics g, Position pos)
 		{
 			Point point = FindMapPoint(pos);
-			int rad = 2;
+			int rad = Math.Max(2, GetLineThickness());
 			using (SolidBrush brush = new SolidBrush(Color.Red)) {
 				g.FillEllipse(brush, point.X - rad, point.Y - rad, rad*2, rad*2);
 			}
@@ -64,6 +64,11 @@ namespace LibSolar.Mapping
 			int px = (int) (map.Origin.X + ((lon / 360.0) * map.Dx));
 			int py = (int) (map.Origin.Y + ((lat / 180.0) * map.Dy));
 			return new Point(px, py);
+		}
+				
+		private int GetLineThickness()
+		{
+			return Math.Max(1, map.Dx / 200);
 		}
 	}
 }		
