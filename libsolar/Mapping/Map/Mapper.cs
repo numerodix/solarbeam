@@ -44,6 +44,7 @@ namespace LibSolar.Mapping
 		public void PlotPositionCursor(Graphics g, 
 		                               string location, Position pos, Point point)
 		{
+			// draw cursor
 			int line = Math.Max(1, GetLineThickness());
 			float font_size = GetCursorFontSize();
 			int len = (int) (font_size * 3.5);
@@ -57,23 +58,41 @@ namespace LibSolar.Mapping
 				           new Point(point.X, point.Y+len));
 			}
 			
+			// print strings
 			using (SolidBrush brush = new SolidBrush(colors.Text))
 			using (Font font = new Font(font_face, font_size, GraphicsUnit.Pixel)) {
 				
 				List<string> stack = new List<string>();
 				stack.Add(pos.LongitudeDegree.Print());
 				stack.Add(pos.LatitudeDegree.Print());
-				stack.Add(location);
+				if (location != null) stack.Add(location);
 				
+				// find longest string
+				int longest = 0;
+				foreach (string s in stack) {
+					float w = g.MeasureString(s, font).Width;
+					if (w > longest) longest = (int) w;
+				}
+				
+				// font padding
 				int d = (int) ((double) font_size * 0.3);
+				
+				int a = point.X;
+				int b = point.Y;
+				// string won't fit, switch orientation
+				if (point.X + longest > map.X) {
+					d *= -1;
+					a -= longest;
+					b += (int) font_size * 3;
+				}
+				
+				// print
 				int i = 0;
 				foreach (string s in stack) {
-					if (s != null) {
-						++i;
-						g.DrawString(s, font, brush,
-						             point.X + d,
-						             point.Y - d - font_size*i);
-					}
+					++i;
+					g.DrawString(s, font, brush,
+					             a + d,
+					             b - d - font_size*i);
 				}
 			}
 		}
