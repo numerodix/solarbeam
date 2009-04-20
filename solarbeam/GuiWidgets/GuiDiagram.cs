@@ -107,7 +107,7 @@ namespace SolarbeamGui
 			int canvas_size = GetCanvasDimensions();
 			int canvas_pos_x = (vp_size.Width/2) - (canvas_size/2);
 			int canvas_pos_y = (vp_size.Height/2) - (canvas_size/2);
-				
+			
 			using (Graphics gr = this.CreateGraphics())
 			using (BufferedGraphics frame = 
 				      buffercontext.Allocate(gr, this.ClientRectangle))

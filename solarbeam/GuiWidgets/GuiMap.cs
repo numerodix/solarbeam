@@ -12,7 +12,7 @@ using LibSolar.Types;
 namespace SolarbeamGui
 {
 	/**
-	 * Represents diagram viewport as widget.
+	 * Represents map viewport as widget.
 	 */
 	sealed class GuiMap : Control
 	{

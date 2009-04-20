@@ -6,6 +6,7 @@ zip:
 	mkdir -p dist/solarbeam
 	make
 	for d in `find . -type d -iname "Release"`; do cp $$d/* dist/solarbeam; done
+	rm dist/solarbeam/nunit.framework.dll
 	(cd dist/solarbeam ; mono solarbeam.exe -init)
 	cd ..
 	zip -j dist/solarbeam.zip dist/solarbeam/*

@@ -1,7 +1,7 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="libsolar/Util/AsmInfo.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="solarbeam/GuiWidgets/GuiMap.cs" ctype="Workbench">
     <Files>
-      <File FileName="libsolar/Util/AsmInfo.cs" Line="76" Column="4" />
+      <File FileName="solarbeam/GuiWidgets/GuiMap.cs" Line="31" Column="8" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
