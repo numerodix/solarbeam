@@ -188,8 +188,8 @@ namespace LibSolar.Types
 		/**
 		 * Normalize integer position to decimal value.
 		 */
-		private static int CollapsePositionUnits(PositionDirection dir,
-		                                         int deg, int min, int sec)
+		public static int CollapsePositionUnits(PositionDirection dir,
+		                                        int deg, int min, int sec)
 		{
 			int multiplier =
 				( (dir == LATITUDE_NEG) || (dir == LONGITUDE_NEG) ? -1 : 1 );

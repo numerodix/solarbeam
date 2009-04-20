@@ -85,6 +85,8 @@
     <Compile Include="Formatting\Filenames.cs" />
     <Compile Include="Mapping\MapBitmap.cs" />
     <Compile Include="Mapping\Types\Colors.cs" />
+    <Compile Include="Mapping\Types\Map.cs" />
+    <Compile Include="Mapping\Map\Mapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

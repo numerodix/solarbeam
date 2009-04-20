@@ -7,7 +7,7 @@ using System.Drawing;
 namespace LibSolar.Mapping
 {
 	/**
-	 * Package all colors used in graphing.
+	 * Package all colors used in mapping.
 	 */
 	public class Colors
 	{

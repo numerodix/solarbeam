@@ -185,7 +185,7 @@ namespace SolarbeamGui
 				RegisterValueChange(control, handler);
 			}
 	
-			// register re-rendering inputs for value changes
+			// register diagram re-rendering inputs for value changes
 			if (ins_position.Contains(id)) {
 				EventHandler handler = new EventHandler(ValueChange);
 				RegisterValueChange(control, handler);
@@ -197,9 +197,15 @@ namespace SolarbeamGui
 				RegisterValueChange(control, handler);
 			}
 			
-			// register updating inputs for value changes
+			// register diagram updating inputs for value changes
 			if (ins_timedate.Contains(id)) {
 				EventHandler handler = new EventHandler(UpdateDiagram);
+				RegisterValueChange(control, handler);
+			}
+									
+			// register map updating inputs for value changes
+			if (ins_position.Contains(id)) {
+				EventHandler handler = new EventHandler(UpdateMap);
 				RegisterValueChange(control, handler);
 			}
 		

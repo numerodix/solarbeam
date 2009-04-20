@@ -19,12 +19,14 @@ namespace LibSolar.Mapping
 		private string font_face;
 		private Colors colors;
 		
+		private static Bitmap bitmap_map;
 		private Bitmap bitmap;
-		private static AsmInfo asminfo;
+		private Mapper mapper;
 		
 		static MapBitmap()
 		{
-			MapBitmap.asminfo = new AsmInfo(Assembly.GetExecutingAssembly());
+			AsmInfo asminfo = new AsmInfo(Assembly.GetExecutingAssembly());
+			MapBitmap.bitmap_map = new Bitmap(asminfo.GetResource("worldmap.png"));
 		}
 		
 		public MapBitmap(int dim_x, int dim_y, Colors colors, string font_face)
@@ -43,24 +45,24 @@ namespace LibSolar.Mapping
 		{
 			bitmap = new Bitmap(dimension_x, dimension_y);
 			
-			Bitmap map = new Bitmap(asminfo.GetResource("worldmap.png"));
-			double aspect = (double) map.Width / (double) map.Height;
+			double aspect = (double) bitmap_map.Width / (double) bitmap_map.Height;
 			
 			int w = dimension_x;
 			int h = dimension_y;
 			
 			if (aspect >= 1)
-				h = (int) ((double) w / aspect);
+				h = (int) Math.Max(1, ((double) w / aspect));
 			else
-				w = (int) ((double) h / aspect);
+				w = (int) Math.Max(1, ((double) h / aspect));
 			
-			int canvas_pos_x = (dimension_x/2) - (w/2);
-			int canvas_pos_y = (dimension_y/2) - (h/2);
+			int a = (dimension_x/2) - (w/2);
+			int b = (dimension_y/2) - (h/2);
+			
+			mapper = new Mapper(a, b, a+w, b+h, 
+			                    colors, font_face);
 			
 			using (Graphics g = Graphics.FromImage(bitmap)) {
-				g.DrawImage(map,
-				            canvas_pos_x, canvas_pos_y, 
-				            w, h);
+				mapper.RenderMapBitmap(g, bitmap_map);
 			}
 			
 			return this.bitmap;
@@ -73,10 +75,8 @@ namespace LibSolar.Mapping
 		
 		public Bitmap RenderCurrentPosition(Bitmap bitmap, Position pos)
 		{
-			using (Graphics g = Graphics.FromImage(bitmap))
-			using (SolidBrush brush = new SolidBrush(Color.Red))
-			using (Pen pen = new Pen(brush)) {
-				g.DrawEllipse(pen, 10, 10, 40, 40);
+			using (Graphics g = Graphics.FromImage(bitmap)) {
+				mapper.PlotPosition(g, pos);
 			}
 			return bitmap;
 		}
