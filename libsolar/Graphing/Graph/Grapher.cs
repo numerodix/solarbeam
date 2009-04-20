@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace LibSolar.Graphing
 {	
-	partial class Diagram
+	partial class Grapher
 	{
 		private Grid grid;
 		private Graph graph;
@@ -14,7 +14,7 @@ namespace LibSolar.Graphing
 		private string font_face;
 		
 		
-		public Diagram(int bound_a, int bound_b, int bound_x, int bound_y,
+		public Grapher(int bound_a, int bound_b, int bound_x, int bound_y,
 		               Colors colors, string font_face)
 		{
 			this.grid = new Grid(bound_a, bound_b, bound_x, bound_y);

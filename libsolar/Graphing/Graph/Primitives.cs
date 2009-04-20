@@ -26,7 +26,7 @@ namespace LibSolar.Graphing
 	/**
 	 * Primities for printing/plotting.
 	 */
-	partial class Diagram
+	partial class Grapher
 	{
 		private void PrintBoundedString(Graphics g, Font font, Brush txtbrush,
 		                                string s, int x, int y, Placement place)

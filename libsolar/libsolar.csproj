@@ -58,7 +58,7 @@
     <Compile Include="Graphing\Types\Grid.cs" />
     <Compile Include="Graphing\Types\Graph.cs" />
     <Compile Include="Graphing\Graph\Backdrop.cs" />
-    <Compile Include="Graphing\Graph\Diagram.cs" />
+    <Compile Include="Graphing\Graph\Grapher.cs" />
     <Compile Include="Graphing\Types\Colors.cs" />
     <Compile Include="Graphing\Graph\Primitives.cs" />
     <Compile Include="Graphing\Graph\Plot.cs" />

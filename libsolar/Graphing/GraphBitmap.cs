@@ -22,7 +22,7 @@ namespace LibSolar.Graphing
 		private Colors colors;
 		
 		private Bitmap bitmap;
-		private Diagram diagram;
+		private Grapher grapher;
 		
 		public GraphBitmap(bool caption, int dim, Colors colors, string font_face)
 		{
@@ -37,13 +37,13 @@ namespace LibSolar.Graphing
 		{
 			bitmap = new Bitmap(dimensions, titleheight+dimensions+captionheight);
 			
-			diagram = new Diagram(0, titleheight, dimensions, titleheight+dimensions,
+			grapher = new Grapher(0, titleheight, dimensions, titleheight+dimensions,
 			                      colors, font_face);
 			
 			using (Graphics g = Graphics.FromImage(bitmap)) {
 				
 				// paint backdrop coordinate system
-				diagram.PaintBackdrop(g);
+				grapher.PaintBackdrop(g);
 				
 				// plot milestone dates
 				int[] days = new int[] {
@@ -61,23 +61,23 @@ namespace LibSolar.Graphing
 						color = udt_n.IsDST ? colors.YearSndHalfDst : colors.YearSndHalfStd;
 					}
 					
-					diagram.PlotMilestoneDay(g, color, pos, udt_n);
+					grapher.PlotMilestoneDay(g, color, pos, udt_n);
 				}
 
 				// plot analemma curves
 				for (int i = 0; i < 24; i++) {
-					diagram.PlotAnalemma(g, 
+					grapher.PlotAnalemma(g, 
 					                     colors.YearFstHalfStd, colors.YearFstHalfDst, 
 					                     colors.YearSndHalfStd, colors.YearSndHalfDst,
 					                     pos, udt.SetHour(i));
 				}
 
 				// print milestone day labels
-				diagram.PrintMilestoneDayLabels(g);
+				grapher.PrintMilestoneDayLabels(g);
 				
 				// print analemma labels
 				for (int i = 0; i < 24; i++) {
-					diagram.PrintAnalemmaLabel(g, colors.GraphFg, 
+					grapher.PrintAnalemmaLabel(g, colors.GraphFg, 
 					                           pos, udt.SetHour(i));
 				}
 			}
@@ -94,8 +94,8 @@ namespace LibSolar.Graphing
 		                               Position pos, UTCDate udt)
 		{
 			using (Graphics g = Graphics.FromImage(bitmap)) {
-				diagram.PlotDay(g, colors.CurrentDay, pos, udt);
-				diagram.PlotSun(g, colors.CurrentDay, dimensions, pos, udt);
+				grapher.PlotDay(g, colors.CurrentDay, pos, udt);
+				grapher.PlotSun(g, colors.CurrentDay, dimensions, pos, udt);
 			}
 			return bitmap;
 		}
@@ -105,8 +105,8 @@ namespace LibSolar.Graphing
 			using (Graphics g = Graphics.FromImage(bitmap)) {
 				Caption caption = new Caption(0, dimensions+titleheight,
 				                              dimensions, dimensions+titleheight+captionheight);
-				diagram.PrintCaption(g, caption, ci);
-				diagram.PrintTitle(g, 0, 0, dimensions, titleheight);
+				grapher.PrintCaption(g, caption, ci);
+				grapher.PrintTitle(g, 0, 0, dimensions, titleheight);
 			}
 			return bitmap;
 		}

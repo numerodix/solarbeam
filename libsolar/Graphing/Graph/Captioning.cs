@@ -15,7 +15,7 @@ namespace LibSolar.Graphing
 	/**
 	 * Print caption on a bitmap.
 	 */
-	partial class Diagram
+	partial class Grapher
 	{
 		public void PrintTitle(Graphics g, int a, int b, int x, int y)
 		{

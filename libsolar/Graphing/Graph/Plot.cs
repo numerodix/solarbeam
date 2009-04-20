@@ -14,7 +14,7 @@ namespace LibSolar.Graphing
 	/**
 	 * Plot a graph on a Graph.
 	 */
-	partial class Diagram
+	partial class Grapher
 	{
 		private int dayseconds = 24*3600;
 		private int yeardays = 365;

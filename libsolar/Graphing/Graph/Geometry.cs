@@ -13,7 +13,7 @@ namespace LibSolar.Graphing
 	/**
 	 * Geometry related primitives to aid in plotting.
 	 */
-	partial class Diagram
+	partial class Grapher
 	{
 		private KeyValuePair<Point?,double?> FindPointSlopeAtHour(Position pos,
 		                                                          UTCDate dt)

@@ -11,7 +11,7 @@ namespace LibSolar.Graphing
 	/**
 	 * Paint backdrop on a grid.
 	 */
-	partial class Diagram
+	partial class Grapher
 	{		
 		public void PaintBackdrop(Graphics g)
 		{
