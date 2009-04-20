@@ -16,9 +16,6 @@ namespace SolarbeamGui
 	 */
 	sealed class GuiMap : Control
 	{
-		public const int IDEAL_DIM_X = 569;
-		public const int IDEAL_DIM_Y = 526;
-		
 		private const int BORDER = 5;
 	
 		public const string font_face = "Arial";
@@ -65,12 +62,12 @@ namespace SolarbeamGui
 		{
 			if (position != null)
 			{
-				int dim = GetCanvasDimensions();
+				Size dim = GetCanvasDimensions();
 				
 				// bitmap exists, wrong dimensions
 				if ((this.bitmap_final != null)
-				    && ((this.bitmap_final.Width != dim)
-				        || (this.bitmap_final.Height != dim)))
+				    && ((this.bitmap_final.Width != dim.Width)
+				        || (this.bitmap_final.Height != dim.Height)))
 				{
 					this.bitmap_base = GenerateBaseImageBitmap();
 					this.bitmap_final = GenerateFinalizedBitmap();
@@ -92,31 +89,40 @@ namespace SolarbeamGui
 		private void RenderBitmap(Bitmap bitmap)
 		{
 			Size vp_size = gui.GetViewportSize();
-			int canvas_size = GetCanvasDimensions();
-			int canvas_pos_x = (vp_size.Width/2) - (canvas_size/2);
-			int canvas_pos_y = (vp_size.Height/2) - (canvas_size/2);
-				
+			Size canvas_size = GetCanvasDimensions();
+			
+			double aspect = (double) bitmap.Width / (double) bitmap.Height;
+			
+			int w = canvas_size.Width;
+			int h = canvas_size.Height;
+			
+			if (aspect >= 1)
+				h = (int) ((double) w / aspect);
+			else
+				w = (int) ((double) h / aspect);
+			
+			int canvas_pos_x = (vp_size.Width/2) - (w/2);
+			int canvas_pos_y = (vp_size.Height/2) - (h/2);
+			
 			using (Graphics gr = this.CreateGraphics())
 			using (BufferedGraphics frame = 
 				      buffercontext.Allocate(gr, this.ClientRectangle))
 			{
 				// explicitly repaint whole control surface to prevent pixel noise
-				using (SolidBrush brush = new SolidBrush(this.BackColor))
-				{
+				using (SolidBrush brush = new SolidBrush(this.BackColor)) {
 					frame.Graphics.FillRectangle(brush, 0, 0, 
 					                             vp_size.Width, vp_size.Height);
 				}
-				frame.Graphics.DrawImage(bitmap, 
+				frame.Graphics.DrawImage(bitmap,
 				                         canvas_pos_x, canvas_pos_y, 
-				                         canvas_size, canvas_size);
+				                         w, h);
 				frame.Render();
 			}
 		}
 		
 		private Bitmap GenerateBaseImageBitmap()
 		{
-			int dim = GetCanvasDimensions();
-			this.mapbitmap = new MapBitmap(false, dim, font_face);
+			this.mapbitmap = new MapBitmap(font_face);
 			return mapbitmap.RenderBaseImage();
 		}
 		
@@ -125,11 +131,12 @@ namespace SolarbeamGui
 			return mapbitmap.RenderCurrentPositionCloned(position);
 		}
 		
-		private int GetCanvasDimensions()
+		private Size GetCanvasDimensions()
 		{
 			Size vp_size = gui.GetViewportSize();
-			return Math.Max(1,
-				(Math.Min(vp_size.Width, vp_size.Height) - BORDER*2)); // make sure >=1
+			int w = Math.Max(1, vp_size.Width - BORDER*2);
+			int h = Math.Max(1, vp_size.Height - BORDER*2);
+			return new Size(w, h);
 		}
 	}
 }

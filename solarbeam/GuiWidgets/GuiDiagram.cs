@@ -113,8 +113,7 @@ namespace SolarbeamGui
 				      buffercontext.Allocate(gr, this.ClientRectangle))
 			{
 				// explicitly repaint whole control surface to prevent pixel noise
-				using (SolidBrush brush = new SolidBrush(colors.GridBg))
-				{
+				using (SolidBrush brush = new SolidBrush(colors.GridBg)) {
 					frame.Graphics.FillRectangle(brush, 0, 0, 
 					                             vp_size.Width, vp_size.Height);
 				}
