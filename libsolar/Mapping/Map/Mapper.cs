@@ -34,7 +34,8 @@ namespace LibSolar.Mapping
 		public void PlotPosition(Graphics g, string location, Position pos)
 		{
 			Point point = FindMapPoint(pos);
-			if (map.Dx > 450) {
+			float font_size = GetCursorFontSize();
+			if (font_size > 10) {
 				PlotPositionCursor(g, location, pos, point);
 			} else {
 				PlotPositionDot(g, point);
