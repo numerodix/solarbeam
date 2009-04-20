@@ -18,6 +18,7 @@ namespace SolarbeamGui
 	{
 		private const int BORDER = 2;
 	
+		public static readonly Colors colors = new Colors();
 		public const string font_face = "Arial";
 		
 		private Position position;
@@ -41,7 +42,7 @@ namespace SolarbeamGui
 			Controller.RegisterControl(Controller.Id.MAP, this);	// register control
 			
 			this.Dock = DockStyle.Fill;
-			this.BackColor = Color.White;
+			this.BackColor = colors.MapBg;
 			
 			this.Paint += delegate { RePaint(); };
 			this.Resize += delegate { RePaint(); };
@@ -90,39 +91,29 @@ namespace SolarbeamGui
 		{
 			Size vp_size = gui.GetViewportSize();
 			Size canvas_size = GetCanvasDimensions();
-			
-			double aspect = (double) bitmap.Width / (double) bitmap.Height;
-			
-			int w = canvas_size.Width;
-			int h = canvas_size.Height;
-			
-			if (aspect >= 1)
-				h = (int) ((double) w / aspect);
-			else
-				w = (int) ((double) h / aspect);
-			
-			int canvas_pos_x = (vp_size.Width/2) - (w/2);
-			int canvas_pos_y = (vp_size.Height/2) - (h/2);
+			int canvas_pos_x = (vp_size.Width/2) - (canvas_size.Width/2);
+			int canvas_pos_y = (vp_size.Height/2) - (canvas_size.Height/2);
 			
 			using (Graphics gr = this.CreateGraphics())
 			using (BufferedGraphics frame = 
 				      buffercontext.Allocate(gr, this.ClientRectangle))
 			{
 				// explicitly repaint whole control surface to prevent pixel noise
-				using (SolidBrush brush = new SolidBrush(this.BackColor)) {
+				using (SolidBrush brush = new SolidBrush(colors.MapBg)) {
 					frame.Graphics.FillRectangle(brush, 0, 0, 
 					                             vp_size.Width, vp_size.Height);
 				}
 				frame.Graphics.DrawImage(bitmap,
 				                         canvas_pos_x, canvas_pos_y, 
-				                         w, h);
+				                         canvas_size.Width, canvas_size.Height);
 				frame.Render();
 			}
 		}
 		
 		private Bitmap GenerateBaseImageBitmap()
 		{
-			this.mapbitmap = new MapBitmap(font_face);
+			Size dim = GetCanvasDimensions();
+			this.mapbitmap = new MapBitmap(dim.Width, dim.Height, colors, font_face);
 			return mapbitmap.RenderBaseImage();
 		}
 		

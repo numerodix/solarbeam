@@ -3,6 +3,7 @@
 
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 
 using LibSolar.Types;
 
@@ -109,7 +110,7 @@ namespace LibSolar.Graphing
 	
 		public void SaveBitmap(Bitmap bitmap, string path)
 		{
-			bitmap.Save(path, System.Drawing.Imaging.ImageFormat.Png);	
+			bitmap.Save(path, ImageFormat.Png);	
 		}
 	}
 }

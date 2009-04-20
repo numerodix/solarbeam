@@ -37,7 +37,7 @@ namespace LibSolar.Graphing
 			
 			if (this.dx != this.dy) {
 				throw new ArgumentException(
-					string.Format("Cannot create Square {0}x{1}", this.dx, this.dy));
+					string.Format("Cannot create square {0}x{1}", this.dx, this.dy));
 			}
 			if (dx < 1) {
 				throw new ArgumentException(string.Format(
