@@ -135,9 +135,22 @@ namespace SolarbeamGui
 		
 		public Size GetViewportSize()
 		{
+//			Console.WriteLine("GuiMainForm this.ClientSize.Width {0}", this.ClientSize.Width);
+//			Console.WriteLine("GuiMainForm GuiControlPanel.WIDTH {0}", GuiControlPanel.WIDTH);
+//			Console.WriteLine("GuiMainForm tabcontrol 10");
+//			Console.WriteLine("GuiMainForm BORDER*2 {0}", BORDER*2);
+//			Console.WriteLine("GuiMainForm width {0}", this.ClientSize.Width - GuiControlPanel.WIDTH - 14 - BORDER*2);
+
+//			Console.WriteLine("GuiMainForm this.ClientSize.Height {0}", this.ClientSize.Height);
+//			Console.WriteLine("GuiMainForm this.menu.Height {0}", this.menu.Height);
+///			Console.WriteLine("GuiMainForm tabcontrol 10");
+//			Console.WriteLine("GuiMainForm BORDER*2 {0}", BORDER*2);
+//			Console.WriteLine("GuiMainForm height {0}", this.ClientSize.Height - this.menu.Height - 30 - BORDER*2);
+
+//			Console.WriteLine("");
 			return new Size(this.ClientSize.Width
 			                - GuiControlPanel.WIDTH
-			                - 10 // tabcontrol
+			                - 14 // tabcontrol
 			                - BORDER*2,
 			                this.ClientSize.Height
 			                - this.menu.Height
