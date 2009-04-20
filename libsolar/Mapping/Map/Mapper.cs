@@ -90,9 +90,7 @@ namespace LibSolar.Mapping
 		
 		private void DrawCursor(Graphics g, Point point)
 		{
-			int line = Math.Max(1, GetLineThickness());
-			float font_size = GetCursorFontSize();
-			int len = (int) (font_size * 3.5);
+			int len = (int) (GetCursorFontSize() * 3.5);
 			using (SolidBrush brush = new SolidBrush(colors.Cursor))
 			using (Pen pen = new Pen(brush)) {
 				g.DrawLine(pen,
