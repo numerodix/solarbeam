@@ -20,7 +20,7 @@ namespace LibSolar.Formatting
 		public static string FormatCaptionTimezone(double tz, double dst)
 		{
 			string dst_s = UTCDate.PrintPretty(dst);
-			string dst_fmt = string.Format(" standard, {0} daylight", dst_s);
+			string dst_fmt = string.Format(" ST, {0} DST", dst_s);
 			dst_fmt = tz != dst ? dst_fmt : string.Empty;
 			string s = string.Format("timezone: {0}{1}",
 			                         UTCDate.PrintPretty(tz),
@@ -37,7 +37,7 @@ namespace LibSolar.Formatting
 		{
 			string dst_s = string.Empty;
 			if (udt.HasDST) {
-				dst_s = udt.IsDST ? " daylight" : " standard";
+				dst_s = udt.IsDST ? " DST" : " ST";
 			}
 			return string.Format("time: {0}{1}", udt.PrintTime(), dst_s);
 		}

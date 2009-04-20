@@ -181,8 +181,8 @@ namespace LibSolar.Graphing
 			string legend_outer = null;
 			// we have DST
 			if (udt_inner.IsDST || udt_outer.IsDST) {
-				legend_inner = udt_inner.IsDST ? "daylight" : "standard";
-				legend_outer = udt_outer.IsDST ? "daylight" : "standard";
+				legend_inner = udt_inner.IsDST ? "DST" : "ST";
+				legend_outer = udt_outer.IsDST ? "DST" : "ST";
 			}
 			
 			float font_size = GetLabelFontSize();
