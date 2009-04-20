@@ -23,5 +23,13 @@ namespace LibSolar.Mapping
 			this.colors = colors;
 			this.font_face = font_face;
 		}
+		
+		public void RenderMapBitmap(Graphics g, Bitmap bitmap_map)
+		{
+			g.DrawImage(bitmap_map,
+			            map.A, map.B,
+			            map.Dx, map.Dy);
+		}
+		
 	}
 }		

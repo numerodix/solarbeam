@@ -11,25 +11,22 @@ namespace LibSolar.Mapping
 {	
 	partial class Mapper
 	{
-		public void RenderMapBitmap(Graphics g, Bitmap bitmap_map)
-		{
-			g.DrawImage(bitmap_map,
-			            map.A, map.B,
-			            map.Dx, map.Dy);
-		}
-		
 		public void PlotPosition(Graphics g, string location, Position pos)
 		{
 			Point point = FindMapPoint(pos);
 			float font_size = GetCursorFontSize();
+			
+			// draw cursor, font is readable
 			if (font_size > 10) {
 				PlotPositionCursor(g, location, pos, point);
+				
+			// draw dot
 			} else {
 				PlotPositionDot(g, point);
 			}
 		}
 		
-		public void PlotPositionCursor(Graphics g, 
+		private void PlotPositionCursor(Graphics g, 
 		                               string location, Position pos, Point point)
 		{
 			DrawCursor(g, point);
@@ -45,24 +42,36 @@ namespace LibSolar.Mapping
 				if ((location != null) && (location != string.Empty)) stack.Add(location);
 				
 				// find longest string
-				int longest = 0;
+				int w = 0;
 				foreach (string s in stack) {
-					float w = g.MeasureString(s, font).Width;
-					if (w > longest) longest = (int) w;
+					float wx = g.MeasureString(s, font).Width;
+					if (wx > w) w = (int) wx;
 				}
 				
 				// font padding
-				int d = (int) ((double) font_size * 0.3);
+				int margin = (int) ((double) font_size * 0.3);
+				int h = (int) font_size * stack.Count;
 				
-				int a = point.X;
-				int b = point.Y;
-				int db = (int) font_size * stack.Count;
-				// string won't fit, switch orientation
-				if (((point.X + longest > map.X) || (point.X - longest < map.A))
-				    || ((point.Y + db > map.Y) || (point.Y - db < map.B))) {
-					d *= -1;
-					a -= longest;
-					b += db;
+				// default: upper right
+				int da = margin;
+				int db = -margin;
+				
+				// try lower left
+				if (!WithinXBound(point.X, da, w) || !WithinYBound(point.Y, db, h)) {
+					da = -w - margin;
+					db = h + margin;
+				}
+				
+				// try lower right
+				if (!WithinXBound(point.X, da, w) || !WithinYBound(point.Y, db, h)) {
+					da = margin;
+					db = h + margin;
+				}
+				
+				// try upper left
+				if (!WithinXBound(point.X, da, w) || !WithinYBound(point.Y, db, h)) {
+					da = -w - margin;
+					db = -margin;
 				}
 				
 				// print
@@ -70,23 +79,9 @@ namespace LibSolar.Mapping
 				foreach (string s in stack) {
 					++i;
 					g.DrawString(s, font, brush,
-					             a + d,
-					             b - d - font_size*i);
+					             point.X + da,
+					             point.Y + db - font_size*i);
 				}
-			}
-		}
-		
-		private void DrawCursor(Graphics g, Point point)
-		{
-			int len = (int) (GetCursorFontSize() * 3.5);
-			using (SolidBrush brush = new SolidBrush(colors.Cursor))
-			using (Pen pen = new Pen(brush)) {
-				g.DrawLine(pen,
-				           new Point(point.X-len, point.Y),
-				           new Point(point.X+len, point.Y));
-				g.DrawLine(pen,
-				           new Point(point.X, point.Y-len),
-				           new Point(point.X, point.Y+len));
 			}
 		}
 		

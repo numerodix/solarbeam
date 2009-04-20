@@ -37,5 +37,26 @@ namespace LibSolar.Mapping
 			
 			return new Point(px, py);
 		}
+		
+		private bool WithinYBound(int b, int db, int delta)
+		{
+			return WithinBound(b, db, delta, map.B, map.Y);
+		}
+		
+		private bool WithinXBound(int a, int da, int delta)
+		{
+			return WithinBound(a, da, delta, map.A, map.X);
+		}
+		
+		private bool WithinBound(int z, int dz, int delta, int lower, int upper)
+		{
+			bool within = false;
+			if (dz >= 0) {
+				within = (z + dz + delta < upper);
+			} else {
+				within = (z + dz - delta > lower);
+			}
+			return within;
+		}
 	}
 }		
