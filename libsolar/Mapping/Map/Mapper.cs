@@ -133,7 +133,7 @@ namespace LibSolar.Mapping
 				
 		private float GetCursorFontSize()
 		{
-			return (float) Math.Max(1.0, (double) map.Dx / 60.0);
+			return (float) Math.Max(1.0, (double) map.Dx / 50.0);
 		}
 				
 		private int GetLineThickness()
