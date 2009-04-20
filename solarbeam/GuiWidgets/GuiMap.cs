@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-using LibSolar.Graphing;
+using LibSolar.Mapping;
 using LibSolar.Types;
 
 namespace SolarbeamGui
@@ -21,12 +21,10 @@ namespace SolarbeamGui
 		
 		private const int BORDER = 5;
 	
-		public static readonly Colors colors = new Colors();
 		public const string font_face = "Arial";
 		
 		private Position position;
-		private UTCDate? date;
-		private GraphBitmap graphbitmap;
+		private MapBitmap mapbitmap;
 		private Bitmap bitmap_base;
 		private Bitmap bitmap_final;
 		
@@ -46,7 +44,7 @@ namespace SolarbeamGui
 			Controller.RegisterControl(Controller.Id.MAP, this);	// register control
 			
 			this.Dock = DockStyle.Fill;
-			this.BackColor = colors.GridBg;
+			this.BackColor = Color.White;
 			
 			this.Paint += delegate { RePaint(); };
 			this.Resize += delegate { RePaint(); };
@@ -55,28 +53,18 @@ namespace SolarbeamGui
 			buffercontext = BufferedGraphicsManager.Current;
 		}
 		
-		public void Update(UTCDate date)
-		{
-			this.date = date;
-			
-			this.bitmap_final = null;
-			RePaint();
-		}
-		
-		public void ReRender(Position pos, UTCDate date)
-		{
+		public void Update(Position pos)
+		{			
 			this.position = pos;
-			this.date = date;
 			
-			this.bitmap_base = null;
 			this.bitmap_final = null;
 			RePaint();
 		}
 		
 		private void RePaint()
 		{
-//			if ((position != null) && (date != null))
-//			{
+			if (position != null)
+			{
 				int dim = GetCanvasDimensions();
 				
 				// bitmap exists, wrong dimensions
@@ -98,7 +86,7 @@ namespace SolarbeamGui
 				
 				// render
 				RenderBitmap(this.bitmap_final);
-//			}
+			}
 		}
 		
 		private void RenderBitmap(Bitmap bitmap)
@@ -113,7 +101,7 @@ namespace SolarbeamGui
 				      buffercontext.Allocate(gr, this.ClientRectangle))
 			{
 				// explicitly repaint whole control surface to prevent pixel noise
-				using (SolidBrush brush = new SolidBrush(colors.GridBg))
+				using (SolidBrush brush = new SolidBrush(this.BackColor))
 				{
 					frame.Graphics.FillRectangle(brush, 0, 0, 
 					                             vp_size.Width, vp_size.Height);
@@ -127,18 +115,14 @@ namespace SolarbeamGui
 		
 		private Bitmap GenerateBaseImageBitmap()
 		{
-			return new Bitmap(Controller.AsmInfo.GetResource("worldmap.png"));
-//			int dim = GetCanvasDimensions();
-//			this.graphbitmap = new GraphBitmap(false, dim, colors, font_face);
-//			return graphbitmap.RenderBaseImage(position, date.Value);
+			int dim = GetCanvasDimensions();
+			this.mapbitmap = new MapBitmap(false, dim, font_face);
+			return mapbitmap.RenderBaseImage();
 		}
 		
 		private Bitmap GenerateFinalizedBitmap()
 		{
-			return this.bitmap_base;
-//			int dim = GetCanvasDimensions();
-//			return graphbitmap.RenderCurrentDayCloned(dim, 
-//			                                          position, date.Value);
+			return mapbitmap.RenderCurrentPositionCloned(position);
 		}
 		
 		private int GetCanvasDimensions()

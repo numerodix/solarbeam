@@ -82,12 +82,12 @@ namespace LibSolar.Graphing
 			return this.bitmap;
 		}
 		
-		public Bitmap RenderCurrentDayCloned(int dim, Position pos, UTCDate dt)
+		public Bitmap RenderCurrentDayCloned(Position pos, UTCDate dt)
 		{
-			return RenderCurrentDay((Bitmap) this.bitmap.Clone(), dim, pos, dt);
+			return RenderCurrentDay((Bitmap) this.bitmap.Clone(), pos, dt);
 		}
 		
-		public Bitmap RenderCurrentDay(Bitmap bitmap, int dim, 
+		public Bitmap RenderCurrentDay(Bitmap bitmap,
 		                               Position pos, UTCDate udt)
 		{
 			using (Graphics g = Graphics.FromImage(bitmap)) {

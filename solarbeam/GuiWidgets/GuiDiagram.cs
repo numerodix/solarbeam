@@ -134,9 +134,7 @@ namespace SolarbeamGui
 		
 		private Bitmap GenerateFinalizedBitmap()
 		{
-			int dim = GetCanvasDimensions();
-			return graphbitmap.RenderCurrentDayCloned(dim, 
-			                                          position, date.Value);
+			return graphbitmap.RenderCurrentDayCloned(position, date.Value);
 		}
 		
 		private int GetCanvasDimensions()

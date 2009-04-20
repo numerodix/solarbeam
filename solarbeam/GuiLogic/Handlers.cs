@@ -196,11 +196,9 @@ namespace SolarbeamGui
 				if (!validate_lock)
 				{
 					Position pos = ReadPosition();
-					UTCDate? dt = ReadDate();
 	
-					if ((pos != null) && (dt != null )) {
-						((GuiMap) registry[Id.MAP]).Update(dt.Value);
-						SetOutputs(pos, dt.Value);
+					if (pos != null) {
+						((GuiMap) registry[Id.MAP]).Update(pos);
 					}
 				}
 			} catch (KeyNotFoundException) {}
@@ -229,7 +227,7 @@ namespace SolarbeamGui
 					bool caption = GetBool(GetValue(registry[Id.IMAGE_CAPTIONTOGGLE]));
 					GraphBitmap grbit = new GraphBitmap(caption, dim, colors, font_face);
 					Bitmap bitmap = grbit.RenderBaseImage(pos, dt);
-					bitmap = grbit.RenderCurrentDay(bitmap, dim, pos, dt);
+					bitmap = grbit.RenderCurrentDay(bitmap, pos, dt);
 					bitmap = grbit.RenderCaption(new CaptionInfo(location, pos, dt));
 					grbit.SaveBitmap(bitmap, filename);
 				}

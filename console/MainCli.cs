@@ -179,7 +179,7 @@ namespace SolarbeamCli
 			Bitmap bitmap_plain = grbit.RenderBaseImage(pos, udt);
 			
 			// render current day
-			Bitmap bitmap_fst = grbit.RenderCurrentDay(bitmap_plain, dim, pos, udt);
+			Bitmap bitmap_fst = grbit.RenderCurrentDay(bitmap_plain, pos, udt);
 			
 			// save
 			grbit.SaveBitmap(bitmap_fst, path);

@@ -85,6 +85,5 @@
     <EmbeddedResource Include="..\bundled\reset.png" />
     <EmbeddedResource Include="..\bundled\save.png" />
     <EmbeddedResource Include="..\bundled\time-now.png" />
-    <EmbeddedResource Include="..\bundled\worldmap.png" />
   </ItemGroup>
 </Project>

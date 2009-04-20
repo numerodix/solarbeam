@@ -1,13 +1,27 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="solarbeam/GuiWidgets/GuiMap.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="libsolar/Mapping/MapBitmap.cs" ctype="Workbench">
     <Files>
-      <File FileName="solarbeam/GuiWidgets/GuiMap.cs" Line="31" Column="8" />
+      <File FileName="libsolar/Graphing/GraphBitmap.cs" Line="83" Column="4" />
+      <File FileName="libsolar/Mapping/MapBitmap.cs" Line="23" Column="21" />
+      <File FileName="solarbeam/GuiWidgets/GuiDiagram.cs" Line="128" Column="30" />
+      <File FileName="solarbeam/GuiWidgets/GuiMap.cs" Line="131" Column="47" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="True" />
           <Option id="ShowAllFiles" value="False" />
+          <Node name="libsolar" expanded="True">
+            <Node name="Graphing" expanded="True" />
+            <Node name="Mapping" expanded="True">
+              <Node name="MapBitmap.cs" selected="True" />
+            </Node>
+            <Node name="Util" expanded="True" />
+          </Node>
+          <Node name="solarbeam" expanded="True">
+            <Node name="GuiLogic" expanded="True" />
+            <Node name="GuiWidgets" expanded="True" />
+          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">

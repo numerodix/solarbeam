@@ -35,7 +35,7 @@
       <HintPath>lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.5.452, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.5.452, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -83,6 +83,7 @@
     <Compile Include="Formatting\Caption.cs" />
     <Compile Include="Formatting\Diagram.cs" />
     <Compile Include="Formatting\Filenames.cs" />
+    <Compile Include="Mapping\MapBitmap.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -90,5 +91,8 @@
       <Project>{B10031CA-8F30-4D3E-8185-AEC4636D0648}</Project>
       <Name>libpublicdomain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\bundled\worldmap.png" />
   </ItemGroup>
 </Project>
