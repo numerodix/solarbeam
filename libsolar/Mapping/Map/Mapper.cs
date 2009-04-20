@@ -61,9 +61,6 @@ namespace LibSolar.Mapping
 				lon -= lon_pivot;
 			}
 			
-			// calibrate
-			lat -= 5.0;
-			
 			int px = (int) (map.Origin.X + ((lon / 360.0) * map.Dx));
 			int py = (int) (map.Origin.Y + ((lat / 180.0) * map.Dy));
 			return new Point(px, py);
