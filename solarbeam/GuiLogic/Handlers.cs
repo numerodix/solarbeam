@@ -228,7 +228,8 @@ namespace SolarbeamGui
 					GraphBitmap grbit = new GraphBitmap(caption, dim, colors, font_face);
 					Bitmap bitmap = grbit.RenderBaseImage(pos, dt);
 					bitmap = grbit.RenderCurrentDay(bitmap, pos, dt);
-					bitmap = grbit.RenderCaption(new CaptionInfo(location, pos, dt));
+					if (caption)
+						bitmap = grbit.RenderCaption(new CaptionInfo(location, pos, dt));
 					grbit.SaveBitmap(bitmap, filename);
 				}
 			}
