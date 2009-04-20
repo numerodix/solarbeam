@@ -1,27 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="libsolar/Mapping/MapBitmap.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="libsolar/Mapping/Map/Mapper.cs" ctype="Workbench">
     <Files>
-      <File FileName="libsolar/Graphing/GraphBitmap.cs" Line="83" Column="4" />
-      <File FileName="libsolar/Mapping/MapBitmap.cs" Line="23" Column="21" />
-      <File FileName="solarbeam/GuiWidgets/GuiDiagram.cs" Line="128" Column="30" />
-      <File FileName="solarbeam/GuiWidgets/GuiMap.cs" Line="131" Column="47" />
+      <File FileName="libsolar/Graphing/GraphBitmap.cs" Line="103" Column="29" />
+      <File FileName="solarbeam/GuiWidgets/GuiDiagram.cs" Line="100" Column="37" />
+      <File FileName="libsolar/Mapping/MapBitmap.cs" Line="74" Column="4" />
+      <File FileName="solarbeam/GuiWidgets/GuiMap.cs" Line="114" Column="4" />
+      <File FileName="libsolar/Mapping/Map/Mapper.cs" Line="68" Column="53" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="True" />
           <Option id="ShowAllFiles" value="False" />
-          <Node name="libsolar" expanded="True">
-            <Node name="Graphing" expanded="True" />
-            <Node name="Mapping" expanded="True">
-              <Node name="MapBitmap.cs" selected="True" />
-            </Node>
-            <Node name="Util" expanded="True" />
-          </Node>
-          <Node name="solarbeam" expanded="True">
-            <Node name="GuiLogic" expanded="True" />
-            <Node name="GuiWidgets" expanded="True" />
-          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">
