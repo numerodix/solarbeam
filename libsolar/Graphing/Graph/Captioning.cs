@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 
 using LibSolar.Formatting;
+using LibSolar.Mapping;
 using LibSolar.SolarOrbit;
 using LibSolar.Types;
 
@@ -37,9 +38,9 @@ namespace LibSolar.Graphing
 					stack.Add(string.Empty);
 					stack.Add(Formatter.FormatCaptionDate(ci.Date));
 					stack.Add(Formatter.FormatCaptionTime(ci.Date, ci));
-					PrintVertically(g, brush, font, caption, (caption.Dx/2)+dxx*3, caption.B, stack);
+					PrintVertically(g, brush, font, caption, caption.A+dxx, caption.B+3*height, stack);
 					
-					int h_ang = (int) (4.5 * (double) height);
+					int h_ang = (int) (7.5 * (double) height);
 					
 					stack = new List<string>();
 					stack.Add(string.Format("sun elevation: {0}",
@@ -48,7 +49,7 @@ namespace LibSolar.Graphing
 					                        Formatter.FormatAngle(ci.Azimuth)));
 					PrintHorizontally(g, brush, font, caption, caption.B+h_ang, stack);
 					
-					int h_tm = (int) (7 * (double) height);
+					int h_tm = (int) (10 * (double) height);
 					
 					stack = new List<string>();
 					stack.Add(Formatter.FormatTime(ci.Dawn));
@@ -65,6 +66,8 @@ namespace LibSolar.Graphing
 					stack.Add("sunset");
 					stack.Add("dusk");
 					PrintHorizontally(g, brush, font, caption, caption.B+h_tm+1*height, stack);
+					
+					RenderMap(g, ci.Position, caption);
 				}
 			}
 		}
@@ -102,6 +105,28 @@ namespace LibSolar.Graphing
 				                   caption.A + dxx + inset,
 				                   b+height/2,
 				                   Placement.CENTER);
+			}
+		}
+		
+		private void RenderMap(Graphics g, Position pos, Caption caption)
+		{
+			int w = caption.Dx / 3;
+			int h = w / 2;
+			MapBitmap mapbitmap = new MapBitmap(w, h,
+			                                    new LibSolar.Mapping.Colors(),
+			                                    font_face);
+			Bitmap bitmap = mapbitmap.RenderBaseImage();
+			bitmap = mapbitmap.RenderCurrentPosition(bitmap, pos);
+			
+			int dxx = GetInc(caption);
+			int a = (caption.A + caption.Dx) - w - dxx;
+			int b = caption.B;
+			
+			g.DrawImage(bitmap, a, b, w, h);
+			
+			using (SolidBrush br = new SolidBrush(colors.GraphFg))
+			using (Pen pen = new Pen(br)) {
+				g.DrawRectangle(pen, a, b, w ,h);
 			}
 		}
 		

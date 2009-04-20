@@ -26,7 +26,7 @@ namespace LibSolar.Graphing
 		public GraphBitmap(bool caption, int dim, Colors colors, string font_face)
 		{
 			this.dimensions = dim;
-			this.captionheight = caption ? (int) (1.28 * (double) dim - dim) : 0;
+			this.captionheight = caption ? (int) (1.34 * (double) dim - dim) : 0;
 			this.font_face = font_face;
 			this.colors = colors;
 		}
