@@ -31,9 +31,55 @@ namespace LibSolar.Mapping
 			            map.Dx, map.Dy);
 		}
 		
-		public void PlotPosition(Graphics g, Position pos)
+		public void PlotPosition(Graphics g, string location, Position pos)
 		{
 			Point point = FindMapPoint(pos);
+			if (map.Dx > 300) {
+				PlotPositionCursor(g, location, pos, point);
+			} else {
+				PlotPositionDot(g, point);
+			}
+		}
+		
+		public void PlotPositionCursor(Graphics g, 
+		                               string location, Position pos, Point point)
+		{
+			int line = Math.Max(1, GetLineThickness());
+			float font_size = GetCursorFontSize();
+			int len = (int) (font_size * 3.5);
+			using (SolidBrush brush = new SolidBrush(colors.Cursor))
+			using (Pen pen = new Pen(brush)) {
+				g.DrawLine(pen,
+				           new Point(point.X-len, point.Y),
+				           new Point(point.X+len, point.Y));
+				g.DrawLine(pen,
+				           new Point(point.X, point.Y-len),
+				           new Point(point.X, point.Y+len));
+			}
+			
+			using (SolidBrush brush = new SolidBrush(colors.Text))
+			using (Font font = new Font(font_face, font_size, GraphicsUnit.Pixel)) {
+				
+				List<string> stack = new List<string>();
+				stack.Add(pos.LongitudeDegree.Print());
+				stack.Add(pos.LatitudeDegree.Print());
+				stack.Add(location);
+				
+				int d = (int) ((double) font_size * 0.3);
+				int i = 0;
+				foreach (string s in stack) {
+					if (s != null) {
+						++i;
+						g.DrawString(s, font, brush,
+						             point.X + d,
+						             point.Y - d - font_size*i);
+					}
+				}
+			}
+		}
+		
+		private void PlotPositionDot(Graphics g, Point point)
+		{
 			int rad = Math.Max(2, GetLineThickness());
 			using (SolidBrush brush = new SolidBrush(Color.Red)) {
 				g.FillEllipse(brush, point.X - rad, point.Y - rad, rad*2, rad*2);
@@ -64,6 +110,11 @@ namespace LibSolar.Mapping
 			int px = (int) (map.Origin.X + ((lon / 360.0) * map.Dx));
 			int py = (int) (map.Origin.Y + ((lat / 180.0) * map.Dy));
 			return new Point(px, py);
+		}
+				
+		private float GetCursorFontSize()
+		{
+			return (float) Math.Max(1.0, (double) map.Dx / 60.0);
 		}
 				
 		private int GetLineThickness()

@@ -196,9 +196,10 @@ namespace SolarbeamGui
 				if (!validate_lock)
 				{
 					Position pos = ReadPosition();
+					String location = GetValue(registry[Id.LOCATION]);
 	
 					if (pos != null) {
-						((GuiMap) registry[Id.MAP]).Update(pos);
+						((GuiMap) registry[Id.MAP]).Update(location, pos);
 					}
 				}
 			} catch (KeyNotFoundException) {}

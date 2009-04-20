@@ -13,11 +13,19 @@ namespace LibSolar.Mapping
 	{
 		private Color map_bg = Color.White;
 		private Color map_fg = Color.Black;
+		private Color cursor = Color.Red;
+		private Color text = Color.Black;
 		
 		public Color MapBg
 		{ get { return this.map_bg; } }
 
 		public Color MapFg
 		{ get { return this.map_fg; } }
+
+		public Color Cursor
+		{ get { return this.cursor; } }
+
+		public Color Text
+		{ get { return this.text; } }
 	}
 }

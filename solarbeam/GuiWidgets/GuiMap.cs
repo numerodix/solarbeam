@@ -21,7 +21,9 @@ namespace SolarbeamGui
 		public static readonly Colors colors = new Colors();
 		public const string font_face = "Arial";
 		
+		private string location;
 		private Position position;
+		
 		private MapBitmap mapbitmap;
 		private Bitmap bitmap_base;
 		private Bitmap bitmap_final;
@@ -51,9 +53,10 @@ namespace SolarbeamGui
 			buffercontext = BufferedGraphicsManager.Current;
 		}
 		
-		public void Update(Position pos)
+		public void Update(string location, Position pos)
 		{			
 			this.position = pos;
+			this.location = location;
 			
 			this.bitmap_final = null;
 			RePaint();
@@ -124,7 +127,7 @@ namespace SolarbeamGui
 		
 		private Bitmap GenerateFinalizedBitmap()
 		{
-			return mapbitmap.RenderCurrentPositionCloned(position);
+			return mapbitmap.RenderCurrentPositionCloned(location, position);
 		}
 		
 		private Size GetCanvasDimensions()

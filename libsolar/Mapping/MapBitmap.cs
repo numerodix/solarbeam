@@ -68,15 +68,17 @@ namespace LibSolar.Mapping
 			return this.bitmap;
 		}
 		
-		public Bitmap RenderCurrentPositionCloned(Position pos)
+		public Bitmap RenderCurrentPositionCloned(string location, Position pos)
 		{
-			return RenderCurrentPosition((Bitmap) this.bitmap.Clone(), pos);
+			return RenderCurrentPosition((Bitmap) this.bitmap.Clone(),
+			                             location, pos);
 		}
 		
-		public Bitmap RenderCurrentPosition(Bitmap bitmap, Position pos)
+		public Bitmap RenderCurrentPosition(Bitmap bitmap,
+		                                    string location, Position pos)
 		{
 			using (Graphics g = Graphics.FromImage(bitmap)) {
-				mapper.PlotPosition(g, pos);
+				mapper.PlotPosition(g, location, pos);
 			}
 			return bitmap;
 		}

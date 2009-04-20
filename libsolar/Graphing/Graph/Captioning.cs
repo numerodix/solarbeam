@@ -130,7 +130,7 @@ namespace LibSolar.Graphing
 			                                    new LibSolar.Mapping.Colors(),
 			                                    font_face);
 			Bitmap bitmap = mapbitmap.RenderBaseImage();
-			bitmap = mapbitmap.RenderCurrentPosition(bitmap, pos);
+			bitmap = mapbitmap.RenderCurrentPosition(bitmap, null, pos);
 			
 			int dxx = GetInc(caption);
 			int a = (caption.A + caption.Dx) - w - dxx;
