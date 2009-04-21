@@ -69,7 +69,14 @@ namespace SolarbeamGui
 			DIAGRAM,
 			MAP,
 
+			SHORTCUT_PLATFORM,
+			SHORTCUT_DESKTOPCHECK,
+			SHORTCUT_DESKTOP,
+			SHORTCUT_STARTMENUCHECK,
+			SHORTCUT_STARTMENU,
+			SHORTCUTINSTALL_ACTION,
 			SHORTCUTCLOSE_ACTION,
+			
 			ABOUTCLOSE_ACTION,
 		}
 		
@@ -277,7 +284,11 @@ namespace SolarbeamGui
 			} else if (reg_rev[button] == Id.IMAGESAVE_ACTION) {
 				((Button) button).Click += new EventHandler(SaveImage);
 			
-
+			// ShortcutInstall form
+			} else if (reg_rev[button] == Id.SHORTCUTINSTALL_ACTION) {
+				((Button) button).Click += new EventHandler(ShortcutInstall);
+			} else if (reg_rev[button] == Id.SHORTCUTCLOSE_ACTION) {
+				((Button) button).Click += new EventHandler(HideShortcutDialog);
 			// About form
 			} else if (reg_rev[button] == Id.ABOUTCLOSE_ACTION) {
 				((Button) button).Click += new EventHandler(HideAboutDialog);

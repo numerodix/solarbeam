@@ -32,13 +32,13 @@ namespace SolarbeamGui
 			
 			ToolStripMenuItem save = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENUSESSIONSAVE_ACTION,
-					"&Save session",
+					"&Save session...",
 					"save.png");
 			save.ShortcutKeys = (Keys) (Keys.Control | Keys.S);
 			
 			ToolStripMenuItem load = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENUSESSIONLOAD_ACTION,
-					"&Load session",
+					"&Load session...",
 					"open.png");
 			load.ShortcutKeys = (Keys) (Keys.Control | Keys.O);
 			
@@ -110,7 +110,7 @@ namespace SolarbeamGui
 						
 			ToolStripMenuItem action_saveimage = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENUSAVEIMAGE_ACTION,
-					Tooltips.GetTip(Controller.Id.IMAGESAVE_ACTION),
+					Tooltips.GetTip(Controller.Id.IMAGESAVE_ACTION)+"...",
 					"image-save.png");
 			action_saveimage.ShortcutKeys = (Keys) (Keys.Alt | Keys.I);
 			
@@ -130,11 +130,11 @@ namespace SolarbeamGui
 			
 			ToolStripMenuItem shortcut = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENUSHORTCUT_ACTION,
-					"&Create shortcuts",
+					"&Create shortcuts...",
 			        "shortcut-install.png");
 			ToolStripMenuItem about = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENUABOUT_ACTION,
-					"&About",
+					"&About...",
 			        "app-about.png");
 			
 			help.DropDownItems.AddRange(new ToolStripItem[] {

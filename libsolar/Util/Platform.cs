@@ -5,7 +5,7 @@ using System;
 
 namespace LibSolar.Util
 {
-	public enum PlatformName {
+	public enum RuntimeName {
 		Mono,
 		NET,
 	}
@@ -15,19 +15,19 @@ namespace LibSolar.Util
 	 */
 	public static class Platform
 	{
-		public static PlatformName GetRuntime()
+		public static RuntimeName GetRuntime()
 		{
-			PlatformName platform = PlatformName.Mono;
+			RuntimeName platform = RuntimeName.Mono;
 			Type t = Type.GetType("Mono.Runtime");
 			if (t == null) {
-				platform = PlatformName.NET;
+				platform = RuntimeName.NET;
 			}
 			return platform;
 		}
 		
-		public static string ToString(PlatformName pn)
+		public static string ToString(RuntimeName pn)
 		{
-			if (pn == PlatformName.NET) {
+			if (pn == RuntimeName.NET) {
 				return ".NET";
 			}
 			return pn.ToString();

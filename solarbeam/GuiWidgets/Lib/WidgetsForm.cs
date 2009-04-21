@@ -15,7 +15,7 @@ namespace SolarbeamGui
 	static partial class Widgets
 	{	
 		public static Button GetButtonImageTextAnon(Controller.Id id,
-		                                        string s, string img)
+		                                            string s, string img)
 		{
 			Button button = GetButtonImageText(id, s, img);
 			button.TabStop = false;
@@ -170,6 +170,19 @@ namespace SolarbeamGui
 			textbox.Anchor = AnchorStyles.Left;
 			textbox.BorderStyle = BorderStyle.None;
 			Controller.RegisterControl(id, textbox);	// register control
+			return textbox;
+		}
+		
+		public static TextBox GetTextBoxAnon(string s)
+		{
+			TextBox textbox = new TextBox();
+			textbox.ReadOnly = true;
+			textbox.Multiline = true;
+			textbox.WordWrap = true;
+			textbox.TabStop = false;
+			textbox.Text = s;
+			textbox.Dock = DockStyle.Fill;
+			textbox.BorderStyle = BorderStyle.None;
 			return textbox;
 		}
 		

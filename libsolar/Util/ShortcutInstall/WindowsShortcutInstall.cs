@@ -6,7 +6,7 @@ using System.IO;
 
 namespace LibSolar.Util
 {
-	class WindowsShortcutInstall
+	public class WindowsShortcutInstall
 	{
 		private AsmInfo asminfo;
 		

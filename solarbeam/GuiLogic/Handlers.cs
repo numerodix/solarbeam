@@ -258,7 +258,46 @@ namespace SolarbeamGui
 		
 		private static void ShowShortcutDialog(object sender, EventArgs args)
 		{
+			Component platform = registry[Id.SHORTCUT_PLATFORM];
+			Component desktop = registry[Id.SHORTCUT_DESKTOP];
+			Component startmenu = registry[Id.SHORTCUT_STARTMENU];
+			
+			Button create_btn = (Button) registry[Id.SHORTCUTINSTALL_ACTION];
+			
+			create_btn.Enabled = true;
+			string platform_s = "Unix";
+			if (Platform.GetRuntime() == RuntimeName.NET) {
+				platform_s = "Windows";
+				
+				SetValue(desktop, Platform.GetDesktopPath());
+				WindowsShortcutInstall wsi = new WindowsShortcutInstall(Controller.AsmInfo);
+				SetValue(startmenu, wsi.GetStartMenuPath());
+			} else {
+				create_btn.Enabled = false;
+			}
+			SetValue(platform, platform_s);
+			
 			GuiMainForm.shortcutform.Show();
+		}
+		
+		private static void ShortcutInstall(object sender, EventArgs args)
+		{
+			bool desktop = GetBool(GetValue(registry[Id.SHORTCUT_DESKTOPCHECK]));
+			string desktop_s = GetValue(registry[Id.SHORTCUT_DESKTOP]);
+			
+			bool startmenu = GetBool(GetValue(registry[Id.SHORTCUT_STARTMENUCHECK]));
+			string startmenu_s = GetValue(registry[Id.SHORTCUT_STARTMENU]);
+			
+			WindowsShortcutInstall wsi = new WindowsShortcutInstall(Controller.AsmInfo);
+			if (desktop)
+				wsi.ShortcutTo(desktop_s);
+			if (startmenu)
+				wsi.ShortcutTo(startmenu_s);
+		}
+		
+		private static void HideShortcutDialog(object sender, EventArgs args)
+		{
+			GuiMainForm.shortcutform.Close();
 		}
 		
 		private static void ShowAboutDialog(object sender, EventArgs args)
