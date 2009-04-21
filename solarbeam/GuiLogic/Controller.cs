@@ -32,6 +32,7 @@ namespace SolarbeamGui
 			MENURESETFORM_ACTION,
 			MENURENDER_ACTION,
 			MENUSAVEIMAGE_ACTION,
+			MENUSHORTCUT_ACTION,
 			MENUABOUT_ACTION,
 			LOCATION,
 			LOCATIONNEW_ACTION,
@@ -68,6 +69,7 @@ namespace SolarbeamGui
 			DIAGRAM,
 			MAP,
 
+			SHORTCUTCLOSE_ACTION,
 			ABOUTCLOSE_ACTION,
 		}
 		
@@ -250,6 +252,8 @@ namespace SolarbeamGui
 			} else if (reg_rev[button] == Id.MENUSAVEIMAGE_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(SaveImage);
 			// Help
+			} else if (reg_rev[button] == Id.MENUSHORTCUT_ACTION) {
+				((ToolStripMenuItem) button).Click += new EventHandler(ShowShortcutDialog);
 			} else if (reg_rev[button] == Id.MENUABOUT_ACTION) {
 				((ToolStripMenuItem) button).Click += new EventHandler(ShowAboutDialog);
 

@@ -128,11 +128,17 @@ namespace SolarbeamGui
 		{
 			ToolStripMenuItem help = Widgets.GetToolStripMenuColumn("&Help");
 			
+			ToolStripMenuItem shortcut = Widgets.GetToolStripMenuItem(
+					Controller.Id.MENUSHORTCUT_ACTION,
+					"&Create shortcuts",
+			        "shortcut-install.png");
 			ToolStripMenuItem about = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENUABOUT_ACTION,
 					"&About",
 			        "app-about.png");
+			
 			help.DropDownItems.AddRange(new ToolStripItem[] {
+				shortcut,
 				about});
 			
 			return help;

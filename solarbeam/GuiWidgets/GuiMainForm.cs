@@ -21,6 +21,7 @@ namespace SolarbeamGui
 		private const int DIAGRAM_DIM_Y = GuiDiagram.IDEAL_DIM_Y;
 		
 		// make about form accessible to logic
+		public static GuiShortcutInstall shortcutform;
 		public static GuiAbout aboutform;
 		
 		// my widgets
@@ -33,6 +34,7 @@ namespace SolarbeamGui
 //			this.SuspendLayout();
 			
 			InitializeComponent(form_title, icon);
+			shortcutform = new GuiShortcutInstall(form_title, icon);
 			aboutform = new GuiAbout(form_title, icon);
 
 			// makes mono layout differently 1.9 <-> 2.0

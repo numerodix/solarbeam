@@ -256,6 +256,11 @@ namespace SolarbeamGui
 			}
 		}
 		
+		private static void ShowShortcutDialog(object sender, EventArgs args)
+		{
+			GuiMainForm.shortcutform.Show();
+		}
+		
 		private static void ShowAboutDialog(object sender, EventArgs args)
 		{
 			GuiMainForm.aboutform.Show();
