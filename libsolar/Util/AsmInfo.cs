@@ -19,6 +19,13 @@ namespace LibSolar.Util
 		public AsmInfo(Assembly asm)
 		{
 			this.asm = asm;
+			
+			WindowsShortcut ws = new WindowsShortcut(@"c:\solarbeam\dist\solarbeam.exe",
+			                                         @"c:\solarbeam\bundled\icon.ico");
+			ws.WriteFile("SolarBeam.url");
+			WindowsShortcut ws2 = WindowsShortcut.FromFile("SolarBeam.url");
+			Console.WriteLine(ws2.Codegen());
+			
 /*			Console.WriteLine("AppDir:   {0}", path);
 			Console.WriteLine("CurrentDirectory:   {0}", Environment.CurrentDirectory);
 			Console.WriteLine("GetLogicalDrives:   {0}", Environment.GetLogicalDrives());
