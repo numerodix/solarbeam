@@ -83,9 +83,9 @@ namespace LibSolar.Mapping
 			return bitmap;
 		}
 		
-		public Position FindPosition(int X, int Y)
+		public Position FindPosition(Point point)
 		{
-			return mapper.FindPosition(X, Y);
+			return mapper.FindPosition(point);
 		}
 		
 		public void SaveBitmap(Bitmap bitmap, string path)

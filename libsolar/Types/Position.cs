@@ -193,6 +193,18 @@ namespace LibSolar.Types
 					 + ( Math.Abs(min) * 60)
 					 + ( Math.Abs(sec) ) ));
 		}
+		
+		public static void Expand(double degs,
+		                          out int deg, out int min, out int sec)
+		{
+			degs = Math.Abs(degs);
+
+			deg = (int) (degs / 3600.0);
+			degs = degs - deg * 3600.0;
+			min = (int) (degs / 60.0);
+			degs = degs - min * 60.0;
+			sec = (int) degs;
+		}
 
 		/**
 		 * Extract integer representation of position.
@@ -217,13 +229,11 @@ namespace LibSolar.Types
 					dir = LONGITUDE_NEG;
 				}
 			}
-			degs = Math.Abs(degs);
 
-			int deg = degs / 3600;
-			degs = degs - deg * 3600;
-			int min = degs / 60;
-			degs = degs - min * 60;
-			int sec = degs;
+			int deg = 0;
+			int min = 0;
+			int sec = 0;
+			Expand(degs, out deg, out min, out sec);
 
 			return new Degree(dir, deg, min, sec);
 		}

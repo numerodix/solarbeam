@@ -39,11 +39,11 @@ namespace LibSolar.Mapping
 			return new Point(px, py);
 		}
 		
-		public Position FindPosition(int X_in, int Y_in)
+		public Position FindPosition(Point point)
 		{
 			// displace cursor to lower right
-			double X = X_in - 13;
-			double Y = Y_in - 7;
+			double X = point.X - 13;
+			double Y = point.Y - 7;
 			
 			// the canvas
 			double a = map.A;
@@ -79,28 +79,17 @@ namespace LibSolar.Mapping
 			int ladeg = 0;
 			int lamin = 0;
 			int lasec = 0;
-			Expand(h * 3600.0, out ladeg, out lamin, out lasec);
+			Position.Expand(h * 3600.0, out ladeg, out lamin, out lasec);
 			PositionDirection ladir = h > 0 ? Position.LATITUDE_POS : Position.LATITUDE_NEG;
 			
 			int lodeg = 0;
 			int lomin = 0;
 			int losec = 0;
-			Expand(w * 3600.0, out lodeg, out lomin, out losec);
+			Position.Expand(w * 3600.0, out lodeg, out lomin, out losec);
 			PositionDirection lodir = w > 0 ? Position.LONGITUDE_POS : Position.LONGITUDE_NEG;
 			
 			return new Position(ladir, ladeg, lamin, lasec,
 			                    lodir, lodeg, lomin, losec);
-		}
-		
-		private void Expand(double degs, out int deg, out int min, out int sec)
-		{
-			degs = Math.Abs(degs);
-
-			deg = (int) (degs / 3600.0);
-			degs = degs - deg * 3600.0;
-			min = (int) (degs / 60.0);
-			degs = degs - min * 60.0;
-			sec = (int) degs;
 		}
 		
 		private bool WithinYBound(int b, int db, int delta)

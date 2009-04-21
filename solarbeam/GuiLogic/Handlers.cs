@@ -205,6 +205,18 @@ namespace SolarbeamGui
 			} catch (KeyNotFoundException) {}
 		}
 		
+		private static void MapClick(object sender, MouseEventArgs args)
+		{
+			GuiMap guimap = ((GuiMap) registry[Id.MAP]);
+			Position pos = guimap.FindPosition(args.X, args.Y);
+			
+			// use validate lock to prevent mouse jumps
+			validate_lock = true;
+			SetLocation(string.Empty);
+			SetPosition(pos);
+			validate_lock = false;
+		}
+		
 		private static void SaveImage(object sender, EventArgs args)
 		{
 			int dim = GetInt(GetValue(registry[Id.IMAGE_SIZE]));

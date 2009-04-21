@@ -208,6 +208,12 @@ namespace SolarbeamGui
 				EventHandler handler = new EventHandler(UpdateMap);
 				RegisterValueChange(control, handler);
 			}
+								
+			// handle clicks on map
+			if (id == Id.MAP) {
+				MouseEventHandler handler = new MouseEventHandler(MapClick);
+				((GuiMap) registry[id]).MouseClick += handler;
+			}
 		
 			// activate tooltip
 			ActivateTooltip(id, control);

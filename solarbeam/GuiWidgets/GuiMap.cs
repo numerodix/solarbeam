@@ -51,16 +51,16 @@ namespace SolarbeamGui
 			this.Paint += delegate { RePaint(); };
 			this.Resize += delegate { RePaint(); };
 			
+			// mouse tracking
 			this.MouseMove += delegate (object sender, MouseEventArgs args) {
-				Position pos = mapbitmap.FindPosition(args.X - BORDER_W,
-				                                      args.Y - BORDER_H);
+				Position pos = FindPosition(args.X, args.Y);
 				Update(null, pos);
 			};
 			
 			// init double buffer
 			buffercontext = BufferedGraphicsManager.Current;
 		}
-		
+
 		public void Update(string location, Position pos)
 		{			
 			this.position = pos;
@@ -151,6 +151,11 @@ namespace SolarbeamGui
 //			Console.WriteLine("");
 
 			return new Size(w, h);
+		}
+		
+		public Position FindPosition(int x, int y)
+		{
+			return mapbitmap.FindPosition(new Point(x - BORDER_W, y - BORDER_H));
 		}
 	}
 }
