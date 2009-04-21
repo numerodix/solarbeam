@@ -90,8 +90,7 @@ namespace LibSolar.Types
 
 		public static PositionDirection LatDirFromVal(int val)
 		{
-			if (val >= 0)
-			{
+			if (val >= 0) {
 				return LATITUDE_POS;
 			} else {
 				return LATITUDE_NEG;
@@ -100,8 +99,7 @@ namespace LibSolar.Types
 
 		public static PositionDirection LonDirFromVal(int val)
 		{
-			if (val >= 0)
-			{
+			if (val >= 0) {
 				return LONGITUDE_POS;
 			} else {
 				return LONGITUDE_NEG;
@@ -138,8 +136,7 @@ namespace LibSolar.Types
 		 */
 		private void CheckLatitudeVal(int lat)
 		{
-			if ( (lat < -90*3600) || (lat > 90*3600) )
-			{
+			if ( (lat < -90*3600) || (lat > 90*3600) ) {
 				throw new ArgumentException(
 						string.Format("Bad value for latitude: {0}", lat));
 			}
@@ -151,8 +148,7 @@ namespace LibSolar.Types
 		 */
 		private void CheckLongitudeVal(int lon)
 		{
-			if ( (lon < -180*3600) || (lon > 180*3600) )
-			{
+			if ( (lon < -180*3600) || (lon > 180*3600) ) {
 				throw new ArgumentException(
 						string.Format("Bad value for longitude: {0}", lon));
 			}
@@ -164,12 +160,10 @@ namespace LibSolar.Types
 		 */
 		private static double AdjustLatitude(double lat)
 		{
-			if ( (lat >= -90*3600.0) && (lat < -89.8*3600.0) )
-			{
+			if ( (lat >= -90*3600.0) && (lat < -89.8*3600.0) ) {
 				return -89.8*3600.0;
 			}
-			if ( (lat <= 90*3600.0) && (lat > 89.8*3600.0) )
-			{
+			if ( (lat <= 90*3600.0) && (lat > 89.8*3600.0) ) {
 				return 89.8*3600.0;
 			}
 			return lat;
@@ -209,20 +203,17 @@ namespace LibSolar.Types
 		{
 			PositionDirection dir;
 
-			if (ax == PositionAxis.Latitude)
-			{
+			if (ax == PositionAxis.Latitude) {
 				dir = LATITUDE_POS;
 
-				if (degs < 0)
-				{
+				if (degs < 0) {
 					dir = LATITUDE_NEG;
 				}
 			} else {
 				dir = LONGITUDE_POS;
 
 				degs = InvertLongitude(degs);
-				if (degs < 0)
-				{
+				if (degs < 0) {
 					dir = LONGITUDE_NEG;
 				}
 			}

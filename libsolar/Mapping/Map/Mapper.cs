@@ -8,7 +8,7 @@ using System.Drawing;
 using LibSolar.Types;
 
 namespace LibSolar.Mapping
-{	
+{
 	partial class Mapper
 	{
 		private Map map;

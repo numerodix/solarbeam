@@ -9,7 +9,7 @@ namespace LibSolar.Mapping
 	/**
 	 * Represents a map drawn on a bitmap with set bounds within the bitmap.
 	 */
-	struct Map
+	public struct Map
 	{
 		private int bound_a;
 		private int bound_b;

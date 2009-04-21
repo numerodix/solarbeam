@@ -10,7 +10,7 @@ using LibSolar.Types;
 namespace LibSolar.Mapping
 {	
 	partial class Mapper
-	{	
+	{
 		private void DrawCursor(Graphics g, Point point)
 		{
 			int len = (int) (GetCursorFontSize() * 3.5);

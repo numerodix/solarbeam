@@ -17,6 +17,8 @@ namespace SolarbeamGui
 	sealed class GuiMap : Control
 	{
 		private const int BORDER = 2;
+		private const int BORDER_W = BORDER*2;
+		private const int BORDER_H = BORDER;
 	
 		public static readonly Colors colors = new Colors();
 		public const string font_face = "Arial";
@@ -48,6 +50,12 @@ namespace SolarbeamGui
 			
 			this.Paint += delegate { RePaint(); };
 			this.Resize += delegate { RePaint(); };
+			
+			this.MouseMove += delegate (object sender, MouseEventArgs args) {
+				Position pos = mapbitmap.FindPosition(args.X - BORDER_W,
+				                                      args.Y - BORDER_H);
+				Update(null, pos);
+			};
 			
 			// init double buffer
 			buffercontext = BufferedGraphicsManager.Current;
@@ -96,7 +104,7 @@ namespace SolarbeamGui
 			Size canvas_size = GetCanvasDimensions();
 			int canvas_pos_x = (vp_size.Width/2) - (canvas_size.Width/2);
 			int canvas_pos_y = (vp_size.Height/2) - (canvas_size.Height/2);
-			
+
 //			Console.WriteLine("GuiMap vp_size.Width {0}", vp_size.Width);
 //			Console.WriteLine("GuiMap canvas_size.Width {0}", canvas_size.Width);
 //			Console.WriteLine("GuiMap vp_size.Height {0}", vp_size.Height);
@@ -133,8 +141,8 @@ namespace SolarbeamGui
 		private Size GetCanvasDimensions()
 		{
 			Size vp_size = gui.GetViewportSize();
-			int w = Math.Max(1, vp_size.Width - BORDER*10);
-			int h = Math.Max(1, vp_size.Height - BORDER*2);
+			int w = Math.Max(1, vp_size.Width - BORDER_W*5);
+			int h = Math.Max(1, vp_size.Height - BORDER_H*2);
 			
 //			Console.WriteLine("GuiMap this.ClientSize.Width {0}", this.ClientSize.Width);
 //			Console.WriteLine("GuiMap w {0}", w);
