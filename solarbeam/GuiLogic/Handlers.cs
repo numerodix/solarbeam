@@ -217,7 +217,11 @@ namespace SolarbeamGui
 			validate_lock = true;
 			SetLocation(string.Empty);
 			SetPosition(pos);
-			SetTimezone(string.Format("Etc/GMT{0}{1}", sign, Math.Abs(tz)));
+			try {
+				SetTimezone(string.Format("Etc/GMT{0}{1}", sign, Math.Abs(tz)));
+			} catch (KeyNotFoundException) {
+				SetTimezone("UTC");
+			}
 			validate_lock = false;
 		}
 		
