@@ -19,6 +19,18 @@ namespace LibSolar.Util
 		public AsmInfo(Assembly asm)
 		{
 			this.asm = asm;
+/*			Console.WriteLine("AppDir:   {0}", path);
+			Console.WriteLine("CurrentDirectory:   {0}", Environment.CurrentDirectory);
+			Console.WriteLine("GetLogicalDrives:   {0}", Environment.GetLogicalDrives());
+			Console.WriteLine("MachineName:   {0}", Environment.MachineName);
+			Console.WriteLine("SystemDirectory:   {0}", Environment.SystemDirectory);
+			Console.WriteLine("SpecialFolder.System:   {0}", Environment.GetFolderPath(Environment.SpecialFolder.System));
+*/		}
+		
+		public string GetAppPath()
+		{
+			string mod = asm.GetModules()[0].FullyQualifiedName;
+			return Path.GetDirectoryName(mod);
 		}
 		
 		public string GetAtt(string att_name)
