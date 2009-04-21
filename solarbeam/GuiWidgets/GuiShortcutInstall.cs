@@ -28,7 +28,7 @@ namespace SolarbeamGui
 			
 			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 			this.StartPosition = FormStartPosition.CenterParent;
-			this.ClientSize = new Size(450, 200);
+			this.ClientSize = new Size(450, 220);
 			
 			// prevent disposal by intercepting Close() and calling Hide()
 			this.Closing += delegate (object o, CancelEventArgs args) {
@@ -45,9 +45,10 @@ namespace SolarbeamGui
 			title.Font = new Font(Font.SystemFontName, 10);
 			
 			string s = "On Windows, {0} can create shortcuts on the Desktop";
-			s += " and in the Start Menu.";
-			s = string.Format(s, Constants.GUI_APPTITLE);
-			TextBox desc = Widgets.GetTextBoxAnon(s);
+			s += " and in the Start Menu.\n";
+			s += "(You can safely rerun this to overwrite any existing {1} icons.)";
+			s = string.Format(s, Constants.GUI_APPTITLE, Constants.GUI_APPTITLE);
+			Control desc = Widgets.GetRichTextBox(s);
 			
 			TextBox plat_in = Widgets.GetTextBox(
 						Controller.Id.SHORTCUT_PLATFORM,
@@ -99,7 +100,7 @@ namespace SolarbeamGui
 			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
 			
 			layout.Controls.Add(desc, 0, 1);
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 60));
 			
 			layout.Controls.Add(platform, 0, 2);
 			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 25));
