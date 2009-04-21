@@ -21,9 +21,9 @@ namespace LibSolar.Util
 			this.asm = asm;
 			
 			WindowsShortcutInstall wsi = new WindowsShortcutInstall(this);
-			Console.WriteLine(wsi.GetDesktopPath());
+			Console.WriteLine(Platform.GetDesktopPath());
 			Console.WriteLine(wsi.GetStartMenuPath());
-			wsi.ShortcutTo(wsi.GetDesktopPath());
+			wsi.ShortcutTo(Platform.GetDesktopPath());
 			wsi.ShortcutTo(wsi.GetStartMenuPath());
 
 /*			Console.WriteLine("AppDir:   {0}", path);

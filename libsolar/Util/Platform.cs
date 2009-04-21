@@ -47,5 +47,10 @@ namespace LibSolar.Util
 		{
 			return Environment.OSVersion.Version.ToString();
 		}
+		
+		public static string GetDesktopPath()
+		{
+			return Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+		}
 	}
 }

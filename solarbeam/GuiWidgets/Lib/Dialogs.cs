@@ -4,6 +4,8 @@
 using System;
 using System.Windows.Forms;
 
+using LibSolar.Util;
+
 namespace SolarbeamGui
 {
 	partial class Widgets
@@ -13,7 +15,7 @@ namespace SolarbeamGui
 		                                               string filter_pattern)
 		{
 			SaveFileDialog dlg = new SaveFileDialog();
-			dlg.InitialDirectory = ".";
+			dlg.InitialDirectory = Platform.GetDesktopPath();
 			dlg.Filter = String.Format("{0} ({1})|{2}", filter_name,
 			                           filter_pattern, filter_pattern);
 			dlg.FileName = filename;
@@ -24,7 +26,7 @@ namespace SolarbeamGui
 		                                               string filter_pattern)
 		{
 			OpenFileDialog dlg = new OpenFileDialog();
-			dlg.InitialDirectory = ".";
+			dlg.InitialDirectory = Platform.GetDesktopPath();
 			dlg.Filter = String.Format("{0} ({1})|{2}", filter_name,
 			                           filter_pattern, filter_pattern);
 			return dlg;

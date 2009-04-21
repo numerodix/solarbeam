@@ -15,11 +15,6 @@ namespace LibSolar.Util
 			this.asminfo = asminfo;
 		}
 		
-		public string GetDesktopPath()
-		{
-			return Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-		}
-		
 		public string GetStartMenuPath()
 		{
 			try {
