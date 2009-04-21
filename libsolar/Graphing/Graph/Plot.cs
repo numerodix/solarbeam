@@ -123,6 +123,7 @@ namespace LibSolar.Graphing
 		}
 		
 		public void PlotAnalemma(Graphics g, 
+		                         Color col_fst, Color col_snd,
 		                         Color col_fst_std, Color col_fst_dst, 
 		                         Color col_snd_std, Color col_snd_dst,
 		                         Position pos, UTCDate udt)
@@ -130,7 +131,9 @@ namespace LibSolar.Graphing
 			UTCDate dt = new UTCDate(udt.Timezone, udt.DST,
 			                         udt.Year, 1, 1,
 			                         udt.Hour, 0, 0);
-			
+
+			using (SolidBrush br_fst = new SolidBrush(col_fst))
+			using (SolidBrush br_snd = new SolidBrush(col_snd))
 			using (SolidBrush br_fst_std = new SolidBrush(col_fst_std))
 			using (SolidBrush br_fst_dst = new SolidBrush(col_fst_dst))
 			using (SolidBrush br_snd_std = new SolidBrush(col_snd_std))
@@ -143,10 +146,14 @@ namespace LibSolar.Graphing
 					SolarPosition sp = Orbit.CalcSolarPosition(pos, dt_new);
 					
 					// first half
-					Brush br = dt_new.IsDST ? br_fst_dst : br_fst_std;
+					Brush br = br_fst;
+					if (dt_new.HasDST)
+						br = dt_new.IsDST ? br_fst_dst : br_fst_std;
 					// second half
 					if (cursor >= yeardays / 2) {
-						br = dt_new.IsDST ? br_snd_dst : br_snd_std;
+						br = br_snd;
+						if (dt_new.HasDST)
+							br = dt_new.IsDST ? br_snd_dst : br_snd_std;
 					}
 					
 					PlotPoint(g, br, sp.Azimuth, sp.Elevation);

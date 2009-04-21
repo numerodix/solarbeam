@@ -55,10 +55,14 @@ namespace LibSolar.Graphing
 					UTCDate udt_n = udt.SetDate(days[i], days[j]);
 					
 					// first half
-					Color color = udt_n.IsDST ? colors.YearFstHalfDst : colors.YearFstHalfStd;
+					Color color = colors.YearFstHalf;
+					if (udt_n.HasDST)
+						color = udt_n.IsDST ? colors.YearFstHalfDst : colors.YearFstHalfStd;
 					// second half
 					if (udt_n >= udt.SetDate(7, 6)) {
-						color = udt_n.IsDST ? colors.YearSndHalfDst : colors.YearSndHalfStd;
+						color = colors.YearSndHalf;
+						if (udt_n.HasDST)
+							color = udt_n.IsDST ? colors.YearSndHalfDst : colors.YearSndHalfStd;
 					}
 					
 					grapher.PlotMilestoneDay(g, color, pos, udt_n);
@@ -66,7 +70,8 @@ namespace LibSolar.Graphing
 
 				// plot analemma curves
 				for (int i = 0; i < 24; i++) {
-					grapher.PlotAnalemma(g, 
+					grapher.PlotAnalemma(g,
+					                     colors.YearFstHalf, colors.YearSndHalf,
 					                     colors.YearFstHalfStd, colors.YearFstHalfDst, 
 					                     colors.YearSndHalfStd, colors.YearSndHalfDst,
 					                     pos, udt.SetHour(i));

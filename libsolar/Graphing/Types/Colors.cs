@@ -14,6 +14,8 @@ namespace LibSolar.Graphing
 		private Color grid_bg = Color.White;
 		private Color grid_fg = Color.Gray;
 		private Color graph_fg = Color.Black;
+		private Color year_fst_half = Color.Blue;
+		private Color year_snd_half = Color.Green;
 		private Color year_fst_half_std = Color.DarkBlue;
 		private Color year_fst_half_dst = Color.SteelBlue;
 		private Color year_snd_half_std = Color.DarkGreen;
@@ -28,6 +30,12 @@ namespace LibSolar.Graphing
 		
 		public Color GraphFg
 		{ get { return this.graph_fg; } }
+		
+		public Color YearFstHalf
+		{ get { return this.year_fst_half; } }
+		
+		public Color YearSndHalf
+		{ get { return this.year_snd_half; } }
 		
 		public Color YearFstHalfStd
 		{ get { return this.year_fst_half_std; } }
