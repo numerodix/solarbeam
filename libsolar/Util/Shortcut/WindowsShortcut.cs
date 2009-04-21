@@ -34,10 +34,12 @@ namespace LibSolar.Util
 		
 		public void WriteFile(string path)
 		{
-			string s = Codegen();
-			StreamWriter writer = new StreamWriter(Path.Combine(path, filename));
-			writer.WriteLine(s);
-			writer.Close();
+			if ((path != null) && (path != string.Empty)) {
+				string s = Codegen();
+				StreamWriter writer = new StreamWriter(Path.Combine(path, filename));
+				writer.WriteLine(s);
+				writer.Close();
+			}
 		}
 		
 		public string Codegen()

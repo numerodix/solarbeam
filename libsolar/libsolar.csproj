@@ -92,6 +92,7 @@
     <Compile Include="Mapping\Map\Plot.cs" />
     <Compile Include="Util\Shortcut\WindowsShortcut.cs" />
     <Compile Include="Util\Regex.cs" />
+    <Compile Include="Util\ShortcutInstall\WindowsShortcutInstall.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

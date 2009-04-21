@@ -15,5 +15,8 @@ namespace LibSolar
 		public const string VERSION = "0.6.0.0";
 
 		public const string COPYRIGHT = "Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>";
+		
+		public const string GUI_FILENAME = "solarbeam.exe";
+		public const string ICON_FILENAME = "icon.ico";
 	}
 }

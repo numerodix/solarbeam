@@ -5,19 +5,32 @@ using System;
 
 namespace LibSolar.Util
 {
+	public enum PlatformName {
+		Mono,
+		NET,
+	}
+		
 	/**
 	 * Provide information about the execution platform.
 	 */
 	public static class Platform
 	{
-		public static string GetRuntime()
+		public static PlatformName GetRuntime()
 		{
-			string platform = "Mono";
+			PlatformName platform = PlatformName.Mono;
 			Type t = Type.GetType("Mono.Runtime");
 			if (t == null) {
-				platform = ".NET";
+				platform = PlatformName.NET;
 			}
 			return platform;
+		}
+		
+		public static string ToString(PlatformName pn)
+		{
+			if (pn == PlatformName.NET) {
+				return ".NET";
+			}
+			return pn.ToString();
 		}
 				
 		public static string GetRuntimeVersion()

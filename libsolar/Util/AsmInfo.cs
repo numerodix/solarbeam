@@ -20,12 +20,12 @@ namespace LibSolar.Util
 		{
 			this.asm = asm;
 			
-			WindowsShortcut ws = new WindowsShortcut(@"c:\solarbeam\dist\solarbeam.exe",
-			                                         @"c:\solarbeam\bundled\icon.ico");
-			ws.WriteFile(".");
-			WindowsShortcut ws2 = WindowsShortcut.FromFile("SolarBeam.url");
-			Console.WriteLine(ws2.Codegen());
-			
+			WindowsShortcutInstall wsi = new WindowsShortcutInstall(this);
+			Console.WriteLine(wsi.GetDesktopPath());
+			Console.WriteLine(wsi.GetStartMenuPath());
+			wsi.ShortcutTo(wsi.GetDesktopPath());
+			wsi.ShortcutTo(wsi.GetStartMenuPath());
+
 /*			Console.WriteLine("AppDir:   {0}", path);
 			Console.WriteLine("CurrentDirectory:   {0}", Environment.CurrentDirectory);
 			Console.WriteLine("GetLogicalDrives:   {0}", Environment.GetLogicalDrives());
