@@ -210,10 +210,14 @@ namespace SolarbeamGui
 			GuiMap guimap = ((GuiMap) registry[Id.MAP]);
 			Position pos = guimap.FindPosition(args.X, args.Y);
 			
+			int tz = Position.GetGeographicTimezoneOffset(pos);
+			string sign = tz < 0 ? "+" : "-";
+			
 			// use validate lock to prevent mouse jumps
 			validate_lock = true;
 			SetLocation(string.Empty);
 			SetPosition(pos);
+			SetTimezone(string.Format("Etc/GMT{0}{1}", sign, Math.Abs(tz)));
 			validate_lock = false;
 		}
 		
