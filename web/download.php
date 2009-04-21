@@ -18,9 +18,8 @@
 		SolarBeam is released under the <a href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a>.
 
 		<h2>Releases</h2>
-			<div style="margin-top:-10px;">
+		Installation instructions for <a href="install_windows.php">Windows</a>.
 <? include("releases.php"); ?>
-			</div>
 
 		<h2>System requirements</h2>
 		<p>SolarBeam needs .NET 2.0+ or Mono 2.0+ to run.</p>
