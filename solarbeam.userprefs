@@ -1,13 +1,5 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="libsolar/Graphing/Graph/Captioning.cs" ctype="Workbench">
-    <Files>
-      <File FileName="libsolar/Graphing/GraphBitmap.cs" Line="103" Column="29" />
-      <File FileName="solarbeam/GuiWidgets/GuiDiagram.cs" Line="100" Column="37" />
-      <File FileName="libsolar/Mapping/MapBitmap.cs" Line="85" Column="4" />
-      <File FileName="solarbeam/GuiWidgets/GuiMap.cs" Line="114" Column="4" />
-      <File FileName="libsolar/Mapping/Map/Mapper.cs" Line="59" Column="36" />
-      <File FileName="libsolar/Graphing/Graph/Captioning.cs" Line="50" Column="6" />
-    </Files>
+  <MonoDevelop.Ide.Workbench ctype="Workbench">
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">

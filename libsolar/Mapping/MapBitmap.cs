@@ -50,10 +50,12 @@ namespace LibSolar.Mapping
 			int w = dimension_x;
 			int h = dimension_y;
 			
-			if (aspect >= 1)
-				h = (int) Math.Max(1, ((double) w / aspect));
-			else
-				w = (int) Math.Max(1, ((double) h / aspect));
+			h = (int) Math.Max(1, ((double) w / aspect));
+			
+			if (h > dimension_y) {
+				h = dimension_y;
+				w = (int) Math.Max(1, ((double) h * aspect));
+			}
 			
 			int a = (dimension_x/2) - (w/2);
 			int b = (dimension_y/2) - (h/2);
