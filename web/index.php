@@ -24,6 +24,7 @@
 		<h2>Features</h2>
 		<ul>
 			<li>2000 predefined locations worldwide with accurate geographic coordinates and timezone information. (User defined locations are also supported.)</li>
+			<li>World map display for location finding.</li>
 			<li>Daylight saving time information included where applicable.</li>
 			<li>Interactive input allows tracing paths along the diagram.</li>
 			<li>Diagrams are scalable to any size for inclusion in documents.</li>
