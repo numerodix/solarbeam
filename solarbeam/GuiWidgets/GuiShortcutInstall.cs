@@ -28,7 +28,7 @@ namespace SolarbeamGui
 			
 			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 			this.StartPosition = FormStartPosition.CenterParent;
-			this.ClientSize = new Size(450, 220);
+			this.ClientSize = new Size(450, 240);
 			
 			// prevent disposal by intercepting Close() and calling Hide()
 			this.Closing += delegate (object o, CancelEventArgs args) {
@@ -48,8 +48,22 @@ namespace SolarbeamGui
 			s += " and in the Start Menu.\n";
 			s += "(You can safely rerun this to overwrite any existing {1} icons.)";
 			s = string.Format(s, Constants.GUI_APPTITLE, Constants.GUI_APPTITLE);
-			Control desc = Widgets.GetRichTextBox(s);
-			desc.TabStop = false;
+			
+			Control desc_in = Widgets.GetRichTextBox(s);
+			desc_in.TabStop = false;
+			
+			Label icon_lbl = Widgets.GetLabelImage("icon64.png");
+			icon_lbl.Dock = DockStyle.Fill;
+			
+			TableLayoutPanel desc = new TableLayoutPanel();
+			desc.ColumnCount = 2;
+			desc.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+			desc.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+			desc.Controls.Add(icon_lbl, 1, 0);
+			desc.Controls.Add(desc_in, 0, 0);
+			desc.Dock = DockStyle.Fill;
+			desc.RowCount = 1;
+			desc.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
 			
 			TextBox plat_in = Widgets.GetTextBox(
 						Controller.Id.SHORTCUT_PLATFORM,
@@ -101,7 +115,7 @@ namespace SolarbeamGui
 			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
 			
 			layout.Controls.Add(desc, 0, 1);
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 60));
+			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 80));
 			
 			layout.Controls.Add(platform, 0, 2);
 			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 25));

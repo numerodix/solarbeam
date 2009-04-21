@@ -97,6 +97,13 @@ namespace SolarbeamGui
 			return label;
 		}
 		
+		public static Label GetLabelImage(string img)
+		{
+			Label label = new Label();
+			label.Image = new Bitmap(Controller.AsmInfo.GetResource(img));
+			return label;
+		}
+		
 		public static NumericUpDown GetNumericUpDown(Controller.Id id,
 		                                             int min, int max)
 		{
