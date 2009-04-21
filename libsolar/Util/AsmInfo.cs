@@ -22,7 +22,7 @@ namespace LibSolar.Util
 			
 			WindowsShortcut ws = new WindowsShortcut(@"c:\solarbeam\dist\solarbeam.exe",
 			                                         @"c:\solarbeam\bundled\icon.ico");
-			ws.WriteFile("SolarBeam.url");
+			ws.WriteFile(".");
 			WindowsShortcut ws2 = WindowsShortcut.FromFile("SolarBeam.url");
 			Console.WriteLine(ws2.Codegen());
 			

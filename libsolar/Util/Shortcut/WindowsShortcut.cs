@@ -8,6 +8,7 @@ namespace LibSolar.Util
 {
 	class WindowsShortcut
 	{
+		public const string filename = "SolarBeam.url";
 		public string app_path;
 		public string icon_path;
 		
@@ -34,7 +35,7 @@ namespace LibSolar.Util
 		public void WriteFile(string path)
 		{
 			string s = Codegen();
-			StreamWriter writer = new StreamWriter(path);
+			StreamWriter writer = new StreamWriter(Path.Combine(path, filename));
 			writer.WriteLine(s);
 			writer.Close();
 		}
