@@ -49,7 +49,7 @@
 
 		<p>Each hour of the day is plotted, showing how the sun's position changes over the course of a year. This is called an <a href="http://en.wikipedia.org/wiki/Analemma">analemma curve</a>.</p>
 
-		<p>Any position plotted in the first half of the year appears in <i>blue</i>, while any position in the second half appears in <i>green</i>. In addition, for timezones that use <a href="http://en.wikipedia.org/wiki/Daylight_saving_time">Daylight Saving Time</a> (DST), any position during daylight saving time is shown in a lighter shade of the same color.</p>
+		<p>Any position plotted in the first half of the year appears in <i>blue</i>, while any position in the second half appears in <i>green</i>. In addition, for timezones that use <a href="http://en.wikipedia.org/wiki/Daylight_saving_time">Daylight Saving Time</a> (DST), any position during daylight saving time is shown in a lighter shade of the same color. Labels indicating Daylight Saving Time (DST) and Standard Time (ST) are also shown.</p>
 		<img src="imgs/exp_copenhagen.png" alt="exp_copenhagen"/>
 		<p>In the case of Copenhagen we can see that summer days and winter days differ dramatically in the amount of sunlight (17 hours vs 7 hours at the most). Moreover, the sun reaches a much higher elevation in summer than it does in winter.</p>
 
