@@ -49,6 +49,7 @@ namespace SolarbeamGui
 			s += "(You can safely rerun this to overwrite any existing {1} icons.)";
 			s = string.Format(s, Constants.GUI_APPTITLE, Constants.GUI_APPTITLE);
 			Control desc = Widgets.GetRichTextBox(s);
+			desc.TabStop = false;
 			
 			TextBox plat_in = Widgets.GetTextBox(
 						Controller.Id.SHORTCUT_PLATFORM,
