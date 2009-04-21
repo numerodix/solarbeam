@@ -8,8 +8,8 @@ namespace LibSolar.Util
 {
 	class WindowsShortcut
 	{
-		private string app_path;
-		private string icon_path;
+		public string app_path;
+		public string icon_path;
 		
 		public WindowsShortcut(string app_path, string icon_path)
 		{
@@ -24,19 +24,9 @@ namespace LibSolar.Util
 			
 			// unmangle moronic newlines
 			lines = Regex.Replace("\r\n", "\n", lines);
-			string[] ss = lines.Split(new char[] {'\n'});
 			
-			string app_path = null;
-			string icon_path = null;
-			
-			foreach (string s in ss) {
-				string z = Regex.Find("URL=file:///(.*)", lines);
-				if (z != null)
-					app_path = z;
-				z = Regex.Find("IconFile=(.*)", lines);
-				if (z != null)
-					icon_path = z;
-			}
+			string app_path = Regex.Find("URL=file:///(.*)", lines);
+			string icon_path = Regex.Find("IconFile=(.*)", lines);
 			
 			return new WindowsShortcut(app_path, icon_path);
 		}

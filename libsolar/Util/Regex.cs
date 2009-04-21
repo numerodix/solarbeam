@@ -15,9 +15,9 @@ namespace LibSolar.Util
 		
 		public static string Find(string find, string s)
 		{
-			Match m = System.Text.RegularExpressions.Regex.Match(s, find);
+			Match m = System.Text.RegularExpressions.Regex.Match(s, find,
+			                                                     RegexOptions.Multiline);
 			if (m.Success) {
-//				m = m.NextMatch();
 				GroupCollection gc = m.Groups;
 				return gc[1].Value;
 			}
