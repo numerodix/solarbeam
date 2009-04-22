@@ -275,9 +275,8 @@ namespace SolarbeamGui
 			Button create_btn = (Button) registry[Id.SHORTCUTINSTALL_ACTION];
 			
 			create_btn.Enabled = true;
-			string platform_s = "Unix";
-			if (Platform.GetRuntime() == RuntimeName.NET) {
-				platform_s = "Windows";
+			PlatformName platform_name = Platform.GetPlatform();
+			if (platform_name == PlatformName.Windows) {
 				
 				SetValue(desktop, Platform.GetDesktopPath());
 				WindowsShortcutInstall wsi = new WindowsShortcutInstall(Controller.AsmInfo);
@@ -285,7 +284,7 @@ namespace SolarbeamGui
 			} else {
 				create_btn.Enabled = false;
 			}
-			SetValue(platform, platform_s);
+			SetValue(platform, platform_name.ToString());
 			
 			GuiMainForm.shortcutform.Show();
 		}

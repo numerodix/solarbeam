@@ -9,6 +9,11 @@ namespace LibSolar.Util
 		Mono,
 		NET,
 	}
+	
+	public enum PlatformName {
+		Windows,
+		Unix,
+	}
 		
 	/**
 	 * Provide information about the execution platform.
@@ -27,25 +32,19 @@ namespace LibSolar.Util
 		
 		public static string ToString(RuntimeName pn)
 		{
-			if (pn == RuntimeName.NET) {
+			if (pn == RuntimeName.NET)
 				return ".NET";
-			}
 			return pn.ToString();
 		}
-				
-		public static string GetRuntimeVersion()
-		{
-			return Environment.Version.ToString();
-		}
 		
-		public static string GetPlatform()
+		public static PlatformName GetPlatform()
 		{
-			return Environment.OSVersion.Platform.ToString();
-		}
-		
-		public static string GetPlatformVersion()
-		{
-			return Environment.OSVersion.Version.ToString();
+			int p = (int) Environment.OSVersion.Platform;
+			if ((p == 4) || (p == 6) || (p == 128)) {
+				return PlatformName.Unix;
+			} else {
+				return PlatformName.Windows;
+			}
 		}
 		
 		public static string GetDesktopPath()
