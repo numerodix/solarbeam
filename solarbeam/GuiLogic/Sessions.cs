@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-using LibSolar.Formatting;
+using LibSolar;
 using LibSolar.Types;
 using LibSolar.Util;
 
@@ -28,7 +28,7 @@ namespace SolarbeamGui
 				string val = GetValue(registry[id]);
 				dict.Add(id, val);
 			}
-			Serializer.Serialize(Formatter.AutoSessionFilename, dict);
+			Serializer.Serialize(Controller.AsmInfo, Constants.AutoSessionFilename, dict);
 		}
 		
 		public static void LoadAutoSession()
@@ -36,7 +36,8 @@ namespace SolarbeamGui
 			// get a new dict, apparently cannot write to cache while 
 			// enumerating (wtf?)
 			Dictionary<Id,string> dict = 
-				(Dictionary<Id,string>) Serializer.Deserialize(Formatter.AutoSessionFilename);
+				(Dictionary<Id,string>) Serializer.Deserialize(Controller.AsmInfo,
+				                                               Constants.AutoSessionFilename);
 			
 			// if key found in dict is in cache, set it and set the widget
 			foreach (KeyValuePair<Id,string> pair in dict) {
@@ -61,13 +62,14 @@ namespace SolarbeamGui
 					dict.Add(id, GetValue(control));
 				}
 			}
-			Serializer.Serialize(filename, dict);
+			Serializer.Serialize(Controller.AsmInfo, filename, dict);
 		}
 		
 		private static void ReadSession(string filename)
 		{
 			Dictionary<Id,string> dict = 
-				(Dictionary<Id,string>) Serializer.Deserialize(filename);
+				(Dictionary<Id,string>) Serializer.Deserialize(Controller.AsmInfo,
+				                                               filename);
 			
 			// if key found	in dict is in registry, set it and set the widget
 			foreach (KeyValuePair<Id,string> pair in dict) {

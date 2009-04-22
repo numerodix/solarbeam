@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-using LibSolar.Formatting;
+using LibSolar;
 using LibSolar.Locations;
 using LibSolar.Types;
 using LibSolar.Util;
@@ -15,10 +15,14 @@ namespace SolarbeamGui
 	{
 		private List<string> locations_list;
 		private LocationList list;
-		private string file = Formatter.LocationListFilename;
+		private string file = Constants.LocationListFilename;
 		
-		public LocationsSource()
+		private AsmInfo asminfo;
+		
+		public LocationsSource(AsmInfo asminfo)
 		{
+			this.asminfo = asminfo;
+			
 			try {
 				list = GetStoredList();
 			} catch (FileNotFoundException) {
@@ -36,20 +40,14 @@ namespace SolarbeamGui
 			locations_list = keylist;
 		}
 		
-		// serialize list in finalizer
-		~LocationsSource()
-		{
-			StoreList();
-		}
-		
 		private LocationList GetStoredList()
 		{
-			return ((LocationList) Serializer.Deserialize(file));
+			return ((LocationList) Serializer.Deserialize(asminfo, file));
 		}
 		
 		public void StoreList()
 		{
-			Serializer.Serialize(file, list);
+			Serializer.Serialize(asminfo, file, list);
 		}
 		
 		public bool ContainsLocation(string name)

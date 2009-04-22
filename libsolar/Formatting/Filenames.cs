@@ -3,32 +3,21 @@
 
 using System;
 
+using LibSolar;
 using LibSolar.Types;
 
 namespace LibSolar.Formatting
 {
 	public partial class Formatter
 	{
-		public const string SessionFileExtension = ".solarbeam";
-		public const string SessionFileFilter = "*" + SessionFileExtension;
-		public const string SessionFileDesc = "SolarBeam sessions";
-		
-		public const string ImageFileExtension = ".png";
-		public const string ImageFileFilter = "*" + ImageFileExtension;
-		public const string ImageFileDesc = "Png images";
-		
-		public const string BinaryFileExtension = ".bin";
-		public const string AutoSessionFilename = "autosave" + BinaryFileExtension;
-		public const string LocationListFilename = "locations" + BinaryFileExtension;
-		
 		public static string FormatImgFilename(string loc, Position pos, UTCDate dt)
 		{
-			return FormatFilename(loc, pos, dt) + ImageFileExtension;
+			return FormatFilename(loc, pos, dt) + Constants.ImageFileExtension;
 		}
 		
 		public static string FormatSessionFilename(string loc, Position pos, UTCDate dt)
 		{
-			return FormatFilename(loc, pos, dt) + SessionFileExtension;
+			return FormatFilename(loc, pos, dt) + Constants.SessionFileExtension;
 		}
 		
 		private static string FormatFilename(string loc, Position pos, UTCDate dt)

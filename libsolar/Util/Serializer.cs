@@ -9,16 +9,22 @@ namespace LibSolar.Util
 {
 	public class Serializer
 	{
-		public static void Serialize(string path, object obj)
+		public static void Serialize(AsmInfo asm, string path, object obj)
 		{
+			string app_path = asm.GetAppPath();
+			path = Path.Combine(app_path, path);
+			
 			using (Stream stream = File.OpenWrite(path)) {
 				BinaryFormatter formatter = new BinaryFormatter();
 				formatter.Serialize(stream, obj);
 			}
 		}
 		
-		public static object Deserialize(string path)
+		public static object Deserialize(AsmInfo asm, string path)
 		{
+			string app_path = asm.GetAppPath();
+			path = Path.Combine(app_path, path);
+			
 			object obj = null;
 			using (Stream stream = File.OpenRead(path)) {
 				BinaryFormatter formatter = new BinaryFormatter();

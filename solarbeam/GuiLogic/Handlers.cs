@@ -33,8 +33,8 @@ namespace SolarbeamGui
 				
 				string filename = Formatter.FormatSessionFilename(location, pos, dt);
 				SaveFileDialog dlg = Widgets.GetSaveFileDialog(filename,
-				                                               Formatter.SessionFileDesc,
-				                                               Formatter.SessionFileFilter);
+				                                               Constants.SessionFileDesc,
+				                                               Constants.SessionFileFilter);
 				DialogResult ans = dlg.ShowDialog();
 				filename = dlg.FileName;
 				
@@ -46,8 +46,8 @@ namespace SolarbeamGui
 		
 		private static void LoadSession(object sender, EventArgs args)
 		{
-			OpenFileDialog dlg = Widgets.GetOpenFileDialog(Formatter.SessionFileDesc,
-			                                               Formatter.SessionFileFilter);
+			OpenFileDialog dlg = Widgets.GetOpenFileDialog(Constants.SessionFileDesc,
+			                                               Constants.SessionFileFilter);
 			DialogResult ans = dlg.ShowDialog();
 			string filename = dlg.FileName;
 			
@@ -241,8 +241,8 @@ namespace SolarbeamGui
 				
 				string filename = Formatter.FormatImgFilename(location, pos, dt);
 				SaveFileDialog dlg = Widgets.GetSaveFileDialog(filename,
-				                                               Formatter.ImageFileDesc,
-				                                               Formatter.ImageFileFilter);
+				                                               Constants.ImageFileDesc,
+				                                               Constants.ImageFileFilter);
 				DialogResult ans = dlg.ShowDialog();
 				filename = dlg.FileName;
 			

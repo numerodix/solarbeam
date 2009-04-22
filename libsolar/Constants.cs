@@ -21,5 +21,18 @@ namespace LibSolar
 		
 		public const string APP_URL = "http://solarbeam.sourceforge.net/";
 		public const string URL_HELP = APP_URL + "explanation.php";
+		
+		// filenames 
+		public const string SessionFileExtension = ".solarbeam";
+		public const string SessionFileFilter = "*" + SessionFileExtension;
+		public const string SessionFileDesc = "SolarBeam sessions";
+		
+		public const string ImageFileExtension = ".png";
+		public const string ImageFileFilter = "*" + ImageFileExtension;
+		public const string ImageFileDesc = "Png images";
+		
+		public const string BinaryFileExtension = ".bin";
+		public const string AutoSessionFilename = "autosave" + BinaryFileExtension;
+		public const string LocationListFilename = "locations" + BinaryFileExtension;
 	}
 }

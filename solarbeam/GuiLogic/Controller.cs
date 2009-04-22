@@ -159,7 +159,7 @@ namespace SolarbeamGui
 		{
 			if (LocationsSource == null) {
 				Controller.SplashQueue.Enqueue("Loading location list");
-				LocationsSource = new LocationsSource();
+				LocationsSource = new LocationsSource(Controller.AsmInfo);
 			}
 			if (PositionSource == null) {
 				PositionSource = new PositionSource();
