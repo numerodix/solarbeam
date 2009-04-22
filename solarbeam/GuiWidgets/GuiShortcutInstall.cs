@@ -95,10 +95,9 @@ namespace SolarbeamGui
 			plat_in.TabStop = false;
 			Control platform = Widgets.GetLaidOut(
 				new Control[] {
-					Widgets.GetLabel(
-						"Platform detected:"),
+					Widgets.GetLabel("Platform detected:"),
 					plat_in},
-				new float[] {25F, 75F});
+				new float[] {35F, 65F});
 			
 			Control desktop = Widgets.GetLaidOut(
 				new Control[] {
