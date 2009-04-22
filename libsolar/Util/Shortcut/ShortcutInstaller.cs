@@ -49,6 +49,10 @@ namespace LibSolar.Util
 		
 		private void WriteFile(string s, string file_path)
 		{
+			string path = Path.GetDirectoryName(file_path);
+			if (!Directory.Exists(path)) {
+				Directory.CreateDirectory(path);
+			}
 			if ((file_path != null) && (file_path != string.Empty)) {
 				StreamWriter writer = new StreamWriter(file_path);
 				writer.WriteLine(s);
