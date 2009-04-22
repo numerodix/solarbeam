@@ -252,12 +252,12 @@ namespace SolarbeamGui
 			
 			Control buttons = Widgets.GetLaidOut(
 				new Control[] {
-					Widgets.GetLabelAnon(String.Empty), //layout buffer
 					Widgets.GetButtonImageText(
 						Controller.Id.SHORTCUTINSTALL_ACTION,
 						"&Create",
-						"new.png")},
-				new float[] {80F, 20F});
+						"new.png"),
+					Widgets.GetLabelAnon(String.Empty)},
+				new float[] {20F, 80F});
 			
 			layout.Controls.Add(desktop, 0, 0);
 			layout.Controls.Add(startmenu, 0, 1);
