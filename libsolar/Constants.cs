@@ -42,5 +42,10 @@ namespace LibSolar
 		public const string LinShortcutTerminal = "false";
 		public static readonly string[] LinShortcutCategories = new string[] {
 			"Education", "Science", "Astronomy", "Engineering"};
+		
+		// paths
+		public static readonly string[] LinGlobalXDGBasePaths = new string[] {
+			"/usr/share", "/usr/local/share"};
+		public const string LinXDGApplicationsDirName = "applications";
 	}
 }

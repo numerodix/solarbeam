@@ -92,6 +92,29 @@ namespace SolarbeamGui
 			} catch (NullReferenceException) {}
 		}
 		
+		private static void ShortcutBrowse(object sender, EventArgs args)
+		{
+			Id id = reg_rev[(Component) sender];
+			
+			// resolve companion textfield
+			Component field = null;
+			if (id == Id.SHORTCUT_PATH_1_BROWSE_ACTION) {
+				field = registry[Id.SHORTCUT_PATH_1_INPUT];
+			} else if (id == Id.SHORTCUT_PATH_2_BROWSE_ACTION) {
+				field = registry[Id.SHORTCUT_PATH_2_INPUT];
+			}
+			
+			string path = GetValue(field);
+			
+			FolderBrowserDialog dlg = Widgets.GetFolderBrowserDialog(path);
+			DialogResult ans = dlg.ShowDialog();
+			path = dlg.SelectedPath;
+			
+			if (ans == DialogResult.OK) {
+				SetValue(field, path);
+			}
+		}
+		
 		private static void ShortcutInstall(object sender, EventArgs args)
 		{
 /*			bool desktop = GetBool(GetValue(registry[Id.SHORTCUT_DESKTOPCHECK]));

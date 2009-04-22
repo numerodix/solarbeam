@@ -10,6 +10,13 @@ namespace SolarbeamGui
 {
 	partial class Widgets
 	{
+		public static FolderBrowserDialog GetFolderBrowserDialog(string path)
+		{
+			FolderBrowserDialog dlg = new FolderBrowserDialog();
+			dlg.SelectedPath = path;
+			return dlg;
+		}
+		
 		public static SaveFileDialog GetSaveFileDialog(string filename,
 		                                               string filter_name,
 		                                               string filter_pattern)

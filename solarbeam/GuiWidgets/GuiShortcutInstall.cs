@@ -214,7 +214,7 @@ namespace SolarbeamGui
 						"Desktop",
 						true),
 					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxRO(
+					Widgets.GetTextBoxRW(
 						Controller.Id.SHORTCUT_PATH_1_INPUT,
 						string.Empty),
 					Widgets.GetButtonImageText(
@@ -231,7 +231,7 @@ namespace SolarbeamGui
 					Widgets.GetLabel(
 						Controller.Id.SHORTCUT_PATH_2_CHECKLABEL,
 						":"),
-					Widgets.GetTextBoxRO(
+					Widgets.GetTextBoxRW(
 						Controller.Id.SHORTCUT_PATH_2_INPUT,
 						string.Empty),
 					Widgets.GetButtonImageText(

@@ -19,7 +19,8 @@ namespace LibSolar.Util
 	public enum PathType {
 		WindowsStartMenu,
 		Desktop,
-		LinuxLocalApplications,
+		LinuxLocalXDGApplications,
+		LinuxGlobalXDGApplications,
 	}
 		
 	/**
@@ -64,8 +65,11 @@ namespace LibSolar.Util
 			case PathType.WindowsStartMenu:
 				return GetWindowsStartMenuPath();
 				break;
-			case PathType.LinuxLocalApplications:
-				return LinuxLocalApplications();
+			case PathType.LinuxLocalXDGApplications:
+				return LinuxLocalXDGApplications();
+				break;
+			case PathType.LinuxGlobalXDGApplications:
+				return LinuxGlobalXDGApplications();
 				break;
 			}
 			return null;
@@ -90,11 +94,19 @@ namespace LibSolar.Util
 			}
 		}
 		
-		private static string LinuxLocalApplications()
+		private static string LinuxLocalXDGApplications()
 		{
 			string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-			return Path.Combine(path, "applications");
+			return Path.Combine(path, Constants.LinXDGApplicationsDirName);
 		}
 		
+		private static string LinuxGlobalXDGApplications()
+		{
+			foreach (string path in Constants.LinGlobalXDGBasePaths) {
+				string p = Path.Combine(path, Constants.LinXDGApplicationsDirName);
+				if (Directory.Exists(p)) return p;
+			}
+			return null;
+		}
 	}
 }

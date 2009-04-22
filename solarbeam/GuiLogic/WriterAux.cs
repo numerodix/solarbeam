@@ -4,6 +4,7 @@
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 using LibSolar.Util;
@@ -17,18 +18,33 @@ namespace SolarbeamGui
 	{
 		private static void DetectPaths(PlatformName pn)
 		{
+			string path1 = null;
+			string path2 = null;
+			
 			if (pn == PlatformName.Windows) {
-				string desktop = Platform.GetPath(PathType.Desktop);
-				SetValue(registry[Id.SHORTCUT_PATH_1_DETECT], desktop);
-				SetValue(registry[Id.SHORTCUT_PATH_1_INPUT], desktop);
-				string startmenu = Platform.GetPath(PathType.WindowsStartMenu);
-				SetValue(registry[Id.SHORTCUT_PATH_2_DETECT], startmenu);
-				SetValue(registry[Id.SHORTCUT_PATH_2_INPUT], startmenu);
+				path1 = Platform.GetPath(PathType.Desktop);
+				SetValue(registry[Id.SHORTCUT_PATH_1_DETECT], path1);
+				SetValue(registry[Id.SHORTCUT_PATH_1_INPUT], path1);
+				path2 = Platform.GetPath(PathType.WindowsStartMenu);
+				SetValue(registry[Id.SHORTCUT_PATH_2_DETECT], path2);
+				SetValue(registry[Id.SHORTCUT_PATH_2_INPUT], path2);
 			} else if (pn == PlatformName.Unix) {
-				string apps = Platform.GetPath(PathType.LinuxLocalApplications);
-				SetValue(registry[Id.SHORTCUT_PATH_1_DETECT], apps);
-				SetValue(registry[Id.SHORTCUT_PATH_1_INPUT], apps);
+				path1 = Platform.GetPath(PathType.LinuxLocalXDGApplications);
+				SetValue(registry[Id.SHORTCUT_PATH_1_DETECT], path1);
+				SetValue(registry[Id.SHORTCUT_PATH_1_INPUT], path1);
+				path2 =  Platform.GetPath(PathType.LinuxGlobalXDGApplications);
+				SetValue(registry[Id.SHORTCUT_PATH_2_DETECT], path2);
 			}
+			
+			if (Directory.Exists(path1))
+				MarkGood(registry[Id.SHORTCUT_PATH_1_DETECT]);
+			else
+				MarkError(registry[Id.SHORTCUT_PATH_1_DETECT]);
+			
+			if (Directory.Exists(path2))
+				MarkGood(registry[Id.SHORTCUT_PATH_2_DETECT]);
+			else
+				MarkError(registry[Id.SHORTCUT_PATH_2_DETECT]);
 		}
 	}
 }

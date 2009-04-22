@@ -176,13 +176,19 @@ namespace SolarbeamGui
 			return tabs;
 		}
 		
-		public static TextBox GetTextBoxRO(Controller.Id id, string s)
+		public static TextBox GetTextBoxRW(Controller.Id id, string s)
 		{
 			TextBox textbox = new TextBox();
-			textbox.ReadOnly = true;
 			textbox.Text = s;
 			textbox.Anchor = AnchorStyles.Left;
 			Controller.RegisterControl(id, textbox);	// register control
+			return textbox;
+		}
+		
+		public static TextBox GetTextBoxRO(Controller.Id id, string s)
+		{
+			TextBox textbox = GetTextBoxRW(id, s);
+			textbox.ReadOnly = true;
 			return textbox;
 		}
 		

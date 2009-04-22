@@ -17,11 +17,17 @@ namespace SolarbeamGui
 	{
 		private static Color NONMARK_BACKCOLOR = (new ComboBox()).BackColor;
 		private static Color MARK_BACKCOLOR = Color.Yellow;
+		private static Color MARKGOOD_BACKCOLOR = Color.LightGreen;
 	  	private static Color MARKERROR_BACKCOLOR = Color.Pink;
 			
 		private static void Mark(object obj)
 		{
 			MarkWidget(obj, MARK_BACKCOLOR);
+		}
+		
+		private static void MarkGood(object obj)
+		{
+			MarkWidget(obj, MARKGOOD_BACKCOLOR);
 		}
 	  
 	 	private static void MarkError(object obj)
