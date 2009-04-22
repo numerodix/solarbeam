@@ -24,11 +24,11 @@ namespace SolarbeamGui
 			this.Text = "Create shortcuts";
 			this.Icon = new Icon(Controller.AsmInfo.GetResource(icon));
 			
-			this.Controls.Add(GetInputs());
+			this.Controls.Add(GetPanel());
 			
 			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 			this.StartPosition = FormStartPosition.CenterParent;
-			this.ClientSize = new Size(450, 240);
+			this.ClientSize = new Size(450, 276);
 			
 			// prevent disposal by intercepting Close() and calling Hide()
 			this.Closing += delegate (object o, CancelEventArgs args) {
@@ -37,13 +37,10 @@ namespace SolarbeamGui
 			};
 		}
 		
-		public Control GetInputs()
+		public Control GetPanel()
 		{
 			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(3, 1, 5, 5);
 
-			Label title = Widgets.GetLabel("Create shortcuts");
-			title.Font = new Font(Font.SystemFontName, 10);
-			
 			string s = "On Windows, {0} can create shortcuts on the Desktop";
 			s += " and in the Start Menu.\n";
 			s += "(You can safely rerun this to overwrite any existing {1} icons.)";
@@ -64,6 +61,33 @@ namespace SolarbeamGui
 			desc.Dock = DockStyle.Fill;
 			desc.RowCount = 1;
 			desc.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+			
+			Control inputs = GetInputs();
+			
+			Control buttons = Widgets.GetLaidOut(
+				new Control[] {
+					Widgets.GetLabel(String.Empty), //layout buffer
+					Widgets.GetButtonImageText(
+						Controller.Id.SHORTCUTCLOSE_ACTION,
+						"&Close",
+						"app-exit.png")},
+				new float[] {80F, 20F});
+			
+			layout.Controls.Add(desc, 0, 0);
+			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 80));
+			
+			layout.Controls.Add(inputs, 0, 1);
+			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 150));
+			
+			layout.Controls.Add(buttons, 0, 2);
+			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+			
+			return layout;
+		}
+		
+		public Control GetInputs()
+		{
+			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(3, 1, 5, 5);
 			
 			TextBox plat_in = Widgets.GetTextBox(
 						Controller.Id.SHORTCUT_PLATFORM,
@@ -100,36 +124,31 @@ namespace SolarbeamGui
 			
 			Control buttons = Widgets.GetLaidOut(
 				new Control[] {
+					Widgets.GetLabel(String.Empty),
 					Widgets.GetButtonImageText(
 						Controller.Id.SHORTCUTINSTALL_ACTION,
 						"&Create",
-						"new.png"),
-					Widgets.GetLabel(String.Empty), //layout buffer
-					Widgets.GetButtonImageText(
-						Controller.Id.SHORTCUTCLOSE_ACTION,
-						"&Close",
-						"app-exit.png")},
-				new float[] {20F, 60F, 20F});
+						"new.png")},
+				new float[] {80F, 20F});
 			
-			layout.Controls.Add(title, 0, 0);
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
-			
-			layout.Controls.Add(desc, 0, 1);
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 80));
-			
-			layout.Controls.Add(platform, 0, 2);
+			layout.Controls.Add(platform, 0, 0);
 			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 25));
 			
-			layout.Controls.Add(desktop, 0, 3);
+			layout.Controls.Add(desktop, 0, 1);
 			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
 			
-			layout.Controls.Add(startmenu, 0, 4);
+			layout.Controls.Add(startmenu, 0, 2);
 			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
 			
-			layout.Controls.Add(buttons, 0, 5);
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+			layout.Controls.Add(buttons, 0, 3);
+			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
 			
-			return layout;
+			GroupBox outputs = new GroupBox();
+			outputs.Text = "Settings";
+			outputs.Dock = DockStyle.Fill;
+			outputs.Controls.Add(layout);
+			
+			return outputs;
 		}
 	}
 }
