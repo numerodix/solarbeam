@@ -75,6 +75,7 @@
     <EmbeddedResource Include="..\bundled\icon64.png" />
     <EmbeddedResource Include="..\bundled\logo.png" />
     <EmbeddedResource Include="..\bundled\app-about.png" />
+    <EmbeddedResource Include="..\bundled\app-desc.png" />
     <EmbeddedResource Include="..\bundled\app-exit.png" />
     <EmbeddedResource Include="..\bundled\delete.png" />
     <EmbeddedResource Include="..\bundled\dst-status-nodst.png" />

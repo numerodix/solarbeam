@@ -98,7 +98,7 @@ namespace SolarbeamGui
 					Widgets.GetLabel("Platform detected"),
 					Widgets.GetLabel(":"),
 					plat_in},
-				new float[] {12F, 2F, 31F});
+				new float[] {10F, 2F, 33F});
 			
 			Control desktop = Widgets.GetLaidOut(
 				new Control[] {
@@ -110,7 +110,7 @@ namespace SolarbeamGui
 					Widgets.GetTextBox(
 						Controller.Id.SHORTCUT_DESKTOP,
 						string.Empty)},
-				new float[] {12F, 2F, 31F});
+				new float[] {10F, 2F, 33F});
 			
 			Control startmenu = Widgets.GetLaidOut(
 				new Control[] {
@@ -122,7 +122,7 @@ namespace SolarbeamGui
 					Widgets.GetTextBox(
 						Controller.Id.SHORTCUT_STARTMENU,
 						string.Empty)},
-				new float[] {12F, 2F, 31F});
+				new float[] {10F, 2F, 33F});
 			
 			Control buttons = Widgets.GetLaidOut(
 				new Control[] {

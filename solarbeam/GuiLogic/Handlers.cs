@@ -5,9 +5,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
+using LibSolar;
 using LibSolar.Formatting;
 using LibSolar.Graphing;
 using LibSolar.Types;
@@ -254,6 +256,11 @@ namespace SolarbeamGui
 					grbit.SaveBitmap(bitmap, filename);
 				}
 			}
+		}
+		
+		private static void ShowHelpDesc(object sender, EventArgs args)
+		{
+			Process.Start(Constants.URL_HELP);
 		}
 		
 		private static void ShowShortcutDialog(object sender, EventArgs args)

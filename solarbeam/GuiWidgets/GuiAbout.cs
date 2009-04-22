@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
+using LibSolar;
 using LibSolar.Util;
 
 namespace SolarbeamGui
@@ -107,7 +108,7 @@ namespace SolarbeamGui
 			                  Platform.GetPlatform() + "}");
 			s += Controller.AsmInfo.GetAtt("Description") + "\n\n";
 			
-			s += "http://solarbeam.sourceforge.net\n\n";
+			s += Constants.APP_URL + "\n\n";
 			
 			s += Controller.AsmInfo.GetAtt("Copyright") + "\n\n";
 			
