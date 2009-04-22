@@ -34,8 +34,8 @@ namespace SolarbeamGui
 			SetString(PlatformName.Windows, Controller.Id.SHORTCUT_PATH_1_CHECK, "Desktop");
 			SetString(PlatformName.Windows, Controller.Id.SHORTCUT_PATH_2_CHECK, "Start Menu");
 			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_DESC, GetDescWindows());
-			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_1_LABEL, "XDG global");
-			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_2_LABEL, "XDG local");
+			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_1_LABEL, "XDG local");
+			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_2_LABEL, "XDG global");
 			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_1_CHECK, "XDG local");
 			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_2_CHECK, string.Empty);
 		}
@@ -195,7 +195,7 @@ namespace SolarbeamGui
 			}
 			
 			GroupBox outputs = new GroupBox();
-			outputs.Text = "Detecting paths";
+			outputs.Text = "Detected paths";
 			outputs.Dock = DockStyle.Fill;
 			outputs.Controls.Add(layout);
 			
@@ -220,7 +220,7 @@ namespace SolarbeamGui
 					Widgets.GetButtonImageText(
 						Controller.Id.SHORTCUT_PATH_1_BROWSE_ACTION,
 						"Browse", "browse.png")},
-				new float[] {15F, 2F, 33F, 10F});
+				new float[] {13F, 2F, 35F, 10F});
 			
 			Control startmenu = Widgets.GetLaidOut(
 				new Control[] {
@@ -237,7 +237,7 @@ namespace SolarbeamGui
 					Widgets.GetButtonImageText(
 						Controller.Id.SHORTCUT_PATH_2_BROWSE_ACTION,
 						"Browse", "browse.png")},
-				new float[] {15F, 2F, 33F, 10F});
+				new float[] {13F, 2F, 35F, 10F});
 			
 			Control buttons = Widgets.GetLaidOut(
 				new Control[] {

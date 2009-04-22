@@ -28,6 +28,8 @@ namespace SolarbeamGui
 			
 			SetValue(registry[Id.SHORTCUT_PLATFORM], pn.ToString());
 			
+			DetectPaths(pn);
+			
 /*			Component platform = registry[Id.SHORTCUT_PLATFORM];
 			Component desktop = registry[Id.SHORTCUT_DESKTOP];
 			Component startmenu = registry[Id.SHORTCUT_STARTMENU];
@@ -85,6 +87,8 @@ namespace SolarbeamGui
 						registry[Id.SHORTCUT_PATH_2_INPUT],
 						registry[Id.SHORTCUT_PATH_2_BROWSE_ACTION]});
 				}
+				
+				DetectPaths(pn);
 			} catch (NullReferenceException) {}
 		}
 		

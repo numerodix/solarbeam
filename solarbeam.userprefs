@@ -1,10 +1,27 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="solarbeam/GuiLogic/WriterAux.cs" ctype="Workbench">
+    <Files>
+      <File FileName="solarbeam/GuiWidgets/GuiShortcutInstall.cs" Line="38" Column="81" />
+      <File FileName="solarbeam/GuiLogic/HandlersAux.cs" Line="20" Column="2" />
+      <File FileName="solarbeam/GuiLogic/WriterAux.cs" Line="11" Column="23" />
+      <File FileName="libsolar/Util/Platform.cs" Line="1" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="True" />
           <Option id="ShowAllFiles" value="False" />
+          <Node name="libsolar" expanded="True">
+            <Node name="Util" expanded="True" />
+          </Node>
+          <Node name="solarbeam" expanded="True">
+            <Node name="GuiLogic" expanded="True">
+              <Node name="WriterAux.cs" selected="True" />
+            </Node>
+            <Node name="GuiWidgets" expanded="True">
+              <Node name="Lib" expanded="True" />
+            </Node>
+          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">
