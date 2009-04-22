@@ -17,7 +17,7 @@ namespace LibSolar
 		public const string COPYRIGHT = "Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>";
 		
 		public const string GUI_FILENAME = "solarbeam.exe";
-		public const string ICON_FILENAME = "icon.ico";
+		public const string WIN_ICON_FILENAME = "icon.ico";
 		
 		public const string APP_URL = "http://solarbeam.sourceforge.net/";
 		public const string URL_HELP = APP_URL + "explanation.php";
@@ -34,5 +34,13 @@ namespace LibSolar
 		public const string BinaryFileExtension = ".bin";
 		public const string AutoSessionFilename = "autosave" + BinaryFileExtension;
 		public const string LocationListFilename = "locations" + BinaryFileExtension;
+		
+		// shortcuts
+		public const string WinShortcutFile = "SolarBeam.url";
+		
+		public const string LinShortcutGenericName = "Solar diagrammer";
+		public const string LinShortcutTerminal = "false";
+		public static readonly string[] LinShortcutCategories = new string[] {
+			"Education", "Science", "Astronomy", "Engineering"};
 	}
 }

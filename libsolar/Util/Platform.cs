@@ -2,6 +2,7 @@
 // Licensed under the GNU Public License, version 3.
 
 using System;
+using System.IO;
 
 namespace LibSolar.Util
 {
@@ -13,6 +14,12 @@ namespace LibSolar.Util
 	public enum PlatformName {
 		Windows,
 		Unix,
+	}
+	
+	public enum PathType {
+		WindowsStartMenu,
+		Desktop,
+		LinuxLocalApplications,
 	}
 		
 	/**
@@ -47,9 +54,46 @@ namespace LibSolar.Util
 			}
 		}
 		
-		public static string GetDesktopPath()
+		public static string GetPath(PathType type)
+		{
+			switch (type) {
+			case PathType.Desktop:
+				return GetDesktopPath();
+				break;
+			case PathType.WindowsStartMenu:
+				return GetWindowsStartMenuPath();
+				break;
+			case PathType.LinuxLocalApplications:
+				return LinuxLocalApplications();
+				break;
+			}
+			return null;
+		}
+		
+		private static string GetDesktopPath()
 		{
 			return Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 		}
+		
+		private static string GetWindowsStartMenuPath()
+		{
+			try {
+				string path = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu);
+				string[] dirs = Directory.GetDirectories(path);
+				if (dirs.Length > 0) {
+					path = dirs[0];
+				}
+				return path;
+			} catch {
+				return null;
+			}
+		}
+		
+		private static string LinuxLocalApplications()
+		{
+			string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+			return Path.Combine(path, "applications");
+		}
+		
 	}
 }

@@ -6,32 +6,22 @@ using System.IO;
 
 namespace LibSolar.Util
 {
+	/**
+	 * Reference: http://www.sorrowman.org/c-sharp-programmer/url-link-to-desktop.html
+	 */
 	class WindowsShortcut
 	{
-		public const string filename = "SolarBeam.url";
-		public string app_path;
-		public string icon_path;
+		private string filename;
+		private string app_path;
+		private string icon_path;
 		
-		public WindowsShortcut(string app_path, string icon_path)
+		public WindowsShortcut(string filename, string app_path, string icon_path)
 		{
+			this.filename = filename;
 			this.app_path = app_path;
 			this.icon_path = icon_path;
 		}
-		
-		public static WindowsShortcut FromFile(string path)
-		{
-			StreamReader reader = new StreamReader(path);
-			string lines = reader.ReadToEnd();
-			
-			// unmangle moronic newlines
-			lines = Regex.Replace("\r\n", "\n", lines);
-			
-			string app_path = Regex.Find("URL=file:///(.*)", lines);
-			string icon_path = Regex.Find("IconFile=(.*)", lines);
-			
-			return new WindowsShortcut(app_path, icon_path);
-		}
-		
+
 		public void WriteFile(string path)
 		{
 			if ((path != null) && (path != string.Empty)) {

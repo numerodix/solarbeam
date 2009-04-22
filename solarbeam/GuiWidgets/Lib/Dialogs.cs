@@ -15,7 +15,7 @@ namespace SolarbeamGui
 		                                               string filter_pattern)
 		{
 			SaveFileDialog dlg = new SaveFileDialog();
-			dlg.InitialDirectory = Platform.GetDesktopPath();
+			dlg.InitialDirectory = Platform.GetPath(PathType.Desktop);
 			dlg.Filter = String.Format("{0} ({1})|{2}", filter_name,
 			                           filter_pattern, filter_pattern);
 			dlg.FileName = filename;
@@ -26,7 +26,7 @@ namespace SolarbeamGui
 		                                               string filter_pattern)
 		{
 			OpenFileDialog dlg = new OpenFileDialog();
-			dlg.InitialDirectory = Platform.GetDesktopPath();
+			dlg.InitialDirectory = Platform.GetPath(PathType.Desktop);
 			dlg.Filter = String.Format("{0} ({1})|{2}", filter_name,
 			                           filter_pattern, filter_pattern);
 			return dlg;
