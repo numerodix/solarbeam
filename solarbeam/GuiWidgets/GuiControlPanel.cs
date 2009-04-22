@@ -321,9 +321,9 @@ namespace SolarbeamGui
 					Widgets.GetLabel(String.Empty)},
 				new float[] {20F, 64F, 20F});
 	
-			layout.Controls.Add(btns, 0, 0);
-			layout.Controls.Add(sun, 0, 1);
-			layout.Controls.Add(caption, 0, 2);
+			layout.Controls.Add(sun, 0, 0);
+			layout.Controls.Add(caption, 0, 1);
+			layout.Controls.Add(btns, 0, 2);
 				
 			return layout;
 		}

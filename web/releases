@@ -1,5 +1,7 @@
 0.7
 + Create shortcuts dialog.
++ Add help menu item.
++ Add toggle for sun trajectory rendering in save to diagram.
 
 0.6
 + World map display.
