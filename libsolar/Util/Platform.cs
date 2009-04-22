@@ -37,8 +37,9 @@ namespace LibSolar.Util
 			return platform;
 		}
 		
-		public static string ToString(RuntimeName pn)
+		public static string GetRuntimeString()
 		{
+			RuntimeName pn = GetRuntime();
 			if (pn == RuntimeName.NET)
 				return ".NET";
 			return pn.ToString();

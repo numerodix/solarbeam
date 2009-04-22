@@ -103,7 +103,7 @@ namespace SolarbeamGui
 			                  Controller.AsmInfo.GetAtt("Title"),
 			                  Controller.AsmInfo.GetAtt("Version"),
 			                  "{runtime",
-			                  Platform.ToString(Platform.GetRuntime()),
+			                  Platform.GetRuntimeString(),
 			                  "platform",
 			                  Platform.GetPlatform() + "}");
 			s += Controller.AsmInfo.GetAtt("Description") + "\n\n";
