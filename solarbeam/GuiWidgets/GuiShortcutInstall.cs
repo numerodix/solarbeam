@@ -28,7 +28,7 @@ namespace SolarbeamGui
 			
 			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 			this.StartPosition = FormStartPosition.CenterParent;
-			this.ClientSize = new Size(450, 276);
+			this.ClientSize = new Size(500, 276);
 			
 			// prevent disposal by intercepting Close() and calling Hide()
 			this.Closing += delegate (object o, CancelEventArgs args) {
@@ -95,31 +95,34 @@ namespace SolarbeamGui
 			plat_in.TabStop = false;
 			Control platform = Widgets.GetLaidOut(
 				new Control[] {
-					Widgets.GetLabel("Platform detected:"),
+					Widgets.GetLabel("Platform detected"),
+					Widgets.GetLabel(":"),
 					plat_in},
-				new float[] {35F, 65F});
+				new float[] {12F, 2F, 31F});
 			
 			Control desktop = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetCheckBox(
 						Controller.Id.SHORTCUT_DESKTOPCHECK,
-						"Desktop:",
+						"Desktop",
 						true),
+					Widgets.GetLabel(":"),
 					Widgets.GetTextBox(
 						Controller.Id.SHORTCUT_DESKTOP,
 						string.Empty)},
-				new float[] {25F, 75F});
+				new float[] {12F, 2F, 31F});
 			
 			Control startmenu = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetCheckBox(
 						Controller.Id.SHORTCUT_STARTMENUCHECK,
-						"Start menu:",
+						"Start menu",
 						true),
+					Widgets.GetLabel(":"),
 					Widgets.GetTextBox(
 						Controller.Id.SHORTCUT_STARTMENU,
 						string.Empty)},
-				new float[] {25F, 75F});
+				new float[] {12F, 2F, 31F});
 			
 			Control buttons = Widgets.GetLaidOut(
 				new Control[] {
