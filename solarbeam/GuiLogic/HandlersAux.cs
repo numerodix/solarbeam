@@ -26,20 +26,7 @@ namespace SolarbeamGui
 		{
 			PlatformName pn = Platform.GetPlatform();
 			
-			string desc = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_DESC);
-			((RichTextBox) registry[Id.SHORTCUT_DESC]).Text = desc;
-			
-			string p1_lbl = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_PATH_1_LABEL);
-			((Label) registry[Id.SHORTCUT_PATH_1_LABEL]).Text = p1_lbl;
-						
-			string p2_lbl = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_PATH_2_LABEL);
-			((Label) registry[Id.SHORTCUT_PATH_2_LABEL]).Text = p2_lbl;
-			
-			string p1_chk = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_PATH_1_CHECK);
-			((CheckBox) registry[Id.SHORTCUT_PATH_1_CHECK]).Text = p1_chk;
-
-			string p2_chk = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_PATH_2_CHECK);
-			((CheckBox) registry[Id.SHORTCUT_PATH_2_CHECK]).Text = p2_chk;
+			SetValue(registry[Id.SHORTCUT_PLATFORM], pn.ToString());
 			
 /*			Component platform = registry[Id.SHORTCUT_PLATFORM];
 			Component desktop = registry[Id.SHORTCUT_DESKTOP];
@@ -58,6 +45,47 @@ namespace SolarbeamGui
 			SetValue(platform, platform_name.ToString());
 */			
 			GuiMainForm.shortcutform.Show();
+		}
+		
+		private static void ShortcutPlatformChange(object sender, EventArgs args)
+		{
+			// value changes will occur during control initialization, sometimes 
+			// before all controls have been registered. ignore this early case
+			try {
+				string pn_s = GetValue(registry[Id.SHORTCUT_PLATFORM]);
+				PlatformName pn = (PlatformName) Enum.Parse(typeof(PlatformName), pn_s);
+			
+				// update labels
+				string desc = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_DESC);
+				((RichTextBox) registry[Id.SHORTCUT_DESC]).Text = desc;
+				
+				string p1_lbl = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_PATH_1_LABEL);
+				((Label) registry[Id.SHORTCUT_PATH_1_LABEL]).Text = p1_lbl;
+				
+				string p2_lbl = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_PATH_2_LABEL);
+				((Label) registry[Id.SHORTCUT_PATH_2_LABEL]).Text = p2_lbl;
+				
+				string p1_chk = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_PATH_1_CHECK);
+				((CheckBox) registry[Id.SHORTCUT_PATH_1_CHECK]).Text = p1_chk;
+				
+				string p2_chk = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_PATH_2_CHECK);
+				((CheckBox) registry[Id.SHORTCUT_PATH_2_CHECK]).Text = p2_chk;
+				
+				// hide path 2 on unix, unused
+				if (pn == PlatformName.Unix) {
+					SetVisibles(false, new object[] {
+						registry[Id.SHORTCUT_PATH_2_CHECK],
+						registry[Id.SHORTCUT_PATH_2_CHECKLABEL],
+						registry[Id.SHORTCUT_PATH_2_INPUT],
+						registry[Id.SHORTCUT_PATH_2_BROWSE_ACTION]});
+				} else {
+					SetVisibles(true, new object[] {
+						registry[Id.SHORTCUT_PATH_2_CHECK],
+						registry[Id.SHORTCUT_PATH_2_CHECKLABEL],
+						registry[Id.SHORTCUT_PATH_2_INPUT],
+						registry[Id.SHORTCUT_PATH_2_BROWSE_ACTION]});
+				}
+			} catch (NullReferenceException) {}
 		}
 		
 		private static void ShortcutInstall(object sender, EventArgs args)

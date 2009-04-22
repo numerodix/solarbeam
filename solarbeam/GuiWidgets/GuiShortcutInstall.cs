@@ -228,7 +228,9 @@ namespace SolarbeamGui
 						Controller.Id.SHORTCUT_PATH_2_CHECK,
 						"Start menu",
 						true),
-					Widgets.GetLabelAnon(":"),
+					Widgets.GetLabel(
+						Controller.Id.SHORTCUT_PATH_2_CHECKLABEL,
+						":"),
 					Widgets.GetTextBoxRO(
 						Controller.Id.SHORTCUT_PATH_2_INPUT,
 						string.Empty),

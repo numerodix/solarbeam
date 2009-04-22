@@ -45,5 +45,12 @@ namespace SolarbeamGui
 				}
 			}
 		}
+		
+		private static void SetVisibles(bool visibility, object[] objs)
+		{
+			foreach (object obj in objs) {
+				((Control) obj).Visible = visibility;
+			}
+		}		
 	}
 }

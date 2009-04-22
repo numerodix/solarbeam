@@ -81,6 +81,7 @@ namespace SolarbeamGui
 			SHORTCUT_PATH_2_LABEL,
 			SHORTCUT_PATH_2_DETECT,
 			SHORTCUT_PATH_2_CHECK,
+			SHORTCUT_PATH_2_CHECKLABEL,
 			SHORTCUT_PATH_2_INPUT,
 			SHORTCUT_PATH_2_BROWSE_ACTION,
 			SHORTCUTINSTALL_ACTION,
@@ -231,6 +232,12 @@ namespace SolarbeamGui
 			if (id == Id.MAP) {
 				MouseEventHandler handler = new MouseEventHandler(MapClick);
 				((GuiMap) registry[id]).MouseClick += handler;
+			}
+									
+			// in shortcut gui handle platform change
+			if (id == Id.SHORTCUT_PLATFORM) {
+				EventHandler handler = new EventHandler(ShortcutPlatformChange);
+				RegisterValueChange(control, handler);
 			}
 		
 			// activate tooltip
