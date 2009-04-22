@@ -42,6 +42,11 @@ It is released under the GPL license.
 This is the NUnit testing framework, see http://www.nunit.org. It is released
 under its own license, see http://www.nunit.org/index.php?p=license&r=2.4.8.
 
+* world map
+
+The map used in the program is available from Wikipedia under Public Domain,
+see http://en.wikipedia.org/wiki/Wikipedia:Blank_maps.
+
 * icons
 
 The icons used in the program are from the "oxygen" icon theme in KDE and were
