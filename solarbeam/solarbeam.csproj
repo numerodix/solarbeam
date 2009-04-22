@@ -75,7 +75,6 @@
     <EmbeddedResource Include="..\doc\COPYING.short" />
     <EmbeddedResource Include="..\doc\LICENSE.gz" />
     <EmbeddedResource Include="..\bundled\icon.ico" />
-    <EmbeddedResource Include="..\bundled\icon64.png" />
     <EmbeddedResource Include="..\bundled\logo.png" />
     <EmbeddedResource Include="..\bundled\app-about.png" />
     <EmbeddedResource Include="..\bundled\app-desc.png" />

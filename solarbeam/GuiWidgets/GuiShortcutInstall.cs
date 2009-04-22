@@ -33,7 +33,7 @@ namespace SolarbeamGui
 			SetString(PlatformName.Windows, Controller.Id.SHORTCUT_PATH_2_LABEL, "Start Menu");
 			SetString(PlatformName.Windows, Controller.Id.SHORTCUT_PATH_1_CHECK, "Desktop");
 			SetString(PlatformName.Windows, Controller.Id.SHORTCUT_PATH_2_CHECK, "Start Menu");
-			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_DESC, GetDescWindows());
+			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_DESC, GetDescUnix());
 			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_1_LABEL, "XDG local");
 			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_2_LABEL, "XDG global");
 			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_1_CHECK, "XDG local");
@@ -59,6 +59,17 @@ namespace SolarbeamGui
 			string s = "On Windows, {0} can create shortcuts on the Desktop";
 			s += " and in the Start Menu.\n";
 			s += "(You can safely rerun this to overwrite any existing {1} icons.)";
+			s = string.Format(s, Constants.GUI_APPTITLE, Constants.GUI_APPTITLE);
+			
+			return s;
+		}
+		
+		public static string GetDescUnix()
+		{
+			string s = "On Unix, {0} can create launchers in the application";
+			s += " menu in accordance with the http://freedesktop.org standard";
+			s += " (supported by Gnome, KDE and other desktop environments).";
+			s += "\n(You can safely rerun this to overwrite any existing {1} icons.)";
 			s = string.Format(s, Constants.GUI_APPTITLE, Constants.GUI_APPTITLE);
 			
 			return s;
