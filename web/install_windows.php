@@ -17,6 +17,10 @@
 		<h1>Installation on Windows</h1>
 		SolarBeam does not need to be installed in the conventional sense. All it takes to run it is to extract the .zip file and run the program. SolarBeam can also set up shortcuts for itself on the Desktop and in the Start Menu.
 
+		<h2>Download</h2>
+		<p>First download SolarBeam from this website. Click the <i>Download</i> link.</p>
+		<img src="imgs/guide/win_0.png" alt="win_0"/>
+	
 		<h2>Extracting</h2>
 		<p>Right click on the .zip file and choose <i>Extract All...</i>.</p>
 		<img src="imgs/guide/win_1.png" alt="win_1"/>
