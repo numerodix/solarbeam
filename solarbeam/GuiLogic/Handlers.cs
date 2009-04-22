@@ -277,7 +277,6 @@ namespace SolarbeamGui
 			create_btn.Enabled = true;
 			PlatformName platform_name = Platform.GetPlatform();
 			if (platform_name == PlatformName.Windows) {
-				
 				SetValue(desktop, Platform.GetDesktopPath());
 				WindowsShortcutInstall wsi = new WindowsShortcutInstall(Controller.AsmInfo);
 				SetValue(startmenu, wsi.GetStartMenuPath());
