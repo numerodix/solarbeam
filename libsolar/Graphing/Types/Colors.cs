@@ -20,7 +20,7 @@ namespace LibSolar.Graphing
 		private Color year_fst_half_dst = Color.SteelBlue;
 		private Color year_snd_half_std = Color.DarkGreen;
 		private Color year_snd_half_dst = Color.LimeGreen;
-		private Color current_day = Color.FromArgb(255,127,0);
+		private Color current_day = Color.Red;
 		
 		public Color GridBg
 		{ get { return this.grid_bg; } }
