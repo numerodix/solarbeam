@@ -24,7 +24,7 @@ namespace SolarbeamGui
 		
 		private const int INPUTS_COUNT = 6;
 		private const int OUTPUTS_COUNT = 5;
-		private const int IMAGESAVE_COUNT = 2;
+		private const int IMAGESAVE_COUNT = 3;
 		
 		private const int INPUTS_HEIGHT = GROUPBOX_HEIGHT + INPUTS_COUNT * FORM_ROW_HEIGHT + 2*FORM_PADDING;
 		private const int BUTTONS_HEIGHT = 30;
@@ -59,7 +59,7 @@ namespace SolarbeamGui
 			outputs.Controls.Add(GetOutputs());
 	
 			GroupBox imagesave = new GroupBox();
-			imagesave.Text = "Save image";
+			imagesave.Text = "Save diagram to image";
 			imagesave.Size = new Size(PANEL_WIDTH, IMAGESAVE_HEIGHT);
 			imagesave.Controls.Add(GetImageSave());
 			
@@ -301,7 +301,17 @@ namespace SolarbeamGui
 					Widgets.GetLabel(String.Empty)},
 				new float[] {20F, 20F, 15F, 30F, 20F});
 
-			Control check = Widgets.GetLaidOut(
+			Control sun = Widgets.GetLaidOut(
+				new Control[] {
+					Widgets.GetLabel(String.Empty), //layout buffer
+					Widgets.GetCheckBox(
+						Controller.Id.IMAGE_SUNTOGGLE,
+						"Plot current day trajectory",
+						true),
+					Widgets.GetLabel(String.Empty)},
+				new float[] {20F, 64F, 20F});
+				
+			Control caption = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetLabel(String.Empty), //layout buffer
 					Widgets.GetCheckBox(
@@ -312,7 +322,8 @@ namespace SolarbeamGui
 				new float[] {20F, 64F, 20F});
 	
 			layout.Controls.Add(btns, 0, 0);
-			layout.Controls.Add(check, 0, 1);
+			layout.Controls.Add(sun, 0, 1);
+			layout.Controls.Add(caption, 0, 2);
 				
 			return layout;
 		}

@@ -131,7 +131,7 @@ namespace SolarbeamGui
 						Controller.Id.SHORTCUTINSTALL_ACTION,
 						"&Create",
 						"new.png")},
-				new float[] {80F, 20F});
+				new float[] {83F, 17F});
 			
 			layout.Controls.Add(platform, 0, 0);
 			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 25));
