@@ -255,7 +255,7 @@ namespace SolarbeamGui
 					if (sun_b)
 						bitmap = grbit.RenderCurrentDay(bitmap, pos, dt);
 					if (caption_b)
-						bitmap = grbit.RenderCaption(new CaptionInfo(location, pos, dt, sun_b));
+						bitmap = grbit.RenderCaption(new CaptionInfo(location, pos, dt));
 					grbit.SaveBitmap(bitmap, filename);
 				}
 			}

@@ -54,16 +54,14 @@ namespace LibSolar.Graphing
 					stack.Add(Formatter.FormatCaptionTime(ci.Date, ci));
 					PrintVertically(g, brush, font, caption, caption.A+dxx, caption.B+3*height, stack);
 					
-					if (ci.RenderSun) {
-						int h_ang = (int) (7.5 * (double) height);
-						
-						stack = new List<string>();
-						stack.Add(string.Format("sun elevation: {0}",
-						                        Formatter.FormatAngle(ci.Elevation)));
-						stack.Add(string.Format("sun azimuth: {0}",
-						                        Formatter.FormatAngle(ci.Azimuth)));
-						PrintHorizontally(g, brush, font, caption, caption.B+h_ang, stack);
-					}
+					int h_ang = (int) (7.5 * (double) height);
+					
+					stack = new List<string>();
+					stack.Add(string.Format("sun elevation: {0}",
+					                        Formatter.FormatAngle(ci.Elevation)));
+					stack.Add(string.Format("sun azimuth: {0}",
+					                        Formatter.FormatAngle(ci.Azimuth)));
+					PrintHorizontally(g, brush, font, caption, caption.B+h_ang, stack);
 					
 					int h_tm = (int) (10 * (double) height);
 					

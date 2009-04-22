@@ -21,9 +21,8 @@ namespace LibSolar.Types
 		private SolarTimes st;
 		private UTCDate? dawn;
 		private UTCDate? dusk;
-		private bool rendersun;
 		
-		public CaptionInfo(string loc, Position pos, UTCDate udt, bool rendersun)
+		public CaptionInfo(string loc, Position pos, UTCDate udt)
 		{
 			this.loc = loc;
 			this.pos = pos;
@@ -31,7 +30,6 @@ namespace LibSolar.Types
 			this.udt = udt;
 			this.sp = Orbit.CalcSolarPosition(pos, udt);
 			this.st = Orbit.CalcSolarTimes(pos, udt);
-			this.rendersun = rendersun;
 			
 			SolarTimes st_ss = PointFinder.FindDawnDusk(pos, udt);
 			this.dawn = st_ss.Sunrise;
@@ -73,8 +71,5 @@ namespace LibSolar.Types
 		
 		public UTCDate? Dusk
 		{ get { return this.dusk; } }
-				
-		public bool RenderSun
-		{ get { return this.rendersun; } }
 	}	
 }

@@ -41,7 +41,7 @@ namespace LibSolar.Graphing
 			Bitmap bitmap = grbit.RenderCurrentDay(bitmap_plain, pos, udt);
 			
 			// render caption
-			CaptionInfo ci = new CaptionInfo(loc, pos, udt, true);
+			CaptionInfo ci = new CaptionInfo(loc, pos, udt);
 			bitmap = grbit.RenderCaption(ci);
 			
 			// save
