@@ -94,6 +94,16 @@
 			</div>
 		</td>
 		</tr>
+		<tr>
+		<td>
+			<a href="imgs/ss/console_windows.png">
+				<img src="imgs/ss/console_windows_t.png" alt="console_windows"/>
+			</a>
+			<div class="caption">
+				Command line client on Windows
+			</div>
+		</td>
+		</tr>
 		</table>
 	</div>
 
