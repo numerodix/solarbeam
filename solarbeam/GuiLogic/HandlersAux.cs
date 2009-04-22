@@ -24,6 +24,23 @@ namespace SolarbeamGui
 	{
 		private static void ShowShortcutDialog(object sender, EventArgs args)
 		{
+			PlatformName pn = Platform.GetPlatform();
+			
+			string desc = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_DESC);
+			((RichTextBox) registry[Id.SHORTCUT_DESC]).Text = desc;
+			
+			string p1_lbl = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_PATH_1_LABEL);
+			((Label) registry[Id.SHORTCUT_PATH_1_LABEL]).Text = p1_lbl;
+						
+			string p2_lbl = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_PATH_2_LABEL);
+			((Label) registry[Id.SHORTCUT_PATH_2_LABEL]).Text = p2_lbl;
+			
+			string p1_chk = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_PATH_1_CHECK);
+			((CheckBox) registry[Id.SHORTCUT_PATH_1_CHECK]).Text = p1_chk;
+
+			string p2_chk = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_PATH_2_CHECK);
+			((CheckBox) registry[Id.SHORTCUT_PATH_2_CHECK]).Text = p2_chk;
+			
 /*			Component platform = registry[Id.SHORTCUT_PLATFORM];
 			Component desktop = registry[Id.SHORTCUT_DESKTOP];
 			Component startmenu = registry[Id.SHORTCUT_STARTMENU];

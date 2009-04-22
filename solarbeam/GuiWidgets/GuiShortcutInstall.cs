@@ -16,10 +16,43 @@ namespace SolarbeamGui
 	{
 		private const int FORM_ROW_HEIGHT = 32;
 		
+		private Dictionary<string,string> dict;
+		
+		
 		public GuiShortcutInstall(string app_title, string icon)
 		{
 			InitializeComponent(app_title, icon);
+			InitializeStrings();
 		}
+		
+		
+		private void InitializeStrings()
+		{
+			SetString(PlatformName.Windows, Controller.Id.SHORTCUT_DESC, GetDescWindows());
+			SetString(PlatformName.Windows, Controller.Id.SHORTCUT_PATH_1_LABEL, "Desktop");
+			SetString(PlatformName.Windows, Controller.Id.SHORTCUT_PATH_2_LABEL, "Start Menu");
+			SetString(PlatformName.Windows, Controller.Id.SHORTCUT_PATH_1_CHECK, "Desktop");
+			SetString(PlatformName.Windows, Controller.Id.SHORTCUT_PATH_2_CHECK, "Start Menu");
+			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_DESC, GetDescWindows());
+			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_1_LABEL, "XDG global");
+			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_2_LABEL, "XDG local");
+			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_1_CHECK, "XDG local");
+			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_2_CHECK, string.Empty);
+		}
+		
+		private void SetString(PlatformName pn, Controller.Id id, string s)
+		{
+			if (dict == null) {
+				dict = new Dictionary<string,string>();
+			}
+			dict.Add(pn.ToString() + id.ToString(), s);
+		}
+		
+		public string GetString(PlatformName pn, Controller.Id id)
+		{
+			return dict[pn.ToString() + id.ToString()];
+		}	
+		
 		
 		public static string GetDescWindows()
 		{
@@ -30,6 +63,7 @@ namespace SolarbeamGui
 			
 			return s;
 		}
+		
 		
 		public void InitializeComponent(string app_title, string icon)
 		{	
@@ -120,7 +154,7 @@ namespace SolarbeamGui
 		{
 			string s = GetDescWindows();
 			
-			Control desc = Widgets.GetRichTextBox(s);
+			Control desc = Widgets.GetRichTextBox(Controller.Id.SHORTCUT_DESC, s);
 			desc.TabStop = false;
 			
 			return desc;

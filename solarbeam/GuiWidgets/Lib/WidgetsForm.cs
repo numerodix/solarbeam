@@ -114,7 +114,7 @@ namespace SolarbeamGui
 			return num;
 		}
 		
-		public static RichTextBox GetRichTextBox(string s)
+		public static RichTextBox GetRichTextBoxAnon(string s)
 		{
 			RichTextBox txt = new RichTextBox();
 			txt.Multiline = true;
@@ -132,6 +132,13 @@ namespace SolarbeamGui
 					Console.WriteLine(Clipboard.GetText());
 				}
 			};
+			return txt;
+		}
+		
+		public static RichTextBox GetRichTextBox(Controller.Id id, string s)
+		{
+			RichTextBox txt = GetRichTextBoxAnon(s);
+			Controller.RegisterControl(id, txt);	// register control
 			return txt;
 		}
 		

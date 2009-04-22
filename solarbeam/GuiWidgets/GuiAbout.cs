@@ -119,18 +119,18 @@ namespace SolarbeamGui
 			s += "Coordinator: Professor Barbara Matusiak,";
 			s += " Department of Architectural Design, Form and Colour Studies, NTNU";
 
-			return Widgets.GetRichTextBox(s);
+			return Widgets.GetRichTextBoxAnon(s);
 		}
 		
 		private Control GetLibs()
 		{
-			return Widgets.GetRichTextBox(
+			return Widgets.GetRichTextBoxAnon(
 					Controller.AsmInfo.GetString("COPYING.short"));
 		}
 		
 		private Control GetLicense()
 		{
-			return Widgets.GetRichTextBox(
+			return Widgets.GetRichTextBoxAnon(
 					Controller.AsmInfo.GetString("LICENSE"));
 		}
 	}
