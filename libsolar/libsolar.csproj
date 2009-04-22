@@ -91,8 +91,8 @@
     <Compile Include="Mapping\Map\Primitives.cs" />
     <Compile Include="Mapping\Map\Plot.cs" />
     <Compile Include="Util\Shortcut\WindowsShortcut.cs" />
-    <Compile Include="Util\ShortcutInstall\WindowsShortcutInstall.cs" />
-    <Compile Include="Util\Shortcut\LinuxShortcut.cs" />
+    <Compile Include="Util\Shortcut\UnixShortcut.cs" />
+    <Compile Include="Util\Shortcut\ShortcutInstaller.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

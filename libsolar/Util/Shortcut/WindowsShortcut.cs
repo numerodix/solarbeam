@@ -11,27 +11,15 @@ namespace LibSolar.Util
 	 */
 	class WindowsShortcut
 	{
-		private string filename;
 		private string app_path;
 		private string icon_path;
 		
-		public WindowsShortcut(string filename, string app_path, string icon_path)
+		public WindowsShortcut(string app_path, string icon_path)
 		{
-			this.filename = filename;
 			this.app_path = app_path;
 			this.icon_path = icon_path;
 		}
 
-		public void WriteFile(string path)
-		{
-			if ((path != null) && (path != string.Empty)) {
-				string s = Codegen();
-				StreamWriter writer = new StreamWriter(Path.Combine(path, filename));
-				writer.WriteLine(s);
-				writer.Close();
-			}
-		}
-		
 		public string Codegen()
 		{
 			string s = "[InternetShortcut]\n";

@@ -35,7 +35,7 @@ Global
 	GlobalSection(MonoDevelopProperties) = preSolution
 		name = solarbeam
 		version = 0.1
-		StartupItem = libsolar\libsolar.csproj
+		StartupItem = solarbeam\solarbeam.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None

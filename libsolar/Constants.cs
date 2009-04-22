@@ -38,14 +38,15 @@ namespace LibSolar
 		// shortcuts
 		public const string WinShortcutFile = "SolarBeam.url";
 		
-		public const string LinShortcutGenericName = "Solar diagrammer";
-		public const string LinShortcutTerminal = "false";
-		public static readonly string[] LinShortcutCategories = new string[] {
+		public const string UnixShortcutFile = "solarbeam.desktop";
+		public const string UnixShortcutGenericName = "Solar diagrammer";
+		public const string UnixShortcutTerminal = "false";
+		public static readonly string[] UnixShortcutCategories = new string[] {
 			"Education", "Science", "Astronomy", "Engineering"};
 		
 		// paths
-		public static readonly string[] LinGlobalXDGBasePaths = new string[] {
+		public static readonly string[] UnixGlobalXDGBasePaths = new string[] {
 			"/usr/share", "/usr/local/share"};
-		public const string LinXDGApplicationsDirName = "applications";
+		public const string UnixXDGApplicationsDirName = "applications";
 	}
 }

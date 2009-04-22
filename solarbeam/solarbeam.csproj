@@ -58,6 +58,7 @@
     <Compile Include="GuiWidgets\GuiShortcutInstall.cs" />
     <Compile Include="GuiLogic\HandlersAux.cs" />
     <Compile Include="GuiLogic\WriterAux.cs" />
+    <Compile Include="GuiLogic\ReaderAux.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -54,8 +54,7 @@ namespace SolarbeamGui
 			// value changes will occur during control initialization, sometimes 
 			// before all controls have been registered. ignore this early case
 			try {
-				string pn_s = GetValue(registry[Id.SHORTCUT_PLATFORM]);
-				PlatformName pn = (PlatformName) Enum.Parse(typeof(PlatformName), pn_s);
+				PlatformName pn = ReadPlatform();
 			
 				// update labels
 				string desc = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_DESC);
@@ -117,18 +116,24 @@ namespace SolarbeamGui
 		
 		private static void ShortcutInstall(object sender, EventArgs args)
 		{
-/*			bool desktop = GetBool(GetValue(registry[Id.SHORTCUT_DESKTOPCHECK]));
-			string desktop_s = GetValue(registry[Id.SHORTCUT_DESKTOP]);
+			bool path1_b = GetBool(GetValue(registry[Id.SHORTCUT_PATH_1_CHECK]));
+			bool path2_b = GetBool(GetValue(registry[Id.SHORTCUT_PATH_2_CHECK]));
 			
-			bool startmenu = GetBool(GetValue(registry[Id.SHORTCUT_STARTMENUCHECK]));
-			string startmenu_s = GetValue(registry[Id.SHORTCUT_STARTMENU]);
+			string path1_s = GetValue(registry[Id.SHORTCUT_PATH_1_INPUT]);
+			string path2_s = GetValue(registry[Id.SHORTCUT_PATH_2_INPUT]);
 			
-			WindowsShortcutInstall wsi = new WindowsShortcutInstall(Controller.AsmInfo);
-			if (desktop)
-				wsi.ShortcutTo(desktop_s);
-			if (startmenu)
-				wsi.ShortcutTo(startmenu_s);
-*/		}
+			PlatformName pn = ReadPlatform();
+			ShortcutInstaller si = new ShortcutInstaller(Controller.AsmInfo);
+			if (pn == PlatformName.Windows) {
+				if (path1_b)
+					si.WindowsShortcutTo(path1_s);
+				if (path2_b)
+					si.WindowsShortcutTo(path2_s);
+			} else if (pn == PlatformName.Unix) {	
+				if (path1_b)
+					si.UnixShortcutTo(path1_s);
+			}
+		}
 		
 		private static void HideShortcutDialog(object sender, EventArgs args)
 		{
