@@ -24,7 +24,7 @@ namespace SolarbeamGui
 	{
 		private static void ShowShortcutDialog(object sender, EventArgs args)
 		{
-			Component platform = registry[Id.SHORTCUT_PLATFORM];
+/*			Component platform = registry[Id.SHORTCUT_PLATFORM];
 			Component desktop = registry[Id.SHORTCUT_DESKTOP];
 			Component startmenu = registry[Id.SHORTCUT_STARTMENU];
 			
@@ -39,13 +39,13 @@ namespace SolarbeamGui
 				create_btn.Enabled = false;
 			}
 			SetValue(platform, platform_name.ToString());
-			
+*/			
 			GuiMainForm.shortcutform.Show();
 		}
 		
 		private static void ShortcutInstall(object sender, EventArgs args)
 		{
-			bool desktop = GetBool(GetValue(registry[Id.SHORTCUT_DESKTOPCHECK]));
+/*			bool desktop = GetBool(GetValue(registry[Id.SHORTCUT_DESKTOPCHECK]));
 			string desktop_s = GetValue(registry[Id.SHORTCUT_DESKTOP]);
 			
 			bool startmenu = GetBool(GetValue(registry[Id.SHORTCUT_STARTMENUCHECK]));
@@ -56,7 +56,7 @@ namespace SolarbeamGui
 				wsi.ShortcutTo(desktop_s);
 			if (startmenu)
 				wsi.ShortcutTo(startmenu_s);
-		}
+*/		}
 		
 		private static void HideShortcutDialog(object sender, EventArgs args)
 		{

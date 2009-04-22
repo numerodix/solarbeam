@@ -21,7 +21,7 @@ namespace SolarbeamGui
 			button.TabStop = false;
 			return button;
 		}
-		
+
 		public static Button GetButtonImageText(Controller.Id id,
 		                                        string s, string img)
 		{
@@ -80,12 +80,19 @@ namespace SolarbeamGui
 			return combo;
 		}
 		
-		public static Label GetLabel(string s)
+		public static Label GetLabelAnon(string s)
 		{
 			Label label = new Label();
 			label.Text = s;
 			label.AutoSize = true;
 			label.Anchor = AnchorStyles.Left;
+			return label;
+		}
+			
+		public static Label GetLabel(Controller.Id id, string s)
+		{
+			Label label = GetLabelAnon(s);
+			Controller.RegisterControl(id, label);	// register control
 			return label;
 		}
 		
@@ -94,13 +101,6 @@ namespace SolarbeamGui
 			Label label = new Label();
 			label.Image = new Bitmap(Controller.AsmInfo.GetResource(img));
 			Controller.RegisterControl(id, label);	// register control
-			return label;
-		}
-		
-		public static Label GetLabelImage(string img)
-		{
-			Label label = new Label();
-			label.Image = new Bitmap(Controller.AsmInfo.GetResource(img));
 			return label;
 		}
 		
@@ -169,14 +169,20 @@ namespace SolarbeamGui
 			return tabs;
 		}
 		
-		public static TextBox GetTextBox(Controller.Id id, string s)
+		public static TextBox GetTextBoxRO(Controller.Id id, string s)
 		{
 			TextBox textbox = new TextBox();
 			textbox.ReadOnly = true;
 			textbox.Text = s;
 			textbox.Anchor = AnchorStyles.Left;
-			textbox.BorderStyle = BorderStyle.None;
 			Controller.RegisterControl(id, textbox);	// register control
+			return textbox;
+		}
+		
+		public static TextBox GetTextBoxROPlain(Controller.Id id, string s)
+		{
+			TextBox textbox = GetTextBoxRO(id, s);
+			textbox.BorderStyle = BorderStyle.None;
 			return textbox;
 		}
 		

@@ -37,7 +37,7 @@
     <Compile Include="GuiWidgets\GuiControlPanel.cs" />
     <Compile Include="GuiWidgets\GuiDiagram.cs" />
     <Compile Include="GuiLogic\Controller.cs" />
-    <Compile Include="GuiLogic\Handlers.cs" />
+    <Compile Include="GuiLogic\HandlersMain.cs" />
     <Compile Include="GuiLogic\Validator.cs" />
     <Compile Include="GuiLogic\Reader.cs" />
     <Compile Include="GuiLogic\Writer.cs" />
@@ -56,6 +56,7 @@
     <Compile Include="GuiWidgets\GuiAbout.cs" />
     <Compile Include="GuiWidgets\GuiMap.cs" />
     <Compile Include="GuiWidgets\GuiShortcutInstall.cs" />
+    <Compile Include="GuiLogic\HandlersAux.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -77,6 +78,7 @@
     <EmbeddedResource Include="..\bundled\app-about.png" />
     <EmbeddedResource Include="..\bundled\app-desc.png" />
     <EmbeddedResource Include="..\bundled\app-exit.png" />
+    <EmbeddedResource Include="..\bundled\browse.png" />
     <EmbeddedResource Include="..\bundled\delete.png" />
     <EmbeddedResource Include="..\bundled\dst-status-nodst.png" />
     <EmbeddedResource Include="..\bundled\dst-status-standard.png" />

@@ -88,7 +88,7 @@ namespace SolarbeamGui
 				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
 			}
 			
-			Label loc_lbl = Widgets.GetLabel("Location:");
+			Label loc_lbl = Widgets.GetLabelAnon("Location:");
 			Control loc_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetComboBoxInputable(
@@ -103,7 +103,7 @@ namespace SolarbeamGui
 					},
 				new float[] {80F, 11F, 11F, 11F});
 	
-			Label lat_lbl = Widgets.GetLabel("Latitude:");
+			Label lat_lbl = Widgets.GetLabelAnon("Latitude:");
 			ComboBox lat_dir = Widgets.GetComboBox(
 				Controller.Id.LATITUDE_DIRECTION,
 				Controller.PositionSource.LatitudeDirections);
@@ -112,19 +112,19 @@ namespace SolarbeamGui
 					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_DEGS,
 						Position.LATDEGS_MIN-1,
 						Position.LATDEGS_MAX),
-					Widgets.GetLabel("°"),
+					Widgets.GetLabelAnon("°"),
 					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_MINS,
 						Position.LATMINS_MIN-1,
 						Position.LATMINS_MAX+1),
-					Widgets.GetLabel("'"),
+					Widgets.GetLabelAnon("'"),
 					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_SECS,
 						Position.LATSECS_MIN-1,
 						Position.LATSECS_MAX+1),
-					Widgets.GetLabel("\""),
+					Widgets.GetLabelAnon("\""),
 					lat_dir},
 				new float[] {27F, 6F, 23F, 6F, 23F, 6F, 30F});
 			
-			Label lon_lbl = Widgets.GetLabel("Longitude:");
+			Label lon_lbl = Widgets.GetLabelAnon("Longitude:");
 			ComboBox lon_dir = Widgets.GetComboBox(
 				Controller.Id.LONGITUDE_DIRECTION,
 				Controller.PositionSource.LongitudeDirections);
@@ -133,19 +133,19 @@ namespace SolarbeamGui
 					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_DEGS,
 						Position.LONDEGS_MIN-1,
 						Position.LONDEGS_MAX),
-					Widgets.GetLabel("°"),
+					Widgets.GetLabelAnon("°"),
 					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_MINS,
 						Position.LONMINS_MIN-1,
 						Position.LONMINS_MAX+1),
-					Widgets.GetLabel("'"),
+					Widgets.GetLabelAnon("'"),
 					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_SECS,
 						Position.LONSECS_MIN-1,
 						Position.LONSECS_MAX+1),
-					Widgets.GetLabel("\""),
+					Widgets.GetLabelAnon("\""),
 					lon_dir},
 				new float[] {27F, 6F, 23F, 6F, 23F, 6F, 30F});
 			
-			Label tz_lbl = Widgets.GetLabel("Timezone:");
+			Label tz_lbl = Widgets.GetLabelAnon("Timezone:");
 			Control tz_in = Widgets.GetLaidOut(
 				new Control[] {
 				Widgets.GetComboBox(Controller.Id.TIMEZONE_OFFSET,
@@ -156,17 +156,17 @@ namespace SolarbeamGui
 					},
 					new float[] {25F, 75F});
 
-			Label date_lbl = Widgets.GetLabel("Date:");
+			Label date_lbl = Widgets.GetLabelAnon("Date:");
 			Control date_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.DATE_DAY,
 						UTCDate.DAY_MIN-1,
 						UTCDate.DAY_MAX+1),
-					Widgets.GetLabel("."),
+					Widgets.GetLabelAnon("."),
 					Widgets.GetNumericUpDown(Controller.Id.DATE_MONTH,
 						UTCDate.MONTH_MIN-1,
 						UTCDate.MONTH_MAX+1),
-					Widgets.GetLabel("."),
+					Widgets.GetLabelAnon("."),
 					Widgets.GetNumericUpDown(Controller.Id.DATE_YEAR,
 						UTCDate.YEAR_MIN,
 						UTCDate.YEAR_MAX),
@@ -174,17 +174,17 @@ namespace SolarbeamGui
 					    "dst-status-nodst.png")},
 				new float[] {22F, 5F, 22F, 5F, 27F, 30F});
 			
-			Label time_lbl = Widgets.GetLabel("Time:");
+			Label time_lbl = Widgets.GetLabelAnon("Time:");
 			Control time_ins = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetNumericUpDown(Controller.Id.TIME_HOUR,
 						UTCDate.HOUR_MIN-1,
 						UTCDate.HOUR_MAX+1),
-					Widgets.GetLabel(":"),
+					Widgets.GetLabelAnon(":"),
 					Widgets.GetNumericUpDown(Controller.Id.TIME_MINUTE,
 						UTCDate.MINUTE_MIN-1,
 						UTCDate.MINUTE_MAX+1),
-					Widgets.GetLabel(":"),
+					Widgets.GetLabelAnon(":"),
 					Widgets.GetNumericUpDown(Controller.Id.TIME_SECOND,
 						UTCDate.SECOND_MIN-1,
 						UTCDate.SECOND_MAX+1),
@@ -212,13 +212,13 @@ namespace SolarbeamGui
 		{
 			Control btns = Widgets.GetLaidOut(
 				new Control[] {
-					Widgets.GetLabel(String.Empty), //layout buffer
+					Widgets.GetLabelAnon(String.Empty), //layout buffer
 					Widgets.GetButtonImageTextAnon(Controller.Id.RESETFORM_ACTION,
 					                               "Reset", "reset.png"),
-					Widgets.GetLabel(String.Empty),
+					Widgets.GetLabelAnon(String.Empty),
 					Widgets.GetButtonImageText(Controller.Id.RENDER_ACTION,
 					                           "Render", "render.png"),
-					Widgets.GetLabel(String.Empty)},
+					Widgets.GetLabelAnon(String.Empty)},
 				new float[] {15F, 30F, 15F, 30F, 15F});
 	
 			return btns;
@@ -236,37 +236,37 @@ namespace SolarbeamGui
 	
 			Control el = Widgets.GetLaidOut(
 					new Control[] {
-					Widgets.GetLabel("Sun elevation"),
-					Widgets.GetLabel(":"),
-					Widgets.GetTextBox(Controller.Id.ELEVATION, "-13.1231")},
+					Widgets.GetLabelAnon("Sun elevation"),
+					Widgets.GetLabelAnon(":"),
+					Widgets.GetTextBoxROPlain(Controller.Id.ELEVATION, "-13.1231")},
 					new float[] {19F, 2F, 25F});
 	
 			Control az = Widgets.GetLaidOut(
 					new Control[] {
-					Widgets.GetLabel("Sun azimuth"),
-					Widgets.GetLabel(":"),
-					Widgets.GetTextBox(Controller.Id.AZIMUTH, "212.6669")},
+					Widgets.GetLabelAnon("Sun azimuth"),
+					Widgets.GetLabelAnon(":"),
+					Widgets.GetTextBoxROPlain(Controller.Id.AZIMUTH, "212.6669")},
 					new float[] {19F, 2F, 25F});
 	
 			Control noon = Widgets.GetLaidOut(
 					new Control[] {
-					Widgets.GetLabel("Solar noon"),
-					Widgets.GetLabel(":"),
-					Widgets.GetTextBox(Controller.Id.SOLAR_NOON, "12:12")},
+					Widgets.GetLabelAnon("Solar noon"),
+					Widgets.GetLabelAnon(":"),
+					Widgets.GetTextBoxROPlain(Controller.Id.SOLAR_NOON, "12:12")},
 					new float[] {19F, 2F, 25F});    
 	
 			Control rise = Widgets.GetLaidOut(
 					new Control[] {
-					Widgets.GetLabel("Sunrise/Sunset"),
-					Widgets.GetLabel(":"),
-					Widgets.GetTextBox(Controller.Id.SUNRISESUNSET, "06:09")},
+					Widgets.GetLabelAnon("Sunrise/Sunset"),
+					Widgets.GetLabelAnon(":"),
+					Widgets.GetTextBoxROPlain(Controller.Id.SUNRISESUNSET, "06:09")},
 					new float[] {19F, 2F, 25F});
 	
 			Control sset = Widgets.GetLaidOut(
 					new Control[] {
-					Widgets.GetLabel("Dawn/Dusk"),
-					Widgets.GetLabel(":"),
-					Widgets.GetTextBox(Controller.Id.DAWNDUSK, "18:15")},
+					Widgets.GetLabelAnon("Dawn/Dusk"),
+					Widgets.GetLabelAnon(":"),
+					Widgets.GetTextBoxROPlain(Controller.Id.DAWNDUSK, "18:15")},
 					new float[] {19F, 2F, 25F});
 	
 			layout.Controls.Add(el, 0, 0);
@@ -290,35 +290,35 @@ namespace SolarbeamGui
 				
 			Control btns = Widgets.GetLaidOut(
 				new Control[] {
-					Widgets.GetLabel(String.Empty), //layout buffer
+					Widgets.GetLabelAnon(String.Empty), //layout buffer
 					Widgets.GetNumericUpDown(
 						Controller.Id.IMAGE_SIZE,
 						300,
 						10000),
-					Widgets.GetLabel("pixels"),
+					Widgets.GetLabelAnon("pixels"),
 					Widgets.GetButtonImageText(Controller.Id.IMAGESAVE_ACTION,
 				                           "Save", "image-save.png"),
-					Widgets.GetLabel(String.Empty)},
+					Widgets.GetLabelAnon(String.Empty)},
 				new float[] {20F, 20F, 15F, 30F, 20F});
 
 			Control sun = Widgets.GetLaidOut(
 				new Control[] {
-					Widgets.GetLabel(String.Empty), //layout buffer
+					Widgets.GetLabelAnon(String.Empty), //layout buffer
 					Widgets.GetCheckBox(
 						Controller.Id.IMAGE_SUNTOGGLE,
 						"Plot current day trajectory",
 						true),
-					Widgets.GetLabel(String.Empty)},
+					Widgets.GetLabelAnon(String.Empty)},
 				new float[] {20F, 64F, 20F});
 				
 			Control caption = Widgets.GetLaidOut(
 				new Control[] {
-					Widgets.GetLabel(String.Empty), //layout buffer
+					Widgets.GetLabelAnon(String.Empty), //layout buffer
 					Widgets.GetCheckBox(
 						Controller.Id.IMAGE_CAPTIONTOGGLE,
 						"Print caption below diagram",
 						true),
-					Widgets.GetLabel(String.Empty)},
+					Widgets.GetLabelAnon(String.Empty)},
 				new float[] {20F, 64F, 20F});
 	
 			layout.Controls.Add(sun, 0, 0);
