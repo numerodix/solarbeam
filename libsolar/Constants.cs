@@ -18,6 +18,7 @@ namespace LibSolar
 		
 		public const string GUI_FILENAME = "solarbeam.exe";
 		public const string WIN_ICON_FILENAME = "icon.ico";
+		public const string UNIX_ICON_FILENAME = "icon64.png";
 		
 		public const string APP_URL = "http://solarbeam.sourceforge.net/";
 		public const string URL_HELP = APP_URL + "explanation.php";

@@ -31,7 +31,7 @@ namespace LibSolar.Util
 		{
 			string app_path = asminfo.GetAppPath();
 			string app_file_path = Path.Combine(app_path, Constants.GUI_FILENAME);
-			string app_icon_path = Path.Combine(app_path, Constants.WIN_ICON_FILENAME);
+			string app_icon_path = Path.Combine(app_path, Constants.UNIX_ICON_FILENAME);
 			string app_exec = string.Format("mono \"{0}\"", app_file_path);
 			UnixShortcut us = new UnixShortcut(Constants.GUI_APPTITLE,
 			                                   Constants.UnixShortcutGenericName,
