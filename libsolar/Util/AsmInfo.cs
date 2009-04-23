@@ -28,6 +28,17 @@ namespace LibSolar.Util
 			return Path.GetDirectoryName(mod);
 		}
 		
+		public string InAppDir(string path)
+		{
+			string app_path = GetAppPath();
+			return Path.Combine(app_path, path);
+		}
+		
+		public string GetSerializePath(string path)
+		{
+			return InAppDir(path);
+		}
+		
 		public string GetAtt(string att_name)
 		{
 			string att_val = String.Empty;

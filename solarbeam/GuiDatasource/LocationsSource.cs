@@ -15,13 +15,14 @@ namespace SolarbeamGui
 	{
 		private List<string> locations_list;
 		private LocationList list;
-		private string file = Constants.LocationListFilename;
+		private string file;
 		
 		private AsmInfo asminfo;
 		
 		public LocationsSource(AsmInfo asminfo)
 		{
 			this.asminfo = asminfo;
+			this.file = asminfo.GetSerializePath(Constants.LocationListFilename);
 			
 			try {
 				list = GetStoredList();

@@ -95,6 +95,8 @@
     <EmbeddedResource Include="..\bundled\reset.png" />
     <EmbeddedResource Include="..\bundled\save.png" />
     <EmbeddedResource Include="..\bundled\shortcut-install.png" />
+    <EmbeddedResource Include="..\bundled\status-fail.png" />
+    <EmbeddedResource Include="..\bundled\status-ok.png" />
     <EmbeddedResource Include="..\bundled\time-now.png" />
   </ItemGroup>
 </Project>

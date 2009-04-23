@@ -11,8 +11,7 @@ namespace LibSolar.Util
 	{
 		public static void Serialize(AsmInfo asm, string path, object obj)
 		{
-			string app_path = asm.GetAppPath();
-			path = Path.Combine(app_path, path);
+			path = asm.InAppDir(path);
 			
 			using (Stream stream = File.OpenWrite(path)) {
 				BinaryFormatter formatter = new BinaryFormatter();
@@ -22,8 +21,7 @@ namespace LibSolar.Util
 		
 		public static object Deserialize(AsmInfo asm, string path)
 		{
-			string app_path = asm.GetAppPath();
-			path = Path.Combine(app_path, path);
+			path = asm.InAppDir(path);
 			
 			object obj = null;
 			using (Stream stream = File.OpenRead(path)) {

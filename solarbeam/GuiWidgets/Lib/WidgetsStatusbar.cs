@@ -13,8 +13,8 @@ namespace SolarbeamGui
 		                                                           string s)
 		{
 			ToolStripStatusLabel label = new ToolStripStatusLabel();
-			label.Dock = DockStyle.Fill;
             label.Text = s;
+			label.Dock = DockStyle.Fill;
 			Controller.RegisterControl(id, label);	// register control
 			return label;
 		}

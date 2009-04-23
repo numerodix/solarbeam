@@ -15,10 +15,16 @@ namespace SolarbeamGui
 		
 		private void InitializeComponent()
 		{
+			ToolStripStatusLabel icon =
+				Widgets.GetToolStripStatusLabel(Controller.Id.STATUSBAR_ICON,
+				                                string.Empty);
+			icon.ImageAlign = ContentAlignment.BottomCenter;
+			
 			ToolStripStatusLabel label =
-				Widgets.GetToolStripStatusLabel(Controller.Id.STATUSBAR,
+				Widgets.GetToolStripStatusLabel(Controller.Id.STATUSBAR_LABEL,
 				                                "Status");
 			
+			this.Items.Add(icon);
 			this.Items.Add(label);
 		}
 	}

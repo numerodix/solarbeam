@@ -7,8 +7,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-using LibSolar.SolarOrbit;
 using LibSolar;
+using LibSolar.Util;
 
 namespace SolarbeamGui
 {
@@ -134,7 +134,7 @@ namespace SolarbeamGui
 		private void LoadSession()
 		{	
 			// fill in initial form values
-			string file = Constants.AutoSessionFilename;
+			string file = Controller.AsmInfo.GetSerializePath(Constants.AutoSessionFilename);
 			try {
 				Controller.LoadAutoSession(file);
 				Controller.Report(new Message(Result.OK, "Loaded previous session from: " + file));
