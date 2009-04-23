@@ -116,7 +116,7 @@ namespace SolarbeamGui
 		public static void SetImage(Component control, string img)
 		{
 			if (control is Label) {
-				((Label) control).Image = new Bitmap(Controller.AsmInfo.GetResource(img));
+				((Label) control).Image = Controller.AsmInfo.GetBitmap(img);
 			}
 		}
 		

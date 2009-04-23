@@ -26,7 +26,7 @@ namespace LibSolar.Mapping
 		static MapBitmap()
 		{
 			AsmInfo asminfo = new AsmInfo(Assembly.GetExecutingAssembly());
-			MapBitmap.bitmap_map = new Bitmap(asminfo.GetResource("worldmap.png"));
+			MapBitmap.bitmap_map = asminfo.GetBitmap("worldmap.png");
 		}
 		
 		public MapBitmap(int dim_x, int dim_y, Colors colors, string font_face)

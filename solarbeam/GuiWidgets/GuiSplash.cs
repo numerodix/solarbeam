@@ -22,9 +22,9 @@ namespace SolarbeamGui
 		{
 			this.DoubleBuffered = true; // prevent flicker on updates
 			this.Text = form_title;
-			this.Icon = new Icon(Controller.AsmInfo.GetResource(icon));
+			this.Icon = Controller.AsmInfo.GetIcon(icon);
 			
-			Bitmap logo = new Bitmap(Controller.AsmInfo.GetResource("logo.png"));
+			Bitmap logo = Controller.AsmInfo.GetBitmap("logo.png");
 			this.BackgroundImage = logo;
 			
 			this.StartPosition = FormStartPosition.CenterScreen;

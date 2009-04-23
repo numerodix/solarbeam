@@ -80,11 +80,11 @@ namespace SolarbeamGui
 		{	
 			this.DoubleBuffered = true;
 			this.Text = "Create shortcuts";
-			this.Icon = new Icon(Controller.AsmInfo.GetResource(icon));
+			this.Icon = Controller.AsmInfo.GetIcon(icon);
 			
 			this.Controls.Add(GetPanel());
 			
-//			this.FormBorderStyle = FormBorderStyle.FixedDialog;
+			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 			this.StartPosition = FormStartPosition.CenterParent;
 			this.ClientSize = new Size(550, 362);
 			

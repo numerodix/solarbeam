@@ -22,7 +22,7 @@ namespace SolarbeamGui
 		{	
 			this.DoubleBuffered = true;
 			this.Text = "About " + app_title;
-			this.Icon = new Icon(Controller.AsmInfo.GetResource(icon));
+			this.Icon = Controller.AsmInfo.GetIcon(icon);
 			
 			Control logo = GetLogo();
 			Control tabs = GetTabs();
@@ -61,7 +61,7 @@ namespace SolarbeamGui
 		private Control GetLogo()
 		{
 			Panel panel = new Panel();
-			Bitmap logo = new Bitmap(Controller.AsmInfo.GetResource("logo.png"));
+			Bitmap logo = Controller.AsmInfo.GetBitmap("logo.png");
 			panel.BackgroundImage = logo;
 			panel.Size = logo.Size;
 			

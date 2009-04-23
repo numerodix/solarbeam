@@ -53,7 +53,7 @@ namespace SolarbeamGui
 		{
 			this.DoubleBuffered = true;
 			this.Text = form_title;
-			this.Icon = new Icon(Controller.AsmInfo.GetResource(icon));
+			this.Icon = Controller.AsmInfo.GetIcon(icon);
 			
 			// init datasources before instantiating widgets
 			Controller.InitSources();

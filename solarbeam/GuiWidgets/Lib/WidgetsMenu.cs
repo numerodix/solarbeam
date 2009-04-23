@@ -31,7 +31,7 @@ namespace SolarbeamGui
 			item.Name = s;
             //item.Size = new System.Drawing.Size(152, 22);
             item.Text = s;
-			item.Image = new Bitmap(Controller.AsmInfo.GetResource(img));
+			item.Image = Controller.AsmInfo.GetBitmap(img);
 			Controller.RegisterControl(id, item);	// register control
 			return item;
 		}

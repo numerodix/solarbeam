@@ -2,6 +2,7 @@
 // Licensed under the GNU Public License, version 3.
 
 using System;
+using System.Drawing;
 using System.IO;
 using System.Reflection;
 
@@ -63,7 +64,17 @@ namespace LibSolar.Util
 			return s;
 		}
 		
-		public Stream GetResource(string name)
+		public Bitmap GetBitmap(string name)
+		{
+			return new Bitmap(GetResource(name));
+		}
+		
+		public Icon GetIcon(string name)
+		{
+			return new Icon(GetResource(name));
+		}
+		
+		private Stream GetResource(string name)
 		{
 			Stream stream = asm.GetManifestResourceStream(name);
 			if (stream == null) {

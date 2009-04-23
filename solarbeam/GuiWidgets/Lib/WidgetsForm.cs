@@ -26,7 +26,7 @@ namespace SolarbeamGui
 		                                        string s, string img)
 		{
 			Button button = new Button();
-			button.Image = new Bitmap(Controller.AsmInfo.GetResource(img));
+			button.Image = Controller.AsmInfo.GetBitmap(img);
 			button.Text = s;
 			button.TextImageRelation = TextImageRelation.ImageBeforeText;
 			button.FlatStyle = FlatStyle.Flat;
@@ -38,7 +38,7 @@ namespace SolarbeamGui
 		public static Button GetButtonImage(Controller.Id id, string img)
 		{
 			Button button = new Button();
-			button.Image = new Bitmap(Controller.AsmInfo.GetResource(img));
+			button.Image = Controller.AsmInfo.GetBitmap(img);
 //			button.MinimumSize = button.Image.Size;
 			button.FlatStyle = FlatStyle.Flat;
 			button.FlatAppearance.BorderSize = 0;
@@ -99,7 +99,7 @@ namespace SolarbeamGui
 		public static Label GetLabelImage(Controller.Id id, string img)
 		{
 			Label label = new Label();
-			label.Image = new Bitmap(Controller.AsmInfo.GetResource(img));
+			label.Image = Controller.AsmInfo.GetBitmap(img);
 			Controller.RegisterControl(id, label);	// register control
 			return label;
 		}
