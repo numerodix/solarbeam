@@ -29,11 +29,11 @@ namespace SolarbeamGui
 				SetValue(registry[Id.SHORTCUT_PATH_2_DETECT], path2);
 				SetValue(registry[Id.SHORTCUT_PATH_2_INPUT], path2);
 			} else if (pn == PlatformName.Unix) {
-				path1 = Platform.GetPath(PathType.UnixLocalXDGApplications);
+				path1 = Platform.GetPath(PathType.UnixGlobalXDGApplications);
 				SetValue(registry[Id.SHORTCUT_PATH_1_DETECT], path1);
-				SetValue(registry[Id.SHORTCUT_PATH_1_INPUT], path1);
-				path2 =  Platform.GetPath(PathType.UnixGlobalXDGApplications);
+				path2 =  Platform.GetPath(PathType.UnixLocalXDGApplications);
 				SetValue(registry[Id.SHORTCUT_PATH_2_DETECT], path2);
+				SetValue(registry[Id.SHORTCUT_PATH_2_INPUT], path2);
 			}
 			
 			if (Directory.Exists(path1))

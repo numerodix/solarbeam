@@ -56,19 +56,19 @@ namespace SolarbeamGui
 				string p2_chk = GuiMainForm.shortcutform.GetString(pn, Id.SHORTCUT_PATH_2_CHECK);
 				((CheckBox) registry[Id.SHORTCUT_PATH_2_CHECK]).Text = p2_chk;
 				
-				// hide path 2 on unix, unused
+				// hide path 1 on unix, unused
 				if (pn == PlatformName.Unix) {
 					SetVisibles(false, new object[] {
-						registry[Id.SHORTCUT_PATH_2_CHECK],
-						registry[Id.SHORTCUT_PATH_2_CHECKLABEL],
-						registry[Id.SHORTCUT_PATH_2_INPUT],
-						registry[Id.SHORTCUT_PATH_2_BROWSE_ACTION]});
+						registry[Id.SHORTCUT_PATH_1_CHECK],
+						registry[Id.SHORTCUT_PATH_1_CHECKLABEL],
+						registry[Id.SHORTCUT_PATH_1_INPUT],
+						registry[Id.SHORTCUT_PATH_1_BROWSE_ACTION]});
 				} else {
 					SetVisibles(true, new object[] {
-						registry[Id.SHORTCUT_PATH_2_CHECK],
-						registry[Id.SHORTCUT_PATH_2_CHECKLABEL],
-						registry[Id.SHORTCUT_PATH_2_INPUT],
-						registry[Id.SHORTCUT_PATH_2_BROWSE_ACTION]});
+						registry[Id.SHORTCUT_PATH_1_CHECK],
+						registry[Id.SHORTCUT_PATH_1_CHECKLABEL],
+						registry[Id.SHORTCUT_PATH_1_INPUT],
+						registry[Id.SHORTCUT_PATH_1_BROWSE_ACTION]});
 				}
 				
 				DetectPaths(pn);
@@ -126,12 +126,12 @@ namespace SolarbeamGui
 					}
 				}
 			} else if (pn == PlatformName.Unix) {
-				if (path1_b) {
+				if (path2_b) {
 					try {
-						si.UnixShortcutTo(path1_s);
-						Controller.Report(new Message(Result.OK, "Created shortcut in: " + path1_s));
+						si.UnixShortcutTo(path2_s);
+						Controller.Report(new Message(Result.OK, "Created launcher in: " + path2_s));
 					} catch {
-						Controller.Report(new Message(Result.Fail, "Failed to create shortcut in: " + path1_s));	
+						Controller.Report(new Message(Result.Fail, "Failed to create launcher in: " + path2_s));	
 					}
 				}
 			}

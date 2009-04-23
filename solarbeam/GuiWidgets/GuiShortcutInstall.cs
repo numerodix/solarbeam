@@ -34,10 +34,10 @@ namespace SolarbeamGui
 			SetString(PlatformName.Windows, Controller.Id.SHORTCUT_PATH_1_CHECK, "Desktop");
 			SetString(PlatformName.Windows, Controller.Id.SHORTCUT_PATH_2_CHECK, "Start Menu");
 			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_DESC, GetDescUnix());
-			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_1_LABEL, "XDG local");
-			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_2_LABEL, "XDG global");
-			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_1_CHECK, "XDG local");
-			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_2_CHECK, string.Empty);
+			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_1_LABEL, "XDG global");
+			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_2_LABEL, "XDG local");
+			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_1_CHECK, string.Empty);
+			SetString(PlatformName.Unix, Controller.Id.SHORTCUT_PATH_2_CHECK, "XDG local");
 		}
 		
 		private void SetString(PlatformName pn, Controller.Id id, string s)
@@ -224,7 +224,9 @@ namespace SolarbeamGui
 						Controller.Id.SHORTCUT_PATH_1_CHECK,
 						"Desktop",
 						true),
-					Widgets.GetLabelAnon(":"),
+					Widgets.GetLabel(
+						Controller.Id.SHORTCUT_PATH_1_CHECKLABEL,
+						":"),
 					Widgets.GetTextBoxRW(
 						Controller.Id.SHORTCUT_PATH_1_INPUT,
 						string.Empty),
@@ -239,9 +241,7 @@ namespace SolarbeamGui
 						Controller.Id.SHORTCUT_PATH_2_CHECK,
 						"Start menu",
 						true),
-					Widgets.GetLabel(
-						Controller.Id.SHORTCUT_PATH_2_CHECKLABEL,
-						":"),
+					Widgets.GetLabelAnon(":"),
 					Widgets.GetTextBoxRW(
 						Controller.Id.SHORTCUT_PATH_2_INPUT,
 						string.Empty),
