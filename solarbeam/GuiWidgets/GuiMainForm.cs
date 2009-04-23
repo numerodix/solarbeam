@@ -46,6 +46,8 @@ namespace SolarbeamGui
 			
 			this.AutoScaleMode = AutoScaleMode.Font;
 			this.ClientSize = GetFormSize();
+			this.MinimumSize = new Size(ClientSize.Width + (Size.Width - ClientSize.Width),
+			                            ClientSize.Height + (Size.Height - ClientSize.Height));
 //			this.ResumeLayout(false);
 //			this.PerformLayout();
 		}
