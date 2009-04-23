@@ -22,7 +22,7 @@
 <? include("releases.php"); ?>
 
 		<h2>System requirements</h2>
-		<p>SolarBeam needs .NET 2.0+ or Mono 2.0+ to run.</p>
+		<p>SolarBeam needs .NET 2.0+ or Mono 2.0+ to run and a display resolution of 1024x768 or higher.</p>
 
 		<p>On a Windows system, .NET is most likely already installed (comes preinstalled on Windows Vista), but if not you can download it <a href="http://www.microsoft.com/NET/">here</a>.</p>
 
