@@ -70,6 +70,7 @@ namespace SolarbeamGui
 			IMAGESAVE_ACTION,
 			DIAGRAM,
 			MAP,
+			STATUSBAR,
 
 			SHORTCUT_PLATFORM,
 			SHORTCUT_DESC,

@@ -26,6 +26,7 @@ namespace SolarbeamGui
 		
 		// my widgets
 		private GuiMenu menu;
+		private GuiStatusbar statusbar;
 		private GuiControlPanel controlpanel;
 		private GuiDiagram diagram;
 		
@@ -60,18 +61,19 @@ namespace SolarbeamGui
 			
 			Controller.SplashQueue.Enqueue("Initializing gui");
 			this.menu = new GuiMenu();
+			this.statusbar = new GuiStatusbar();
 			Control mainarea = GetMainArea();
 			
 			this.MainMenuStrip = menu;
-			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(2, 1, 0, BORDER);
+			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(3, 1, 0, BORDER);
 			
-			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute,
-			                                        menu.Height));
-			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute,
-			                                        mainarea.Height));
+			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, menu.Height));
+			layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, statusbar.Height));
 			
 			layout.Controls.Add(menu, 0, 0);
 			layout.Controls.Add(mainarea, 0, 1);
+			layout.Controls.Add(statusbar, 0, 2);
 			
 			this.Controls.Add(layout);
 			
@@ -132,7 +134,7 @@ namespace SolarbeamGui
 		{
 			int width = DIAGRAM_DIM_X + GuiControlPanel.WIDTH;
 			int height = Math.Max(DIAGRAM_DIM_Y, GuiControlPanel.HEIGHT)
-				+ this.menu.Height;
+				+ this.menu.Height + this.statusbar.Height;
 			return new Size(width, height);
 		}
 		
@@ -144,6 +146,7 @@ namespace SolarbeamGui
 			                - BORDER*2,
 			                this.ClientSize.Height
 			                - this.menu.Height
+			                - this.statusbar.Height
 			                - 30 // tabcontrol
 			                - BORDER*2);
 		}
