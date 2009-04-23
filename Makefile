@@ -37,6 +37,8 @@ lines:
 	@find -iname '*.cs' | xargs cat | wc -l
 	@echo -n " *   original     :  "
 	@find libsolar console solarbeam  -iname '*.cs' | xargs cat | wc -l
+	@echo -n " *     written    :  "
+	@find libsolar console solarbeam  -iname '*.cs' | grep -v 'LocationListData.cs' | xargs cat | wc -l
 	@echo -n " *     generated  :  "
 	@find libsolar -iname 'LocationListData.cs' | xargs cat | wc -l
 	@echo -n " *   libs         :  "
