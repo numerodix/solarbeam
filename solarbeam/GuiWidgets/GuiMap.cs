@@ -105,11 +105,6 @@ namespace SolarbeamGui
 			int canvas_pos_x = (vp_size.Width/2) - (canvas_size.Width/2);
 			int canvas_pos_y = (vp_size.Height/2) - (canvas_size.Height/2);
 
-//			Console.WriteLine("GuiMap vp_size.Width {0}", vp_size.Width);
-//			Console.WriteLine("GuiMap canvas_size.Width {0}", canvas_size.Width);
-//			Console.WriteLine("GuiMap vp_size.Height {0}", vp_size.Height);
-//			Console.WriteLine("GuiMap canvas_size.Height {0}", canvas_size.Height);
-			
 			using (Graphics gr = this.CreateGraphics())
 			using (BufferedGraphics frame = 
 				      buffercontext.Allocate(gr, this.ClientRectangle))
@@ -144,12 +139,6 @@ namespace SolarbeamGui
 			int w = Math.Max(1, vp_size.Width - BORDER_W*5);
 			int h = Math.Max(1, vp_size.Height - BORDER_H*2);
 			
-//			Console.WriteLine("GuiMap this.ClientSize.Width {0}", this.ClientSize.Width);
-//			Console.WriteLine("GuiMap w {0}", w);
-//			Console.WriteLine("GuiMap this.ClientSize.Height {0}", this.ClientSize.Height);
-//			Console.WriteLine("GuiMap h {0}", h);
-//			Console.WriteLine("");
-
 			return new Size(w, h);
 		}
 		
