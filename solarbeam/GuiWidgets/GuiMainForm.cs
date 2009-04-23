@@ -8,6 +8,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 using LibSolar.SolarOrbit;
+using LibSolar;
 
 namespace SolarbeamGui
 {
@@ -90,23 +91,10 @@ namespace SolarbeamGui
 
 		}
 			
-		public void OnQuit(object o, EventArgs a)
-		{
-			Controller.LocationsSource.StoreList();
-			Controller.SaveAutoSession();
-		}
-		
 		private Control GetMainArea()
 		{
 			this.controlpanel = new GuiControlPanel();
-			
-			// fill in initial form values
-			try {
-				Controller.LoadAutoSession();
-			} catch {
-				Controller.InitForm();
-			}
-			
+
 			Control tabcontrol = Widgets.GetTabControl(
 				new Control[] {
 					new GuiDiagram(this),
@@ -125,11 +113,35 @@ namespace SolarbeamGui
 			layout.Controls.Add(controlpanel, 0, 0);
 			layout.Controls.Add(tabcontrol, 1, 0);
 			
+			// load autosession
+			LoadSession();
+			
 			// initial rendering
 			Controller.RenderDiagram(null, null);
 			Controller.UpdateMap(null, null);
 			
 			return layout;
+		}
+		
+		public void OnQuit(object o, EventArgs a)
+		{
+			try {
+			Controller.LocationsSource.StoreList();
+			Controller.SaveAutoSession();
+			} catch {} // ignore failures, too late to report to user
+		}
+		
+		private void LoadSession()
+		{	
+			// fill in initial form values
+			string file = Constants.AutoSessionFilename;
+			try {
+				Controller.LoadAutoSession(file);
+				Controller.Report(new Message(Result.OK, "Loaded previous session from: " + file));
+			} catch {
+				Controller.InitForm();
+				Controller.Report(new Message(Result.Fail, "Failed to load previous session from: " + file));
+			}	
 		}
 		
 		private Size GetFormSize()

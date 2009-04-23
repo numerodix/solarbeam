@@ -61,6 +61,8 @@
     <Compile Include="GuiLogic\ReaderAux.cs" />
     <Compile Include="GuiWidgets\GuiStatusbar.cs" />
     <Compile Include="GuiWidgets\Lib\WidgetsStatusbar.cs" />
+    <Compile Include="GuiLogic\Reporter.cs" />
+    <Compile Include="GuiLogic\Types\Message.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

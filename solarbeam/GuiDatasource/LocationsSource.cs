@@ -77,5 +77,8 @@ namespace SolarbeamGui
 		
 		public List<string> Locations
 		{ get { return locations_list; } }
+		
+		public string File
+		{ get { return file; } }
 	}	
 }

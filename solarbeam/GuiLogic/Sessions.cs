@@ -31,13 +31,13 @@ namespace SolarbeamGui
 			Serializer.Serialize(Controller.AsmInfo, Constants.AutoSessionFilename, dict);
 		}
 		
-		public static void LoadAutoSession()
+		public static void LoadAutoSession(string file)
 		{
 			// get a new dict, apparently cannot write to cache while 
 			// enumerating (wtf?)
 			Dictionary<Id,string> dict = 
 				(Dictionary<Id,string>) Serializer.Deserialize(Controller.AsmInfo,
-				                                               Constants.AutoSessionFilename);
+				                                               file);
 			
 			// if key found in dict is in cache, set it and set the widget
 			foreach (KeyValuePair<Id,string> pair in dict) {

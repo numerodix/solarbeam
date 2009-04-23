@@ -39,7 +39,12 @@ namespace SolarbeamGui
 				filename = dlg.FileName;
 				
 				if (ans == DialogResult.OK) {
-					WriteSession(filename);
+					try {
+						WriteSession(filename);
+						Controller.Report(new Message(Result.OK, "Saved session to: " + filename));
+					} catch {
+						Controller.Report(new Message(Result.Fail, "Failed to save session to: " + filename));
+					}
 				}
 			}
 		}
@@ -52,7 +57,12 @@ namespace SolarbeamGui
 			string filename = dlg.FileName;
 			
 			if (ans == DialogResult.OK) {
-				ReadSession(filename);
+				try {
+					ReadSession(filename);
+					Controller.Report(new Message(Result.OK, "Loaded session from: " + filename));
+				} catch {
+					Controller.Report(new Message(Result.Fail, "Failed to load session from: " + filename));
+				}
 			}
 		}
 		
@@ -101,7 +111,12 @@ namespace SolarbeamGui
 				LocationsSource.UpdateLocation(name, tz, pos);
 			}
 			
-			LocationsSource.StoreList();
+			try {
+				LocationsSource.StoreList();
+				Controller.Report(new Message(Result.OK, "Saved location to: " + LocationsSource.File));
+			} catch {
+				Controller.Report(new Message(Result.Fail, "Failed to save location to: " + LocationsSource.File));
+			}
 		}
 		
 		private static void DeleteLocation(object sender, EventArgs args)
@@ -256,7 +271,13 @@ namespace SolarbeamGui
 						bitmap = grbit.RenderCurrentDay(bitmap, pos, dt);
 					if (caption_b)
 						bitmap = grbit.RenderCaption(new CaptionInfo(location, pos, dt));
-					grbit.SaveBitmap(bitmap, filename);
+					
+					try {
+						grbit.SaveBitmap(bitmap, filename);
+						Controller.Report(new Message(Result.OK, "Saved image to: " + filename));
+					} catch {
+						Controller.Report(new Message(Result.Fail, "Failed to save image to: " + filename));
+					}
 				}
 			}
 		}

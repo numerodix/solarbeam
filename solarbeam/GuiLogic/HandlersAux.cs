@@ -30,22 +30,6 @@ namespace SolarbeamGui
 			
 			DetectPaths(pn);
 			
-/*			Component platform = registry[Id.SHORTCUT_PLATFORM];
-			Component desktop = registry[Id.SHORTCUT_DESKTOP];
-			Component startmenu = registry[Id.SHORTCUT_STARTMENU];
-			
-			Button create_btn = (Button) registry[Id.SHORTCUTINSTALL_ACTION];
-			
-			create_btn.Enabled = true;
-			PlatformName platform_name = Platform.GetPlatform();
-			if (platform_name == PlatformName.Windows) {
-				SetValue(desktop, Platform.GetPath(PathType.Desktop));
-				SetValue(startmenu, Platform.GetPath(PathType.WindowsStartMenu));
-			} else {
-				create_btn.Enabled = false;
-			}
-			SetValue(platform, platform_name.ToString());
-*/			
 			GuiMainForm.shortcutform.Show();
 		}
 		
@@ -125,13 +109,31 @@ namespace SolarbeamGui
 			PlatformName pn = ReadPlatform();
 			ShortcutInstaller si = new ShortcutInstaller(Controller.AsmInfo);
 			if (pn == PlatformName.Windows) {
-				if (path1_b)
-					si.WindowsShortcutTo(path1_s);
-				if (path2_b)
-					si.WindowsShortcutTo(path2_s);
-			} else if (pn == PlatformName.Unix) {	
-				if (path1_b)
-					si.UnixShortcutTo(path1_s);
+				if (path1_b) {
+					try {
+						si.WindowsShortcutTo(path1_s);
+						Controller.Report(new Message(Result.OK, "Created shortcut in: " + path1_s));
+					} catch {
+						Controller.Report(new Message(Result.Fail, "Failed to create shortcut in: " + path1_s));
+					}
+				}
+				if (path2_b) {
+					try {
+						si.WindowsShortcutTo(path2_s);
+						Controller.Report(new Message(Result.OK, "Created shortcut in: " + path2_s));
+					} catch {
+						Controller.Report(new Message(Result.Fail, "Failed to create shortcut in: " + path2_s));
+					}
+				}
+			} else if (pn == PlatformName.Unix) {
+				if (path1_b) {
+					try {
+						si.UnixShortcutTo(path1_s);
+						Controller.Report(new Message(Result.OK, "Created shortcut in: " + path1_s));
+					} catch {
+						Controller.Report(new Message(Result.Fail, "Failed to create shortcut in: " + path1_s));	
+					}
+				}
 			}
 		}
 		
