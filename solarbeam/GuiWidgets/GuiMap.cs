@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 using LibSolar.Mapping;
 using LibSolar.Types;
+using LibSolar.Util;
 
 namespace SolarbeamGui
 {
@@ -66,7 +67,8 @@ namespace SolarbeamGui
 			this.position = pos;
 			this.location = location;
 			
-			this.bitmap_final = null;
+			NullifyFinalizedBitmap();
+			
 			RePaint();
 		}
 		
@@ -130,6 +132,12 @@ namespace SolarbeamGui
 		private Bitmap GenerateFinalizedBitmap()
 		{
 			return mapbitmap.RenderCurrentPositionCloned(location, position);
+		}
+		
+		private void NullifyFinalizedBitmap()
+		{
+			Memory.Collect(this.bitmap_final);
+			this.bitmap_final = null;
 		}
 		
 		private Size GetCanvasDimensions()

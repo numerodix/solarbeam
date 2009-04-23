@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 using LibSolar.Graphing;
 using LibSolar.Types;
+using LibSolar.Util;
 
 namespace SolarbeamGui
 {
@@ -59,7 +60,8 @@ namespace SolarbeamGui
 		{
 			this.date = date;
 			
-			this.bitmap_final = null;
+			NullifyFinalizedBitmap();
+			
 			RePaint();
 		}
 		
@@ -68,8 +70,9 @@ namespace SolarbeamGui
 			this.position = pos;
 			this.date = date;
 			
-			this.bitmap_base = null;
-			this.bitmap_final = null;
+			NullifyBaseImageBitmap();
+			NullifyFinalizedBitmap();
+			
 			RePaint();
 		}
 		
@@ -130,9 +133,21 @@ namespace SolarbeamGui
 			return graphbitmap.RenderBaseImage(position, date.Value);
 		}
 		
+		private void NullifyBaseImageBitmap()
+		{
+			Memory.Collect(this.bitmap_base);
+			this.bitmap_base = null;
+		}
+		
 		private Bitmap GenerateFinalizedBitmap()
 		{
 			return graphbitmap.RenderCurrentDayCloned(position, date.Value);
+		}
+		
+		private void NullifyFinalizedBitmap()
+		{
+			Memory.Collect(this.bitmap_final);
+			this.bitmap_final = null;
 		}
 		
 		private int GetCanvasDimensions()
