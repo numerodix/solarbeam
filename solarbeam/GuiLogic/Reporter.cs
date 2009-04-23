@@ -22,7 +22,7 @@ namespace SolarbeamGui
 			} else if (msg.Result == Result.Fail) {
 				icon = Controller.AsmInfo.GetBitmap("status-fail.png");
 			}
-			((ToolStripStatusLabel) registry[Id.STATUSBAR_ICON]).Image = icon;
+			((ToolStripStatusLabel) registry[Id.STATUSBAR_LABEL]).Image = icon;
 		}
 	}
 }
