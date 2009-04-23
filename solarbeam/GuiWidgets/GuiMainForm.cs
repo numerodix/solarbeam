@@ -126,8 +126,8 @@ namespace SolarbeamGui
 		public void OnQuit(object o, EventArgs a)
 		{
 			try {
-			Controller.LocationsSource.StoreList();
-			Controller.SaveAutoSession();
+				Controller.LocationsSource.StoreList();
+				Controller.SaveAutoSession();
 			} catch {} // ignore failures, too late to report to user
 		}
 		
