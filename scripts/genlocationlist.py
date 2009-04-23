@@ -783,7 +783,7 @@ def codegenloc(loc):
 
 def codegen(locs):
     t = time.localtime()
-    t_s = "on %s.%s.%s\n\n" % (t.tm_mday, t.tm_mon, t.tm_year)
+    t_s = "%s.%s.%s\n\n" % (t.tm_mday, t.tm_mon, t.tm_year)
 
     pre = "// Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>\n"
     pre += "// Licensed under the GNU Public License, version 3.\n"
