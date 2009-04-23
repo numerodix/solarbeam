@@ -58,7 +58,7 @@ namespace SolarbeamGui
 		{
 			string s = "On Windows, {0} can create shortcuts on the Desktop";
 			s += " and in the Start Menu.\n";
-			s += "(You can safely rerun this to overwrite any existing {1} icons.)";
+			s += "(You can safely rerun this to overwrite any existing {1} shortcuts.)";
 			s = string.Format(s, Constants.GUI_APPTITLE, Constants.GUI_APPTITLE);
 			
 			return s;
@@ -66,10 +66,10 @@ namespace SolarbeamGui
 		
 		public static string GetDescUnix()
 		{
-			string s = "On Unix, {0} can create launchers in the application";
+			string s = "On Unix, {0} can create a launcher in the application";
 			s += " menu in accordance with the http://freedesktop.org standard";
 			s += " (supported by Gnome, KDE and other desktop environments).";
-			s += "\n(You can safely rerun this to overwrite any existing {1} icons.)";
+			s += "\n(You can safely rerun this to overwrite any existing {1} launcher.)";
 			s = string.Format(s, Constants.GUI_APPTITLE, Constants.GUI_APPTITLE);
 			
 			return s;
