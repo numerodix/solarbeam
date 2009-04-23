@@ -86,7 +86,7 @@ namespace SolarbeamGui
 			
 //			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 			this.StartPosition = FormStartPosition.CenterParent;
-			this.ClientSize = new Size(500, 390);
+			this.ClientSize = new Size(550, 362);
 			
 			// prevent disposal by intercepting Close() and calling Hide()
 			this.Closing += delegate (object o, CancelEventArgs args) {
@@ -127,7 +127,7 @@ namespace SolarbeamGui
 			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
 			
 			layout.Controls.Add(desc, 0, 1);
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 80));
+			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 60));
 			
 			layout.Controls.Add(pathdetect, 0, 2);
 			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
@@ -185,7 +185,7 @@ namespace SolarbeamGui
 					Widgets.GetTextBoxRO(
 						Controller.Id.SHORTCUT_PATH_1_DETECT,
 						string.Empty)},
-				new float[] {10F, 2F, 33F});
+				new float[] {7F, 2F, 32F});
 			
 			Control startmenu = Widgets.GetLaidOut(
 				new Control[] {
@@ -196,7 +196,7 @@ namespace SolarbeamGui
 					Widgets.GetTextBoxRO(
 						Controller.Id.SHORTCUT_PATH_2_DETECT,
 						string.Empty)},
-				new float[] {10F, 2F, 33F});
+				new float[] {7F, 2F, 32F});
 			
 			layout.Controls.Add(desktop, 0, 0);
 			layout.Controls.Add(startmenu, 0, 1);
@@ -231,7 +231,7 @@ namespace SolarbeamGui
 					Widgets.GetButtonImageText(
 						Controller.Id.SHORTCUT_PATH_1_BROWSE_ACTION,
 						"Browse", "browse.png")},
-				new float[] {13F, 2F, 35F, 10F});
+				new float[] {10.5F, 2F, 38F, 9.5F});
 			
 			Control startmenu = Widgets.GetLaidOut(
 				new Control[] {
@@ -248,7 +248,7 @@ namespace SolarbeamGui
 					Widgets.GetButtonImageText(
 						Controller.Id.SHORTCUT_PATH_2_BROWSE_ACTION,
 						"Browse", "browse.png")},
-				new float[] {13F, 2F, 35F, 10F});
+				new float[] {10.5F, 2F, 38F, 9.5F});
 			
 			Control buttons = Widgets.GetLaidOut(
 				new Control[] {
@@ -284,7 +284,7 @@ namespace SolarbeamGui
 						Controller.Id.SHORTCUTCLOSE_ACTION,
 						"&Close",
 						"app-exit.png")},
-				new float[] {80F, 20F});
+				new float[] {85F, 15F});
 			
 			return buttons;
 		}
