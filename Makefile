@@ -31,31 +31,33 @@ darch:
 	rm -rf ~/t/solarbeam/ /ex/solarbeam && cp -ar ~/code/solarbeam/ ~/t && cp -ar ~/code/solarbeam/ /ex/solarbeam
 
 lines:
-	@echo -n " * Codebase     :  "
+	@echo -n " * Codebase       :  "
 	@find -iname '*.cs' -o -iname '*.py' -o -iname '*.pl' -o -iname '*.js' -o -iname '*.html' | xargs cat | wc -l
-	@echo -n " * C#           :  "
+	@echo -n " * C#             :  "
 	@find -iname '*.cs' | xargs cat | wc -l
-	@echo -n " *   original   :  "
+	@echo -n " *   original     :  "
 	@find libsolar console solarbeam  -iname '*.cs' | xargs cat | wc -l
-	@echo -n " *   libs       :  "
+	@echo -n " *     generated  :  "
+	@find libsolar -iname 'LocationListData.cs' | xargs cat | wc -l
+	@echo -n " *   libs         :  "
 	@find libpublicdomain -iname '*.cs' | xargs cat | wc -l
-	@echo -n " * Python       :  "
+	@echo -n " * Python         :  "
 	@find -iname '*.py' | xargs cat | wc -l
-	@echo -n " * Perl         :  "
+	@echo -n " * Perl           :  "
 	@find -iname '*.pl' | xargs cat | wc -l
-	@echo -n " * PHP          :  "
+	@echo -n " * PHP            :  "
 	@find -iname '*.php' | xargs cat | wc -l
-	@echo -n " * HTML         :  "
+	@echo -n " * HTML           :  "
 	@find -iname '*.html' | xargs cat | wc -l
-	@echo -n " *   libs       :  "
+	@echo -n " *   libs         :  "
 	@find -iname '*.html' | xargs cat | wc -l
-	@echo -n " * Javascript   :  "
+	@echo -n " * Javascript     :  "
 	@find -iname '*.js' | xargs cat | wc -l
-	@echo -n " *   original   :  "
+	@echo -n " *   original     :  "
 	@find web -iname '*.js' | xargs cat | wc -l
-	@echo -n " *   libs       :  "
+	@echo -n " *   libs         :  "
 	@find ref -iname '*.js' | xargs cat | wc -l
-	@echo -n " * CSS          :  "
+	@echo -n " * CSS            :  "
 	@find -iname '*.css' | xargs cat | wc -l
 
 webup:
