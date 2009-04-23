@@ -1,7 +1,7 @@
 // Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
 // Licensed under the GNU Public License, version 3.
 //
-// Generated with ./genlocationlist.py on on 15.4.2009
+// Generated with ./genlocationlist.py on 23.4.2009
 
 using LibSolar.Types;
 
