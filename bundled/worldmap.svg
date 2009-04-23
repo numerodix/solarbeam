@@ -15,7 +15,10 @@
    sodipodi:version="0.32"
    inkscape:version="0.46"
    sodipodi:docname="worldmap.svg"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="/home/alex/code/solarbeam/bundled/worldmap.png"
+   inkscape:export-xdpi="136.81"
+   inkscape:export-ydpi="136.81">
   <sodipodi:namedview
      inkscape:window-height="720"
      inkscape:window-width="1272"
@@ -29,11 +32,11 @@
      pagecolor="#ffffff"
      id="base"
      showgrid="false"
-     inkscape:zoom="5.8618087"
-     inkscape:cx="842.48173"
-     inkscape:cy="50.83872"
+     inkscape:zoom="10.197115"
+     inkscape:cx="883.08097"
+     inkscape:cy="222.54706"
      inkscape:window-x="0"
-     inkscape:window-y="35"
+     inkscape:window-y="19"
      inkscape:current-layer="layer2" />
   <metadata
      id="metadata24111">
@@ -8751,17 +8754,34 @@
      style="display:inline" />
   <g
      inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="markings">
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#7f7f7f;stroke-width:2.58030962999999991;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:20.64247707000000176, 20.64247707000000176;stroke-dashoffset:0"
+       d="M 2644.742,61.917252 L 2644.7116,1457.3379"
+       id="path5617" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#7f7f7f;stroke-width:2.58030959;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:20.64247675,20.64247675;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 1265.8216,63.216244 L 1265.7912,1458.6374"
+       id="path5619" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#7f7f7f;stroke-width:2.58030963;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:20.64247617, 20.64247617;stroke-dashoffset:0;stroke-opacity:1"
+       d="M -28.853811,761.60687 L 2724.1871,761.63728"
+       id="path5621" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="border"
      style="display:inline">
     <rect
-       style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1.61269354999999992;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#8f8f8f;stroke-width:1.61269354999999992;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4844"
        width="2756.6753"
        height="1395.3624"
        x="-30.610552"
        y="62.220257"
-       rx="1.3256929"
+       rx="0"
        ry="10.548593"
        inkscape:export-filename="/home/alex/code/solarbeam/bundled/worldmap.png"
        inkscape:export-xdpi="136.81"
