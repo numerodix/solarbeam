@@ -6,12 +6,11 @@ zip:
 	mkdir -p dist/solarbeam
 	make
 	for d in `find . -type d -iname "Release"`; do cp $$d/* dist/solarbeam; done
+	rm dist/solarbeam/nunit.framework.dll
 	cp bundled/icon.ico dist/solarbeam
 	cp bundled/icon64.png dist/solarbeam
-	rm dist/solarbeam/nunit.framework.dll
-	(cd dist/solarbeam ; mono solarbeam.exe -init)
-	cd ..
-	zip -j dist/solarbeam.zip dist/solarbeam/*
+	(cd dist/solarbeam && mono solarbeam.exe -init && rm autosave.bin)
+	(cd dist && zip solarbeam.zip solarbeam/*)
 	rm -rf dist/solarbeam
 
 apidocs:
