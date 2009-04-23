@@ -137,11 +137,6 @@ namespace LibSolar.Graphing
 			int b = caption.B;
 			
 			g.DrawImage(bitmap, a, b, w, h);
-			
-			using (SolidBrush br = new SolidBrush(colors.GraphFg))
-			using (Pen pen = new Pen(br)) {
-				g.DrawRectangle(pen, a, b, w ,h);
-			}
 		}
 		
 		private int GetInc(Caption caption)
