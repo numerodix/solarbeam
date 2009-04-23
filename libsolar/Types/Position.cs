@@ -241,9 +241,16 @@ namespace LibSolar.Types
 		public static int GetGeographicTimezoneOffset(Position pos)
 		{
 			Degree v = pos.LongitudeDegree;
-			int lon = CollapsePositionUnits(v.Direction,
-			                                v.Deg, v.Min, v.Sec) / 3600;
-			return lon / 15;
+			double lon = (double) CollapsePositionUnits(v.Direction,
+			                                            v.Deg,
+			                                            v.Min,
+			                                            v.Sec) / 3600.0;
+			
+			// center around 0
+			if (lon >= 0) lon = lon + 7.5;
+			else lon = lon - 7.5;
+			
+			return (int) (lon / 15.0);
 		}
 
 		public double Latitude
