@@ -77,6 +77,7 @@ namespace SolarbeamGui
 		{
 			GuiMainForm mainform =
 				new GuiMainForm(Controller.AsmInfo.GetAtt("Title"), icon);
+			mainform.OnQuit(null, null); // generate locations file
 		}
 		
 		private static void TimeBitmapCreate()

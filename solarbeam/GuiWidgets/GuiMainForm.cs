@@ -86,7 +86,7 @@ namespace SolarbeamGui
 
 		}
 			
-		private void OnQuit(object o, EventArgs a)
+		public void OnQuit(object o, EventArgs a)
 		{
 			Controller.LocationsSource.StoreList();
 			Controller.SaveAutoSession();
