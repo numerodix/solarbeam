@@ -89,8 +89,7 @@ namespace SolarbeamGui
 					
 				// bitmap is null
 				} else if (this.bitmap_final == null)	{
-					if (this.bitmap_base == null)
-					{
+					if (this.bitmap_base == null) {
 						this.bitmap_base = GenerateBaseImageBitmap();
 					}
 					this.bitmap_final = GenerateFinalizedBitmap();
