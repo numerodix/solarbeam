@@ -1,6 +1,10 @@
 all:
 	mdtool build --configuration:Release
 
+clean:
+	for d in `find . -type d -iname "Debug"`; do rm -f $$d/*; done
+	for d in `find . -type d -iname "Release"`; do rm -f $$d/*; done
+
 zip:
 	rm -rf dist
 	mkdir -p dist/solarbeam
