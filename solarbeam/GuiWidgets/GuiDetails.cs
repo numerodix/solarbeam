@@ -59,6 +59,27 @@ namespace SolarbeamGui
 		
 		private Control GetPanel()
 		{
+			Control[] cs = new Control[] {
+				GetParameters(),
+				GetSolarPosition(),
+				GetSolarTimes(),
+				GetDawnDusk(),
+				GetButtons(),
+				new Label(),
+			};
+			
+			Control con = Widgets.GetStacked(cs,
+			                   new string[] {
+				PARAMS_HEIGHT.ToString(),
+				SOLARPOS_HEIGHT.ToString(),
+				SOLARTIMES_HEIGHT.ToString(),
+				DAWNDUSK_HEIGHT.ToString(),
+				BUTTONS_HEIGHT.ToString(),
+				"100%",
+			});
+			
+			return con;
+			
 			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(2, 1,
 			                                                      FORM_MARGIN, FORM_PADDING);
 			
