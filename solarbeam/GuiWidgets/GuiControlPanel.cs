@@ -37,6 +37,8 @@ namespace SolarbeamGui
 		public const int WIDTH = GROUPBOX_WIDTH + PANEL_WIDTH + 2*FORM_PADDING;
 		public const int HEIGHT = INPUTS_HEIGHT + BUTTONS_HEIGHT + OUTPUTS_HEIGHT + IMAGESAVE_HEIGHT + 2*FORM_PADDING + 2*FORM_MARGIN;
 	
+		private static readonly string KEY_WIDTH = (120).ToString();
+			
 	
 		public GuiControlPanel()
 		{
@@ -219,75 +221,64 @@ namespace SolarbeamGui
 					Widgets.GetButtonImageText(Controller.Id.RENDER_ACTION,
 					                           "Render", "render.png"),
 					Widgets.GetLabelAnon(String.Empty)},
-				new float[] {15F, 30F, 15F, 30F, 15F});
+				new string[] {"15%", Widgets.BUTTON_WIDTH, "15%", Widgets.BUTTON_WIDTH, "15%"});
 	
 			return btns;
 		}
 	
 		private Control GetOutputs()
 		{
-			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(OUTPUTS_COUNT, 1,
-			                                              FORM_MARGIN, FORM_PADDING);
-			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-	
-			for (int i = 0; i < OUTPUTS_COUNT; i++) {
-				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
-			}
-	
+			string[] fmt = new string[] {KEY_WIDTH, Widgets.COLON_WIDTH, "100%"};
+				
 			Control el = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Solar elevation"),
 					Widgets.GetLabelAnon(":"),
 					Widgets.GetTextBoxROPlain(Controller.Id.ELEVATION, "-13.1231")},
-					new float[] {19F, 2F, 25F});
+					fmt);
 	
 			Control az = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Solar azimuth"),
 					Widgets.GetLabelAnon(":"),
 					Widgets.GetTextBoxROPlain(Controller.Id.AZIMUTH, "212.6669")},
-					new float[] {19F, 2F, 25F});
+					fmt);
 	
 			Control noon = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Solar noon"),
 					Widgets.GetLabelAnon(":"),
 					Widgets.GetTextBoxROPlain(Controller.Id.SOLAR_NOON, "12:12")},
-					new float[] {19F, 2F, 25F});    
+					fmt);    
 	
-			Control rise = Widgets.GetLaidOut(
+			Control rise_set = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Sunrise/Sunset"),
 					Widgets.GetLabelAnon(":"),
 					Widgets.GetTextBoxROPlain(Controller.Id.SUNRISESUNSET, "06:09")},
-					new float[] {19F, 2F, 25F});
+					fmt);
 	
-			Control sset = Widgets.GetLaidOut(
+			Control dawn_dusk = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Dawn/Dusk"),
 					Widgets.GetLabelAnon(":"),
 					Widgets.GetTextBoxROPlain(Controller.Id.DAWNDUSK, "18:15")},
-					new float[] {19F, 2F, 25F});
+					fmt);
 	
-			layout.Controls.Add(el, 0, 0);
-			layout.Controls.Add(az, 0, 1);
-			layout.Controls.Add(noon, 0, 2);
-			layout.Controls.Add(rise, 0, 3);
-			layout.Controls.Add(sset, 0, 4);
-	
+			Control layout = Widgets.GetStacked(
+				new Control[] {
+					el,
+					az,
+					noon,
+					rise_set,
+					dawn_dusk},
+				FORM_ROW_HEIGHT.ToString());
+				
 			return layout;
 		}
 
 		private Control GetImageSave()
 		{
-			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(IMAGESAVE_COUNT, 1,
-				                                                  FORM_MARGIN, FORM_PADDING);
-			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-	
-			for (int i = 0; i < IMAGESAVE_COUNT; i++) {
-				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
-			}
-				
 			Control btns = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetLabelAnon(String.Empty), //layout buffer
@@ -299,7 +290,7 @@ namespace SolarbeamGui
 					Widgets.GetButtonImageText(Controller.Id.IMAGESAVE_ACTION,
 				                           "Save", "image-save.png"),
 					Widgets.GetLabelAnon(String.Empty)},
-				new float[] {20F, 20F, 15F, 30F, 20F});
+				new string[] {"20%", "20%", "15%", Widgets.BUTTON_WIDTH, "20%"});
 
 			Control checkboxes = Widgets.GetLaidOut(
 				new Control[] {
@@ -311,11 +302,14 @@ namespace SolarbeamGui
 						Controller.Id.IMAGE_CAPTIONTOGGLE,
 						"Caption below diagram",
 						true)},
-				new float[] {50F, 50F});
-
-			layout.Controls.Add(btns, 0, 0);
-			layout.Controls.Add(checkboxes, 0, 1);
-				
+				new string[] {"50%", "50%"});
+							
+			Control layout = Widgets.GetStacked(
+				new Control[] {
+					btns,
+					checkboxes},
+				FORM_ROW_HEIGHT.ToString());
+			
 			return layout;
 		}
 	}

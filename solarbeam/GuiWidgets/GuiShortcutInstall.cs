@@ -15,7 +15,6 @@ namespace SolarbeamGui
 	sealed class GuiShortcutInstall : GuiBaseChildForm
 	{
 		private static readonly string KEY_WIDTH = (100).ToString();
-		private static readonly string COLON_WIDTH = (10).ToString();
 		private const int FORM_ROW_HEIGHT = 32;
 		
 		private Dictionary<string,string> dict;
@@ -125,7 +124,7 @@ namespace SolarbeamGui
 					Widgets.GetLabelAnon("Platform detected"),
 					Widgets.GetLabelAnon(":"),
 					plat_in},
-				new string[] {KEY_WIDTH, COLON_WIDTH, "100%"});
+				new string[] {KEY_WIDTH, Widgets.COLON_WIDTH, "100%"});
 			
 			return layout;
 		}
@@ -142,7 +141,7 @@ namespace SolarbeamGui
 		
 		private Control GetPathDetect()
 		{
-			string[] fmt = new string[] {KEY_WIDTH, COLON_WIDTH, "100%"};
+			string[] fmt = new string[] {KEY_WIDTH, Widgets.COLON_WIDTH, "100%"};
 			
 			Control desktop = Widgets.GetLaidOut(
 				new Control[] {
@@ -177,7 +176,7 @@ namespace SolarbeamGui
 		
 		private Control GetCreate()
 		{
-			string[] fmt = new string[] {KEY_WIDTH, COLON_WIDTH, "100%", "100"};
+			string[] fmt = new string[] {KEY_WIDTH, Widgets.COLON_WIDTH, "100%", "100"};
 
 			Control desktop = Widgets.GetLaidOut(
 				new Control[] {
