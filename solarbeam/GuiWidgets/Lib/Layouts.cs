@@ -75,27 +75,7 @@ namespace SolarbeamGui
 			}
 			return layout;
 		}
-		
-		public static TableLayoutPanel GetLaidOut(Control[] controls, float[] widths)
-		{
-			TableLayoutPanel layout = new TableLayoutPanel();
-			layout.Dock = DockStyle.Fill;
-			layout.ColumnCount = controls.Length;
-			layout.RowCount = 1;
-			
-			foreach (float width in widths)
-			{
-				layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, width));
-			}
-	
-			foreach (Control c in controls)
-			{
-				c.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-				layout.Controls.Add(c);
-			}
-			return layout;
-		}
-				
+
 		public static TableLayoutPanel GetTableLayoutPanel(int rows, int cols, 
 		                                                   int margin, int padding)
 		{

@@ -81,18 +81,11 @@ namespace SolarbeamGui
 	
 		private Control GetInputs()
 		{
-			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(INPUTS_COUNT, 3, 
-			                                              FORM_MARGIN, FORM_PADDING);
-			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 19F));
-			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 81F));
-	
-			for (int i = 0; i < INPUTS_COUNT; i++) {
-				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
-			}
+			string key_w = (70).ToString();
 			
-			Label loc_lbl = Widgets.GetLabelAnon("Location:");
 			Control loc_ins = Widgets.GetLaidOut(
 				new Control[] {
+					Widgets.GetLabelAnon("Location:"),
 					Widgets.GetComboBoxInputable(
 						Controller.Id.LOCATION,
 						Controller.LocationsSource.Locations),
@@ -103,14 +96,14 @@ namespace SolarbeamGui
 					Widgets.GetButtonImage(Controller.Id.LOCATIONDELETE_ACTION,
 						"delete.png"),
 					},
-				new float[] {80F, 11F, 11F, 11F});
+				new string[] {key_w, "80%", "11%", "11%", "11%"});
 	
-			Label lat_lbl = Widgets.GetLabelAnon("Latitude:");
 			ComboBox lat_dir = Widgets.GetComboBox(
 				Controller.Id.LATITUDE_DIRECTION,
 				Controller.PositionSource.LatitudeDirections);
 			Control lat_ins = Widgets.GetLaidOut(
 				new Control[] {
+				Widgets.GetLabelAnon("Latitude:"),
 					Widgets.GetNumericUpDown(Controller.Id.LATITUDE_DEGS,
 						Position.LATDEGS_MIN-1,
 						Position.LATDEGS_MAX),
@@ -124,14 +117,14 @@ namespace SolarbeamGui
 						Position.LATSECS_MAX+1),
 					Widgets.GetLabelAnon("\""),
 					lat_dir},
-				new float[] {27F, 6F, 23F, 6F, 23F, 6F, 30F});
+				new string[] {key_w, "27%", "6%", "23%", "6%", "23%", "6%", "30%"});
 			
-			Label lon_lbl = Widgets.GetLabelAnon("Longitude:");
 			ComboBox lon_dir = Widgets.GetComboBox(
 				Controller.Id.LONGITUDE_DIRECTION,
 				Controller.PositionSource.LongitudeDirections);
 			Control lon_ins = Widgets.GetLaidOut(
 				new Control[] {
+				Widgets.GetLabelAnon("Longitude:"),
 					Widgets.GetNumericUpDown(Controller.Id.LONGITUDE_DEGS,
 						Position.LONDEGS_MIN-1,
 						Position.LONDEGS_MAX),
@@ -145,22 +138,22 @@ namespace SolarbeamGui
 						Position.LONSECS_MAX+1),
 					Widgets.GetLabelAnon("\""),
 					lon_dir},
-				new float[] {27F, 6F, 23F, 6F, 23F, 6F, 30F});
+				new string[] {key_w, "27%", "6%", "23%", "6%", "23%", "6%", "30%"});
 			
-			Label tz_lbl = Widgets.GetLabelAnon("Timezone:");
 			Control tz_in = Widgets.GetLaidOut(
 				new Control[] {
-				Widgets.GetComboBox(Controller.Id.TIMEZONE_OFFSET,
-					Controller.TimezoneSource.Offsets),
-				Widgets.GetComboBox(Controller.Id.TIMEZONE_NAME,
-					Controller.TimezoneSource.GetTimezones(
-						Controller.TimezoneSource.Offsets[0]))
+					 Widgets.GetLabelAnon("Timezone:"),
+					 Widgets.GetComboBox(Controller.Id.TIMEZONE_OFFSET,
+						 Controller.TimezoneSource.Offsets),
+					 Widgets.GetComboBox(Controller.Id.TIMEZONE_NAME,
+						 Controller.TimezoneSource.GetTimezones(
+							 Controller.TimezoneSource.Offsets[0]))
 					},
-					new float[] {25F, 75F});
+				new string[] {key_w, "25%", "75%"});
 
-			Label date_lbl = Widgets.GetLabelAnon("Date:");
 			Control date_ins = Widgets.GetLaidOut(
 				new Control[] {
+					Widgets.GetLabelAnon("Date:"),
 					Widgets.GetNumericUpDown(Controller.Id.DATE_DAY,
 						UTCDate.DAY_MIN-1,
 						UTCDate.DAY_MAX+1),
@@ -174,11 +167,11 @@ namespace SolarbeamGui
 						UTCDate.YEAR_MAX),
 					Widgets.GetLabelImage(Controller.Id.DATE_DSTSTATUS,
 					    "dst-status-nodst.png")},
-				new float[] {22F, 5F, 22F, 5F, 27F, 30F});
+				new string[] {key_w, "22%", "5%", "22%", "5%", "27%", "30%"});
 			
-			Label time_lbl = Widgets.GetLabelAnon("Time:");
 			Control time_ins = Widgets.GetLaidOut(
 				new Control[] {
+					Widgets.GetLabelAnon("Time:"),
 					Widgets.GetNumericUpDown(Controller.Id.TIME_HOUR,
 						UTCDate.HOUR_MIN-1,
 						UTCDate.HOUR_MAX+1),
@@ -192,20 +185,17 @@ namespace SolarbeamGui
 						UTCDate.SECOND_MAX+1),
 					Widgets.GetButtonImageTextAnon(Controller.Id.TIMENOW_ACTION,
 					                               "Now", "time-now.png")},
-				new float[] {23F, 5F, 23F, 5F, 23F, 30F});
-
-			layout.Controls.Add(loc_lbl, 0, 0);
-			layout.Controls.Add(loc_ins, 1, 0);
-			layout.Controls.Add(lat_lbl, 0, 1);
-			layout.Controls.Add(lat_ins, 1, 1);
-			layout.Controls.Add(lon_lbl, 0, 2);
-			layout.Controls.Add(lon_ins, 1, 2);
-			layout.Controls.Add(tz_lbl, 0, 3);
-			layout.Controls.Add(tz_in, 1, 3);
-			layout.Controls.Add(date_lbl, 0, 4);
-			layout.Controls.Add(date_ins, 1, 4);
-			layout.Controls.Add(time_lbl, 0, 5);
-			layout.Controls.Add(time_ins, 1, 5);
+				new string[] {key_w, "23%", "5%", "23%", "5%", "23%", "30%"});
+	
+			Control layout = Widgets.GetStacked(
+				new Control[] {
+					loc_ins,
+					lat_ins,
+					lon_ins,
+					tz_in,
+					date_ins,
+					time_ins},
+				FORM_ROW_HEIGHT.ToString());
 		
 			return layout;
 		}
