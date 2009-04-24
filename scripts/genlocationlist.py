@@ -804,8 +804,12 @@ def codegen(locs):
 
     return cd
 
-def getequatorloc():
-    return Location(None, "Equator", [], "locality", 0, "0", "0", "", "")
+def getspeciallocs():
+    locs = []
+    locs.append(Location(None, "Equator", [], "locality", 0, "0", "0", "", ""))
+    locs.append(Location(None, "North Pole", [], "locality", 0, "9000", "0", "", ""))
+    locs.append(Location(None, "South Pole", [], "locality", 0, "-9000", "0", "", ""))
+    return locs
 
 
 if __name__ == "__main__":
@@ -829,7 +833,7 @@ if __name__ == "__main__":
     final_locs = filternotcountry(locs, "Norway")[:2000]
     nor_locs = filtercountry(locs, "Norway")[:100]
     final_locs.extend(nor_locs)
-    final_locs.append(getequatorloc())
+    final_locs.extend(getspeciallocs())
 
     for loc in final_locs: sys.stderr.write("%s\n" % loc)
     final_locs = sortname(final_locs)

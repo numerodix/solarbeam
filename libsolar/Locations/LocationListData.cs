@@ -3996,6 +3996,9 @@ namespace LibSolar.Locations
 			list.Add("North Las Vegas (USA)", "America/Los_Angeles",
 				new Position(PositionDirection.North, 36, 16, 12,
 					PositionDirection.West, 115, 8, 24));
+			list.Add("North Pole", "UTC",
+				new Position(PositionDirection.North, 90, 0, 0,
+					PositionDirection.East, 0, 0, 0));
 			list.Add("North Shore (NZ)", "Pacific/Auckland",
 				new Position(PositionDirection.South, 36, 48, 0,
 					PositionDirection.East, 174, 45, 0));
@@ -5226,6 +5229,9 @@ namespace LibSolar.Locations
 			list.Add("South Dum Dum (Ind)", "Asia/Kolkata",
 				new Position(PositionDirection.North, 22, 36, 36,
 					PositionDirection.East, 88, 24, 36));
+			list.Add("South Pole", "UTC",
+				new Position(PositionDirection.South, 90, 0, 0,
+					PositionDirection.East, 0, 0, 0));
 			list.Add("Southampton (UK)", "Europe/London",
 				new Position(PositionDirection.North, 50, 54, 36,
 					PositionDirection.West, 1, 24, 36));
