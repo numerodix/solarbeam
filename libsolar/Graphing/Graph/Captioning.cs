@@ -57,9 +57,9 @@ namespace LibSolar.Graphing
 					int h_ang = (int) (7.5 * (double) height);
 					
 					stack = new List<string>();
-					stack.Add(string.Format("sun elevation: {0}",
+					stack.Add(string.Format("solar elevation: {0}",
 					                        Formatter.FormatAngle(ci.Elevation)));
-					stack.Add(string.Format("sun azimuth: {0}",
+					stack.Add(string.Format("solar azimuth: {0}",
 					                        Formatter.FormatAngle(ci.Azimuth)));
 					PrintHorizontally(g, brush, font, caption, caption.B+h_ang, stack);
 					
