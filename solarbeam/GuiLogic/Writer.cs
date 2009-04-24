@@ -85,31 +85,19 @@ namespace SolarbeamGui
 			
 			SetValue(registry[Id.SOLAR_NOON], Formatter.FormatTime(st_ss.Noon));
 			
-			string sunrise = "##:##";
-			string sunset = "##:##";
-			string daylength = Formatter.FormatDayLength(st_ss, sp);
-			if (st_ss.Sunrise.HasValue) {
-				sunrise = Formatter.FormatTime(st_ss.Sunrise.Value);
-			}
-			if (st_ss.Sunset.HasValue) {
-				sunset = Formatter.FormatTime(st_ss.Sunset.Value);
-			}
+			string sunrise = Formatter.FormatMaybeTime(st_ss.Sunrise);
+			string sunset = Formatter.FormatMaybeTime(st_ss.Sunset);
+			string solardaylength = Formatter.FormatDayLength(st_ss, sp);
 			string riseset = string.Format("{0} - {1}  ({2})",
-			                               sunrise, sunset, daylength);
+			                               sunrise, sunset, solardaylength);
 			SetValue(registry[Id.SUNRISESUNSET], riseset);
 			
 			SolarTimes st_dd = PointFinder.FindDawnDusk(pos, dt);
-			string dawn = "##:##";
-			string dusk = "##:##";
-			string daylength2 = Formatter.FormatDayLength(st_dd, sp);
-			if (st_dd.Sunrise.HasValue) {
-				dawn = Formatter.FormatTime(st_dd.Sunrise.Value);
-			}
-			if (st_dd.Sunset.HasValue) {
-				dusk = Formatter.FormatTime(st_dd.Sunset.Value);
-			}
+			string dawn = Formatter.FormatMaybeTime(st_dd.Sunrise);
+			string dusk = Formatter.FormatMaybeTime(st_dd.Sunset);
+			string daylength = Formatter.FormatDayLength(st_dd, sp);
 			string dawndusk = string.Format("{0} - {1}  ({2})",
-			                               dawn, dusk, daylength2);
+			                               dawn, dusk, daylength);
 			SetValue(registry[Id.DAWNDUSK], dawndusk);
 		}
 		
@@ -126,7 +114,23 @@ namespace SolarbeamGui
 			SetValue(registry[Id.DETAIL_POSITION], Formatter.FormatPosition(pos));
 			SetValue(registry[Id.DETAIL_TIMEZONE], Formatter.FormatTimezone(udt.Timezone,
 			                                                                udt.Timezone + udt.GetDST()));
-			SetValue(registry[Id.DETAIL_DATETIME], Formatter.FormatDateTimeLong(udt, true));
+			SetValue(registry[Id.DETAIL_DATE], udt.PrintDate());
+			SetValue(registry[Id.DETAIL_TIME], Formatter.FormatTimeLong(udt, true));
+			
+			SolarPosition sp = Orbit.CalcSolarPosition(pos, udt);
+			SetValue(registry[Id.DETAIL_ELEVATION], Formatter.FormatAngle(sp.Elevation));
+			SetValue(registry[Id.DETAIL_AZIMUTH], Formatter.FormatAngle(sp.Azimuth));
+			
+			SolarTimes st_ss = Orbit.CalcSolarTimes(pos, udt);
+			SetValue(registry[Id.DETAIL_SUNRISE], Formatter.FormatMaybeTimeLong(st_ss.Sunrise, false));
+			SetValue(registry[Id.DETAIL_SOLARNOON], Formatter.FormatTimeLong(st_ss.Noon, false));
+			SetValue(registry[Id.DETAIL_SUNSET], Formatter.FormatMaybeTimeLong(st_ss.Sunset, false));
+			SetValue(registry[Id.DETAIL_SOLARDAYLENGTH], Formatter.FormatDayLength(st_ss, sp));
+						
+			SolarTimes st_dd = PointFinder.FindDawnDusk(pos, udt);
+			SetValue(registry[Id.DETAIL_DAWN], Formatter.FormatMaybeTimeLong(st_dd.Sunrise, false));
+			SetValue(registry[Id.DETAIL_DUSK], Formatter.FormatMaybeTimeLong(st_dd.Sunset, false));
+			SetValue(registry[Id.DETAIL_DAYLENGTH], Formatter.FormatDayLength(st_dd, sp));
 		}
 		
 		public static void UpdateTooltip(Component control, string tip)

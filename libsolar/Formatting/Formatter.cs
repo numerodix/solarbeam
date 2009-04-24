@@ -39,5 +39,13 @@ namespace LibSolar.Formatting
 			return string.Format("{0}h {1}m", h, m);
 		}
 
+		public static string FormatMaybeTime(UTCDate? udt)
+		{
+			string s = "##:##";
+			if (udt != null) {
+				s = Formatter.FormatTime(udt.Value);
+			}
+			return s;
+		}
 	}
 }

@@ -9,9 +9,12 @@ namespace LibSolar.Formatting
 {
 	public partial class Formatter
 	{
-		public static string FormatDateTimeLong(UTCDate udt, bool secs)
+		public static string FormatTimeLong(UTCDate udt, bool secs)
 		{
-			string fmt = "HH':'mm':'ss' 'dd'.'MM'.'yyyy";
+			string fmt = "HH':'mm':'ss";
+			if (!secs) {
+				fmt = "HH':'mm";
+			}
 			
 			DateTime local = udt.ExtractLocal();
 			string local_s = local.ToString(fmt);
@@ -27,6 +30,15 @@ namespace LibSolar.Formatting
 			                         std_s,
 			                         utc_s);
 			
+			return s;
+		}
+		
+		public static string FormatMaybeTimeLong(UTCDate? udt, bool secs)
+		{
+			string s = "##:##";
+			if (udt != null) {
+				s = Formatter.FormatTimeLong(udt.Value, secs);
+			}
 			return s;
 		}
 	}
