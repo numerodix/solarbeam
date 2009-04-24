@@ -24,7 +24,7 @@ namespace SolarbeamGui
 	
 		private static void ValidateLocation()
 		{
-			string loc_s = GetValue(registry[Id.LOCATION]);
+			string loc_s = ReadLocation();
 			
 			Location loc = Controller.LocationsSource.GetLocation(loc_s);
 			SetPosition(loc.Position);
