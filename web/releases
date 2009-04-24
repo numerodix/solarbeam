@@ -1,7 +1,11 @@
+0.8
+* Details display.
+* Added status bar with notifications about file saving/loading events.
+
 0.7
 + Create shortcuts window.
-+ Add help menu item.
-+ Add toggle for sun trajectory rendering in save to diagram.
++ Added help menu item.
++ Added toggle for sun trajectory rendering in save to diagram.
 
 0.6
 + World map display.
