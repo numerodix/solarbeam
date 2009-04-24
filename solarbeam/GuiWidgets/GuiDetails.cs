@@ -84,35 +84,35 @@ namespace SolarbeamGui
 					new Control[] {
 					Widgets.GetLabelAnon("Location"),
 					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_LOCATION, string.Empty)},
+					Widgets.GetRichTextBoxSingle(Controller.Id.DETAIL_LOCATION, string.Empty)},
 					new float[] {7F, 2F, 25F});
 			
 			Control pos = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Coordinates"),
 					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_POSITION, string.Empty)},
+					Widgets.GetRichTextBoxSingle(Controller.Id.DETAIL_POSITION, string.Empty)},
 					new float[] {7F, 2F, 25F});
 			
 			Control tz = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Timezone"),
 					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_TIMEZONE, string.Empty)},
+					Widgets.GetRichTextBoxSingle(Controller.Id.DETAIL_TIMEZONE, string.Empty)},
 					new float[] {7F, 2F, 25F});
 			
 			Control date = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Date"),
 					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_DATE, string.Empty)},
+					Widgets.GetRichTextBoxSingle(Controller.Id.DETAIL_DATE, string.Empty)},
 					new float[] {7F, 2F, 25F});			
 			
 			Control time = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Time"),
 					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_TIME, string.Empty)},
+					Widgets.GetRichTextBoxSingle(Controller.Id.DETAIL_TIME, string.Empty)},
 					new float[] {7F, 2F, 25F});			
 						
 			layout.Controls.AddRange(new Control[] {
@@ -144,14 +144,14 @@ namespace SolarbeamGui
 					new Control[] {
 					Widgets.GetLabelAnon("Solar elevation"),
 					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_ELEVATION, string.Empty)},
+					Widgets.GetRichTextBoxSingle(Controller.Id.DETAIL_ELEVATION, string.Empty)},
 					new float[] {7F, 2F, 25F});
 			
 			Control az = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Solar azimuth"),
 					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_AZIMUTH, string.Empty)},
+					Widgets.GetRichTextBoxSingle(Controller.Id.DETAIL_AZIMUTH, string.Empty)},
 					new float[] {7F, 2F, 25F});	
 						
 			layout.Controls.AddRange(new Control[] {
@@ -180,28 +180,28 @@ namespace SolarbeamGui
 					new Control[] {
 					Widgets.GetLabelAnon("Sunrise"),
 					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_SUNRISE, string.Empty)},
+					Widgets.GetRichTextBoxSingle(Controller.Id.DETAIL_SUNRISE, string.Empty)},
 					new float[] {7F, 2F, 25F});
 			
 			Control solarnoon = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Solar noon"),
 					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_SOLARNOON, string.Empty)},
+					Widgets.GetRichTextBoxSingle(Controller.Id.DETAIL_SOLARNOON, string.Empty)},
 					new float[] {7F, 2F, 25F});	
 			
 			Control sunset = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Sunset"),
 					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_SUNSET, string.Empty)},
+					Widgets.GetRichTextBoxSingle(Controller.Id.DETAIL_SUNSET, string.Empty)},
 					new float[] {7F, 2F, 25F});	
 			
 			Control solardaylength = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Solar day length"),
 					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_SOLARDAYLENGTH, string.Empty)},
+					Widgets.GetRichTextBoxSingle(Controller.Id.DETAIL_SOLARDAYLENGTH, string.Empty)},
 					new float[] {7F, 2F, 25F});	
 			
 			layout.Controls.AddRange(new Control[] {
@@ -232,21 +232,21 @@ namespace SolarbeamGui
 					new Control[] {
 					Widgets.GetLabelAnon("Dawn"),
 					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_DAWN, string.Empty)},
+					Widgets.GetRichTextBoxSingle(Controller.Id.DETAIL_DAWN, string.Empty)},
 					new float[] {7F, 2F, 25F});
 			
 			Control dusk = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Dusk"),
 					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_DUSK, string.Empty)},
+					Widgets.GetRichTextBoxSingle(Controller.Id.DETAIL_DUSK, string.Empty)},
 					new float[] {7F, 2F, 25F});	
 			
 			Control daylength = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Day length"),
 					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_DAYLENGTH, string.Empty)},
+					Widgets.GetRichTextBoxSingle(Controller.Id.DETAIL_DAYLENGTH, string.Empty)},
 					new float[] {7F, 2F, 25F});	
 			
 			layout.Controls.AddRange(new Control[] {

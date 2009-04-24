@@ -142,6 +142,18 @@ namespace SolarbeamGui
 			return txt;
 		}
 		
+		public static RichTextBox GetRichTextBoxSingle(Controller.Id id, string s)
+		{
+			RichTextBox txt = new RichTextBox();
+			txt.Multiline = false;
+			txt.ReadOnly = true;
+			txt.BorderStyle = BorderStyle.None;
+			txt.Text = s;
+			txt.Dock = DockStyle.Fill;
+			Controller.RegisterControl(id, txt);	// register control
+			return txt;
+		}
+		
 		public static TabControl GetTabControl(Control[] controls,
 		                                       string[] labels)
 		{

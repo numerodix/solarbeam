@@ -149,6 +149,8 @@ namespace SolarbeamGui
 				((NumericUpDown) control).Value = GetInt(val);
 			} else if (control is TextBox) {
 				((TextBox) control).Text = (string) val;
+			} else if (control is RichTextBox) {
+				((RichTextBox) control).Text = (string) val;
 			}
 		}
 		
@@ -167,6 +169,9 @@ namespace SolarbeamGui
 				cache[reg_rev[control]] = String.Format("{0}", val);
 			} else if (control is TextBox) {
 				((TextBox) control).Text = String.Empty;
+				cache[reg_rev[control]] = String.Empty;
+			} else if (control is RichTextBox) {
+				((RichTextBox) control).Text = String.Empty;
 				cache[reg_rev[control]] = String.Empty;
 			}
 			

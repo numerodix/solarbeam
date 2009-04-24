@@ -86,6 +86,8 @@ namespace SolarbeamGui
 				val = ((NumericUpDown) control).Value.ToString();
 			} else if (control is TextBox) {
 				val = ((TextBox) control).Text;
+			} else if (control is RichTextBox) {
+				val = ((RichTextBox) control).Text;
 			}
 			return val;
 		}
