@@ -1,7 +1,7 @@
 // Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
 // Licensed under the GNU Public License, version 3.
 //
-// Generated with ./genlocationlist.py on 23.4.2009
+// Generated with ./genlocationlist.py on 24.4.2009
 
 using LibSolar.Types;
 
@@ -60,9 +60,6 @@ namespace LibSolar.Locations
 			list.Add("Ad Du'ayn (Sud)", "Africa/Khartoum",
 				new Position(PositionDirection.North, 11, 25, 48,
 					PositionDirection.East, 26, 9, 36));
-			list.Add("Adan (Yem)", "Asia/Aden",
-				new Position(PositionDirection.North, 0, 0, 0,
-					PositionDirection.East, 99, 59, 24));
 			list.Add("Adana (Tur)", "Asia/Istanbul",
 				new Position(PositionDirection.North, 37, 0, 0,
 					PositionDirection.East, 35, 19, 12));
@@ -75,6 +72,9 @@ namespace LibSolar.Locations
 			list.Add("Adelaide (Aus)", "Australia/Adelaide",
 				new Position(PositionDirection.South, 34, 55, 48,
 					PositionDirection.East, 138, 36, 0));
+			list.Add("Aden (Yem)", "Asia/Aden",
+				new Position(PositionDirection.North, 0, 0, 0,
+					PositionDirection.East, 99, 59, 24));
 			list.Add("Ado (Nig)", "Africa/Lagos",
 				new Position(PositionDirection.North, 7, 37, 48,
 					PositionDirection.East, 5, 13, 12));

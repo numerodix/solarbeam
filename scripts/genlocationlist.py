@@ -132,7 +132,7 @@ class Location(object):
         uname = string.replace(uname, unicode("Ẕ", "utf-8"), "Z")
 
         # use more common names (english wikipedia as reference)
-        uname = string.replace(uname, "'Adan", "Adan")
+        uname = string.replace(uname, "'Adan", "Aden")
         uname = string.replace(uname, "'Ajman", "Ajman")
         uname = string.replace(uname, "'Amman", "Amman")
         uname = string.replace(uname, "ad-Dammam", "Damman")
