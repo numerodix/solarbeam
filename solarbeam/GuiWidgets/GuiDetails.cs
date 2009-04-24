@@ -14,7 +14,7 @@ namespace SolarbeamGui
 	/**
 	 * Represents details pane.
 	 */
-	sealed class GuiDetails : Control
+	sealed class GuiDetails : Panel
 	{
 		public GuiDetails()
 		{
@@ -23,7 +23,7 @@ namespace SolarbeamGui
 		
 		private void InitializeComponent()
 		{
-
+			this.AutoScroll = true;
 		}
 	}
 }
