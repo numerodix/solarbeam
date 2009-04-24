@@ -34,8 +34,8 @@ namespace SolarbeamGui
 		private const int DAWNDUSK_HEIGHT = GROUPBOX_HEIGHT + DAWNDUSK_COUNT * FORM_ROW_HEIGHT + 2*FORM_PADDING;
 		private const int BUTTONS_HEIGHT = 30;
 		
-		private const string key_w = "100";
-		private const string colon_w = "10";
+		private static readonly string key_w = (100).ToString();
+		private static readonly string colon_w = (10).ToString();
 		private const string value_w = "100%";
 		private static readonly string[] col_fmt = new string[] {
 			key_w, colon_w, value_w};

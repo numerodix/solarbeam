@@ -36,7 +36,7 @@ namespace SolarbeamGui
 //			this.SuspendLayout();
 			
 			InitializeComponent(form_title, icon);
-			shortcutform = new GuiShortcutInstall(form_title, icon);
+			shortcutform = new GuiShortcutInstall("Create shortcuts", icon);
 			Controller.ShortcutPlatformChange(null, null); // refresh shortcut gui
 			aboutform = new GuiAbout("About " + form_title, icon);
 

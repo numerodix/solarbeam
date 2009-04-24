@@ -11,6 +11,9 @@ namespace SolarbeamGui
 	 */
 	partial class Widgets
 	{
+		public static readonly string BUTTON_WIDTH = (100).ToString();
+		
+		
 		public static TableLayoutPanel GetStacked(Control[] controls, string width)
 		{
 			string[] widths = new string[controls.Length];

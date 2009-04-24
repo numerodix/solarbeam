@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace SolarbeamGui
 {
+	/**
+	 * A child form that survives closing.
+	 */
 	abstract class GuiBaseChildForm : Form
 	{
 		public GuiBaseChildForm(string form_title, string icon)

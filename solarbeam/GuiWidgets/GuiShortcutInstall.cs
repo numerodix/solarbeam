@@ -12,16 +12,18 @@ using LibSolar.Util;
 
 namespace SolarbeamGui
 {
-	sealed class GuiShortcutInstall : Form
+	sealed class GuiShortcutInstall : GuiBaseChildForm
 	{
+		private static readonly string KEY_WIDTH = (100).ToString();
+		private static readonly string COLON_WIDTH = (10).ToString();
 		private const int FORM_ROW_HEIGHT = 32;
 		
 		private Dictionary<string,string> dict;
 		
 		
-		public GuiShortcutInstall(string app_title, string icon)
+		public GuiShortcutInstall(string form_title, string icon)
+			: base(form_title, icon)
 		{
-			InitializeComponent(app_title, icon);
 			InitializeStrings();
 		}
 		
@@ -76,49 +78,34 @@ namespace SolarbeamGui
 		}
 		
 		
-		public void InitializeComponent(string app_title, string icon)
+		public override void InitializeComponent()
 		{	
-			this.DoubleBuffered = true;
-			this.Text = "Create shortcuts";
-			this.Icon = Controller.AsmInfo.GetIcon(icon);
-			
 			this.Controls.Add(GetPanel());
 			
-			this.FormBorderStyle = FormBorderStyle.FixedDialog;
-			this.StartPosition = FormStartPosition.CenterParent;
 			this.ClientSize = new Size(550, 362);
-			
-			// prevent disposal by intercepting Close() and calling Hide()
-			this.Closing += delegate (object o, CancelEventArgs args) {
-				args.Cancel = true;
-				this.Hide();
-			};
 		}
 		
 		private Control GetPanel()
 		{
-			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(3, 1, 5, 5);
-
 			Control platform = GetPlatform();
 			Control desc = GetDesc();
 			Control pathdetect = GetPathDetect();
 			Control create = GetCreate();
 			Control closebtn = GetCloseButton();
 		
-			layout.Controls.Add(platform, 0, 0);
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
-			
-			layout.Controls.Add(desc, 0, 1);
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 60));
-			
-			layout.Controls.Add(pathdetect, 0, 2);
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
-					
-			layout.Controls.Add(create, 0, 3);
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 130));
-								
-			layout.Controls.Add(closebtn, 0, 4);
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
+			Control layout = Widgets.GetStacked(
+				new Control[] {
+					platform,
+					desc,
+					pathdetect,
+					create,
+					closebtn},
+				new string[] {
+					FORM_ROW_HEIGHT.ToString(),
+					(60).ToString(),
+					(100).ToString(),
+					(130).ToString(),
+					FORM_ROW_HEIGHT.ToString()});
 			
 			return layout;
 		}
@@ -138,7 +125,7 @@ namespace SolarbeamGui
 					Widgets.GetLabelAnon("Platform detected"),
 					Widgets.GetLabelAnon(":"),
 					plat_in},
-				new float[] {10F, 2F, 33F});
+				new string[] {KEY_WIDTH, COLON_WIDTH, "100%"});
 			
 			return layout;
 		}
@@ -155,8 +142,7 @@ namespace SolarbeamGui
 		
 		private Control GetPathDetect()
 		{
-			int rows = 2;
-			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(rows, 1, 5, 5);
+			string[] fmt = new string[] {KEY_WIDTH, COLON_WIDTH, "100%"};
 			
 			Control desktop = Widgets.GetLaidOut(
 				new Control[] {
@@ -167,7 +153,7 @@ namespace SolarbeamGui
 					Widgets.GetTextBoxRO(
 						Controller.Id.SHORTCUT_PATH_1_DETECT,
 						string.Empty)},
-				new float[] {7F, 2F, 32F});
+				fmt);
 			
 			Control startmenu = Widgets.GetLaidOut(
 				new Control[] {
@@ -178,27 +164,20 @@ namespace SolarbeamGui
 					Widgets.GetTextBoxRO(
 						Controller.Id.SHORTCUT_PATH_2_DETECT,
 						string.Empty)},
-				new float[] {7F, 2F, 32F});
+				fmt);
+						
+			Control layout = Widgets.GetStacked(
+				new Control[] {
+					desktop,
+					startmenu},
+				FORM_ROW_HEIGHT.ToString());
 			
-			layout.Controls.Add(desktop, 0, 0);
-			layout.Controls.Add(startmenu, 0, 1);
-			
-			for (int i = 0; i < layout.Controls.Count; i++) {
-				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
-			}
-			
-			GroupBox outputs = new GroupBox();
-			outputs.Text = "Detected paths";
-			outputs.Dock = DockStyle.Fill;
-			outputs.Controls.Add(layout);
-			
-			return outputs;
+			return Widgets.GetGroupBox("Detected paths", layout);
 		}
 		
 		private Control GetCreate()
 		{
-			int rows = 3;
-			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(rows, 1, 5, 5);
+			string[] fmt = new string[] {KEY_WIDTH, COLON_WIDTH, "100%", "100"};
 
 			Control desktop = Widgets.GetLaidOut(
 				new Control[] {
@@ -215,7 +194,7 @@ namespace SolarbeamGui
 					Widgets.GetButtonImageText(
 						Controller.Id.SHORTCUT_PATH_1_BROWSE_ACTION,
 						"Browse", "browse.png")},
-				new float[] {10.5F, 2F, 38F, 9.5F});
+				fmt);
 			
 			Control startmenu = Widgets.GetLaidOut(
 				new Control[] {
@@ -230,7 +209,7 @@ namespace SolarbeamGui
 					Widgets.GetButtonImageText(
 						Controller.Id.SHORTCUT_PATH_2_BROWSE_ACTION,
 						"Browse", "browse.png")},
-				new float[] {10.5F, 2F, 38F, 9.5F});
+				fmt);
 			
 			Control buttons = Widgets.GetLaidOut(
 				new Control[] {
@@ -239,22 +218,16 @@ namespace SolarbeamGui
 						"&Create",
 						"new.png"),
 					Widgets.GetLabelAnon(String.Empty)},
-				new float[] {20F, 80F});
+				new string[] {Widgets.BUTTON_WIDTH, "100%"});
 			
-			layout.Controls.Add(desktop, 0, 0);
-			layout.Controls.Add(startmenu, 0, 1);
-			layout.Controls.Add(buttons, 0, 2);
-
-			for (int i = 0; i < layout.Controls.Count; i++) {
-				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
-			}
+			Control layout = Widgets.GetStacked(
+				new Control[] {
+					desktop,
+					startmenu,
+					buttons},
+				FORM_ROW_HEIGHT.ToString());
 			
-			GroupBox outputs = new GroupBox();
-			outputs.Text = "Create shortcut(s)";
-			outputs.Dock = DockStyle.Fill;
-			outputs.Controls.Add(layout);
-			
-			return outputs;
+			return Widgets.GetGroupBox("Create shortcut(s)", layout);
 		}
 		
 		private Control GetCloseButton()
@@ -266,7 +239,7 @@ namespace SolarbeamGui
 						Controller.Id.SHORTCUTCLOSE_ACTION,
 						"&Close",
 						"app-exit.png")},
-				new float[] {85F, 15F});
+				new string[] {"100%", Widgets.BUTTON_WIDTH});
 			
 			return buttons;
 		}

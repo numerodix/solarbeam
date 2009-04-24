@@ -44,7 +44,7 @@ namespace SolarbeamGui
 				new Control[] {
 					Widgets.GetLabelAnon(string.Empty),
 					close_btn},
-				new string[] {"100%", "100"});
+				new string[] {"100%", Widgets.BUTTON_WIDTH});
 			
 			Control container = Widgets.GetStacked(
 				new Control[] {
