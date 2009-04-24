@@ -96,22 +96,29 @@ namespace LibSolar.Util
 		
 		private static string UnixLocalXDGApplications()
 		{
+			string fallback = null; // return if no paths exist
+
 			string path_s = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 			string[] paths = path_s.Split(new char[] {':'});
-			foreach (string path in paths) {
-				string p = Path.Combine(path, Constants.UnixXDGApplicationsDirName);
+			for (int i=0; i<paths.Length; i++) {
+				string p = Path.Combine(paths[i], Constants.UnixXDGApplicationsDirName);
+				if (i == 0) fallback = p;
 				if (Directory.Exists(p)) return p;
 			}
-			return null;
+			return fallback;
 		}
 		
 		private static string UnixGlobalXDGApplications()
 		{
-			foreach (string path in Constants.UnixGlobalXDGBasePaths) {
-				string p = Path.Combine(path, Constants.UnixXDGApplicationsDirName);
+			string fallback = null; // return if no paths exist
+			
+			string[] paths = Constants.UnixGlobalXDGBasePaths;
+			for (int i=0; i<paths.Length; i++) {
+				string p = Path.Combine(paths[i], Constants.UnixXDGApplicationsDirName);
+				if (i == 0) fallback = p;
 				if (Directory.Exists(p)) return p;
 			}
-			return null;
+			return fallback;
 		}
 	}
 }
