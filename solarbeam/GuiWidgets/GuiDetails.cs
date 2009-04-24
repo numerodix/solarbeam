@@ -59,54 +59,27 @@ namespace SolarbeamGui
 		
 		private Control GetPanel()
 		{
-			Control[] cs = new Control[] {
-				GetParameters(),
-				GetSolarPosition(),
-				GetSolarTimes(),
-				GetDawnDusk(),
-				GetButtons(),
-				new Label(),
-			};
+			Control container = Widgets.GetStacked(
+				new Control[] {
+					GetParameters(),
+					GetSolarPosition(),
+					GetSolarTimes(),
+					GetDawnDusk(),
+					GetButtons(),
+					new Label()},
+				new string[] {
+					PARAMS_HEIGHT.ToString(),
+					SOLARPOS_HEIGHT.ToString(),
+					SOLARTIMES_HEIGHT.ToString(),
+					DAWNDUSK_HEIGHT.ToString(),
+					BUTTONS_HEIGHT.ToString(),
+					"100%"});
 			
-			Control con = Widgets.GetStacked(cs,
-			                   new string[] {
-				PARAMS_HEIGHT.ToString(),
-				SOLARPOS_HEIGHT.ToString(),
-				SOLARTIMES_HEIGHT.ToString(),
-				DAWNDUSK_HEIGHT.ToString(),
-				BUTTONS_HEIGHT.ToString(),
-				"100%",
-			});
-			
-			return con;
-			
-			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(2, 1,
-			                                                      FORM_MARGIN, FORM_PADDING);
-			
-			layout.Controls.AddRange(new Control[] {
-				GetParameters(),
-				GetSolarPosition(),
-				GetSolarTimes(),
-				GetDawnDusk(),
-				GetButtons(),
-				new Label(),
-			});
-
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, PARAMS_HEIGHT));
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, SOLARPOS_HEIGHT));
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, SOLARTIMES_HEIGHT));
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, DAWNDUSK_HEIGHT));
-			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, BUTTONS_HEIGHT));
-			layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-			
-			return layout;
+			return container;
 		}
 	
 		private Control GetParameters()
 		{
-			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(PARAMS_COUNT, 1,
-			                                                      FORM_MARGIN, FORM_PADDING);
-			
 			Control loc = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Location"),
@@ -140,33 +113,22 @@ namespace SolarbeamGui
 					Widgets.GetLabelAnon("Time"),
 					Widgets.GetLabelAnon(":"),
 					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_TIME, string.Empty)},
-					col_fmt);			
-						
-			layout.Controls.AddRange(new Control[] {
-				loc,
-				pos,
-				tz,
-				date,
-				time,
-			});
+					col_fmt);
 			
-			for (int i = 0; i < layout.Controls.Count; i++) {
-				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
-			}
-			
-			GroupBox group = new GroupBox();
-			group.Text = "Parameters";
-			group.Dock = DockStyle.Fill;
-			group.Controls.Add(layout);
-	
-			return group;
+			Control layout = Widgets.GetStacked(
+				new Control[] {
+					loc,
+					pos,
+					tz,
+					date,
+					time},
+				FORM_ROW_HEIGHT.ToString());
+
+			return Widgets.GetGroupBox("Parameters", layout);
 		}
 		
 		private Control GetSolarPosition()
 		{
-			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(SOLARPOS_COUNT, 1,
-			                                                      FORM_MARGIN, FORM_PADDING);
-			
 			Control el = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Solar elevation"),
@@ -180,29 +142,18 @@ namespace SolarbeamGui
 					Widgets.GetLabelAnon(":"),
 					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_AZIMUTH, string.Empty)},
 					col_fmt);	
-						
-			layout.Controls.AddRange(new Control[] {
-				el,
-				az,
-			});
 			
-			for (int i = 0; i < layout.Controls.Count; i++) {
-				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
-			}
+			Control layout = Widgets.GetStacked(
+				new Control[] {
+					el,
+					az},
+				FORM_ROW_HEIGHT.ToString());
 			
-			GroupBox group = new GroupBox();
-			group.Text = "Solar position";
-			group.Dock = DockStyle.Fill;
-			group.Controls.Add(layout);
-	
-			return group;
+			return Widgets.GetGroupBox("Solar position", layout);
 		}
 		
 		private Control GetSolarTimes()
 		{
-			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(SOLARTIMES_COUNT, 1,
-			                                                      FORM_MARGIN, FORM_PADDING);
-			
 			Control sunrise = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Sunrise"),
@@ -231,30 +182,19 @@ namespace SolarbeamGui
 					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_SOLARDAYLENGTH, string.Empty)},
 					col_fmt);	
 			
-			layout.Controls.AddRange(new Control[] {
-				sunrise,
-				solarnoon,
-				sunset,
-				solardaylength,
-			});
+			Control layout = Widgets.GetStacked(
+				new Control[] {
+					sunrise,
+					solarnoon,
+					sunset,
+					solardaylength},
+				FORM_ROW_HEIGHT.ToString());
 			
-			for (int i = 0; i < layout.Controls.Count; i++) {
-				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
-			}
-			
-			GroupBox group = new GroupBox();
-			group.Text = "Solar times";
-			group.Dock = DockStyle.Fill;
-			group.Controls.Add(layout);
-	
-			return group;
+			return Widgets.GetGroupBox("Solar times", layout);
 		}
 		
 		private Control GetDawnDusk()
 		{
-			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(DAWNDUSK_COUNT, 1,
-			                                                      FORM_MARGIN, FORM_PADDING);
-			
 			Control dawn = Widgets.GetLaidOut(
 					new Control[] {
 					Widgets.GetLabelAnon("Dawn"),
@@ -276,22 +216,14 @@ namespace SolarbeamGui
 					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_DAYLENGTH, string.Empty)},
 					col_fmt);	
 			
-			layout.Controls.AddRange(new Control[] {
-				dawn,
-				dusk,
-				daylength,
-			});
+			Control layout = Widgets.GetStacked(
+				new Control[] {
+					dawn,
+					dusk,
+					daylength},
+				FORM_ROW_HEIGHT.ToString());
 			
-			for (int i = 0; i < layout.Controls.Count; i++) {
-				layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
-			}
-			
-			GroupBox group = new GroupBox();
-			group.Text = "Civil twilight (elevation -6°)";
-			group.Dock = DockStyle.Fill;
-			group.Controls.Add(layout);
-	
-			return group;
+			return Widgets.GetGroupBox("Civil twilight (elevation -6°)", layout);
 		}
 		
 		private Control GetButtons()

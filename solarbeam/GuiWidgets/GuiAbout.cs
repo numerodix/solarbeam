@@ -13,6 +13,11 @@ namespace SolarbeamGui
 {
 	sealed class GuiAbout : Form
 	{
+		private Control logo;
+		private Button close_btn;
+		private int TABS_HEIGHT = 202;
+		
+		
 		public GuiAbout(string app_title, string icon)
 		{
 			InitializeComponent(app_title, icon);
@@ -24,38 +29,48 @@ namespace SolarbeamGui
 			this.Text = "About " + app_title;
 			this.Icon = Controller.AsmInfo.GetIcon(icon);
 			
-			Control logo = GetLogo();
-			Control tabs = GetTabs();
-			int tabs_height = 202;
-			
-			Button close_btn = Widgets.GetButtonImageText(
-				Controller.Id.ABOUTCLOSE_ACTION,
-				"&Close", "app-exit.png");
-			close_btn.Anchor = AnchorStyles.Right;
-			close_btn.TabIndex = 0;
-			
-			TableLayoutPanel table = Widgets.GetTableLayoutPanel(3, 1, 0, 0);
-			
-			table.RowStyles.Add(new RowStyle(SizeType.Absolute, logo.Height));
-			table.RowStyles.Add(new RowStyle(SizeType.Absolute, tabs_height));
-			table.RowStyles.Add(new RowStyle(SizeType.Absolute, close_btn.Height));
-			
-			table.Controls.Add(logo, 0, 0);
-			table.Controls.Add(tabs, 0, 1);
-			table.Controls.Add(close_btn, 0, 2);
-			
-			this.Controls.Add(table);
+			Control panel = GetPanel();
+			this.Controls.Add(panel);
 			
 			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 			this.StartPosition = FormStartPosition.CenterParent;
 			this.ClientSize = new Size(logo.Width + 2*3,
-			                           logo.Height + tabs_height + close_btn.Height + 24);
+			                           logo.Height + TABS_HEIGHT + close_btn.Height + 24);
 			
 			// prevent disposal by intercepting Close() and calling Hide()
 			this.Closing += delegate (object o, CancelEventArgs args) {
 				args.Cancel = true;
 				this.Hide();
 			};
+		}
+		
+		private Control GetPanel()
+		{
+			logo = GetLogo();
+			Control tabs = GetTabs();
+			
+			close_btn = Widgets.GetButtonImageText(
+				Controller.Id.ABOUTCLOSE_ACTION,
+				"&Close", "app-exit.png");
+			close_btn.Anchor = AnchorStyles.Right;
+			close_btn.TabIndex = 0;
+			Control btn = Widgets.GetLaidOut(
+				new Control[] {
+					Widgets.GetLabelAnon(string.Empty),
+					close_btn},
+				new string[] {"100%", "100"});
+			
+			Control container = Widgets.GetStacked(
+				new Control[] {
+					logo,
+					tabs,
+					btn},
+				new string[] {
+					logo.Height.ToString(),
+					TABS_HEIGHT.ToString(),
+					close_btn.Height.ToString()});
+			
+			return container;
 		}
 		
 		private Control GetLogo()

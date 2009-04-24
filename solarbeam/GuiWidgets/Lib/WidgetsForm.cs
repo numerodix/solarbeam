@@ -80,6 +80,15 @@ namespace SolarbeamGui
 			return combo;
 		}
 		
+		public static GroupBox GetGroupBox(string title, Control control)
+		{
+			GroupBox group = new GroupBox();
+			group.Text = title;
+			group.Dock = DockStyle.Fill;
+			group.Controls.Add(control);
+			return group;	
+		}
+		
 		public static Label GetLabelAnon(string s)
 		{
 			Label label = new Label();

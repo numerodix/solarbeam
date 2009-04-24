@@ -11,6 +11,15 @@ namespace SolarbeamGui
 	 */
 	partial class Widgets
 	{
+		public static TableLayoutPanel GetStacked(Control[] controls, string width)
+		{
+			string[] widths = new string[controls.Length];
+			for (int i=0; i<widths.Length; i++) {
+				widths[i] = width;
+			}
+			return GetStacked(controls, widths);
+		}
+		
 		public static TableLayoutPanel GetStacked(Control[] controls, string[] widths)
 		{
 			TableLayoutPanel layout = new TableLayoutPanel();
@@ -32,7 +41,6 @@ namespace SolarbeamGui
 	
 			foreach (Control c in controls) {
 				c.Dock = DockStyle.Fill;
-//				c.Anchor = AnchorStyles.Bottom | AnchorStyles.Top;
 				layout.Controls.Add(c);
 			}
 			return layout;
