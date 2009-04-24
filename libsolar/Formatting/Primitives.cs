@@ -12,8 +12,9 @@ namespace LibSolar.Formatting
 		public static string FormatPosition(Position pos)
 		{
 			string lat = pos.LatitudeDegree.Print();
+			if (lat.StartsWith(" ")) lat = lat.Remove(0, 1); // leading space
 			string lon = pos.LongitudeDegree.Print();
-			string s = string.Format("{0}  {1}", lat, lon).Trim();
+			string s = string.Format("{0}  {1}", lat, lon);
 			return s;
 		}
 		

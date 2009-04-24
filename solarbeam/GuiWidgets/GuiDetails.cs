@@ -89,7 +89,7 @@ namespace SolarbeamGui
 			
 			Control pos = Widgets.GetLaidOut(
 					new Control[] {
-					Widgets.GetLabelAnon("Position"),
+					Widgets.GetLabelAnon("Coordinates"),
 					Widgets.GetLabelAnon(":"),
 					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_POSITION, "Equator")},
 					new float[] {7F, 2F, 25F});

@@ -57,7 +57,7 @@ namespace SolarbeamGui
 			if ((location != null) && (location != string.Empty)) {
 				s += FormatPair(w, "Location", location);
 			}
-			s += FormatPair(w, "Position", position);
+			s += FormatPair(w, "Coordinates", position);
 			s += FormatPair(w, "Timezone", timezone);
 			s += FormatPair(w, "Date", date);
 			s += FormatPair(w, "Time", time);

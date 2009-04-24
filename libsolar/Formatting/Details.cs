@@ -30,7 +30,7 @@ namespace LibSolar.Formatting
 			DateTime utc = UTCDate.ResolveTimezone(std, udt.Timezone);
 			string utc_s = utc.ToString(fmt);
 			
-			string s = string.Format("{0} ST  {1} UTC", local_s, utc_s);
+			string s = string.Format("{0} ST  [{1} UTC]", local_s, utc_s);
 			
 			return s;
 		}
