@@ -26,7 +26,7 @@ namespace LibSolar.Types
 		{
 			this.loc = loc;
 			this.pos = pos;
-			this.dst = udt.HasDST ? udt.DST.Delta.TotalHours : 0;
+			this.dst = udt.GetDST();
 			this.udt = udt;
 			this.sp = Orbit.CalcSolarPosition(pos, udt);
 			this.st = Orbit.CalcSolarTimes(pos, udt);

@@ -8,7 +8,26 @@ using LibSolar.Types;
 namespace LibSolar.Formatting
 {
 	public partial class Formatter
-	{			
+	{
+		public static string FormatPosition(Position pos)
+		{
+			string lat = pos.LatitudeDegree.Print();
+			string lon = pos.LongitudeDegree.Print();
+			string s = string.Format("{0}  {1}", lat, lon).Trim();
+			return s;
+		}
+		
+		public static string FormatTimezone(double tz, double dst)
+		{
+			string dst_s = UTCDate.PrintTzOffset(dst);
+			string dst_fmt = string.Format(" ST, {0} DST", dst_s);
+			dst_fmt = tz != dst ? dst_fmt : string.Empty;
+			string s = string.Format("{0}{1}",
+			                         UTCDate.PrintTzOffset(tz),
+			                         dst_fmt);
+			return s;
+		}
+		
 		public static string FormatTime(UTCDate udt)
 		{
 			DateTime dt_local = udt.ExtractLocal();

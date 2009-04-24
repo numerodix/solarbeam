@@ -201,6 +201,25 @@ namespace SolarbeamGui
 			} catch (KeyNotFoundException) {}
 		}
 		
+		public static void UpdateDetails(object sender, EventArgs args)
+		{
+			// value changes will occur during control initialization, sometimes 
+			// before all controls have been registered. ignore this early case
+			try {
+				// don't update while validating, input may be partial
+				if (!validate_lock)
+				{
+					Position pos = ReadPosition();
+					string location = ReadLocation();
+					UTCDate? dt = ReadDate();
+					
+					if ((pos != null) && (dt != null )) {
+						SetDetails(location, pos, dt.Value);
+					}
+				}
+			} catch (KeyNotFoundException) {}
+		}
+		
 		/**
 		 * Map is updated with current day plot, existing rendering used.
 		 */

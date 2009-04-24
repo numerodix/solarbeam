@@ -77,6 +77,11 @@ namespace SolarbeamGui
 			DETAILS,
 			MAP,
 			STATUSBAR,
+			
+			DETAIL_LOCATION,
+			DETAIL_POSITION,
+			DETAIL_TIMEZONE,
+			DETAIL_DATETIME,
 
 			// Other forms
 			
@@ -228,6 +233,12 @@ namespace SolarbeamGui
 			// register diagram updating inputs for value changes
 			if (ins_timedate.Contains(id)) {
 				EventHandler handler = new EventHandler(UpdateDiagram);
+				RegisterValueChange(control, handler);
+			}
+									
+			// register details pane updating inputs for value changes
+			if (ins_position.Contains(id) || ins_timedate.Contains(id)) {
+				EventHandler handler = new EventHandler(UpdateDetails);
 				RegisterValueChange(control, handler);
 			}
 									

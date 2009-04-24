@@ -94,6 +94,7 @@
     <Compile Include="Util\Shortcut\UnixShortcut.cs" />
     <Compile Include="Util\Shortcut\ShortcutInstaller.cs" />
     <Compile Include="Util\Memory.cs" />
+    <Compile Include="Formatting\Details.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

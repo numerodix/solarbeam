@@ -19,13 +19,7 @@ namespace LibSolar.Formatting
 		
 		public static string FormatCaptionTimezone(double tz, double dst)
 		{
-			string dst_s = UTCDate.PrintPretty(dst);
-			string dst_fmt = string.Format(" ST, {0} DST", dst_s);
-			dst_fmt = tz != dst ? dst_fmt : string.Empty;
-			string s = string.Format("timezone: {0}{1}",
-			                         UTCDate.PrintPretty(tz),
-			                         dst_fmt);
-			return s;
+			return string.Format("timezone: {0}", FormatTimezone(tz, dst));
 		}
 		
 		public static string FormatCaptionDate(UTCDate udt)

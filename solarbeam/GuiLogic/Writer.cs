@@ -120,6 +120,15 @@ namespace SolarbeamGui
 			}
 		}
 		
+		public static void SetDetails(string location, Position pos, UTCDate udt)
+		{
+			SetValue(registry[Id.DETAIL_LOCATION], location);
+			SetValue(registry[Id.DETAIL_POSITION], Formatter.FormatPosition(pos));
+			SetValue(registry[Id.DETAIL_TIMEZONE], Formatter.FormatTimezone(udt.Timezone,
+			                                                                udt.Timezone + udt.GetDST()));
+			SetValue(registry[Id.DETAIL_DATETIME], Formatter.FormatDateTimeLong(udt, true));
+		}
+		
 		public static void UpdateTooltip(Component control, string tip)
 		{
 			Id id = reg_rev[control];

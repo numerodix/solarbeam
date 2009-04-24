@@ -314,6 +314,11 @@ namespace LibSolar.Types
 		public DaylightTime DST
 		{ get { return dst; } }
 		
+		public double GetDST()
+		{
+			return HasDST ? DST.Delta.TotalHours : 0;
+		}
+		
 		public int Year
 		{ get { return dt.Year; } }
 
@@ -344,7 +349,7 @@ namespace LibSolar.Types
 			return string.Format("{0}  [{1} UTC]",
 								 dt_local.ToString(fmt), dt_utc.ToString(fmt));
 		}
-		
+
 		public string PrintDate()
 		{
 			DateTime dt_local = ExtractLocal();
@@ -369,7 +374,7 @@ namespace LibSolar.Types
 			return string.Format("{0}{1}", sign, val);
 		}
 		
-		public static string PrintPretty(double hours)
+		public static string PrintTzOffset(double hours)
 		{
 			int hours_i = (int) Math.Floor(Math.Abs(hours));
 			int mins_i = (int) Math.Floor(Math.Abs(hours)*60 - hours_i*60);
