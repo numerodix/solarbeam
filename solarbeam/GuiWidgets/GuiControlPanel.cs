@@ -236,14 +236,14 @@ namespace SolarbeamGui
 	
 			Control el = Widgets.GetLaidOut(
 					new Control[] {
-					Widgets.GetLabelAnon("Sun elevation"),
+					Widgets.GetLabelAnon("Solar elevation"),
 					Widgets.GetLabelAnon(":"),
 					Widgets.GetTextBoxROPlain(Controller.Id.ELEVATION, "-13.1231")},
 					new float[] {19F, 2F, 25F});
 	
 			Control az = Widgets.GetLaidOut(
 					new Control[] {
-					Widgets.GetLabelAnon("Sun azimuth"),
+					Widgets.GetLabelAnon("Solar azimuth"),
 					Widgets.GetLabelAnon(":"),
 					Widgets.GetTextBoxROPlain(Controller.Id.AZIMUTH, "212.6669")},
 					new float[] {19F, 2F, 25F});
