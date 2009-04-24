@@ -11,37 +11,23 @@ using LibSolar.Util;
 
 namespace SolarbeamGui
 {
-	sealed class GuiAbout : Form
+	sealed class GuiAbout : GuiBaseChildForm
 	{
 		private Control logo;
 		private Button close_btn;
 		private int TABS_HEIGHT = 202;
 		
 		
-		public GuiAbout(string app_title, string icon)
-		{
-			InitializeComponent(app_title, icon);
-		}
+		public GuiAbout(string form_title, string icon)
+			: base(form_title, icon) {}
 		
-		public void InitializeComponent(string app_title, string icon)
+		public override void InitializeComponent()
 		{	
-			this.DoubleBuffered = true;
-			this.Text = "About " + app_title;
-			this.Icon = Controller.AsmInfo.GetIcon(icon);
-			
 			Control panel = GetPanel();
 			this.Controls.Add(panel);
-			
-			this.FormBorderStyle = FormBorderStyle.FixedDialog;
-			this.StartPosition = FormStartPosition.CenterParent;
+
 			this.ClientSize = new Size(logo.Width + 2*3,
 			                           logo.Height + TABS_HEIGHT + close_btn.Height + 24);
-			
-			// prevent disposal by intercepting Close() and calling Hide()
-			this.Closing += delegate (object o, CancelEventArgs args) {
-				args.Cancel = true;
-				this.Hide();
-			};
 		}
 		
 		private Control GetPanel()
