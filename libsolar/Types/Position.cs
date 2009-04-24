@@ -59,6 +59,9 @@ namespace LibSolar.Types
 		public const int LONSECS_MIN = 0;
 		[NonSerialized]
 		public const int LONSECS_MAX = 59;
+		
+		[NonSerialized]
+		public const double latitude_cutoff = 89.8;
 
 		private double latitude;
 		private double longitude;
@@ -155,16 +158,16 @@ namespace LibSolar.Types
 		}
 
 		/**
-		 * The original SRRB code has this adjustment, presumably to avoid bumping
-		 * up against the treacherous 90 degrees value in trigonometric functions.
+		 * Clip latitude value near 90 degrees to preempt divergence.
+		 * The original SRRB code has this value set to 89.8.
 		 */
 		private static double AdjustLatitude(double lat)
 		{
-			if ( (lat >= -90*3600.0) && (lat < -89.8*3600.0) ) {
-				return -89.8*3600.0;
+			if ((-90 <= lat) && (lat < -latitude_cutoff)) {
+				return -latitude_cutoff;
 			}
-			if ( (lat <= 90*3600.0) && (lat > 89.8*3600.0) ) {
-				return 89.8*3600.0;
+			if ((latitude_cutoff < lat) && (lat <= 90)) {
+				return latitude_cutoff;
 			}
 			return lat;
 		}
