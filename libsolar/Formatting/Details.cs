@@ -22,15 +22,15 @@ namespace LibSolar.Formatting
 			DateTime std = UTCDate.ResolveDST(dst, udt.DST);
 			string std_s = std.ToString(fmt);
 			
-			string local_s = dst_s;
+			string local_s = string.Format("{0} ST", dst_s);
 			if (udt.HasDST) {
-				local_s = string.Format("{0} DST  {1}", dst_s, std_s);
+				local_s = string.Format("{0} DST  [{1} ST]", dst_s, std_s);
 			}
 
 			DateTime utc = UTCDate.ResolveTimezone(std, udt.Timezone);
 			string utc_s = utc.ToString(fmt);
 			
-			string s = string.Format("{0} ST  [{1} UTC]", local_s, utc_s);
+			string s = string.Format("{0}  [{1} UTC]", local_s, utc_s);
 			
 			return s;
 		}
