@@ -107,32 +107,26 @@ namespace SolarbeamGui
 			string path2_s = GetValue(registry[Id.SHORTCUT_PATH_2_INPUT]);
 			
 			PlatformName pn = ReadPlatform();
-			ShortcutInstaller si = new ShortcutInstaller(Controller.AsmInfo);
+			
 			if (pn == PlatformName.Windows) {
-				if (path1_b) {
-					try {
-						si.WindowsShortcutTo(path1_s);
-						Controller.Report(new Message(Result.OK, "Created shortcut in: " + path1_s));
-					} catch {
-						Controller.Report(new Message(Result.Fail, "Failed to create shortcut in: " + path1_s));
+				ShortcutInstall(pn, path1_b, path1_s);
+			}
+			ShortcutInstall(pn, path2_b, path2_s);
+		}
+		
+		private static void ShortcutInstall(PlatformName pn, bool flag, string path)
+		{
+			ShortcutInstaller si = new ShortcutInstaller(Controller.AsmInfo);
+			if ((flag) && (path != null) && (path != string.Empty)) {
+				try {
+					if (pn == PlatformName.Windows) {
+						si.WindowsShortcutTo(path);						
+					} else {
+						si.UnixShortcutTo(path);
 					}
-				}
-				if (path2_b) {
-					try {
-						si.WindowsShortcutTo(path2_s);
-						Controller.Report(new Message(Result.OK, "Created shortcut in: " + path2_s));
-					} catch {
-						Controller.Report(new Message(Result.Fail, "Failed to create shortcut in: " + path2_s));
-					}
-				}
-			} else if (pn == PlatformName.Unix) {
-				if (path2_b) {
-					try {
-						si.UnixShortcutTo(path2_s);
-						Controller.Report(new Message(Result.OK, "Created launcher in: " + path2_s));
-					} catch {
-						Controller.Report(new Message(Result.Fail, "Failed to create launcher in: " + path2_s));	
-					}
+					Controller.Report(new Message(Result.OK, "Created shortcut in: " + path));
+				} catch {
+					Controller.Report(new Message(Result.Fail, "Failed to create shortcut in: " + path));
 				}
 			}
 		}
