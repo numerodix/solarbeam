@@ -42,6 +42,8 @@ namespace SolarbeamGui
 					"open.png");
 			load.ShortcutKeys = (Keys) (Keys.Control | Keys.O);
 			
+			ToolStripSeparator sep = Widgets.GetToolStripSeparator();
+			
 			ToolStripMenuItem exit = Widgets.GetToolStripMenuItem(
 					Controller.Id.MENUEXIT_ACTION,
 					"E&xit",
@@ -51,6 +53,7 @@ namespace SolarbeamGui
 			file.DropDownItems.AddRange(new ToolStripItem[] {
 				save,
 				load,
+				sep,
 				exit});
 			return file;
 		}
