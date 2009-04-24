@@ -16,19 +16,21 @@ namespace LibSolar.Formatting
 				fmt = "HH':'mm";
 			}
 			
-			DateTime local = udt.ExtractLocal();
-			string local_s = local.ToString(fmt);
+			DateTime dst = udt.ExtractLocal();
+			string dst_s = dst.ToString(fmt);
 			
-			DateTime std = UTCDate.ResolveDST(local, udt.DST);
+			DateTime std = UTCDate.ResolveDST(dst, udt.DST);
 			string std_s = std.ToString(fmt);
+			
+			string local_s = dst_s;
+			if (udt.HasDST) {
+				local_s = string.Format("{0} DST  {1}", dst_s, std_s);
+			}
 
 			DateTime utc = UTCDate.ResolveTimezone(std, udt.Timezone);
 			string utc_s = utc.ToString(fmt);
 			
-			string s = string.Format("{0} DST  {1} ST  {2} UTC",
-			                         local_s,
-			                         std_s,
-			                         utc_s);
+			string s = string.Format("{0} ST  {1} UTC", local_s, utc_s);
 			
 			return s;
 		}
