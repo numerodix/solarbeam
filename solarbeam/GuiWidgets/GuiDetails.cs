@@ -19,7 +19,7 @@ namespace SolarbeamGui
 		private const int GROUPBOX_HEIGHT = 22;
 		private const int GROUPBOX_WIDTH = 10;
 		
-		private const int FORM_ROW_HEIGHT = 28;
+		private const int FORM_ROW_HEIGHT = 27;
 		private const int FORM_PADDING = 0;
 		private const int FORM_MARGIN = 16;
 		
