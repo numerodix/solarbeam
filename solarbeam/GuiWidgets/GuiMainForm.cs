@@ -115,12 +115,13 @@ namespace SolarbeamGui
 			layout.Controls.Add(controlpanel, 0, 0);
 			layout.Controls.Add(tabcontrol, 1, 0);
 			
-			// load autosession
+			// load autosession/init form
 			LoadSession();
 			
 			// initial rendering
 			Controller.RenderDiagram(null, null);
 			Controller.UpdateMap(null, null);
+			Controller.UpdateDetails(null, null);
 			
 			return layout;
 		}
@@ -143,7 +144,7 @@ namespace SolarbeamGui
 			} catch {
 				Controller.InitForm();
 				Controller.Report(new Message(Result.Fail, "Failed to load previous session from: " + file));
-			}	
+			}
 		}
 		
 		private Size GetFormSize()
