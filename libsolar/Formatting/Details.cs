@@ -12,6 +12,7 @@ namespace LibSolar.Formatting
 		public static string FormatTimeLong(UTCDate udt, bool secs)
 		{
 			string fmt = "HH':'mm':'ss";
+			string fmt_long = "HH':'mm':'ss' 'dd'.'MM'.'yyyy";
 			if (!secs) {
 				fmt = "HH':'mm";
 			}
@@ -20,7 +21,7 @@ namespace LibSolar.Formatting
 			string dst_s = dst.ToString(fmt);
 			
 			DateTime std = UTCDate.ResolveDST(dst, udt.DST);
-			string std_s = std.ToString(fmt);
+			string std_s = std.ToString(fmt_long);
 			
 			string local_s = string.Format("{0} ST", dst_s);
 			if (udt.HasDST) {
@@ -28,7 +29,7 @@ namespace LibSolar.Formatting
 			}
 
 			DateTime utc = UTCDate.ResolveTimezone(std, udt.Timezone);
-			string utc_s = utc.ToString(fmt);
+			string utc_s = utc.ToString(fmt_long);
 			
 			string s = string.Format("{0}  [{1} UTC]", local_s, utc_s);
 			
