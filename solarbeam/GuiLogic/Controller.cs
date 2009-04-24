@@ -22,6 +22,9 @@ namespace SolarbeamGui
 	{
 		// Identify all widgets
 		public enum Id {
+			
+			// Main form
+			
 			MENUEXIT_ACTION,
 			MENUSESSIONSAVE_ACTION,
 			MENUSESSIONLOAD_ACTION,
@@ -35,6 +38,7 @@ namespace SolarbeamGui
 			MENUDESC_ACTION,
 			MENUSHORTCUT_ACTION,
 			MENUABOUT_ACTION,
+			
 			LOCATION,
 			LOCATIONNEW_ACTION,
 			LOCATIONSAVE_ACTION,
@@ -68,10 +72,14 @@ namespace SolarbeamGui
 			IMAGE_SUNTOGGLE,
 			IMAGE_CAPTIONTOGGLE,
 			IMAGESAVE_ACTION,
+			
 			DIAGRAM,
+			DETAILS,
 			MAP,
-			STATUSBAR_LABEL,
+			STATUSBAR,
 
+			// Other forms
+			
 			SHORTCUT_PLATFORM,
 			SHORTCUT_DESC,
 			SHORTCUT_PATH_1_LABEL,

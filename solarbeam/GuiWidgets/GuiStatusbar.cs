@@ -16,7 +16,7 @@ namespace SolarbeamGui
 		private void InitializeComponent()
 		{
 			ToolStripStatusLabel label =
-				Widgets.GetToolStripStatusLabel(Controller.Id.STATUSBAR_LABEL,
+				Widgets.GetToolStripStatusLabel(Controller.Id.STATUSBAR,
 				                                "Status");
 			label.ImageAlign = ContentAlignment.BottomLeft;
 			

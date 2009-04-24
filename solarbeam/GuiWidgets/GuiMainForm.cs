@@ -98,9 +98,11 @@ namespace SolarbeamGui
 			Control tabcontrol = Widgets.GetTabControl(
 				new Control[] {
 					new GuiDiagram(this),
+					new GuiDetails(),
 					new GuiMap(this)},
 				new string[] {
 					"Diagram",
+					"Details",
 					"Map"});
 		
 			TableLayoutPanel layout = Widgets.GetTableLayoutPanel(1, 2, 0, BORDER);

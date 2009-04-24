@@ -15,14 +15,14 @@ namespace SolarbeamGui
 	{
 		public static void Report(Message msg)
 		{
-			((ToolStripStatusLabel) registry[Id.STATUSBAR_LABEL]).Text = msg.ToString();
+			((ToolStripStatusLabel) registry[Id.STATUSBAR]).Text = msg.ToString();
 			Bitmap icon = null;
 			if (msg.Result == Result.OK) {
 				icon = Controller.AsmInfo.GetBitmap("status-ok.png");
 			} else if (msg.Result == Result.Fail) {
 				icon = Controller.AsmInfo.GetBitmap("status-fail.png");
 			}
-			((ToolStripStatusLabel) registry[Id.STATUSBAR_LABEL]).Image = icon;
+			((ToolStripStatusLabel) registry[Id.STATUSBAR]).Image = icon;
 		}
 	}
 }
