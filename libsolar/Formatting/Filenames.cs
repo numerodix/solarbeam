@@ -15,6 +15,11 @@ namespace LibSolar.Formatting
 			return FormatFilename(loc, pos, dt) + Constants.ImageFileExtension;
 		}
 		
+		public static string FormatTxtFilename(string loc, Position pos, UTCDate dt)
+		{
+			return FormatFilename(loc, pos, dt) + Constants.TextFileExtension;
+		}
+		
 		public static string FormatSessionFilename(string loc, Position pos, UTCDate dt)
 		{
 			return FormatFilename(loc, pos, dt) + Constants.SessionFileExtension;

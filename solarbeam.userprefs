@@ -2,10 +2,10 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="libsolar/Formatting/Details.cs" ctype="Workbench">
     <Files>
       <File FileName="solarbeam/GuiWidgets/GuiControlPanel.cs" Line="76" Column="4" />
-      <File FileName="solarbeam/GuiWidgets/GuiDetails.cs" Line="67" Column="61" />
-      <File FileName="solarbeam/GuiLogic/Writer.cs" Line="129" Column="82" />
+      <File FileName="solarbeam/GuiWidgets/GuiDetails.cs" Line="67" Column="1" />
+      <File FileName="solarbeam/GuiLogic/Writer.cs" Line="129" Column="7" />
       <File FileName="libsolar/Types/UTCDate.cs" Line="352" Column="1" />
-      <File FileName="libsolar/Formatting/Details.cs" Line="17" Column="21" />
+      <File FileName="libsolar/Formatting/Details.cs" Line="17" Column="5" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

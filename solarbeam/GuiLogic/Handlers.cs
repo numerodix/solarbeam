@@ -301,6 +301,51 @@ namespace SolarbeamGui
 			}
 		}
 		
+		private static void SaveDetails(object sender, EventArgs args)
+		{
+			string location = ReadLocation();
+			Position position = ReadPosition();
+			UTCDate? nudt = ReadDate();
+			
+			string loc = GetValue(registry[Id.DETAIL_LOCATION]);
+			string pos = GetValue(registry[Id.DETAIL_POSITION]);
+			string tz = GetValue(registry[Id.DETAIL_TIMEZONE]);
+			string date = GetValue(registry[Id.DETAIL_DATE]);
+			string time = GetValue(registry[Id.DETAIL_TIME]);
+			string el = GetValue(registry[Id.DETAIL_ELEVATION]);
+			string az = GetValue(registry[Id.DETAIL_AZIMUTH]);
+			string sunrise = GetValue(registry[Id.DETAIL_SUNRISE]);
+			string noon = GetValue(registry[Id.DETAIL_SOLARNOON]);
+			string sunset = GetValue(registry[Id.DETAIL_SUNSET]);
+			string solardaylength = GetValue(registry[Id.DETAIL_SOLARDAYLENGTH]);
+			string dawn = GetValue(registry[Id.DETAIL_DAWN]);
+			string dusk = GetValue(registry[Id.DETAIL_DUSK]);
+			string daylength = GetValue(registry[Id.DETAIL_DAYLENGTH]);
+			Details details = new Details(loc, pos, tz, date, time, el, az,
+			                              sunrise, noon, sunset, solardaylength,
+			                              dawn, dusk, daylength);
+
+			if ((position != null) && (nudt != null)) {
+				UTCDate udt = nudt.Value;
+				
+				string filename = Formatter.FormatTxtFilename(location, position, udt);
+				SaveFileDialog dlg = Widgets.GetSaveFileDialog(filename,
+				                                               Constants.TextFileDesc,
+				                                               Constants.TextFileFilter);
+				DialogResult ans = dlg.ShowDialog();
+				filename = dlg.FileName;
+			
+				if (ans == DialogResult.OK) {
+					try {
+						details.Write(filename);
+						Controller.Report(new Message(Result.OK, "Saved details to: " + filename));
+					} catch {
+						Controller.Report(new Message(Result.Fail, "Failed to save details to: " + filename));
+					}
+				}
+			}
+		}
+		
 		private static void ShowHelpDesc(object sender, EventArgs args)
 		{
 			Process.Start(Constants.URL_HELP);

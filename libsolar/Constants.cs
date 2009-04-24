@@ -32,6 +32,10 @@ namespace LibSolar
 		public const string ImageFileFilter = "*" + ImageFileExtension;
 		public const string ImageFileDesc = "Png images";
 		
+		public const string TextFileExtension = ".txt";
+		public const string TextFileFilter = "*" + TextFileExtension;
+		public const string TextFileDesc = "Text files";
+		
 		public const string BinaryFileExtension = ".bin";
 		public const string AutoSessionFilename = "autosave" + BinaryFileExtension;
 		public const string LocationListFilename = "locations" + BinaryFileExtension;

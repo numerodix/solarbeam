@@ -332,6 +332,9 @@ namespace SolarbeamGui
 
 			} else if (reg_rev[button] == Id.IMAGESAVE_ACTION) {
 				((Button) button).Click += new EventHandler(SaveImage);
+										
+			} else if (reg_rev[button] == Id.DETAILSAVE_ACTION) {
+				((Button) button).Click += new EventHandler(SaveDetails);
 			
 			// ShortcutInstall form
 			} else if (reg_rev[button] == Id.SHORTCUT_PATH_1_BROWSE_ACTION) {
