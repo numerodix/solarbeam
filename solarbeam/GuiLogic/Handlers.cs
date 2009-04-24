@@ -259,6 +259,8 @@ namespace SolarbeamGui
 				SetTimezone("UTC");
 			}
 			validate_lock = false;
+			
+			UpdateDetails(sender, args); // update details pane
 		}
 		
 		private static void SaveImage(object sender, EventArgs args)
