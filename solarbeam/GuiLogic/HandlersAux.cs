@@ -33,7 +33,7 @@ namespace SolarbeamGui
 			GuiMainForm.shortcutform.Show();
 		}
 		
-		private static void ShortcutPlatformChange(object sender, EventArgs args)
+		public static void ShortcutPlatformChange(object sender, EventArgs args)
 		{
 			// value changes will occur during control initialization, sometimes 
 			// before all controls have been registered. ignore this early case

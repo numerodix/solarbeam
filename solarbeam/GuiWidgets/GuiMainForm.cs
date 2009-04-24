@@ -37,6 +37,7 @@ namespace SolarbeamGui
 			
 			InitializeComponent(form_title, icon);
 			shortcutform = new GuiShortcutInstall(form_title, icon);
+			Controller.ShortcutPlatformChange(null, null); // refresh shortcut gui
 			aboutform = new GuiAbout(form_title, icon);
 
 			// makes mono layout differently 1.9 <-> 2.0

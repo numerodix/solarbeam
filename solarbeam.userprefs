@@ -11,16 +11,6 @@
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="True" />
           <Option id="ShowAllFiles" value="False" />
-          <Node name="libsolar" expanded="True">
-            <Node name="Formatting" expanded="True" />
-          </Node>
-          <Node name="solarbeam" expanded="True">
-            <Node name="GuiLogic" expanded="True" />
-            <Node name="GuiWidgets" expanded="True">
-              <Node name="Lib" expanded="True" />
-              <Node name="GuiDetails.cs" selected="True" />
-            </Node>
-          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">
