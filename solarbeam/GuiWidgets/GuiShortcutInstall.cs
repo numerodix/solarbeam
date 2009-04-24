@@ -104,24 +104,6 @@ namespace SolarbeamGui
 			Control pathdetect = GetPathDetect();
 			Control create = GetCreate();
 			Control closebtn = GetCloseButton();
-			
-/*
-			Control desc_in = Widgets.GetRichTextBox(s);
-			desc_in.TabStop = false;
-			
-			Label icon_lbl = Widgets.GetLabelImage("icon64.png");
-			icon_lbl.Dock = DockStyle.Fill;
-			
-			TableLayoutPanel desc = new TableLayoutPanel();
-			desc.ColumnCount = 2;
-			desc.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
-			desc.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-			desc.Controls.Add(icon_lbl, 1, 0);
-			desc.Controls.Add(desc_in, 0, 0);
-			desc.Dock = DockStyle.Fill;
-			desc.RowCount = 1;
-			desc.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-*/
 		
 			layout.Controls.Add(platform, 0, 0);
 			layout.RowStyles.Add(new RowStyle(SizeType.Absolute, FORM_ROW_HEIGHT));
