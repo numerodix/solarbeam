@@ -24,7 +24,7 @@ namespace SolarbeamGui
 	{
 		private static void SaveSession(object sender, EventArgs args)
 		{
-			string location = GetValue(registry[Id.LOCATION]);
+			string location = ReadLocation();
 			Position pos = ReadPosition();
 			UTCDate? date = ReadDate();
 			
@@ -90,7 +90,7 @@ namespace SolarbeamGui
 		{
 			ComboBox loc_control = (ComboBox) registry[Id.LOCATION];
 			
-			string name = GetValue(registry[Id.LOCATION]);
+			string name = ReadLocation();
 			Position pos = ReadPosition();
 			string tz = GetValue(registry[Id.TIMEZONE_NAME]);
 			
@@ -213,7 +213,7 @@ namespace SolarbeamGui
 				if (!validate_lock)
 				{
 					Position pos = ReadPosition();
-					String location = GetValue(registry[Id.LOCATION]);
+					string location = ReadLocation();
 	
 					if (pos != null) {
 						((GuiMap) registry[Id.MAP]).Update(location, pos);
@@ -245,7 +245,7 @@ namespace SolarbeamGui
 		private static void SaveImage(object sender, EventArgs args)
 		{
 			int dim = GetInt(GetValue(registry[Id.IMAGE_SIZE]));
-			string location = GetValue(registry[Id.LOCATION]);
+			string location = ReadLocation();
 			Position pos = ReadPosition();
 			UTCDate? date = ReadDate();
 			Colors colors = GuiDiagram.colors;

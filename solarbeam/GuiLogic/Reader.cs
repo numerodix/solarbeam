@@ -14,6 +14,11 @@ namespace SolarbeamGui
 	 */
 	partial class Controller
 	{
+		private static string ReadLocation()
+		{
+			return GetValue(registry[Id.LOCATION]);
+		}
+		
 		private static Position ReadPosition()
 		{
 			string ilodir = GetValue(registry[Id.LONGITUDE_DIRECTION]);
