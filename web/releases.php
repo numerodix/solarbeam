@@ -8,7 +8,7 @@
 		</div>
 		<div id="release-0.8">
 			<div class="releasecontent">
-				<p>Bugs fixed:</p>
+				<p>New features:</p>
 				<ul>
 					<li>Details display.</li>
 					<li>Save details to file option.</li>
