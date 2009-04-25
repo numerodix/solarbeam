@@ -166,9 +166,7 @@ namespace SolarbeamGui
 				fmt);
 						
 			Control layout = Widgets.GetStacked(
-				new Control[] {
-					desktop,
-					startmenu},
+				new Control[] {desktop, startmenu},
 				FORM_ROW_HEIGHT.ToString());
 			
 			return Widgets.GetGroupBox("Detected paths", layout);
@@ -220,10 +218,7 @@ namespace SolarbeamGui
 				new string[] {Widgets.BUTTON_WIDTH, "100%"});
 			
 			Control layout = Widgets.GetStacked(
-				new Control[] {
-					desktop,
-					startmenu,
-					buttons},
+				new Control[] {desktop, startmenu, buttons},
 				FORM_ROW_HEIGHT.ToString());
 			
 			return Widgets.GetGroupBox("Create shortcut(s)", layout);

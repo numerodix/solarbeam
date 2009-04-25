@@ -188,13 +188,7 @@ namespace SolarbeamGui
 				new string[] {key_w, "23%", "5%", "23%", "5%", "23%", "30%"});
 	
 			Control layout = Widgets.GetStacked(
-				new Control[] {
-					loc_ins,
-					lat_ins,
-					lon_ins,
-					tz_in,
-					date_ins,
-					time_ins},
+				new Control[] {loc_ins, lat_ins, lon_ins, tz_in, date_ins, time_ins},
 				FORM_ROW_HEIGHT.ToString());
 		
 			return layout;
@@ -220,48 +214,14 @@ namespace SolarbeamGui
 		{
 			string[] fmt = new string[] {KEY_WIDTH, Widgets.COLON_WIDTH, "100%"};
 				
-			Control el = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Solar elevation"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.ELEVATION, "-13.1231")},
-					fmt);
-	
-			Control az = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Solar azimuth"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.AZIMUTH, "212.6669")},
-					fmt);
-	
-			Control noon = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Solar noon"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.SOLAR_NOON, "12:12")},
-					fmt);    
-	
-			Control rise_set = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Sunrise/Sunset"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.SUNRISESUNSET, "06:09")},
-					fmt);
-	
-			Control dawn_dusk = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Dawn/Dusk"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DAWNDUSK, "18:15")},
-					fmt);
-	
+			Control el = GetOutputRow(fmt, "Solar elevation", Controller.Id.ELEVATION);
+			Control az = GetOutputRow(fmt, "Solar azimuth", Controller.Id.AZIMUTH);
+			Control noon = GetOutputRow(fmt, "Solar noon", Controller.Id.SOLAR_NOON);
+			Control rise_set = GetOutputRow(fmt, "Sunrise/Sunset", Controller.Id.SUNRISESUNSET);
+			Control dawn_dusk = GetOutputRow(fmt, "Dawn/Dusk", Controller.Id.DAWNDUSK);
+			
 			Control layout = Widgets.GetStacked(
-				new Control[] {
-					el,
-					az,
-					noon,
-					rise_set,
-					dawn_dusk},
+				new Control[] {el, az, noon, rise_set, dawn_dusk},
 				FORM_ROW_HEIGHT.ToString());
 				
 			return layout;
@@ -295,12 +255,20 @@ namespace SolarbeamGui
 				new string[] {"50%", "50%"});
 							
 			Control layout = Widgets.GetStacked(
-				new Control[] {
-					btns,
-					checkboxes},
+				new Control[] {btns, checkboxes},
 				FORM_ROW_HEIGHT.ToString());
 			
 			return layout;
+		}
+					
+		private Control GetOutputRow(string[] col_fmt, string label, Controller.Id id)
+		{
+			return Widgets.GetLaidOut(
+				new Control[] {
+					Widgets.GetLabelAnon(label),
+					Widgets.GetLabelAnon(":"),
+					Widgets.GetTextBoxROPlain(id, string.Empty)},
+				col_fmt);
 		}
 	}
 }
