@@ -80,48 +80,14 @@ namespace SolarbeamGui
 	
 		private Control GetParameters()
 		{
-			Control loc = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Location"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_LOCATION, string.Empty)},
-					col_fmt);
-			
-			Control pos = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Coordinates"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_POSITION, string.Empty)},
-					col_fmt);
-			
-			Control tz = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Timezone"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_TIMEZONE, string.Empty)},
-					col_fmt);
-			
-			Control date = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Date"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_DATE, string.Empty)},
-					col_fmt);			
-			
-			Control time = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Time"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_TIME, string.Empty)},
-					col_fmt);
+			Control loc = GetRow(col_fmt, "Location", Controller.Id.DETAIL_LOCATION);
+			Control pos = GetRow(col_fmt, "Coordinates", Controller.Id.DETAIL_POSITION);
+			Control tz = GetRow(col_fmt, "Timezone", Controller.Id.DETAIL_TIMEZONE);
+			Control date = GetRow(col_fmt, "Date", Controller.Id.DETAIL_DATE);
+			Control time = GetRow(col_fmt, "Time", Controller.Id.DETAIL_TIME);
 			
 			Control layout = Widgets.GetStacked(
-				new Control[] {
-					loc,
-					pos,
-					tz,
-					date,
-					time},
+				new Control[] {loc, pos, tz, date, time},
 				FORM_ROW_HEIGHT.ToString());
 
 			return Widgets.GetGroupBox("Parameters", layout);
@@ -129,24 +95,11 @@ namespace SolarbeamGui
 		
 		private Control GetSolarPosition()
 		{
-			Control el = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Solar elevation"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_ELEVATION, string.Empty)},
-					col_fmt);
-			
-			Control az = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Solar azimuth"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_AZIMUTH, string.Empty)},
-					col_fmt);	
+			Control el = GetRow(col_fmt, "Solar elevation", Controller.Id.DETAIL_ELEVATION);
+			Control az = GetRow(col_fmt, "Solar azimuth", Controller.Id.DETAIL_AZIMUTH);
 			
 			Control layout = Widgets.GetStacked(
-				new Control[] {
-					el,
-					az},
+				new Control[] {el, az},
 				FORM_ROW_HEIGHT.ToString());
 			
 			return Widgets.GetGroupBox("Solar position", layout);
@@ -154,40 +107,13 @@ namespace SolarbeamGui
 		
 		private Control GetSolarTimes()
 		{
-			Control sunrise = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Sunrise"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_SUNRISE, string.Empty)},
-					col_fmt);
-			
-			Control solarnoon = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Solar noon"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_SOLARNOON, string.Empty)},
-					col_fmt);	
-			
-			Control sunset = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Sunset"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_SUNSET, string.Empty)},
-					col_fmt);	
-			
-			Control solardaylength = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Solar day length"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_SOLARDAYLENGTH, string.Empty)},
-					col_fmt);	
+			Control sunrise = GetRow(col_fmt, "Sunrise", Controller.Id.DETAIL_SUNRISE);
+			Control solarnoon = GetRow(col_fmt, "Solar noon", Controller.Id.DETAIL_SOLARNOON);
+			Control sunset = GetRow(col_fmt, "Sunset", Controller.Id.DETAIL_SUNSET);
+			Control solardaylength = GetRow(col_fmt, "Solar day length", Controller.Id.DETAIL_SOLARDAYLENGTH);
 			
 			Control layout = Widgets.GetStacked(
-				new Control[] {
-					sunrise,
-					solarnoon,
-					sunset,
-					solardaylength},
+				new Control[] {sunrise, solarnoon, sunset, solardaylength},
 				FORM_ROW_HEIGHT.ToString());
 			
 			return Widgets.GetGroupBox("Solar times", layout);
@@ -195,32 +121,12 @@ namespace SolarbeamGui
 		
 		private Control GetDawnDusk()
 		{
-			Control dawn = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Dawn"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_DAWN, string.Empty)},
-					col_fmt);
-			
-			Control dusk = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Dusk"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_DUSK, string.Empty)},
-					col_fmt);	
-			
-			Control daylength = Widgets.GetLaidOut(
-					new Control[] {
-					Widgets.GetLabelAnon("Day length"),
-					Widgets.GetLabelAnon(":"),
-					Widgets.GetTextBoxROPlain(Controller.Id.DETAIL_DAYLENGTH, string.Empty)},
-					col_fmt);	
-			
+			Control dawn = GetRow(col_fmt, "Dawn", Controller.Id.DETAIL_DAWN);
+			Control dusk = GetRow(col_fmt, "Dusk", Controller.Id.DETAIL_DUSK);
+			Control daylength = GetRow(col_fmt, "Day length", Controller.Id.DETAIL_DAYLENGTH);
+
 			Control layout = Widgets.GetStacked(
-				new Control[] {
-					dawn,
-					dusk,
-					daylength},
+				new Control[] {dawn, dusk, daylength},
 				FORM_ROW_HEIGHT.ToString());
 			
 			return Widgets.GetGroupBox("Civil twilight (elevation -6°)", layout);
@@ -236,6 +142,16 @@ namespace SolarbeamGui
 				new string[] {"120", "100%"});
 	
 			return btns;
+		}
+		
+		private Control GetRow(string[] col_fmt, string label, Controller.Id id)
+		{
+			return Widgets.GetLaidOut(
+				new Control[] {
+					Widgets.GetLabelAnon(label),
+					Widgets.GetLabelAnon(":"),
+					Widgets.GetTextBoxROPlain(id, string.Empty)},
+				col_fmt);
 		}
 	}
 }
