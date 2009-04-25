@@ -59,11 +59,25 @@ namespace SolarbeamGui
 			this.DoubleBuffered = true;
 			this.Text = form_title;
 			this.Icon = Controller.AsmInfo.GetIcon(icon);
+									
+			this.Closed += new EventHandler(OnQuit);
 			
+			// try to bring to front somehow
+			this.Load += delegate (object o, EventArgs a) {
+				this.Activate();
+				this.BringToFront();
+				this.Focus();
+			};
+
 			// init datasources before instantiating widgets
 			Controller.InitSources();
 			
 			Controller.SplashQueue.Enqueue("Initializing gui");
+			this.Controls.Add(GetPanel());
+		}
+		
+		private Control GetPanel()
+		{
 			this.menu = new GuiMenu();
 			this.statusbar = new GuiStatusbar();
 			Control mainarea = GetMainArea();
@@ -79,17 +93,7 @@ namespace SolarbeamGui
 			layout.Controls.Add(mainarea, 0, 1);
 			layout.Controls.Add(statusbar, 0, 2);
 			
-			this.Controls.Add(layout);
-			
-			this.Closed += new EventHandler(OnQuit);
-			
-			// try to bring to front somehow
-			this.Load += delegate (object o, EventArgs a) {
-				this.Activate();
-				this.BringToFront();
-				this.Focus();
-			};
-
+			return layout;
 		}
 			
 		private Control GetMainArea()
