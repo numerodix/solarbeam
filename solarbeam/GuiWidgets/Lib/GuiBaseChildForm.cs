@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace SolarbeamGui
 {
 	/**
-	 * A child form that survives closing.
+	 * A child form with title and icon that survives closing.
 	 */
 	abstract class GuiBaseChildForm : Form
 	{
@@ -30,6 +30,6 @@ namespace SolarbeamGui
 			InitializeComponent();
 		}
 		
-		public abstract void InitializeComponent();
+		protected abstract void InitializeComponent();
 	}
 }

@@ -21,7 +21,7 @@ namespace SolarbeamGui
 		public GuiAbout(string form_title, string icon)
 			: base(form_title, icon) {}
 		
-		public override void InitializeComponent()
+		protected override void InitializeComponent()
 		{	
 			Control panel = GetPanel();
 			this.Controls.Add(panel);

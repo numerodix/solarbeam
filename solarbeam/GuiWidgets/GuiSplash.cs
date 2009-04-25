@@ -8,22 +8,17 @@ using System.Windows.Forms;
 
 namespace SolarbeamGui
 {
-	sealed class GuiSplash : Form
+	sealed class GuiSplash : GuiBaseForm
 	{
 		volatile public bool expired = false; // atomic reads/writes
 		public Label label;
 		
 		public GuiSplash(string form_title, string icon)
-		{
-			InitializeComponent(form_title, icon);
-		}
+			: base(form_title, icon)
+		{}
 		
-		private void InitializeComponent(string form_title, string icon)
+		protected override void InitializeComponent()
 		{
-			this.DoubleBuffered = true; // prevent flicker on updates
-			this.Text = form_title;
-			this.Icon = Controller.AsmInfo.GetIcon(icon);
-			
 			Bitmap logo = Controller.AsmInfo.GetBitmap("logo.png");
 			this.BackgroundImage = logo;
 			

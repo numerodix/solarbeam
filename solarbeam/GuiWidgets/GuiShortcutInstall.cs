@@ -77,7 +77,7 @@ namespace SolarbeamGui
 		}
 		
 		
-		public override void InitializeComponent()
+		protected override void InitializeComponent()
 		{	
 			this.Controls.Add(GetPanel());
 			

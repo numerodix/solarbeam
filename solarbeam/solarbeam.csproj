@@ -66,6 +66,7 @@
     <Compile Include="GuiWidgets\GuiDetails.cs" />
     <Compile Include="GuiLogic\Types\Details.cs" />
     <Compile Include="GuiWidgets\Lib\GuiBaseChildForm.cs" />
+    <Compile Include="GuiWidgets\Lib\GuiBaseForm.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

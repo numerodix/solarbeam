@@ -15,7 +15,7 @@ namespace SolarbeamGui
 	/**
 	 * Represents the main gui form.
 	 */
-	sealed class GuiMainForm : Form
+	sealed class GuiMainForm : GuiBaseForm
 	{	
 		private const int BORDER = 0;
 		private const int DIAGRAM_DIM_X = GuiDiagram.IDEAL_DIM_X;
@@ -32,34 +32,15 @@ namespace SolarbeamGui
 		private GuiDiagram diagram;
 		
 		public GuiMainForm(string form_title, string icon)
+			: base(form_title, icon)
 		{
-//			this.SuspendLayout();
-			
-			InitializeComponent(form_title, icon);
 			shortcutform = new GuiShortcutInstall("Create shortcuts", icon);
 			Controller.ShortcutPlatformChange(null, null); // refresh shortcut gui
 			aboutform = new GuiAbout("About " + form_title, icon);
-
-			// makes mono layout differently 1.9 <-> 2.0
-			// VS default: 6F 13F (win ok)
-			// mono 1.9: 6F 14F (win ok)
-			// mono 2.0: 7F 14F
-//			this.AutoScaleDimensions = new SizeF(6F, 13F);
-			
-			this.AutoScaleMode = AutoScaleMode.Font;
-			this.ClientSize = GetFormSize();
-			this.MinimumSize = new Size(ClientSize.Width + (Size.Width - ClientSize.Width),
-			                            ClientSize.Height + (Size.Height - ClientSize.Height));
-//			this.ResumeLayout(false);
-//			this.PerformLayout();
 		}
 		
-		private void InitializeComponent(string form_title, string icon)
+		protected override void InitializeComponent()
 		{
-			this.DoubleBuffered = true;
-			this.Text = form_title;
-			this.Icon = Controller.AsmInfo.GetIcon(icon);
-									
 			this.Closed += new EventHandler(OnQuit);
 			
 			// try to bring to front somehow
@@ -74,6 +55,22 @@ namespace SolarbeamGui
 			
 			Controller.SplashQueue.Enqueue("Initializing gui");
 			this.Controls.Add(GetPanel());
+
+			
+//			this.SuspendLayout();
+			
+			// makes mono layout differently 1.9 <-> 2.0
+			// VS default: 6F 13F (win ok)
+			// mono 1.9: 6F 14F (win ok)
+			// mono 2.0: 7F 14F
+//			this.AutoScaleDimensions = new SizeF(6F, 13F);
+			
+			this.AutoScaleMode = AutoScaleMode.Font;
+			this.ClientSize = GetFormSize();
+			this.MinimumSize = new Size(ClientSize.Width + (Size.Width - ClientSize.Width),
+			                            ClientSize.Height + (Size.Height - ClientSize.Height));
+//			this.ResumeLayout(false);
+//			this.PerformLayout();
 		}
 		
 		private Control GetPanel()
