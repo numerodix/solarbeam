@@ -1,5 +1,6 @@
 0.8
 * Details display.
+* Save details to file option.
 * Added status bar with notifications about file saving/loading events.
 
 0.7

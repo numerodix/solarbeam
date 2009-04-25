@@ -63,6 +63,14 @@
 					A diagram saved to an image
 				</div>
 			</td>
+			<td>
+				<a href="imgs/ss/details_file.txt">
+					<img src="imgs/ss/details_file_t.png" alt="details_file"/>
+				</a>
+				<div class="caption">
+					Details saved to file
+				</div>
+			</td>
 		</tr>
 		</table>
 

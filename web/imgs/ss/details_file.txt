@@ -1,0 +1,22 @@
+== Parameters ==
+Location          : Johannesburg (SA)
+Coordinates       : 26° 11' 24" S   28°  2' 24" E
+Timezone          : UTC+2 ST, UTC+3 DST
+Date              : 25.04.2009
+Time              : 19:37:57 DST  [18:37:57 25.04.2009 ST]  [16:37:57 25.04.2009 UTC]
+
+== Solar position ==
+Solar elevation   : -12.95°
+Solar azimuth     : 278.72°
+
+== Solar times ==
+Sunrise           : 07:28 DST  [06:28:32 25.04.2009 ST]  [04:28:32 25.04.2009 UTC]
+Solar noon        : 13:05 DST  [12:05:52 25.04.2009 ST]  [10:05:52 25.04.2009 UTC]
+Sunset            : 18:42 DST  [17:42:43 25.04.2009 ST]  [15:42:43 25.04.2009 UTC]
+Solar day length  : 11h 14m
+
+== Civil twilight (elevation -6°) ==
+Dawn              : 07:04 DST  [06:04:40 25.04.2009 ST]  [04:04:40 25.04.2009 UTC]
+Dusk              : 19:06 DST  [18:06:36 25.04.2009 ST]  [16:06:36 25.04.2009 UTC]
+Day length        : 12h 1m
+
