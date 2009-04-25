@@ -12,7 +12,7 @@ namespace LibSolar
 		public const string GUI_APPTITLE = "SolarBeam";
 		public const string GUI_APPDESC = "An application for drawing solar diagrams";
 
-		public const string VERSION = "0.7.0.0";
+		public const string VERSION = "0.8.0.0";
 
 		public const string COPYRIGHT = "Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>";
 		
