@@ -81,7 +81,7 @@ namespace SolarbeamGui
 		{	
 			this.Controls.Add(GetPanel());
 			
-			this.ClientSize = new Size(550, 362);
+			this.ClientSize = new Size(550, 350);
 		}
 		
 		private Control GetPanel()
@@ -101,7 +101,7 @@ namespace SolarbeamGui
 					closebtn},
 				new string[] {
 					FORM_ROW_HEIGHT.ToString(),
-					(60).ToString(),
+					(50).ToString(),
 					(100).ToString(),
 					(130).ToString(),
 					FORM_ROW_HEIGHT.ToString()});
