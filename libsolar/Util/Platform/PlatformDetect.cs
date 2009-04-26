@@ -71,7 +71,7 @@ namespace LibSolar.Util
 							name = "Windows Vista";
 							break;
 						case 1:
-							name = "Windows 2008";
+							name = "Windows 7";
 							break;
 					}
 					break;
