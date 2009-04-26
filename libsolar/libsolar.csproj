@@ -95,6 +95,9 @@
     <Compile Include="Util\Shortcut\ShortcutInstaller.cs" />
     <Compile Include="Util\Memory.cs" />
     <Compile Include="Formatting\Details.cs" />
+    <Compile Include="Util\Platform\Paths.cs" />
+    <Compile Include="Util\Platform\PlatformDetect.cs" />
+    <Compile Include="Util\Processes.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -105,5 +108,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\bundled\worldmap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Util\Platform\" />
   </ItemGroup>
 </Project>

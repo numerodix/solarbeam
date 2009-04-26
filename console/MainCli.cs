@@ -72,9 +72,10 @@ namespace SolarbeamCli
 	
 			if ((help) || (args.Length == 0)) {
 				AsmInfo asminfo = new AsmInfo(Assembly.GetExecutingAssembly());
-				Console.Error.WriteLine("{0} {1}",
+				Console.Error.WriteLine("{0} {1}  {2}",
 				                        asminfo.GetAtt("Title"),
-				                        asminfo.GetAtt("Version"));
+				                        asminfo.GetAtt("Version"),
+				                        Platform.GetRuntimePlatformString());
 				
 				Console.Error.WriteLine("Usage:");
 				Console.Error.Write("  console.exe");

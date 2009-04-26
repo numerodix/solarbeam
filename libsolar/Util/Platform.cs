@@ -28,6 +28,15 @@ namespace LibSolar.Util
 	 */
 	public static class Platform
 	{
+		public static string GetRuntimePlatformString()
+		{
+			return string.Format("{0}: {1}, {2}: {3}",
+			                     "{runtime",
+			                     GetRuntimeString(),
+			                     "platform",
+			                     PlatformDetect.GetPlatformName() + "}");
+		}
+		
 		public static RuntimeName GetRuntime()
 		{
 			RuntimeName platform = RuntimeName.Mono;
@@ -60,65 +69,19 @@ namespace LibSolar.Util
 		{
 			switch (type) {
 			case PathType.Desktop:
-				return GetDesktopPath();
+				return Paths.GetDesktopPath();
 				break;
 			case PathType.WindowsStartMenu:
-				return GetWindowsStartMenuPath();
+				return Paths.GetWindowsStartMenuPath();
 				break;
 			case PathType.UnixLocalXDGApplications:
-				return UnixLocalXDGApplications();
+				return Paths.UnixLocalXDGApplications();
 				break;
 			case PathType.UnixGlobalXDGApplications:
-				return UnixGlobalXDGApplications();
+				return Paths.UnixGlobalXDGApplications();
 				break;
 			}
 			return null;
-		}
-		
-		private static string GetDesktopPath()
-		{
-			return Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-		}
-		
-		private static string GetWindowsStartMenuPath()
-		{
-			try {
-				string path = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu);
-				string[] dirs = Directory.GetDirectories(path);
-				if (dirs.Length > 0) {
-					path = dirs[0];
-				}
-				return path;
-			} catch {
-				return null;
-			}
-		}
-		
-		private static string UnixLocalXDGApplications()
-		{
-			string fallback = null; // return if no paths exist
-
-			string path_s = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-			string[] paths = path_s.Split(new char[] {':'});
-			for (int i=0; i<paths.Length; i++) {
-				string p = Path.Combine(paths[i], Constants.UnixXDGApplicationsDirName);
-				if (i == 0) fallback = p;
-				if (Directory.Exists(p)) return p;
-			}
-			return fallback;
-		}
-		
-		private static string UnixGlobalXDGApplications()
-		{
-			string fallback = null; // return if no paths exist
-			
-			string[] paths = Constants.UnixGlobalXDGBasePaths;
-			for (int i=0; i<paths.Length; i++) {
-				string p = Path.Combine(paths[i], Constants.UnixXDGApplicationsDirName);
-				if (i == 0) fallback = p;
-				if (Directory.Exists(p)) return p;
-			}
-			return fallback;
 		}
 	}
 }

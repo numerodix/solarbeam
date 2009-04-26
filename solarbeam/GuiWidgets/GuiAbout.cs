@@ -100,13 +100,10 @@ namespace SolarbeamGui
 		{
 			string s;
 			
-			s = String.Format("{0} {1}  {2}: {3}, {4}: {5}\n",
+			s = String.Format("{0} {1}  {2}\n",
 			                  Controller.AsmInfo.GetAtt("Title"),
 			                  Controller.AsmInfo.GetAtt("Version"),
-			                  "{runtime",
-			                  Platform.GetRuntimeString(),
-			                  "platform",
-			                  Platform.GetPlatform() + "}");
+			                  Platform.GetRuntimePlatformString());
 			s += Controller.AsmInfo.GetAtt("Description") + "\n\n";
 			
 			s += Constants.APP_URL + "\n\n";
