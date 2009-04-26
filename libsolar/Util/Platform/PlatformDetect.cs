@@ -17,24 +17,6 @@ namespace LibSolar.Util
 			}
 		}
 		
-		public static string GetUnixPlatformName()
-		{
-			string name = "Unix";
-			try {
-				name = Processes.Run("uname", string.Empty);
-				if (name == "Linux") {
-					string distro = Processes.Run("lsb_release", "-i");
-					name = distro = distro.Split(new char[] {':'})[1].Trim();
-					
-					string release = Processes.Run("lsb_release", "-r");
-					release = release.Split(new char[] {':'})[1].Trim();
-					
-					name = string.Format("{0} {1}", distro, release);
-				}
-			} catch {}
-			return name;
-		}
-		
 		/**
 		 * Reference: http://support.microsoft.com/kb/304283
 		 * Reference: http://www.codeproject.com/KB/system/osversion.aspx
@@ -96,6 +78,56 @@ namespace LibSolar.Util
 				}
 				break;
 			}
+			return name;
+		}
+
+		/**
+		 * 1. Use uname to establish Unix platform.
+		 * 2. Try lsb_release to find distro info.
+		 * 3. Try /etc/lsb-release as last resort.
+		 */
+		public static string GetUnixPlatformName()
+		{
+			string name = "Unix";
+			try {
+				name = Processes.Run("uname", string.Empty);
+				if (name == "Linux") {
+					string distro = string.Empty;
+					string release = string.Empty;
+
+					try {
+						string distro_t = Processes.Run("lsb_release", "-i");
+						distro_t = distro_t.Split(new char[] {':'})[1].Trim();
+						if ((distro_t == null) || (distro_t == string.Empty))
+							throw new Exception();
+						distro = distro_t;
+
+						string release_t = Processes.Run("lsb_release", "-r");
+						release_t = release_t.Split(new char[] {':'})[1].Trim();
+						if ((release_t != null) && (release_t != string.Empty))
+							release = " " + release_t;
+					} catch {
+						string[] lines = File.ReadAllLines("/etc/lsb-release");
+						foreach (string line in lines) {
+							if (line.StartsWith("DISTRIB_ID")) {
+								string distro_t = line.Split(new char[] {'='})[1].Trim().Replace("\"", "");
+								if ((distro_t == null) || (distro_t == string.Empty))
+									throw new Exception();
+								distro = distro_t;
+							}
+							if (line.StartsWith("DISTRIB_RELEASE")) {
+								string release_t = line.Split(new char[] {'='})[1].Trim().Replace("\"", "");
+								if ((release_t != null) && (release_t != string.Empty))
+									release = " " + release_t;
+							}
+						}
+						if ((distro == null) || (distro == string.Empty))
+							throw new Exception();
+					}
+
+					name = string.Format("{0}{1}", distro, release);
+				}
+			} catch {}
 			return name;
 		}
 	}
