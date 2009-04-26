@@ -71,11 +71,11 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\libsolar\libsolar.csproj">
-      <Project>{66BB16EF-C023-4729-8C87-44D1771CE237}</Project>
+      <Project>{B10031CA-8F30-4D3E-8185-AEC4636D0648}</Project>
       <Name>libsolar</Name>
     </ProjectReference>
     <ProjectReference Include="..\libpublicdomain\libpublicdomain.csproj">
-      <Project>{66BB16EF-C023-4729-8C87-44D1771CE237}</Project>
+      <Project>{7285F2CC-F0EF-4744-A07E-B41DB4F307C3}</Project>
       <Name>libpublicdomain</Name>
     </ProjectReference>
   </ItemGroup>

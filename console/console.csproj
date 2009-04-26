@@ -35,7 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libsolar\libsolar.csproj">
-      <Project>{855E14AE-32A5-476A-9966-B3B4ABCC93A2}</Project>
+      <Project>{B10031CA-8F30-4D3E-8185-AEC4636D0648}</Project>
       <Name>libsolar</Name>
     </ProjectReference>
   </ItemGroup>

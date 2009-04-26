@@ -8,7 +8,6 @@
     <ProjectGuid>{7285F2CC-F0EF-4744-A07E-B41DB4F307C3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>libpublicdomain</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
