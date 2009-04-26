@@ -26,7 +26,8 @@ namespace LibSolar.Util
 					name = string.Format("Mono {0}", Environment.Version);
 				}
 			} else {
-				name = string.Format(".NET {0}", Environment.Version);
+				Version v = Environment.Version;
+				name = string.Format(".NET {0}.{1}", v.Major, v.Minor);
 			}
 			
 			return name;
