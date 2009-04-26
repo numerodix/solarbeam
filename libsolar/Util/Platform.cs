@@ -30,11 +30,9 @@ namespace LibSolar.Util
 	{
 		public static string GetRuntimePlatformString()
 		{
-			return string.Format("{0}: {1}, {2}: {3}",
-			                     "{runtime",
+			return string.Format("[running {0} on {1}]",
 			                     RuntimeDetect.GetRuntimeName(),
-			                     "platform",
-			                     PlatformDetect.GetPlatformName() + "}");
+			                     PlatformDetect.GetPlatformName());
 		}
 		
 		public static RuntimeName GetRuntime()
