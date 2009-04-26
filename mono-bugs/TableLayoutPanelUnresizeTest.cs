@@ -120,8 +120,8 @@ class TableLayoutPanelUnresizeTest
  * Maximize the window, then restore size again. The TabControl fails to down
  * size accordingly, both length and width wise.
  *
- * linux:mono r130111
- * missing popup
+ * linux:mono r132681
+ * bug
  *
  * linux:mono 2.0.1
  * bug
