@@ -19,18 +19,19 @@ namespace LibSolar.Util
 		
 		public static string GetUnixPlatformName()
 		{
-			string name = Processes.Run("uname", string.Empty);
-			if (name == "Linux") {
-				try {
+			string name = "Unix";
+			try {
+				name = Processes.Run("uname", string.Empty);
+				if (name == "Linux") {
 					string distro = Processes.Run("lsb_release", "-i");
-					distro = distro.Split(new char[] {':'})[1].Trim();
+					name = distro = distro.Split(new char[] {':'})[1].Trim();
 					
 					string release = Processes.Run("lsb_release", "-r");
 					release = release.Split(new char[] {':'})[1].Trim();
 					
 					name = string.Format("{0} {1}", distro, release);
-				} catch {}
-			}
+				}
+			} catch {}
 			return name;
 		}
 		

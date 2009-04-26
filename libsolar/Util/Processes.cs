@@ -18,7 +18,10 @@ namespace LibSolar.Util
 			p.Start();
 			string output = p.StandardOutput.ReadToEnd().Trim();
 			p.WaitForExit();
-			return output;
+			if (p.ExitCode == 0) {
+				return output;
+			}
+			throw new Exception();
 		}
 	}
 }
