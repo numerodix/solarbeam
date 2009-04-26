@@ -98,6 +98,7 @@
     <Compile Include="Util\Platform\Paths.cs" />
     <Compile Include="Util\Platform\PlatformDetect.cs" />
     <Compile Include="Util\Processes.cs" />
+    <Compile Include="Util\Platform\RuntimeDetect.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

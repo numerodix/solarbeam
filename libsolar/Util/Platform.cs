@@ -32,7 +32,7 @@ namespace LibSolar.Util
 		{
 			return string.Format("{0}: {1}, {2}: {3}",
 			                     "{runtime",
-			                     GetRuntimeString(),
+			                     RuntimeDetect.GetRuntimeName(),
 			                     "platform",
 			                     PlatformDetect.GetPlatformName() + "}");
 		}
