@@ -76,10 +76,7 @@ namespace SolarbeamGui
 		{
 			string val = null;
 			if (control is CheckBox) {
-				CheckBox c = (CheckBox) control;
-				if (!c.Visible) // return false for invisible control
-					return false.ToString();
-				val = c.Checked.ToString();
+				val = ((CheckBox) control).Checked.ToString();
 			} else if (control is ComboBox) {
 				val = ((ComboBox) control).Text;
 			} else if (control is NumericUpDown) {
