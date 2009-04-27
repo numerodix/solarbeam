@@ -30,6 +30,8 @@ namespace LibSolar.Util
 		public void RemoveWindowsShortcut(string path)
 		{
 			string file_path = Path.Combine(path, Constants.WinShortcutFile);
+			if (!File.Exists(file_path))
+				throw new Exception();
 			File.Delete(file_path);
 		}
 		
@@ -56,6 +58,8 @@ namespace LibSolar.Util
 		public void RemoveUnixShortcut(string path)
 		{
 			string file_path = Path.Combine(path, Constants.UnixShortcutFile);
+			if (!File.Exists(file_path))
+				throw new Exception();
 			File.Delete(file_path);
 		}
 		
