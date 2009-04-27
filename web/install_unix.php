@@ -18,7 +18,7 @@
 		SolarBeam is a portable application and does not need to be installed. You can place it anywhere on the filesystem and run it from there. SolarBeam can also set up launchers for itself in the Applications menu.
 
 		<h2>Download</h2>
-		<p>First download SolarBeam from this website.</p>
+		<p>First download a SolarBeam release from this website.</p>
 		<img src="imgs/guide/unix_0.png" alt="unix_0"/>
 	
 		<h2>Extracting</h2>
