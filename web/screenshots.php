@@ -114,6 +114,14 @@
 		</tr>
 		<tr>
 			<td>
+				<a href="imgs/ss/freebsd.png">
+					<img src="imgs/ss/freebsd_t.png" alt="freebsd"/>
+				</a>
+				<div class="caption">
+					FreeBSD
+				</div>
+			</td>
+			<td>
 				<a href="imgs/ss/console_windows.png">
 					<img src="imgs/ss/console_windows_t.png" alt="console_windows"/>
 				</a>
