@@ -20,8 +20,8 @@
 		<table>
 		<tr>
 			<td>
-				<a href="imgs/ss/linux.png">
-					<img src="imgs/ss/linux_t.png" alt="diagrampane"/>
+				<a href="imgs/ss/diagrampane.png">
+					<img src="imgs/ss/diagrampane_t.png" alt="diagrampane"/>
 				</a>
 				<div class="caption">
 					Diagram pane
