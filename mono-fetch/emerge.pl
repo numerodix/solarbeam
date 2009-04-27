@@ -78,12 +78,13 @@ sub env_write {
 
 
 sub pkg_get {
-	my ($name, $svnurl) = @_;
+	my ($name, $svnurl, $revision) = @_;
 	my $pkg = {
 		name => $name,
 		dir => $name, # fetch to
 		workdir => $name, # build from
 		svnurl => $svnurl,
+		revision => $revision,
 		configurer => "autogen.sh",
 		maker => "make",
 		installer => "make install",
@@ -134,11 +135,11 @@ sub pkg_action {
 }
 
 sub pkg_fetch {
-	my ($pkg, $rev) = @_;
+	my ($pkg) = @_;
 	
 	if (exists($pkg->{svnurl})) {
 		my $code = sub {
-			return invoke("svn", "checkout", "-r", $rev, $pkg->{svnurl}, ".");
+			return invoke("svn", "checkout", "-r", $pkg->{revision}, $pkg->{svnurl}, ".");
 		};
 		pkg_action("fetch", $pkg->{dir}, $pkg, $code);
 	}
@@ -196,6 +197,8 @@ sub pkg_install {
 
 
 sub pkglist_get {
+	my ($revision) = @_;
+
 	my $mono_svn = "svn://anonsvn.mono-project.com/source/trunk";
 	my (@pkglist) = (
 		{"libgdiplus" => "$mono_svn/libgdiplus"}, 
@@ -218,7 +221,7 @@ sub pkglist_get {
 		my @ks = keys(%$pkgh); my $key = $ks[0];
 
 		# init pkg
-		my $pkg = pkg_get($key, $pkgh->{$key});
+		my $pkg = pkg_get($key, $pkgh->{$key}, $revision);
 
 		# override defaults
 		if ($pkg->{name} eq "mcs") {
@@ -267,7 +270,7 @@ my %actions = (
 );
 
 sub action_merge {
-	my ($action, @worklist) = @_;
+	my ($action, $revision, @worklist) = @_;
 
 	# spit out env.sh to source when running
 	env_write();
@@ -277,7 +280,7 @@ sub action_merge {
 		mkpath($SRCDIR);
 	}
 
-	my (@pkgs) = pkglist_get();
+	my (@pkgs) = pkglist_get($revision);
 	foreach my $pkg (@pkgs) {
 		# filter on membership in worklist
 		if (grep {$_ eq $pkg->{name}} @worklist) {
@@ -285,8 +288,7 @@ sub action_merge {
 
 			# fetch
 			if (($action == $actions{merge}) || ($action == $actions{fetch})) {
-				my $revision = "HEAD";
-				pkg_fetch($pkg, $revision);
+				pkg_fetch($pkg);
 			}
 
 			# configure
@@ -313,7 +315,7 @@ sub action_merge {
 
 sub parse_args {
 	if (scalar(@ARGV) == 0) {
-		printf("Usage:  %s <action> [<pkg1> <pkg2> | world]\n", $0);
+		printf("Usage:  %s <action> (<pkg1> <pkg2> | world) [--r=REV]\n", $0);
 		printf("Actions: %s\n", join(" ", keys(%actions)));
 		exit(2);
 	}
@@ -324,16 +326,24 @@ sub parse_args {
 		exit(2);
 	}
 
+	my $revision = "HEAD";
+	foreach my $arg (@ARGV) {
+		if ($arg =~ /--r=(.*)/) {
+			$revision = $1;
+			pop(@ARGV);
+		}
+	}
+
 	my (@pkgnames) = splice(@ARGV, 1);
 	if (grep {$_ eq "world"} @pkgnames) {
-		@allpkgs = pkglist_get();
+		@allpkgs = pkglist_get($revision);
 		@pkgnames = ();
 		foreach my $pkg (@allpkgs) {
 			push(@pkgnames, $pkg->{name});
 		}
 	}
 
-	return (action => $action, pkgs => \@pkgnames);
+	return (action => $action, pkgs => \@pkgnames, revision => $revision);
 }
 
 sub main {
@@ -353,7 +363,7 @@ sub main {
 		exit(2);
 	}
 
-	action_merge($actions{$input{action}}, @{ $input{pkgs} })
+	action_merge($actions{$input{action}}, $input{revision}, @{ $input{pkgs} })
 }
 
 main();
