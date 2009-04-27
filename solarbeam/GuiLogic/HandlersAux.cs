@@ -98,7 +98,7 @@ namespace SolarbeamGui
 			}
 		}
 		
-		private static void ShortcutInstall(object sender, EventArgs args)
+		private static void ShortcutCreate(object sender, EventArgs args)
 		{
 			bool path1_b = GetBool(GetValue(registry[Id.SHORTCUT_PATH_1_CHECK]));
 			bool path2_b = GetBool(GetValue(registry[Id.SHORTCUT_PATH_2_CHECK]));
@@ -127,6 +127,39 @@ namespace SolarbeamGui
 					Controller.Report(new Message(Result.OK, "Created shortcut in: " + path));
 				} catch {
 					Controller.Report(new Message(Result.Fail, "Failed to create shortcut in: " + path));
+				}
+			}
+		}
+		
+		private static void ShortcutDelete(object sender, EventArgs args)
+		{
+			bool path1_b = GetBool(GetValue(registry[Id.SHORTCUT_PATH_1_CHECK]));
+			bool path2_b = GetBool(GetValue(registry[Id.SHORTCUT_PATH_2_CHECK]));
+			
+			string path1_s = GetValue(registry[Id.SHORTCUT_PATH_1_INPUT]);
+			string path2_s = GetValue(registry[Id.SHORTCUT_PATH_2_INPUT]);
+			
+			PlatformName pn = ReadPlatform();
+			
+			if (pn == PlatformName.Windows) {
+				ShortcutUninstall(pn, path1_b, path1_s);
+			}
+			ShortcutUninstall(pn, path2_b, path2_s);
+		}
+
+		private static void ShortcutUninstall(PlatformName pn, bool flag, string path)
+		{
+			ShortcutInstaller si = new ShortcutInstaller(Controller.AsmInfo);
+			if ((flag) && (path != null) && (path != string.Empty)) {
+				try {
+					if (pn == PlatformName.Windows) {
+						si.RemoveWindowsShortcut(path);						
+					} else {
+						si.RemoveUnixShortcut(path);
+					}
+					Controller.Report(new Message(Result.OK, "Removed shortcut in: " + path));
+				} catch {
+					Controller.Report(new Message(Result.Fail, "Failed to remove shortcut in: " + path));
 				}
 			}
 		}

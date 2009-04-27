@@ -27,6 +27,12 @@ namespace LibSolar.Util
 			WriteFile(ws.Codegen(), file_path);
 		}
 		
+		public void RemoveWindowsShortcut(string path)
+		{
+			string file_path = Path.Combine(path, Constants.WinShortcutFile);
+			File.Delete(file_path);
+		}
+		
 		public void UnixShortcutTo(string path)
 		{
 			string app_path = asminfo.GetAppPath();
@@ -45,6 +51,12 @@ namespace LibSolar.Util
 			
 			string file_path = Path.Combine(path, Constants.UnixShortcutFile);
 			WriteFile(us.Codegen(), file_path);
+		}
+		
+		public void RemoveUnixShortcut(string path)
+		{
+			string file_path = Path.Combine(path, Constants.UnixShortcutFile);
+			File.Delete(file_path);
 		}
 		
 		private void WriteFile(string s, string file_path)

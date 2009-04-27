@@ -211,11 +211,15 @@ namespace SolarbeamGui
 			Control buttons = Widgets.GetLaidOut(
 				new Control[] {
 					Widgets.GetButtonImageText(
-						Controller.Id.SHORTCUTINSTALL_ACTION,
+						Controller.Id.SHORTCUTCREATE_ACTION,
 						"&Create",
 						"new.png"),
+					Widgets.GetButtonImageText(
+						Controller.Id.SHORTCUTDELETE_ACTION,
+						"&Remove",
+						"delete.png"),
 					Widgets.GetLabelAnon(String.Empty)},
-				new string[] {Widgets.BUTTON_WIDTH, "100%"});
+				new string[] {Widgets.BUTTON_WIDTH, Widgets.BUTTON_WIDTH, "100%"});
 			
 			Control layout = Widgets.GetStacked(
 				new Control[] {desktop, startmenu, buttons},
