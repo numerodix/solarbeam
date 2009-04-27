@@ -138,7 +138,6 @@ namespace SolarbeamGui
 			txt.SelectionChanged += delegate (object o, EventArgs a) {
 				if (txt.SelectedText != String.Empty) {
 					Clipboard.SetDataObject(txt.SelectedText);
-					Console.WriteLine(Clipboard.GetText());
 				}
 			};
 			return txt;
