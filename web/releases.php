@@ -1,12 +1,33 @@
-		<? // generated with scripts/genreleasepage.py on 25.4.2009 ?>
+		<? // generated with scripts/genreleasepage.py on 27.4.2009 ?>
 
+		<div class="releasetitle">
+			<a href="javascript:Collapse('release-0.9')">
+				<img src="imgs/collapse.png" alt="collapse"/>
+				SolarBeam 0.9
+			</a> - 27.04.2009
+		</div>
+		<div id="release-0.9">
+			<div class="releasecontent">
+				<p>New features:</p>
+				<ul>
+					<li>Add button to remove shortcuts.</li>
+					<li>Improved platform detection.</li>
+				</ul>
+				<p class="download">
+					<a href="http://downloads.sourceforge.net/solarbeam/solarbeam-0.9.zip">
+						<img src="imgs/download.png" alt="download"/>
+						Download
+					</a>
+				</p>
+			</div>
+		</div>
 		<div class="releasetitle">
 			<a href="javascript:Collapse('release-0.8')">
 				<img src="imgs/collapse.png" alt="collapse"/>
 				SolarBeam 0.8
 			</a> - 25.04.2009
 		</div>
-		<div id="release-0.8">
+		<div id="release-0.8" style="display: none;">
 			<div class="releasecontent">
 				<p>New features:</p>
 				<ul>
