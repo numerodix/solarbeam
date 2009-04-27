@@ -18,7 +18,7 @@
 		SolarBeam is released under the <a href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a>.
 
 		<h2>Releases</h2>
-		Installation instructions for <a href="install_windows.php">Windows</a>, <a href="install_unix.php">Unix</a>.
+		Not sure how to run/install the program? Look over the instructions for <a href="install_windows.php">Windows</a>, <a href="install_unix.php">Unix</a>.
 <? include("releases.php"); ?>
 
 		<h2>System requirements</h2>
