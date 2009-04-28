@@ -1,10 +1,63 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
 class ComboInputTest
 {	
+	public static string Run(string bin, string args)
+	{
+		string output = null;
+		try {
+			Process p = new Process();
+			p.StartInfo.UseShellExecute = false;
+			p.StartInfo.RedirectStandardOutput = true;
+			p.StartInfo.FileName = bin;
+			p.StartInfo.Arguments = args;
+			p.Start();
+			output = p.StandardOutput.ReadToEnd().Trim();
+			p.WaitForExit();
+		} catch {}
+		return output;
+	}
+
+	public static TableLayoutPanel GetStacked(Control[] controls, string[] widths)
+	{
+		TableLayoutPanel layout = new TableLayoutPanel();
+		layout.Dock = DockStyle.Fill;
+		layout.ColumnCount = 1;
+		layout.RowCount = controls.Length;
+
+		foreach (string width in widths) {
+			float val = 0F;
+			SizeType tp = SizeType.Absolute;
+			if (width.EndsWith("%")) {
+				val = (float) Convert.ToDouble(width.Remove(width.Length - 1));
+				tp = SizeType.Percent;
+			} else {
+				val = (float) Convert.ToDouble(width);
+			}
+			layout.RowStyles.Add(new RowStyle(tp, val));
+		}
+
+		foreach (Control c in controls) {
+			c.Dock = DockStyle.Fill;
+			layout.Controls.Add(c);
+		}
+		return layout;
+	}
+
+	public static RichTextBox GetRichTextBoxAnon(string s)
+	{
+		RichTextBox txt = new RichTextBox();
+		txt.Multiline = true;
+		txt.WordWrap = true;
+		txt.Text = s;
+		txt.Dock = DockStyle.Fill;
+		return txt;
+	}
+
 	public static ComboBox GetComboBox(List<string> ss)
 	{
 		ComboBox combo = new ComboBox();
@@ -27,6 +80,17 @@ class ComboInputTest
 		return combo;
 	}
 
+	public static ComboBox GetComboBoxFilled()
+	{
+		List<string> items = new List<string>();
+		for (int i=0; i<26; i++) {
+			for (int j=0; j<26; j++) {
+				items.Add(String.Format("{0}{1}fff", (char) (97+i), (char) (97+j)));
+			}
+		}
+		return GetComboBoxInputable(items);
+	}
+
 	public static TextBox GetTextBox()
 	{
 		TextBox textbox = new TextBox();
@@ -36,24 +100,26 @@ class ComboInputTest
 	[STAThread]
 	public static void Main()
 	{
-		Form form = new Form();
-		List<string> items = new List<string>();
-		for (int i=0; i<26; i++) {
-			for (int j=0; j<26; j++) {
-				items.Add(String.Format("{0}{1}fff", (char) (97+i), (char) (97+j)));
-			}
-		}
-
-		ComboBox combo = GetComboBoxInputable(items);
+		RichTextBox label = GetRichTextBoxAnon(Run("mono", "-V"));
+		label.TabStop = false;
+		ComboBox combo = GetComboBoxFilled();
 		Control text = GetTextBox();
-		text.Location = new Point(140, 0);
-		form.Controls.Add(combo);
-		form.Controls.Add(text);
+
+		Control main = GetStacked(
+			new Control[] {
+				label,
+				combo,
+				text},
+			new string[] {"150", "30", "30"});
+
+		Form form = new Form();
+		form.Size = new Size(450, 240);
+		form.Controls.Add(main);
 
 		Console.WriteLine("start");
-		combo.SelectedValueChanged += delegate (object obj, EventArgs args) {
-			Console.WriteLine(combo.SelectedText);
-			text.Text = combo.SelectedText;
+		combo.SelectedValueChanged += delegate {
+			string selected = (string) combo.Items[combo.SelectedIndex];
+			text.Text = selected;
 		};
 
 		Application.Run(form);
@@ -63,21 +129,13 @@ class ComboInputTest
 /*
  * gmcs -r:System.Windows.Forms -r:System.Drawing ComboInputTest.cs
  *
- * When you start typing in the box without clicking the pull down menu
- * that shows all the items, there is a small popup box that appears
- * containing the choices that match your prefix so far.
+ * 1. Start typing in the combo box.
+ * 2. Once a suggestion appears, hit Tab or Enter. This signals that the top item in
+ * the suggestion list is to be selected.
+ * 3. Selected item appears in text box below combo box.
  *
- * linux:mono r130111
- * missing popup
- *
- * linux:mono 1.9.1
- * missing popup
- *
- * osx:mono 2.2
- * working as expected
- *
- * winxp:mono 2.2
- * working as expected
+ * linux:mono r132804
+ * selected item not written into text box
  *
  * winxp:.net 3.5
  * working as expected
