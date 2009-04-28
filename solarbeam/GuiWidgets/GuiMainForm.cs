@@ -56,9 +56,6 @@ namespace SolarbeamGui
 			Controller.SplashQueue.Enqueue("Initializing gui");
 			this.Controls.Add(GetPanel());
 
-			
-//			this.SuspendLayout();
-			
 			// makes mono layout differently 1.9 <-> 2.0
 			// VS default: 6F 13F (win ok)
 			// mono 1.9: 6F 14F (win ok)
@@ -68,9 +65,7 @@ namespace SolarbeamGui
 			this.AutoScaleMode = AutoScaleMode.Font;
 			this.ClientSize = GetFormSize();
 			this.MinimumSize = new Size(ClientSize.Width + (Size.Width - ClientSize.Width),
-			                            ClientSize.Height + (Size.Height - ClientSize.Height));
-//			this.ResumeLayout(false);
-//			this.PerformLayout();
+			                            ClientSize.Height + (Size.Height - ClientSize.Height));		
 		}
 		
 		private Control GetPanel()

@@ -61,7 +61,7 @@ namespace SolarbeamGui
 		
 		private Control GetLogo()
 		{
-			Panel panel = new Panel();
+			Panel panel = Widgets.GetPanel();
 			Bitmap logo = Controller.AsmInfo.GetBitmap("logo.png");
 			panel.BackgroundImage = logo;
 			panel.Size = logo.Size;

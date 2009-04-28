@@ -28,6 +28,8 @@ namespace SolarbeamGui
 			};
 			
 			InitializeComponent();
+			
+			Widgets.DoLayout(this);
 		}
 		
 		protected abstract void InitializeComponent();

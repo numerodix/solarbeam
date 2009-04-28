@@ -36,19 +36,19 @@ Global
 		version = 0.1
 		StartupItem = solarbeam\solarbeam.csproj
 		Policies = $0
-		$0.DotNetNamingPolicy = $1
-		$1.DirectoryNamespaceAssociation = None
-		$1.ResourceNamePolicy = FileFormatDefault
+		$0.TextStylePolicy = $1
+		$1.FileWidth = 80
+		$1.TabWidth = 4
+		$1.TabsToSpaces = False
+		$1.NoTabsAfterNonTabs = True
+		$1.RemoveTrailingWhitespace = False
+		$1.EolMarker = Native
 		$0.StandardHeader = $2
 		$2.Text = @Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>\nLicensed under the GNU Public License, version 3.
 		$2.inheritsSet = MITX11License
-		$0.TextStylePolicy = $3
-		$3.FileWidth = 80
-		$3.TabWidth = 4
-		$3.TabsToSpaces = False
-		$3.NoTabsAfterNonTabs = True
-		$3.RemoveTrailingWhitespace = False
-		$3.EolMarker = Native
+		$0.DotNetNamingPolicy = $3
+		$3.DirectoryNamespaceAssociation = None
+		$3.ResourceNamePolicy = FileFormatDefault
 		name = solarbeam
 	EndGlobalSection
 EndGlobal

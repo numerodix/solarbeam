@@ -49,7 +49,7 @@
     <Compile Include="GuiWidgets\GuiMenu.cs" />
     <Compile Include="GuiWidgets\Tooltips.cs" />
     <Compile Include="GuiLogic\Sessions.cs" />
-    <Compile Include="GuiWidgets\Lib\Layouts.cs" />
+    <Compile Include="GuiWidgets\Lib\Layouting.cs" />
     <Compile Include="GuiWidgets\GuiSplash.cs" />
     <Compile Include="GuiWidgets\Lib\Dialogs.cs" />
     <Compile Include="GuiWidgets\Lib\WidgetsMenu.cs" />
@@ -67,6 +67,7 @@
     <Compile Include="GuiLogic\Types\Details.cs" />
     <Compile Include="GuiWidgets\Lib\GuiBaseChildForm.cs" />
     <Compile Include="GuiWidgets\Lib\GuiBaseForm.cs" />
+    <Compile Include="GuiWidgets\Lib\Containers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

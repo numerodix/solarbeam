@@ -19,6 +19,8 @@ namespace SolarbeamGui
 			this.Icon = Controller.AsmInfo.GetIcon(icon);
 
 			InitializeComponent();
+			
+			Widgets.DoLayout(this);
 		}
 		
 		protected abstract void InitializeComponent();
