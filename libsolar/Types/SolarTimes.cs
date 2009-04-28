@@ -60,7 +60,7 @@ namespace LibSolar.Types
 		// Helpers
 		public string Print(string template, bool print_params)
 		{
-			string s = "";
+			string s = string.Empty;
 			if (print_params) {
 				s += string.Format(template, "longitude", pos.PrintLongitude());
 				s += string.Format(template, "latitude", pos.PrintLatitude());
