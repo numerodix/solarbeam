@@ -1,12 +1,32 @@
-		<? // generated with scripts/genreleasepage.py on 27.4.2009 ?>
+		<? // generated with scripts/genreleasepage.py on 28.4.2009 ?>
 
+		<div class="releasetitle">
+			<a href="javascript:Collapse('release-1.0')">
+				<img src="imgs/collapse.png" alt="collapse"/>
+				SolarBeam 1.0
+			</a> - 28.04.2009
+		</div>
+		<div id="release-1.0">
+			<div class="releasecontent">
+				<p>Bugs fixed:</p>
+				<ul>
+					<li>Various performance fixes.</li>
+				</ul>
+				<p class="download">
+					<a href="http://downloads.sourceforge.net/solarbeam/solarbeam-1.0.zip">
+						<img src="imgs/download.png" alt="download"/>
+						Download
+					</a>
+				</p>
+			</div>
+		</div>
 		<div class="releasetitle">
 			<a href="javascript:Collapse('release-0.9')">
 				<img src="imgs/collapse.png" alt="collapse"/>
 				SolarBeam 0.9
 			</a> - 27.04.2009
 		</div>
-		<div id="release-0.9">
+		<div id="release-0.9" style="display: none;">
 			<div class="releasecontent">
 				<p>New features:</p>
 				<ul>
