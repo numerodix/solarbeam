@@ -44,7 +44,7 @@ Global
 		$1.RemoveTrailingWhitespace = False
 		$1.EolMarker = Native
 		$0.StandardHeader = $2
-		$2.Text = @Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>\nLicensed under the GNU Public License, version 3.
+		$2.Text = @Copyright (c) 2013 Martin Matusiak <numerodix@gmail.com>\nLicensed under the GNU Public License, version 3.
 		$2.inheritsSet = MITX11License
 		$0.DotNetNamingPolicy = $3
 		$3.DirectoryNamespaceAssociation = None

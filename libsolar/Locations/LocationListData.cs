@@ -873,7 +873,7 @@ namespace LibSolar.Locations
 			list.Add("Brasov (Rom)", "Europe/Bucharest",
 				new Position(PositionDirection.North, 45, 39, 36,
 					PositionDirection.East, 25, 36, 36));
-			list.Add("Bratislava (Slo)", "Europe/Bratislava",
+			list.Add("Bratislava (Svk)", "Europe/Bratislava",
 				new Position(PositionDirection.North, 48, 9, 36,
 					PositionDirection.East, 17, 7, 48));
 			list.Add("Bratsk (Rus)", "Asia/Irkutsk",
@@ -2898,7 +2898,7 @@ namespace LibSolar.Locations
 			list.Add("Koshigaya (Jap)", "Asia/Tokyo",
 				new Position(PositionDirection.North, 35, 53, 24,
 					PositionDirection.East, 139, 47, 24));
-			list.Add("Kosice (Slo)", "Europe/Bratislava",
+			list.Add("Kosice (Svk)", "Europe/Bratislava",
 				new Position(PositionDirection.North, 48, 43, 48,
 					PositionDirection.East, 21, 15, 36));
 			list.Add("Kostanay (Kaz)", "Asia/Almaty",
