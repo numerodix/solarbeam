@@ -1,12 +1,32 @@
-		<? // generated with scripts/genreleasepage.py on 28.4.2009 ?>
+		<? // generated with scripts/genreleasepage.py on 20.6.2013 ?>
 
+		<div class="releasetitle">
+			<a href="javascript:Collapse('release-1.1')">
+				<img src="imgs/collapse.png" alt="collapse"/>
+				SolarBeam 1.1
+			</a> - 20.06.2013
+		</div>
+		<div id="release-1.1">
+			<div class="releasecontent">
+				<p>Bugs fixed:</p>
+				<ul>
+					<li>Use country code Svk for Slovakia.</li>
+				</ul>
+				<p class="download">
+					<a href="http://downloads.sourceforge.net/solarbeam/solarbeam-1.1.zip">
+						<img src="imgs/download.png" alt="download"/>
+						Download
+					</a>
+				</p>
+			</div>
+		</div>
 		<div class="releasetitle">
 			<a href="javascript:Collapse('release-1.0')">
 				<img src="imgs/collapse.png" alt="collapse"/>
 				SolarBeam 1.0
 			</a> - 28.04.2009
 		</div>
-		<div id="release-1.0">
+		<div id="release-1.0" style="display: none;">
 			<div class="releasecontent">
 				<p>Bugs fixed:</p>
 				<ul>
