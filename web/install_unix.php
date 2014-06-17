@@ -17,6 +17,15 @@
 		<h1>Installation on Unix</h1>
 		SolarBeam is a portable application and does not need to be installed. You can place it anywhere on the filesystem and run it from there. SolarBeam can also set up launchers for itself in the Applications menu.
 
+        <h2>Dependencies</h2>
+        <p>On <b>Ubuntu</b> you will need to install the packages:
+        <ul>
+            <li>mono-runtime</li>
+            <li>libmono-i18n2.0-cil</li>
+            <li>libmono-winforms2.0-cil</li>
+        </ul>
+        </p>
+
 		<h2>Download</h2>
 		<p>First download a SolarBeam release from this website.</p>
 		<img src="imgs/guide/unix_0.png" alt="unix_0"/>
