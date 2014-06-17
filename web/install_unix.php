@@ -24,6 +24,10 @@
             <li>libmono-i18n2.0-cil</li>
             <li>libmono-winforms2.0-cil</li>
         </ul>
+        <p>On <b>Fedora</b> you will need to install the packages:
+        <ul>
+            <li>mono-basic</li>
+        </ul>
         </p>
 
 		<h2>Download</h2>
