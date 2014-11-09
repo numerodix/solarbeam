@@ -2,7 +2,7 @@
 - The Monodevelop generated build (on Ubuntu) crashes (fails on start, no useful error message) on Win7 x64.
     - Workaround: Build on Win7/Xamarin Studio 5/NET 4.0
         Seems to run on all platforms:
-            - Win 7 x86 & 
+            - Win 7 x86
             - Win 7 x64
             - WinXP
             - Ubuntu 14.04 x86
