@@ -1,4 +1,4 @@
-// Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
+// Copyright (c) 2009-2014 Martin Matusiak <numerodix@gmail.com>
 // Licensed under the GNU Public License, version 3.
 
 using System;
@@ -14,7 +14,7 @@ namespace LibSolar
 
 		public const string VERSION = "1.2.0.0";
 
-		public const string COPYRIGHT = "Copyright (c) 2013 Martin Matusiak <numerodix@gmail.com>";
+		public const string COPYRIGHT = "Copyright (c) 2009-2014 Martin Matusiak <numerodix@gmail.com>";
 		
 		public const string GUI_FILENAME = "solarbeam.exe";
 		public const string WIN_ICON_FILENAME = "icon.ico";

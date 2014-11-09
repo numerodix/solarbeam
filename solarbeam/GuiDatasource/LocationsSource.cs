@@ -1,4 +1,4 @@
-// Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
+// Copyright (c) 2009-2014 Martin Matusiak <numerodix@gmail.com>
 // Licensed under the GNU Public License, version 3.
 
 using System.Collections.Generic;

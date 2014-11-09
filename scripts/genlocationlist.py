@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>
+# Copyright (c) 2009-2014 Martin Matusiak <numerodix@gmail.com>
 # Licensed under the GNU Public License, version 3.
 #
 # Generates c# code for LocationList using location data file from
@@ -785,7 +785,7 @@ def codegen(locs):
     t = time.localtime()
     t_s = "%s.%s.%s\n\n" % (t.tm_mday, t.tm_mon, t.tm_year)
 
-    pre = "// Copyright (c) 2009 Martin Matusiak <numerodix@gmail.com>\n"
+    pre = "// Copyright (c) 2009-2014 Martin Matusiak <numerodix@gmail.com>\n"
     pre += "// Licensed under the GNU Public License, version 3.\n"
     pre += "//\n// Generated with %s on %s" % (sys.argv[0], t_s)
     pre += "using LibSolar.Types;\n\n"
