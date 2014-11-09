@@ -1,12 +1,32 @@
-		<? // generated with scripts/genreleasepage.py on 20.6.2013 ?>
+		<? // generated with scripts/genreleasepage.py on 9.11.2014 ?>
 
+		<div class="releasetitle">
+			<a href="javascript:Collapse('release-1.2')">
+				<img src="imgs/collapse.png" alt="collapse"/>
+				SolarBeam 1.2
+			</a> - 09.11.2014
+		</div>
+		<div id="release-1.2">
+			<div class="releasecontent">
+				<p>Bugs fixed:</p>
+				<ul>
+					<li>Windows7 x64 fix. If the program crashes on startup on Windows7 you will need this version.</li>
+				</ul>
+				<p class="download">
+					<a href="http://downloads.sourceforge.net/solarbeam/solarbeam-1.2.zip">
+						<img src="imgs/download.png" alt="download"/>
+						Download
+					</a>
+				</p>
+			</div>
+		</div>
 		<div class="releasetitle">
 			<a href="javascript:Collapse('release-1.1')">
 				<img src="imgs/collapse.png" alt="collapse"/>
 				SolarBeam 1.1
 			</a> - 20.06.2013
 		</div>
-		<div id="release-1.1">
+		<div id="release-1.1" style="display: none;">
 			<div class="releasecontent">
 				<p>Bugs fixed:</p>
 				<ul>
