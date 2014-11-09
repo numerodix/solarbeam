@@ -30,7 +30,7 @@
 
 		<h2>Source code</h2>
 		<p>Are you a developer? Source code is to be had from the git repo at:</p>
-		<blockquote><p>git://solarbeam.git.sourceforge.net/gitroot/solarbeam/solarbeam</p></blockquote>
+		<blockquote><p>git://git.code.sf.net/p/solarbeam/code</p></blockquote>
 		<p>SolarBeam is written in C&#35;. You can find some code metrics on <a href="https://www.ohloh.net/p/solarbeam">ohloh</a>.</p>
 	</div>
 
