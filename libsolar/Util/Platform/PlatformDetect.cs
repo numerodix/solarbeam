@@ -25,8 +25,18 @@ namespace LibSolar.Util
 		public static string GetWindowsPlatformName()
 		{
 			OperatingSystem os = Environment.OSVersion;
-			
 			string name = "Windows";
+            Architecture arch = Architecture.UnknownArch;
+
+            switch (IntPtr.Size) {
+                case 4:
+                    arch = Architecture.x86;
+                    break;
+                case 8:
+                    arch = Architecture.x64;
+                    break;
+            }
+
 			switch (os.Platform) {
 			case PlatformID.Win32Windows:
 				switch (os.Version.Minor) {
@@ -87,6 +97,7 @@ namespace LibSolar.Util
 				}
 				break;
 			}
+            name = string.Format("{0} ({1})", name, arch.ToString());
 			return name;
 		}
 

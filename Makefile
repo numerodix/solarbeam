@@ -13,7 +13,7 @@ zip:
 	rm dist/solarbeam/nunit.framework.dll
 	cp bundled/icon.ico dist/solarbeam
 	cp bundled/icon64.png dist/solarbeam
-	(cd dist/solarbeam && mono solarbeam.exe -init)
+	#(cd dist/solarbeam && mono solarbeam.exe -init)
 	(cd dist && zip solarbeam.zip solarbeam/*)
 	rm -rf dist/solarbeam
 
