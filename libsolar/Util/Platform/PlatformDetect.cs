@@ -73,6 +73,15 @@ namespace LibSolar.Util
 						case 1:
 							name = "Windows 7";
 							break;
+						case 2:
+							name = "Windows 8";
+							break;
+						case 3:
+							name = "Windows 8.1";
+							break;
+						case 4:
+							name = "Windows 10";
+							break;
 					}
 					break;
 				}
