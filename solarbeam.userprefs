@@ -1,8 +1,7 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="libsolar/Util/Platform/RuntimeDetect.cs">
     <Files>
-      <File FileName="libsolar/Util/Platform.cs" Line="1" Column="1" />
-      <File FileName="libsolar/Util/Platform/RuntimeDetect.cs" Line="29" Column="37" />
+      <File FileName="libsolar/Util/Platform/RuntimeDetect.cs" Line="22" Column="37" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

@@ -8,7 +8,7 @@
     <ProjectGuid>{B10031CA-8F30-4D3E-8185-AEC4636D0648}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>libsolar</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
