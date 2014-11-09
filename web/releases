@@ -1,3 +1,6 @@
+1.2
+* Windows7 x64 fix. If the program crashes on startup on Windows7 you will need this version.
+
 1.1
 * Use country code Svk for Slovakia.
 
