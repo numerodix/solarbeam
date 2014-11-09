@@ -74,16 +74,12 @@ namespace LibSolar.Util
 			switch (type) {
 			case PathType.Desktop:
 				return Paths.GetDesktopPath();
-				break;
 			case PathType.WindowsStartMenu:
 				return Paths.GetWindowsStartMenuPath();
-				break;
 			case PathType.UnixLocalXDGApplications:
 				return Paths.UnixLocalXDGApplications();
-				break;
 			case PathType.UnixGlobalXDGApplications:
 				return Paths.UnixGlobalXDGApplications();
-				break;
 			}
 			return null;
 		}
