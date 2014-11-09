@@ -24,7 +24,7 @@ namespace SolarbeamGui
 			this.message = message;
 		}
 		
-		public string ToString()
+		public override string ToString()
 		{
 			string fmt = "HH':'mm':'ss";
 			string date_s = date.ToString(fmt);
