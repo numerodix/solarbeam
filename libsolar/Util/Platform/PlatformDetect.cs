@@ -98,11 +98,19 @@ namespace LibSolar.Util
 		public static string GetUnixPlatformName()
 		{
 			string name = "Unix";
+            Architecture arch = Architecture.UnknownArch;
 			try {
 				name = Processes.Run("uname", string.Empty);
 				if (name == "Linux") {
 					string distro = string.Empty;
 					string release = string.Empty;
+
+                    string cpu = Processes.Run("uname", "-p");
+                    if (cpu.Equals("i686")) {
+                        arch = Architecture.x86;
+                    } else if (cpu.Equals("x86_64")) {
+                        arch = Architecture.x64;
+                    }
 
 					try {
 						string distro_t = Processes.Run("lsb_release", "-i");
@@ -134,7 +142,7 @@ namespace LibSolar.Util
 							throw new Exception();
 					}
 
-					name = string.Format("{0}{1}", distro, release);
+					name = string.Format("{0}{1} ({2})", distro, release, arch.ToString());
 				}
 			} catch {}
 			return name;

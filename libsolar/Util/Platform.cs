@@ -15,7 +15,13 @@ namespace LibSolar.Util
 		Windows,
 		Unix,
 	}
-	
+
+    public enum Architecture {
+        UnknownArch,
+        x86,
+        x64,
+    }
+
 	public enum PathType {
 		WindowsStartMenu,
 		Desktop,
