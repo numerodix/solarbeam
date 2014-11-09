@@ -29,7 +29,6 @@ namespace SolarbeamGui
 		private GuiMenu menu;
 		private GuiStatusbar statusbar;
 		private GuiControlPanel controlpanel;
-		private GuiDiagram diagram;
 		
 		public GuiMainForm(string form_title, string icon)
 			: base(form_title, icon)
