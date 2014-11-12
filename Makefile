@@ -22,7 +22,7 @@ apidocs:
 	doxygen doxygen.cfg
 
 test:
-	nunit-console libsolar/bin/Release/libsolar.dll
+	nunit-console -framework=4.0 libsolar/bin/Release/libsolar.dll
 	rm TestResult.xml #"C:\NUnitPrimaryTrace.txt"
 
 arch:
